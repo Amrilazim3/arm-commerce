@@ -12,6 +12,7 @@
         "ssr-prod": "mix --production && mix --production --mix-config=webpack.ssr.mix.js"
     },
     "devDependencies": {
+        "@tailwindcss/forms": "^0.5.0",
         "autoprefixer": "^10.4.4",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
