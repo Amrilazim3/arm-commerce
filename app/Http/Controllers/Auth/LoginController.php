@@ -20,23 +20,24 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
-        if (Auth::attempt($credentials, $request->isRememberMe)) {
+
+        if (Auth::attempt($credentials, $request->isRememberMe == 1 ? true : false)) {
             $request->session()->regenerate();
- 
+
             return redirect()->intended('/products');
         }
- 
+
+        return false;
     }
 
     public function destroy(Request $request)
     {
         Auth::logout();
- 
+
         $request->session()->invalidate();
-     
+
         $request->session()->regenerateToken();
-     
+
         return redirect('/login');
     }
 }
