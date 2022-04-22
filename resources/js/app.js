@@ -12,7 +12,9 @@ createInertiaApp({
 
         if (page.layout === undefined) {
             page.layout = Layout;
-        } else {
+        }
+
+        if (page.layout === null) {
             page.layout = LayoutTwo;
         }
 
