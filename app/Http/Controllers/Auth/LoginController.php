@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Rules\VerifyPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -17,8 +18,8 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => ['required', 'email', 'exists:users,email'],
+            'password' => ['required', new VerifyPassword($request->email)],
         ]);
 
         if (Auth::attempt($credentials, $request->isRememberMe == 1 ? true : false)) {
