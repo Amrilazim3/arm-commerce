@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
@@ -21,3 +22,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'destroy']);
 });
 
+Route::prefix('/email/verify')->name('verification.')->group(function () {
+    Route::get('/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verify');
+    Route::post('/resend', [EmailVerificationController::class, 'resend'])
+        ->middleware(['auth', 'throttle:6,1'])
+        ->name('send');
+});
