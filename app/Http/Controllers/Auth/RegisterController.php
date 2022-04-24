@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendEmailVerificationJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,35 +24,12 @@ class RegisterController extends Controller
             'password' => ['required', 'min:7', 'confirmed'],
         ]);
 
-        if ($validated) {
-            User::create($validated);
+        $user = User::create($validated);
 
-            if (Auth::attempt(
-                [
-                    'email' => $request->email,
-                    'password' => $request->password
-                ],
-                $request->isRememberMe == 1 ? true : false
-            )) {
-                $request->session()->regenerate();
+        SendEmailVerificationJob::dispatch($user);
 
-                return redirect()->intended('/products');
-            }
+        Auth::login($user, !!$request->isRememberMe);
 
-            return false;
-        }
-    }
-
-    public function destroy(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        User::where('id', $request->user()->id)->delete();
-
-        return redirect('/');
+        return redirect('/products')->with('success', 'email verification link has been sent');
     }
 }
