@@ -22,13 +22,8 @@ class LoginController extends Controller
             'password' => ['required', new VerifyPassword($request->email)],
         ]);
 
-        if (Auth::attempt($credentials, $request->isRememberMe == 1 ? true : false)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/products');
-        }
-
-        return false;
+        Auth::attempt($credentials, !!$request->isRememberMe);
+        return redirect()->intended('/products');
     }
 
     public function destroy(Request $request)
