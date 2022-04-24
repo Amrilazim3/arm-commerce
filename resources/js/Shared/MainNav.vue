@@ -3,47 +3,131 @@
         <Popover>
             <div class="px-6 py-3 text-white bg-gray-800">
                 <div class="flex justify-between">
-                    <Link href="/" class="text-2xl font-bold">Arm-Commerce</Link>
+                    <Link href="/" class="text-2xl font-bold"
+                        >Arm-Commerce</Link
+                    >
 
-                    <div class="self-center hidden space-x-5 font-semibold md:flex">
-                        <Link
-                            href="/login"
-                            class="hover:text-gray-400 transition ease-out duration-500"
-                            :class="$page.component == 'Auth/Login' ? 'text-gray-400 underline' : '' "
-                            >Login</Link
-                        >
-                        <span class="font-thin cursor-default">|</span>
-                        <Link
-                            href="/register"
-                            class="hover:text-gray-400 transition ease-out duration-500"
-                            :class="$page.component == 'Auth/Register' ? 'text-gray-400 underline' : ''"
-                            >Create an account</Link
-                        >
-                    </div>
-
-                    <!-- toggle button -->
-                    <div class="self-center -my-2 -mr-2 md:hidden">
-                        <PopoverButton
-                            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                        >
-                            <span class="sr-only">Open menu</span>
-                            <svg
-                                class="w-6 h-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
+                    <div
+                        class="self-center hidden space-x-5 font-semibold md:flex"
+                    >
+                        <template v-if="$page.props.auth.isLoggedIn">
+                            <Menu>
+                                <MenuButton class="space-x-5 md:flex">
+                                    <span
+                                        class="inline-block h-6 w-6 rounded-full overflow-hidden bg-gray-100"
+                                    >
+                                        <svg
+                                            class="h-full w-full text-gray-300"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"
+                                            />
+                                        </svg>
+                                    </span>
+                                    <span
+                                        class="font-bold text-sm self-center"
+                                        >{{ $page.props.auth.user.name }}</span
+                                    >
+                                </MenuButton>
+                                <MenuItems
+                                    class="absolute w-40 bg-gray-600 inline-grid p-0.5 right-5 text-white top-12 rounded-md"
+                                >
+                                    <MenuItem v-slot="{ active }">
+                                        <a
+                                            class="px-2"
+                                            :class="{
+                                                'bg-gray-800 rounded-md':
+                                                    active,
+                                            }"
+                                            href="/account-settings"
+                                        >
+                                            Profile
+                                        </a>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <Link
+                                            class="px-2 text-red-500 font-bold text-left"
+                                            href="/logout"
+                                            method="post"
+                                            as="button"
+                                            >Log out</Link
+                                        >
+                                    </MenuItem>
+                                </MenuItems>
+                            </Menu>
+                        </template>
+                        <template v-else>
+                            <Link
+                                href="/login"
+                                class="hover:text-indigo-500 transition ease-out duration-500"
+                                :class="
+                                    $page.component == 'Auth/Login'
+                                        ? 'text-indigo-500 underline'
+                                        : ''
+                                "
+                                >Login</Link
                             >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            </svg>
-                        </PopoverButton>
+                            <span class="font-thin cursor-default">|</span>
+                            <Link
+                                href="/register"
+                                class="hover:hover:text-indigo-500 transition ease-out duration-500"
+                                :class="
+                                    $page.component == 'Auth/Register'
+                                        ? 'text-indigo-500 underline'
+                                        : ''
+                                "
+                                >Create an account</Link
+                            >
+                        </template>
                     </div>
+
+                    <!-- mobile layout -->
+                    <!-- toggle button -->
+                    <template v-if="$page.props.auth.isLoggedIn">
+                        <div class="self-center -my-2 -mr-2 md:hidden">
+                            <PopoverButton>
+                                <span
+                                    class="flex h-6 w-6 rounded-full overflow-hidden bg-gray-100"
+                                >
+                                    <svg
+                                        class="h-full w-full text-gray-300"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"
+                                        />
+                                    </svg>
+                                </span>
+                            </PopoverButton>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="self-center -my-2 -mr-2 md:hidden">
+                            <PopoverButton
+                                class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                            >
+                                <span class="sr-only">Open menu</span>
+                                <svg
+                                    class="w-6 h-6"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
+                                </svg>
+                            </PopoverButton>
+                        </div>
+                    </template>
 
                     <transition
                         enter-active-class="duration-200 ease-out"
@@ -60,7 +144,9 @@
                                 class="bg-gray-800 divide-y-2 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-gray-50"
                             >
                                 <div class="px-5 pt-5 pb-6">
-                                    <div class="flex items-center justify-between">
+                                    <div
+                                        class="flex items-center justify-between"
+                                    >
                                         <div>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -148,25 +234,50 @@
                                     </div>
                                 </div>
                                 <div class="px-5 py-6">
-                                    <div class="mt-6">
-                                        <Link
-                                            href="/register"
-                                            class="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:from-purple-700 hover:to-indigo-700"
-                                        >
-                                            Create an account
-                                        </Link>
-                                        <p
-                                            class="mt-6 text-base font-medium text-center text-gray-500"
-                                        >
-                                            Existing customer?
-                                            <Link
-                                                href="/login"
-                                                class="text-white hover:underline"
+                                    <template
+                                        v-if="$page.props.auth.isLoggedIn"
+                                    >
+                                        <div class="grid grid-cols-1 gap-7">
+                                            <a
+                                                href="#"
+                                                class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
                                             >
-                                                Login
+                                                <div
+                                                    class="text-base font-medium text-white"
+                                                >
+                                                    Profile
+                                                </div>
+                                            </a>                                            
+                                            <Link
+                                                class="text-red-500 font-bold text-left"
+                                                href="/logout"
+                                                method="post"
+                                                as="button"
+                                                >Log out</Link
+                                            >
+                                        </div>
+                                    </template>
+                                    <template v-else>
+                                        <div class="mt-6">
+                                            <Link
+                                                href="/register"
+                                                class="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:from-purple-700 hover:to-indigo-700"
+                                            >
+                                                Create an account
                                             </Link>
-                                        </p>
-                                    </div>
+                                            <p
+                                                class="mt-6 text-base font-medium text-center text-gray-500"
+                                            >
+                                                Existing customer?
+                                                <Link
+                                                    href="/login"
+                                                    class="text-white hover:underline"
+                                                >
+                                                    Login
+                                                </Link>
+                                            </p>
+                                        </div>
+                                    </template>
                                 </div>
                             </div>
                         </PopoverPanel>
@@ -178,13 +289,28 @@
 </template>
 
 <script>
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
+import {
+    Popover,
+    PopoverButton,
+    PopoverPanel,
+    Menu,
+    MenuButton,
+    MenuItems,
+    MenuItem,
+} from "@headlessui/vue";
 
 export default {
     components: {
+        // popover component
         Popover,
         PopoverButton,
-        PopoverPanel
-    }
+        PopoverPanel,
+
+        // dropdown component
+        Menu,
+        MenuButton,
+        MenuItems,
+        MenuItem,
+    },
 };
 </script>
