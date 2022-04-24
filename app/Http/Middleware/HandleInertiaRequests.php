@@ -44,6 +44,14 @@ class HandleInertiaRequests extends Middleware
                     'name' => Auth::user()->name,
                     'email' => Auth::user()->email,
                 ] : null
+            ],
+            'flash' => [
+                'success' => function() use ($request) {
+                    return $request->session()->get('success');
+                },
+                'error' => function() use ($request) {
+                    return $request->session()->get('error');   
+                },
             ]
         ]);
     }
