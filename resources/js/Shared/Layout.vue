@@ -4,6 +4,7 @@
     </section>
 
     <section>
+        <VerificationNotice />
         <slot />
     </section>
 
@@ -15,8 +16,9 @@
 <script>
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
+import VerificationNotice from "./VerificationNotice.vue";
 
 export default {
-    components: { Header, Footer },
+    components: { Header, Footer, VerificationNotice },
 };
 </script>
