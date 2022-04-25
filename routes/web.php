@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\OAuthServiceController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -16,6 +17,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisterController::class, 'store']);
     Route::get('/login', [LoginController::class, 'index']);
     Route::post('/login', [LoginController::class, 'store']);
+    Route::get('/oauth/{service}', [OAuthServiceController::class, 'redirect']);
+    Route::get('/oauth/{service}/callback', [OAuthServiceController::class, 'handleCallback']);
+    Route::post('/oauth/login', [OAuthServiceController::class, 'login']);
 });
 
 Route::middleware('auth')->group(function () {
