@@ -13,8 +13,26 @@
 
         <div class="mt-6 grid grid-cols-3 gap-3">
             <div>
-                <a
-                    href="#"
+                <button
+                    @click="login('google')"
+                    class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                >
+                    <span class="sr-only">Sign in with Google</span>
+                    <svg
+                        class="w-5 h-5 fill-current text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 488 512"
+                    >
+                        <path
+                            d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+                        />
+                    </svg>
+                </button>
+            </div>
+
+            <div>
+                <button
+                    @click="login('facebook')"
                     class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                     <span class="sr-only">Sign in with Facebook</span>
@@ -30,30 +48,12 @@
                             clip-rule="evenodd"
                         />
                     </svg>
-                </a>
+                </button>
             </div>
 
             <div>
-                <a
-                    href="#"
-                    class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                    <span class="sr-only">Sign in with Twitter</span>
-                    <svg
-                        class="w-5 h-5 fill-current text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 488 512"
-                    >
-                        <path
-                            d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-                        />
-                    </svg>
-                </a>
-            </div>
-
-            <div>
-                <a
-                    href="#"
+                <button
+                    @click="login('github')"
                     class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                     <span class="sr-only">Sign in with GitHub</span>
@@ -69,12 +69,80 @@
                             clip-rule="evenodd"
                         />
                     </svg>
-                </a>
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+    mounted() {
+        window.addEventListener("message", this.onMessage, false);
+    },
+    beforeDestroy() {
+        window.removeEventListener("message", this.onMessage);
+    },
+
+    methods: {
+        login(service) {
+            this.$inertia.get(
+                `/oauth/${service}`,
+                {},
+                {
+                    preserveScroll: true,
+                    onSuccess: (res) => {
+                        const newWindow = openWindow("", "login");
+                        newWindow.location.href = res.props.flash.success;
+                    },
+                }
+            );
+        },
+
+        async onMessage(e) {
+            if (e.data.id) {
+                this.$inertia.post(
+                    "/oauth/login",
+                    { id: e.data.id },
+                    { preserveScroll: true }
+                );
+            }
+        },
+    },
+};
+
+function openWindow(url, title, options = {}) {
+    if (typeof url === "object") {
+        options = url;
+        url = "";
+    }
+    options = { url, title, width: 600, height: 720, ...options };
+    const dualScreenLeft =
+        window.screenLeft !== undefined
+            ? window.screenLeft
+            : window.screen.left;
+    const dualScreenTop =
+        window.screenTop !== undefined ? window.screenTop : window.screen.top;
+    const width =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        window.screen.width;
+    const height =
+        window.innerHeight ||
+        document.documentElement.clientHeight ||
+        window.screen.height;
+    options.left = width / 2 - options.width / 2 + dualScreenLeft;
+    options.top = height / 2 - options.height / 2 + dualScreenTop;
+    const optionsStr = Object.keys(options)
+        .reduce((acc, key) => {
+            acc.push(`${key}=${options[key]}`);
+            return acc;
+        }, [])
+        .join(",");
+    const newWindow = window.open(url, title, optionsStr);
+    if (window.focus) {
+        newWindow.focus();
+    }
+    return newWindow;
+}
 </script>
