@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\OAuthServiceController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index']);
@@ -24,6 +25,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'destroy']);
+
+    Route::get('/user/account/profile', [ProfileController::class, 'index']);
 });
 
 Route::prefix('/email/verify')->name('verification.')->group(function () {
