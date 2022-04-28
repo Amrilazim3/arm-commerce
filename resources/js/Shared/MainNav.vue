@@ -35,16 +35,13 @@
                                     class="absolute w-40 bg-gray-600 inline-grid p-0.5 right-5 text-white top-12 rounded-md"
                                 >
                                     <MenuItem v-slot="{ active }">
-                                        <a
+                                        <Link
                                             class="px-2"
-                                            :class="{
-                                                'bg-gray-800 rounded-md':
-                                                    active,
-                                            }"
-                                            href="/account-settings"
+                                            :class="{'bg-gray-800 rounded-md': active || $page.component == 'User/Profile'}"
+                                            href="/user/account/profile"
                                         >
                                             Profile
-                                        </a>
+                                        </Link>
                                     </MenuItem>
                                     <MenuItem>
                                         <Link
@@ -129,6 +126,7 @@
                         </div>
                     </template>
 
+                    <!--  -->
                     <transition
                         enter-active-class="duration-200 ease-out"
                         enter-from-class="opacity-0 scale-95"
@@ -147,6 +145,7 @@
                                     <div
                                         class="flex items-center justify-between"
                                     >
+                                        <!-- dumbell logo -->
                                         <div>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -158,6 +157,7 @@
                                                 />
                                             </svg>
                                         </div>
+                                        <!-- close icon -->
                                         <div class="-mr-2">
                                             <PopoverButton
                                                 class="inline-flex items-center justify-center p-2 font-bold text-gray-500 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
@@ -183,9 +183,10 @@
                                             </PopoverButton>
                                         </div>
                                     </div>
+
                                     <div class="mt-6">
                                         <nav class="grid grid-cols-1 gap-7">
-                                            <a
+                                            <Link
                                                 href="#"
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
                                             >
@@ -194,9 +195,9 @@
                                                 >
                                                     Fitness
                                                 </div>
-                                            </a>
+                                            </Link>
 
-                                            <a
+                                            <Link
                                                 href="#"
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
                                             >
@@ -205,9 +206,9 @@
                                                 >
                                                     Workout
                                                 </div>
-                                            </a>
+                                            </Link>
 
-                                            <a
+                                            <Link
                                                 href="#"
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
                                             >
@@ -216,16 +217,18 @@
                                                 >
                                                     Supplement
                                                 </div>
-                                            </a>
+                                            </Link>
 
-                                            <div class="flex space-x-2">
+                                            <div
+                                                class="flex space-x-2 self-center"
+                                            >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 448 512"
+                                                    viewBox="0 0 576 512"
                                                     class="h-5 text-white fill-current"
                                                 >
                                                     <path
-                                                        d="M112 112C112 50.14 162.1 0 224 0C285.9 0 336 50.14 336 112V160H400C426.5 160 448 181.5 448 208V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V208C0 181.5 21.49 160 48 160H112V112zM160 160H288V112C288 76.65 259.3 48 224 48C188.7 48 160 76.65 160 112V160zM136 256C149.3 256 160 245.3 160 232C160 218.7 149.3 208 136 208C122.7 208 112 218.7 112 232C112 245.3 122.7 256 136 256zM312 208C298.7 208 288 218.7 288 232C288 245.3 298.7 256 312 256C325.3 256 336 245.3 336 232C336 218.7 325.3 208 312 208z"
+                                                        d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"
                                                     />
                                                 </svg>
                                                 <span>0</span>
@@ -233,21 +236,29 @@
                                         </nav>
                                     </div>
                                 </div>
+
+                                <!-- dynamic content -->
                                 <div class="px-5 py-6">
                                     <template
                                         v-if="$page.props.auth.isLoggedIn"
                                     >
                                         <div class="grid grid-cols-1 gap-7">
-                                            <a
-                                                href="#"
+                                            <span
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
+                                                :class="
+                                                    $page.component ==
+                                                    'User/Profile'
+                                                        ? 'bg-gray-400'
+                                                        : ''
+                                                "
                                             >
-                                                <div
+                                                <Link
                                                     class="text-base font-medium text-white"
+                                                    href="/user/account/profile"
                                                 >
                                                     Profile
-                                                </div>
-                                            </a>                                            
+                                                </Link>
+                                            </span>
                                             <Link
                                                 class="text-red-500 font-bold text-left"
                                                 href="/logout"
