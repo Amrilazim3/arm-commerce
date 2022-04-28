@@ -4,7 +4,7 @@
     </section>
 
     <section>
-        <AlertMessage />
+        <Notifications />
         <VerificationNotice />
         <slot />
     </section>
@@ -18,9 +18,9 @@
 import Header from "./Header.vue";
 import Footer from "./Footer.vue";
 import VerificationNotice from "./VerificationNotice.vue";
-import AlertMessage from "./AlertMessage.vue";
+import Notifications from "./Notifications.vue";
 
 export default {
-    components: { Header, Footer, VerificationNotice, AlertMessage },
+    components: { Header, Footer, VerificationNotice, Notifications },
 };
 </script>
