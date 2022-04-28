@@ -7,6 +7,7 @@ use App\Jobs\SendEmailVerificationJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class RegisterController extends Controller
@@ -30,6 +31,6 @@ class RegisterController extends Controller
 
         Auth::login($user, !!$request->isRememberMe);
 
-        return redirect('/products')->with('success', 'email verification link has been sent');
+        return redirect()->route('products.index')->with('success', 'email verification link has been sent');
     }
 }
