@@ -23,7 +23,8 @@ class LoginController extends Controller
         ]);
 
         Auth::attempt($credentials, !!$request->isRememberMe);
-        return redirect()->intended('/products');
+
+        return redirect()->route('products.index');
     }
 
     public function destroy(Request $request)
@@ -34,6 +35,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect()->route('login.index');
     }
 }
