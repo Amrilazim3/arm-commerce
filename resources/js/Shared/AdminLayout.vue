@@ -4,7 +4,7 @@
     </section>
 
     <section>
-        <AlertMessage />
+        <Notifications />
         <slot />
     </section>
 
@@ -16,13 +16,13 @@
 <script>
 import MainNav from "./MainNav.vue";
 import Footer from "./Footer.vue";
-import AlertMessage from "./AlertMessage.vue";
+import Notifications from "./Notifications.vue";
 
 export default {
     components: {
         MainNav,
         Footer,
-        AlertMessage
+        Notifications
     },
 };
 </script>
