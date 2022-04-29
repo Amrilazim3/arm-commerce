@@ -66,6 +66,6 @@ class OAuthServiceController extends Controller
 
         Auth::login($user);
 
-        return redirect('/products');
+        return redirect()->route('products.index');
     }
 }
