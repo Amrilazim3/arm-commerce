@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\OAuthServiceController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
