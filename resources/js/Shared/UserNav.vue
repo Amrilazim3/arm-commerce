@@ -1,5 +1,5 @@
 <template>
-    <div class="px-10 py-6 flex space-x-3">
+    <div class="lg:hidden px-10 py-6 flex space-x-3">
         <Menu as="div">
             <div>
                 <MenuButton
@@ -185,6 +185,34 @@
                 </MenuItems>
             </transition>
         </Menu>
+    </div>
+
+    <div class="hidden lg:flex py-20 h-full justify-end w-2/12">
+        <div
+            class="w-40 space-y-2 rounded-md bg-indigo-100 border border-purple-600 text-purple-600 p-4"
+        >
+            <div>
+                <h3 class="font-medium">My Account</h3>
+                <ul class="space-x-2 cursor-pointer">
+                    <li class="ml-2 underline">Profile</li>
+                    <li class="hover:underline">Bank & Cards</li>
+                    <li class="hover:underline">Addresses</li>
+                    <li class="hover:underline">Change Password</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="font-medium">My Purchase</h3>
+                <ul class="space-x-2 cursor-pointer">
+                    <li class="ml-2 underline">All</li>
+                    <li class="hover:underline">To Pay</li>
+                    <li class="hover:underline">To Ship</li>
+                    <li class="hover:underline">To Recieve</li>
+                    <li class="hover:underline">Compeleted</li>
+                    <li class="hover:underline">Cancelled</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
