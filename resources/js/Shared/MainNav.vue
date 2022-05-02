@@ -37,10 +37,15 @@
                                     <MenuItem v-slot="{ active }">
                                         <Link
                                             class="px-2"
-                                            :class="{'bg-gray-800 rounded-md': active || $page.component == 'User/Profile'}"
+                                            :class="{
+                                                'bg-gray-800 rounded-md':
+                                                    active ||
+                                                    $page.component ==
+                                                        'User/Account/Profile',
+                                            }"
                                             href="/user/account/profile"
                                         >
-                                            Profile
+                                            My Account
                                         </Link>
                                     </MenuItem>
                                     <MenuItem>
@@ -243,22 +248,20 @@
                                         v-if="$page.props.auth.isLoggedIn"
                                     >
                                         <div class="grid grid-cols-1 gap-7">
-                                            <span
+                                            <Link
+                                                href="/user/account/profile"
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
                                                 :class="
                                                     $page.component ==
-                                                    'User/Profile'
-                                                        ? 'bg-gray-400'
-                                                        : ''
+                                                    'User/Account/Profile'
                                                 "
                                             >
-                                                <Link
+                                                <div
                                                     class="text-base font-medium text-white"
-                                                    href="/user/account/profile"
                                                 >
-                                                    Profile
-                                                </Link>
-                                            </span>
+                                                    My Account
+                                                </div>
+                                            </Link>
                                             <Link
                                                 class="text-red-500 font-bold text-left"
                                                 href="/logout"
