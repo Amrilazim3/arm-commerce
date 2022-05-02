@@ -8,12 +8,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    
+
     Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
@@ -26,7 +27,9 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 
-    Route::get('/user/account/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::name('user.account.')->group(function () {
+        Route::get('/user/account/profile', [ProfileController::class, 'index'])->name('profile.index');
+    });
 });
 
 Route::prefix('/email/verify')->name('verification.')->group(function () {
