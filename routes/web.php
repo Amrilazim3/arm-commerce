@@ -17,8 +17,10 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+    
     Route::get('/oauth/{service}', [OAuthServiceController::class, 'redirect']);
     Route::get('/oauth/{service}/callback', [OAuthServiceController::class, 'handleCallback']);
     Route::post('/oauth/login', [OAuthServiceController::class, 'login']);
