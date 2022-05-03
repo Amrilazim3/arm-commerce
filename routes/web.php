@@ -8,7 +8,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\CssSelector\Node\FunctionNode;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
