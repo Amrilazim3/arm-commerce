@@ -4,6 +4,8 @@ import { InertiaProgress } from '@inertiajs/progress'
 import UserLayout from './Shared/UserLayout';
 import AdminLayout from './Shared/AdminLayout';
 import Notifications from 'notiwind';
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
 createInertiaApp({
     resolve: async name => {
@@ -27,6 +29,7 @@ createInertiaApp({
             .use(Notifications)
             .component("Link", Link)
             .component("Head", Head)
+            .component("Datepicker", Datepicker)
             .mount(el)
     },
 
