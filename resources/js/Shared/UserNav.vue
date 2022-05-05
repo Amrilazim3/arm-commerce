@@ -27,6 +27,7 @@
                 >
                     <MenuItem>
                         <Link
+                            href="/user/account/profile"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Account/Profile'
@@ -40,6 +41,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/account/payment"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Account/Payment'
@@ -53,6 +55,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/account/addresses"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Account/Addresses'
@@ -66,6 +69,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/account/password"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Account/Password'
@@ -107,6 +111,7 @@
                 >
                     <MenuItem>
                         <Link
+                            href="/user/purchase"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Purchase/Index'
@@ -120,6 +125,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/purchase/to-pay"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Purchase/ToPay'
@@ -133,6 +139,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/purchase/to-ship"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Purchase/ToShip'
@@ -146,6 +153,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/purchase/to-receive"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Purchase/ToReceive'
@@ -159,6 +167,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/purchase/completed"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Purchase/Completed'
@@ -172,6 +181,7 @@
 
                     <MenuItem>
                         <Link
+                            href="/user/purchase/cancelled"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Purchase/Cancelled'
@@ -194,22 +204,142 @@
             <div>
                 <h3 class="font-medium">My Account</h3>
                 <ul class="space-x-2 cursor-pointer">
-                    <li class="ml-2 underline">Profile</li>
-                    <li class="hover:underline">Bank & Cards</li>
-                    <li class="hover:underline">Addresses</li>
-                    <li class="hover:underline">Change Password</li>
+                    <li>
+                        <Link
+                            href="/user/account/profile"
+                            class="ml-2 hover:underline"
+                            :class="
+                                $page.component == 'User/Account/Profile'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            Profile
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/account/payment"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Account/Payment'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            Bank & Cards
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/account/addresses"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Account/Addresses'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            Addresses
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/account/password"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Account/Password'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            Change Password
+                        </Link>
+                    </li>
                 </ul>
             </div>
 
             <div>
                 <h3 class="font-medium">My Purchase</h3>
                 <ul class="space-x-2 cursor-pointer">
-                    <li class="ml-2 underline">All</li>
-                    <li class="hover:underline">To Pay</li>
-                    <li class="hover:underline">To Ship</li>
-                    <li class="hover:underline">To Recieve</li>
-                    <li class="hover:underline">Compeleted</li>
-                    <li class="hover:underline">Cancelled</li>
+                    <li>
+                        <Link
+                            href="/user/purchase"
+                            class="ml-2 hover:underline"
+                            :class="
+                                $page.component == 'User/Purchase/Index'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            All
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/purchase/to-pay"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Purchase/ToPay'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            To Pay
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/purchase/to-ship"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Purchase/ToShip'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            To Ship
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/purchase/to-receive"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Purchase/ToReceive'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            To Receive
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/purchase/completed"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Purchase/Completed'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            Completed
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/user/purchase/cancelled"
+                            class="hover:underline"
+                            :class="
+                                $page.component == 'User/Purchase/Cancelled'
+                                    ? 'underline'
+                                    : ''
+                            "
+                        >
+                            Cancelled
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </div>
