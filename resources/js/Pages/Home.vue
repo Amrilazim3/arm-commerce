@@ -1,6 +1,6 @@
 <template>
     <Head title="Welcome" />
-    
+
     <main>
         <div
             style="
@@ -27,7 +27,7 @@
                     <button
                         class="hover:scale-125 transition ease-out delay-75 duration-300 items-center justify-center px-4 py-2 mt-4 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:from-purple-700 hover:to-indigo-700"
                     >
-                        <Link href="/login"> View Products Now </Link>
+                        <Link href="/products"> View Products Now </Link>
                     </button>
                 </div>
             </div>
