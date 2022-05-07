@@ -19,13 +19,13 @@
                                         <template
                                             v-if="
                                                 $page.props.auth.user
-                                                    .profile_image_url !== null
+                                                    .profileImageUrl !== null
                                             "
                                         >
                                             <img
                                                 :src="
                                                     $page.props.auth.user
-                                                        .profile_image_url
+                                                        .profileImageUrl
                                                 "
                                                 alt="profile-image"
                                             />
