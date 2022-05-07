@@ -44,10 +44,11 @@ class HandleInertiaRequests extends Middleware
                 'user' => Auth::check() ? [
                     'name' => $user->name,
                     'email' => $user->email,
-                    'profile_image_url' => $user->profile_image_url,
-                    'phone_number' => $user->phone_number,
+                    'profileImageUrl' => $user->profile_image_url,
+                    'phoneNumber' => $user->phone_number,
                     'gender' => $user->gender,
-                    'date_of_birth' => $user->date_of_birth
+                    'dateOfBirth' => $user->date_of_birth,
+                    'emailIsVerfied' => $user->email_verfied_at !== null ? true : false
                 ] : null
             ],
             'flash' => [
