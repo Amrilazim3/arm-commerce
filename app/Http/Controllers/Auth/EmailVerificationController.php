@@ -28,6 +28,6 @@ class EmailVerificationController extends Controller
     public function resend(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return redirect()->route('products.index')->with('success', 'email verification link has been sent');
+        return redirect()->back()->with('success', 'email verification link has been sent');
     }
 }
