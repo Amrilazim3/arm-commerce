@@ -180,7 +180,7 @@
                                     show-code-on-list
                                     color="info"
                                     default-country-code="MY"
-                                    :preferred-countries="['MY', 'ID', 'SG']"
+                                    :only-countries="['MY', 'ID', 'SG']"
                                     @update="user.phoneResults = $event"
                                     :success="user.phoneResults?.isValid"
                                     class="max-w-lg"
@@ -358,8 +358,10 @@ export default {
                 preserveScroll: true,
                 forceFormData: true,
                 onSuccess: () => {
-                    this.user.profileImageUrl = this.user.newProfileImageUrl;
-                    this.user.newProfileImageUrl = "";
+                    if (this.user.newProfileImageUrl) {
+                        this.user.profileImageUrl = this.user.newProfileImageUrl;
+                        this.user.newProfileImageUrl = "";
+                    }
                     this.$notify(
                         {
                             group: "success",
