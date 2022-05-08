@@ -4,6 +4,7 @@
         <UserNav />
         <form
             class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
+            @submit.prevent="updateProfile"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div>
@@ -59,23 +60,22 @@
                                     >
                                         <template
                                             v-if="
-                                                user.profileImage !==
-                                                    null &&
-                                                user.newProfileImage == ''
+                                                user.profileImageUrl !== null &&
+                                                user.newProfileImageUrl == ''
                                             "
                                         >
                                             <img
-                                                :src="user.profileImage"
+                                                :src="user.profileImageUrl"
                                                 alt="profile-image"
                                             />
                                         </template>
                                         <template
                                             v-else-if="
-                                                user.newProfileImage !== ''
+                                                user.newProfileImageUrl !== ''
                                             "
                                         >
                                             <img
-                                                :src="user.newProfileImage"
+                                                :src="user.newProfileImageUrl"
                                                 alt="profile-image"
                                             />
                                         </template>
@@ -108,10 +108,10 @@
                                         Change
                                     </label>
                                     <button
-                                        class="text-red-500 text-sm font-medium ml-4"
+                                        class="text-red-500 text-sm font-medium ml-4 hover:underline"
                                         v-if="
-                                            user.profileImage ||
-                                            user.newProfileImage !== ''
+                                            user.profileImageUrl ||
+                                            user.newProfileImageUrl !== ''
                                         "
                                         @click.prevent="removeProfileImage"
                                     >
@@ -130,17 +130,38 @@
                             >
                                 Email address
                             </label>
-                            <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    autocomplete="email"
-                                    class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                    v-model="user.email"
-                                    placeholder="Enter your email"
-                                    required
-                                />
+                            <div class="self-center mt-1 sm:mt-0 sm:col-span-2">
+                                <span class="max-w-lg sm:text-sm">{{
+                                    user.email
+                                }}</span>
+                                <template v-if="user.emailIsVerfied">
+                                    <span class="text-sm ml-1.5 text-blue-500"
+                                        >(verified)</span
+                                    >
+                                </template>
+                                <template v-else>
+                                    <span class="text-sm ml-1.5 text-gray-500"
+                                        >(unverified)</span
+                                    >
+                                    <span
+                                        ><button
+                                            class="text-sm font-medium ml-1.5"
+                                            :class="
+                                                emailVerification.resendButton
+                                                    .processing
+                                                    ? 'text-blue-300 cursor-not-allowed'
+                                                    : 'text-blue-500 hover:underline'
+                                            "
+                                            @click.prevent="requestResendLink"
+                                        >
+                                            resend link
+                                        </button></span
+                                    >
+                                </template>
+                                <Link
+                                    class="font-medium text-sm ml-2.5 text-red-500 hover:underline"
+                                    >Change</Link
+                                >
                             </div>
                         </div>
 
@@ -255,16 +276,17 @@
                         type="submit"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white"
                         :disabled="
-                            user.processing || !user.isDirty ||
+                            user.processing ||
+                            !user.isDirty ||
                             (user.phoneNumber && !user.phoneResults.isValid)
                         "
                         :class="
-                            user.processing || !user.isDirty ||
+                            user.processing ||
+                            !user.isDirty ||
                             (user.phoneNumber && !user.phoneResults.isValid)
                                 ? 'cursor-not-allowed bg-indigo-300'
                                 : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                         "
-                        @click.prevent="updateProfile"
                     >
                         Save
                     </button>
@@ -286,52 +308,82 @@ export default {
         let user = this.$page.props.auth.user;
         return {
             user: this.$inertia.form({
+                _method: "put",
                 name: user.name,
-                profileImage: user.profile_image_url,
-                newProfileImage: "",
+                profileImageUrl: user.profileImageUrl,
+                newProfileImageUrl: "",
+                newProfileImageFile: "",
                 email: user.email,
-                phoneNumber: user.phone_number,
+                emailIsVerfied: user.emailIsVerfied,
+                phoneNumber: user.phoneNumber,
                 phoneResults: "",
                 dateOfBirth:
-                    user.date_of_birth == null
-                        ? new Date()
-                        : user.date_of_birth,
+                    user.dateOfBirth !== null ? user.dateOfBirth : null,
                 gender: user.gender,
             }),
+
+            emailVerification: {
+                resendButton: this.$inertia.form({}),
+            },
         };
     },
 
     methods: {
         handleProfileImageUpload(event) {
-            this.user.newProfileImage = URL.createObjectURL(
-                event.target.files[0]
-            );
+            let selectedImage = event.target.files[0];
+
+            this.user.newProfileImageUrl = URL.createObjectURL(selectedImage);
+            this.user.newProfileImageFile = selectedImage;
         },
 
         removeProfileImage() {
-            if (this.user.profileImage && this.user.newProfileImage == "") {
+            if (
+                this.user.profileImageUrl &&
+                this.user.newProfileImageUrl == ""
+            ) {
                 let question = confirm("Remove this profile image?");
 
                 if (question) {
-                    this.user.profileImage = null;
+                    this.user.profileImageUrl = null;
                     return;
                 }
             }
 
-            this.user.newProfileImage = "";
+            this.user.newProfileImageUrl = "";
             return;
         },
 
         updateProfile() {
-            this.user.put("/user/account/profile", {
+            this.user.post("/user/account/profile", {
                 preserveScroll: true,
+                forceFormData: true,
                 onSuccess: () => {
-                    console.log('success')
+                    this.user.profileImageUrl = this.user.newProfileImageUrl;
+                    this.user.newProfileImageUrl = "";
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Your account was updated.",
+                        },
+                        3500
+                    );
                 },
                 onError: () => {
-                    console.log('error')
-                }
-            })
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Your account failed to update. Please try again.",
+                        },
+                        3500
+                    );
+                },
+            });
+        },
+
+        requestResendLink() {
+            this.emailVerification.resendButton.post("/email/verify/resend");
         },
     },
 };
