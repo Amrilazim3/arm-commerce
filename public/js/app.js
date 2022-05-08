@@ -716,9 +716,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "class": "space-x-5 md:flex"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, [_ctx.$page.props.auth.user.profile_image_url !== null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, [_ctx.$page.props.auth.user.profileImageUrl !== null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
                 key: 0,
-                src: _ctx.$page.props.auth.user.profile_image_url,
+                src: _ctx.$page.props.auth.user.profileImageUrl,
                 alt: "profile-image"
               }, null, 8
               /* PROPS */
