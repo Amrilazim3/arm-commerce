@@ -339,7 +339,7 @@ export default {
                 newProfileImageFile: "",
                 email: user.email,
                 emailIsVerfied: user.emailIsVerfied,
-                phoneNumber: user.phoneNumber ? user.phoneNumber.toString().substring(1) : null,
+                phoneNumber: user.phoneNumber ? user.phoneNumber : null,
                 phoneResults: "",
                 dateOfBirth:
                     user.dateOfBirth !== null ? user.dateOfBirth : null,
