@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
                     'name' => $user->name,
                     'email' => $user->email,
                     'profileImageUrl' => $user->profile_image_url,
-                    'phoneNumber' => substr(strval($user->phone_number), 1),
+                    'phoneNumber' => $user->phone_number,
                     'gender' => $user->gender,
                     'dateOfBirth' => $user->date_of_birth,
                     'emailIsVerfied' => $user->email_verfied_at !== null || $user->service_id !== null ? true : false
