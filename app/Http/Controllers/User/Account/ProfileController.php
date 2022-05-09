@@ -19,7 +19,7 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request)
-    {        
+    {
         $request->validate([
             'name' => ['required', 'max:50'],
             'newProfileImageFile' => ['file', 'image', 'nullable'],
@@ -32,9 +32,12 @@ class ProfileController extends Controller
         $user->update([
             'name' => $request->name,
             'profile_image_url' => $request->hasFile('newProfileImageFile') ?
-                $this->updateNewProfileImageUrl($request, $user->profile_image_url) :
-                $user->profile_image_url,
-            'phone_number' => substr($request->phoneNumber, 2),
+                $this->updateNewProfileImage($request, $user->profile_image_url) : 
+                ($request->profileImageUrl ?
+                    $user->profile_image_url : 
+                    $this->removeRecentProfileImage($user->profile_image_url)
+                ),
+            'phone_number' => $request->phoneNumber,
             'gender' => $request->gender,
             'date_of_birth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d')
         ]);
@@ -42,7 +45,17 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    protected function updateNewProfileImageUrl($request, $oldProfileImageUrl)
+    protected function updateNewProfileImage($request, $oldProfileImageUrl)
+    {
+        $this->removeRecentProfileImage($oldProfileImageUrl);
+
+        $newProfileImagePath = $request->file('newProfileImageFile')
+            ->store('user/profile-image', 'public');
+
+        return asset('storage/' . $newProfileImagePath);
+    }
+
+    protected function removeRecentProfileImage($oldProfileImageUrl)
     {
         if ($oldProfileImageUrl) {
             $contains = Str::contains($oldProfileImageUrl, 'arm-commerce');
@@ -50,11 +63,8 @@ class ProfileController extends Controller
                 $path = str_replace(asset('storage/'), '', $oldProfileImageUrl);
                 Storage::disk('public')->delete($path);
             }
+
+            return null;
         }
-
-        $newProfileImagePath = $request->file('newProfileImageFile')
-            ->store('user/profile-image', 'public');
-
-        return asset('storage/' . $newProfileImagePath);
     }
 }
