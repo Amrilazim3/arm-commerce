@@ -45,18 +45,18 @@ class HandleInertiaRequests extends Middleware
                     'name' => $user->name,
                     'email' => $user->email,
                     'profileImageUrl' => $user->profile_image_url,
-                    'phoneNumber' => $user->phone_number,
+                    'phoneNumber' => substr(strval($user->phone_number), 1),
                     'gender' => $user->gender,
                     'dateOfBirth' => $user->date_of_birth,
-                    'emailIsVerfied' => $user->email_verfied_at !== null ? true : false
+                    'emailIsVerfied' => $user->email_verfied_at !== null || $user->service_id !== null ? true : false
                 ] : null
             ],
             'flash' => [
-                'success' => function() use ($request) {
+                'success' => function () use ($request) {
                     return $request->session()->get('success');
                 },
-                'error' => function() use ($request) {
-                    return $request->session()->get('error');   
+                'error' => function () use ($request) {
+                    return $request->session()->get('error');
                 },
             ]
         ]);
