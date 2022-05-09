@@ -41,6 +41,12 @@
                                         required
                                     />
                                 </div>
+                                <div
+                                    v-if="user.errors.name"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ user.errors.name }}
+                                </div>
                             </div>
                         </div>
 
@@ -118,6 +124,12 @@
                                         remove
                                     </button>
                                 </div>
+                                <div
+                                    v-if="user.errors.newProfileImageFile"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ user.errors.newProfileImageFile }}
+                                </div>
                             </div>
                         </div>
 
@@ -185,6 +197,12 @@
                                     :success="user.phoneResults?.isValid"
                                     class="max-w-lg"
                                 />
+                                <div
+                                    v-if="user.errors.phoneNumber"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ user.errors.phoneNumber }}
+                                </div>
                             </div>
                         </div>
 
@@ -264,6 +282,12 @@
                                     placeholder="Enter your date of birth"
                                     class="max-w-lg"
                                 />
+                                <div
+                                    v-if="user.errors.dateOfBirth"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ user.errors.dateOfBirth }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -315,7 +339,7 @@ export default {
                 newProfileImageFile: "",
                 email: user.email,
                 emailIsVerfied: user.emailIsVerfied,
-                phoneNumber: user.phoneNumber,
+                phoneNumber: user.phoneNumber ? user.phoneNumber.toString().substring(1) : null,
                 phoneResults: "",
                 dateOfBirth:
                     user.dateOfBirth !== null ? user.dateOfBirth : null,
@@ -359,7 +383,8 @@ export default {
                 forceFormData: true,
                 onSuccess: () => {
                     if (this.user.newProfileImageUrl) {
-                        this.user.profileImageUrl = this.user.newProfileImageUrl;
+                        this.user.profileImageUrl =
+                            this.user.newProfileImageUrl;
                         this.user.newProfileImageUrl = "";
                     }
                     this.$notify(
