@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::name('user.account.')->group(function () {
         Route::get('/user/account/profile', [ProfileController::class, 'index'])->name('profile.index');
+        Route::put('/user/account/profile', [ProfileController::class, 'update'])->name('profile.update');
     });
 });
 
