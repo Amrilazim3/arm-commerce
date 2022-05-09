@@ -28,4 +28,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function getPhoneNumberAttribute()
+    {
+        return substr(strval($this->attributes['phone_number']), 1);
+    }
 }
