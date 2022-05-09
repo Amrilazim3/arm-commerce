@@ -373,6 +373,7 @@ export default {
                 }
             }
 
+            this.user.newProfileImageFile = "";
             this.user.newProfileImageUrl = "";
             return;
         },
