@@ -1,5 +1,10 @@
 <template>
-    <Head title="Products" />
+    <Head>
+        <title>Products</title>
+        <meta name="keywords" content="arm-commerce products">
+        <meta name="description" content="Gym, fitness equipment and supplement">
+    </Head>
+    
     <div class="bg-white">
         <div
             class="max-w-2xl mx-auto py-14 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
