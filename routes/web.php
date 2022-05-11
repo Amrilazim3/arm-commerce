@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\OAuthServiceController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 
-    Route::name('user.account.')->group(function () {
-        Route::get('/user/account/profile', [ProfileController::class, 'index'])->name('profile.index');
-        Route::put('/user/account/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::prefix('/user/account')->name('user.account.')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('change-email.index');
     });
 });
 
