@@ -1,5 +1,9 @@
 <template>
-    <Head title="Home" />
+    <Head>
+        <title>Home</title>
+        <meta name="description" content="explore our best products for healthy and strong people.">
+        <meta name="keywords" content="arm-commerce">
+    </Head>
 
     <main>
         <div
