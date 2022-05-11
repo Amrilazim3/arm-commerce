@@ -369,6 +369,7 @@ export default {
 
                 if (question) {
                     this.user.profileImageUrl = null;
+                    this.user.newProfileImageFile = "";
                     return;
                 }
             }
