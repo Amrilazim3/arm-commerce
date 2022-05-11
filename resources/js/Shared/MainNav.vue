@@ -58,7 +58,7 @@
                                         <Link
                                             class="px-2"
                                             :class="{
-                                                'bg-gray-800 rounded-md':
+                                                'bg-gray-800 hover:bg-gray-700 rounded-md':
                                                     active ||
                                                     $page.component ==
                                                         'User/Account/Profile',
@@ -70,7 +70,7 @@
                                     </MenuItem>
                                     <MenuItem>
                                         <Link
-                                            class="px-2 text-red-500 font-bold text-left"
+                                            class="px-2 text-red-500 font-bold text-left hover:underline"
                                             href="/logout"
                                             method="post"
                                             as="button"
@@ -105,8 +105,8 @@
                         </template>
                     </div>
 
-                    <!-- mobile layout -->
-                    <!-- toggle button -->
+                    <!-- entering mobile layout -->
+                    <!-- mobile toggle button -->
                     <template v-if="$page.props.auth.isLoggedIn">
                         <div class="self-center -my-2 -mr-2 md:hidden">
                             <PopoverButton>
@@ -167,7 +167,7 @@
                         </div>
                     </template>
 
-                    <!--  -->
+                    <!-- mobile layout content -->
                     <transition
                         enter-active-class="duration-200 ease-out"
                         enter-from-class="opacity-0 scale-95"
@@ -290,6 +290,8 @@
                                                 :class="
                                                     $page.component ==
                                                     'User/Account/Profile'
+                                                        ? 'bg-gray-400 hover:bg-gray-600'
+                                                        : ''
                                                 "
                                             >
                                                 <div
@@ -299,7 +301,7 @@
                                                 </div>
                                             </Link>
                                             <Link
-                                                class="text-red-500 font-bold text-left"
+                                                class="text-red-500 font-bold text-left hover:underline"
                                                 href="/logout"
                                                 method="post"
                                                 as="button"
