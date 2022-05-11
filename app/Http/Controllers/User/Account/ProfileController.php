@@ -51,7 +51,7 @@ class ProfileController extends Controller
         $newProfileImagePath = $request->file('newProfileImageFile')
             ->store('user/profile-image', 'public');
 
-        return asset('storage/' . $newProfileImagePath);
+        return $newProfileImagePath;
     }
 
     protected function removeRecentProfileImage($oldProfileImageUrl)
