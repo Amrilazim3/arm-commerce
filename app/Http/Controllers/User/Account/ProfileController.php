@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Strong;
 
 class ProfileController extends Controller
 {
