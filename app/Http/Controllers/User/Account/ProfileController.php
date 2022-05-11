@@ -51,13 +51,14 @@ class ProfileController extends Controller
         $newProfileImagePath = $request->file('newProfileImageFile')
             ->store('user/profile-image', 'public');
 
-        return $newProfileImagePath;
+        return asset('storage/' . $newProfileImagePath);
     }
 
     protected function removeRecentProfileImage($oldProfileImageUrl)
     {
         if ($oldProfileImageUrl) {
             $contains = Str::contains($oldProfileImageUrl, 'arm-commerce');
+            
             if ($contains) {
                 $path = str_replace(asset('storage/'), '', $oldProfileImageUrl);
                 Storage::disk('public')->delete($path);
