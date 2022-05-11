@@ -10,6 +10,6 @@ class ChangeEmailController extends Controller
 {
     public function index()
     {
-        return Inertia::render('User/Account/ChangeEmail');
+        return Inertia::render('User/Account/ChangeEmail'); 
     }
 }
