@@ -22,11 +22,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean'
     ];
 
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function setProfileImageUrlAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['profile_image_url'] = asset('storage/' . $value);
+            return;
+        }
+        $this->attributes['profile_image_url'] = null;
     }
 
     public function getPhoneNumberAttribute()
