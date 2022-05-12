@@ -38,7 +38,7 @@ class ProfileController extends Controller
                 ),
             'phone_number' => $request->phoneNumber,
             'gender' => $request->gender,
-            'date_of_birth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d')
+            'date_of_birth' => $request->dateOfBirth ? Carbon::parse($request->dateOfBirth)->format('Y-m-d') : null
         ]);
 
         return redirect()->back();
