@@ -48,7 +48,7 @@ class HandleInertiaRequests extends Middleware
                     'phoneNumber' => $user->phone_number,
                     'gender' => $user->gender,
                     'dateOfBirth' => $user->date_of_birth,
-                    'emailIsVerfied' => $user->email_verfied_at !== null || $user->service_id !== null ? true : false
+                    'emailIsVerfied' => $user->email_verified_at || $user->service_id ? true : false
                 ] : null
             ],
             'flash' => [
