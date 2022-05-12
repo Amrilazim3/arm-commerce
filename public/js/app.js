@@ -745,7 +745,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   var active = _ref.active;
                   return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["px-2", {
-                      'bg-gray-800 rounded-md': active || _ctx.$page.component == 'User/Account/Profile'
+                      'bg-gray-800 hover:bg-gray-700 rounded-md': active || _ctx.$page.component == 'User/Account/Profile'
                     }]),
                     href: "/user/account/profile"
                   }, {
@@ -765,7 +765,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MenuItem, null, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                   return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                    "class": "px-2 text-red-500 font-bold text-left",
+                    "class": "px-2 text-red-500 font-bold text-left hover:underline",
                     href: "/logout",
                     method: "post",
                     as: "button"
@@ -819,7 +819,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["class"])], 64
       /* STABLE_FRAGMENT */
-      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" mobile layout "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" toggle button "), _ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PopoverButton, null, {
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" entering mobile layout "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" mobile toggle button "), _ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PopoverButton, null, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_17, [_ctx.$page.props.auth.user.profileImageUrl !== null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
             key: 0,
@@ -841,7 +841,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      })])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+      })])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" mobile layout content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
         "enter-active-class": "duration-200 ease-out",
         "enter-from-class": "opacity-0 scale-95",
         "enter-to-class": "opacity-100 scale-100",
@@ -895,7 +895,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
               }), _hoisted_37])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" dynamic content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                 href: "/user/account/profile",
-                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component == 'User/Account/Profile'])
+                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component == 'User/Account/Profile' ? 'bg-gray-400 hover:bg-gray-600' : ''])
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                   return [_hoisted_40];
@@ -906,7 +906,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }, 8
               /* PROPS */
               , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                "class": "text-red-500 font-bold text-left",
+                "class": "text-red-500 font-bold text-left hover:underline",
                 href: "/logout",
                 method: "post",
                 as: "button"
