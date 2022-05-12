@@ -15,14 +15,14 @@ class EmailVerificationController extends Controller
         $user = User::find($request->route('id'));
 
         if ($user->hasVerifiedEmail()) {
-            return redirect(config('app.url') . '/products')->with('success', 'email already verified');
+            return redirect()->route('products.index')->with('success', 'email already verified');
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect(config('app.url') . '/products')->with('success', 'email is verified');
+        return redirect()->route('products.index')->with('success', 'email is verified');
     }
 
     public function resend(Request $request)
