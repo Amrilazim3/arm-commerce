@@ -172,6 +172,7 @@
                                 </template>
                                 <Link
                                     class="font-medium text-sm ml-2.5 text-red-500 hover:underline"
+                                    href="/user/account/change-email"
                                     >Change</Link
                                 >
                             </div>
