@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
+use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('change-email.index');
         Route::put('/change-email', [ChangeEmailController::class, 'update'])->name('change-email.update');
+        Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password.index');
     });
 });
 
