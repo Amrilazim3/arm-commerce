@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('change-email.index');
+        Route::put('/change-email', [ChangeEmailController::class, 'update'])->name('change-email.update');
     });
 });
 
