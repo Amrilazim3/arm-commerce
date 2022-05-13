@@ -2364,6 +2364,14 @@ var map = {
 		"./resources/js/Pages/User/Account/ChangeEmail.vue",
 		"resources_js_Pages_User_Account_ChangeEmail_vue"
 	],
+	"./User/Account/ChangePassword": [
+		"./resources/js/Pages/User/Account/ChangePassword.vue",
+		"resources_js_Pages_User_Account_ChangePassword_vue"
+	],
+	"./User/Account/ChangePassword.vue": [
+		"./resources/js/Pages/User/Account/ChangePassword.vue",
+		"resources_js_Pages_User_Account_ChangePassword_vue"
+	],
 	"./User/Account/Profile": [
 		"./resources/js/Pages/User/Account/Profile.vue",
 		"resources_js_Pages_User_Account_Profile_vue"
