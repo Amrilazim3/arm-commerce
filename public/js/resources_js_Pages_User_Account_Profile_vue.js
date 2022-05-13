@@ -50,6 +50,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (question) {
           this.user.profileImageUrl = null;
+          this.user.newProfileImageFile = "";
           return;
         }
       }
@@ -417,7 +418,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   )])], 64
   /* STABLE_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    "class": "font-medium text-sm ml-2.5 text-red-500 hover:underline"
+    "class": "font-medium text-sm ml-2.5 text-red-500 hover:underline",
+    href: "/user/account/change-email"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_29];
@@ -689,8 +691,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MenuItem, null, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                   return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                    href: "/user/account/password",
-                    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Account/Password' ? 'bg-violet-500 text-white' : ''])
+                    href: "/user/account/change-password",
+                    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Account/ChangePassword' ? 'bg-violet-500 text-white' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                       return [_hoisted_6];
@@ -914,8 +916,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/user/account/password",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hover:underline", _ctx.$page.component == 'User/Account/Password' ? 'underline' : ''])
+    href: "/user/account/change-password",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hover:underline", _ctx.$page.component == 'User/Account/ChangePassword' ? 'underline' : ''])
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_21];
