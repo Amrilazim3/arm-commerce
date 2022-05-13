@@ -333,7 +333,7 @@ export default {
         let user = this.$page.props.auth.user;
         return {
             user: this.$inertia.form({
-                _method: "put",
+                _method: "patch",
                 name: user.name,
                 profileImageUrl: user.profileImageUrl,
                 newProfileImageUrl: "",
