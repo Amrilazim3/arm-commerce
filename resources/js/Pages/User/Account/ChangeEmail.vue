@@ -107,7 +107,7 @@ export default {
         let user = this.$page.props.auth.user;
         return {
             form: this.$inertia.form({
-                _method: "put",
+                _method: "patch",
                 currentEmail: user.email,
                 newEmail: "",
                 password: "",
