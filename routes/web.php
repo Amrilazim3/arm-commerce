@@ -32,9 +32,9 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('email.index');
-        Route::put('/change-email', [ChangeEmailController::class, 'update'])->name('email.update');
+        Route::patch('/change-email', [ChangeEmailController::class, 'update'])->name('email.update');
         Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('password.index');
     });
 });
