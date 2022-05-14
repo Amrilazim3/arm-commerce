@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('email.index');
         Route::patch('/change-email', [ChangeEmailController::class, 'update'])->name('email.update');
         Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('password.index');
+        Route::patch('/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
     });
 });
 
