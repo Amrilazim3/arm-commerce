@@ -69,7 +69,7 @@
                 <div class="flex items-center">
                     <div class="text-sm">
                         <Link
-                            href="#"
+                            href="/user/account/forgot-password"
                             class="font-medium text-indigo-600 hover:text-indigo-500"
                         >
                             Forgot your password?
@@ -103,6 +103,8 @@
 
 <script>
 export default {
+    layout: null,
+
     data() {
         let user = this.$page.props.auth.user;
         return {
