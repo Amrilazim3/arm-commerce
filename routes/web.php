@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
+use App\Http\Controllers\User\Account\ForgotPasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,10 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('email.index');
-        Route::patch('/change-email', [ChangeEmailController::class, 'update'])->name('email.update');
-        Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('password.index');
-        Route::patch('/change-password', [ChangePasswordController::class, 'update'])->name('password.update');
+        Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('change-email.index');
+        Route::patch('/change-email', [ChangeEmailController::class, 'update'])->name('change-email.update');
+        Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password.index');
+        Route::patch('/change-password', [ChangePasswordController::class, 'update'])->name('change-password.update');
     });
 });
 
@@ -47,4 +48,9 @@ Route::prefix('/email/verify')->name('verification.')->group(function () {
     Route::post('/resend', [EmailVerificationController::class, 'resend'])
         ->middleware(['auth', 'throttle:6,1'])
         ->name('send');
+});
+
+Route::prefix('/user/account')->name('user.account')->group(function () {
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password.index');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'email'])->name('forgot-password.email');
 });
