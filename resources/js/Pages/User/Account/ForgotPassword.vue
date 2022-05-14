@@ -46,9 +46,9 @@
                         <button
                             type="submit"
                             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white"
-                            :disabled="form.email == ''"
+                            :disabled="form.email == '' || form.processing"
                             :class="
-                                form.email == ''
+                                form.email == '' || form.processing
                                     ? 'bg-indigo-300 cursor-not-allowed'
                                     : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                             "
@@ -56,6 +56,9 @@
                             Send reset link
                         </button>
                     </div>
+
+                    <p class="text-sm font-medium text-blue-500" v-if="emailSentSuccessed">Reset password link has been sent to your inbox.</p>
+                    <p class="text-sm font-medium text-red-500" v-if="emailSentFailed">Something when wrong went performing this action, Please try again.</p>
                 </form>
             </div>
         </div>
@@ -73,12 +76,22 @@ export default {
                     ? this.$page.props.auth.user.email
                     : "",
             }),
+            emailSentSuccessed: false,
+            emailSentFailed: false,
         };
     },
 
     methods: {
         sendResetLink() {
-            console.log("hello");
+            this.form.post("/user/account/forgot-password", {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.emailSentSuccessed = true;
+                },
+                onError: () => {
+                    this.emailSentFailed = true;
+                }
+            });
         },
     },
 };
