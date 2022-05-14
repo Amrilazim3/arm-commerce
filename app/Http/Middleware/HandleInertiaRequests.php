@@ -43,6 +43,7 @@ class HandleInertiaRequests extends Middleware
                 'isLoggedIn' => Auth::check() ? true : false,
                 'user' => Auth::check() ? [
                     'name' => $user->name,
+                    'isAdmin' => $user->is_admin,
                     'email' => $user->email,
                     'profileImageUrl' => $user->profile_image_url,
                     'phoneNumber' => $user->phone_number,
