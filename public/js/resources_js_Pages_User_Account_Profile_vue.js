@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
     var user = this.$page.props.auth.user;
     return {
       user: this.$inertia.form({
-        _method: "put",
+        _method: "patch",
         name: user.name,
         profileImageUrl: user.profileImageUrl,
         newProfileImageUrl: "",
