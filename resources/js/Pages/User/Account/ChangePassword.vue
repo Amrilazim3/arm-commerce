@@ -4,7 +4,7 @@
         <UserNav />
         <form
             class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
-            @submit.prevent="updateProfile"
+            @submit.prevent="changePassword"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div>
@@ -32,7 +32,7 @@
                                         id="old-password"
                                         autocomplete="password"
                                         class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder="Enter your name"
+                                        placeholder="Enter your old password"
                                         v-model="form.oldPassword"
                                         required
                                     />
@@ -62,7 +62,7 @@
                                         name="new-password"
                                         id="new-password"
                                         class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder="Enter your name"
+                                        placeholder="Enter your new password"
                                         v-model="form.newPassword"
                                         required
                                     />
@@ -92,7 +92,7 @@
                                         name="new-password-confirmation"
                                         id="new-password-confirmation"
                                         class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder="Enter your name"
+                                        placeholder="Confirm your new password"
                                         v-model="form.newPasswordConfirmation"
                                         required
                                     />
@@ -111,9 +111,9 @@
                         >
                             <Link
                                 href="/user/account/forgot-password"
-                                class="text-sm font-bold text-blue-500"
+                                class="text-sm font-medium text-blue-500"
                             >
-                                Forgot password
+                                Forgot your password?
                             </Link>
                         </div>
                     </div>
@@ -151,11 +151,40 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
+                _method: "patch",
                 oldPassword: "",
                 newPassword: "",
                 newPasswordConfirmation: "",
             }),
         };
+    },
+
+    methods: {
+        changePassword() {
+            this.form.post("/user/account/change-password", {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Your new password is setted.",
+                        },
+                        3500
+                    );
+                },
+                onError: () => {
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Your new password failed to be update, please try again.",
+                        },
+                        3500
+                    );
+                },
+            });
+        },
     },
 };
 </script>
