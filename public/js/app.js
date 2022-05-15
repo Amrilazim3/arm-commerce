@@ -228,7 +228,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Footer");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MainNav)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Notifications), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)])], 64
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" after repair code in Header component use Header component "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" instead using MainNav component "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MainNav)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Notifications), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -455,7 +455,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_SubNav = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SubNav");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MainNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SubNav)]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MainNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" make checking if the user is logged in "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" after check logged in, check if user is admin => if admin don't show this component "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SubNav)]);
 }
 
 /***/ }),
@@ -659,7 +659,6 @@ var _hoisted_38 = {
   "class": "px-5 py-6"
 };
 var _hoisted_39 = {
-  key: 0,
   "class": "grid grid-cols-1 gap-7"
 };
 
@@ -736,7 +735,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             _: 1
             /* STABLE */
 
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MenuItems, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" make one dropdown for normal user "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" make one dropdown for admin "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MenuItems, {
             "class": "absolute w-40 bg-gray-600 inline-grid p-0.5 right-5 text-white top-12 rounded-md"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -863,7 +862,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 _: 1
                 /* STABLE */
 
-              })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+              })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" hide this when the user is admin "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                 href: "#",
                 "class": "flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
               }, {
@@ -893,7 +892,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 _: 1
                 /* STABLE */
 
-              }), _hoisted_37])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" dynamic content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+              }), _hoisted_37])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" dynamic content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                key: 0
+              }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" this is content for normal user "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" make another dropdown for admin "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                 href: "/user/account/profile",
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component == 'User/Account/Profile' ? 'bg-gray-400 hover:bg-gray-600' : ''])
               }, {
@@ -917,7 +918,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 _: 1
                 /* STABLE */
 
-              })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+              })])], 2112
+              /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+              )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                 href: "/register",
                 "class": "flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:from-purple-700 hover:to-indigo-700"
               }, {
@@ -2372,6 +2375,14 @@ var map = {
 		"./resources/js/Pages/User/Account/ChangePassword.vue",
 		"resources_js_Pages_User_Account_ChangePassword_vue"
 	],
+	"./User/Account/ForgotPassword": [
+		"./resources/js/Pages/User/Account/ForgotPassword.vue",
+		"resources_js_Pages_User_Account_ForgotPassword_vue"
+	],
+	"./User/Account/ForgotPassword.vue": [
+		"./resources/js/Pages/User/Account/ForgotPassword.vue",
+		"resources_js_Pages_User_Account_ForgotPassword_vue"
+	],
 	"./User/Account/Profile": [
 		"./resources/js/Pages/User/Account/Profile.vue",
 		"resources_js_Pages_User_Account_Profile_vue"
@@ -2379,6 +2390,14 @@ var map = {
 	"./User/Account/Profile.vue": [
 		"./resources/js/Pages/User/Account/Profile.vue",
 		"resources_js_Pages_User_Account_Profile_vue"
+	],
+	"./User/Account/ResetPassword": [
+		"./resources/js/Pages/User/Account/ResetPassword.vue",
+		"resources_js_Pages_User_Account_ResetPassword_vue"
+	],
+	"./User/Account/ResetPassword.vue": [
+		"./resources/js/Pages/User/Account/ResetPassword.vue",
+		"resources_js_Pages_User_Account_ResetPassword_vue"
 	]
 };
 function webpackAsyncContext(req) {
