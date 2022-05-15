@@ -15,7 +15,7 @@ class OAuthServiceController extends Controller
     public function redirect($service)
     {
         $service = Socialite::driver($service)->stateless()->redirect()->getTargetUrl();
-        return Redirect::back()->with('success', $service);
+        return redirect()->back()->with('success', $service);
     }
 
     public function handleCallback($service)
