@@ -102,6 +102,8 @@
                             Log in
                         </button>
                     </div>
+
+                    <p class="text-sm font-medium text-green-500" v-if="$page.props.flash.success == 'Your password has been reset!'">{{ $page.props.flash.success }}</p>
                 </form>
 
                 <ThirdPartyServices />
