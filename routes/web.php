@@ -10,6 +10,7 @@ use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\ForgotPasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
+use App\Http\Controllers\User\Account\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -54,3 +55,5 @@ Route::prefix('/user/account')->name('user.account')->group(function () {
     Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password.index');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'email'])->name('forgot-password.email');
 });
+Route::get('/user/account/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
+Route::patch('/user/account/reset-password', [ResetPasswordController::class, 'update'])->name('password.update');
