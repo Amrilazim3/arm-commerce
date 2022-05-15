@@ -86,9 +86,11 @@ export default {
             this.form.post("/user/account/forgot-password", {
                 preserveScroll: true,
                 onSuccess: () => {
+                    this.emailSentFailed = false;
                     this.emailSentSuccessed = true;
                 },
                 onError: () => {
+                    this.emailSentSuccessed = false;
                     this.emailSentFailed = true;
                 }
             });
