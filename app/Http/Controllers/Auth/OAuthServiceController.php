@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Exceptions\EmailTakenException;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 
 class OAuthServiceController extends Controller
@@ -51,6 +51,7 @@ class OAuthServiceController extends Controller
         $user = User::create([
             'name' => $sUser->getName() ? $sUser->getName() : $sUser->getNickname(),
             'email' => $sUser->getEmail(),
+            'email_verified_at' => $sUser->user['email_verified'] ? Carbon::now()->toDateTime() : null,
             'password' => null,
             'profile_image_url' => $sUser->getAvatar() ? $sUser->getAvatar() : null,
             'service' => $service,
@@ -62,9 +63,7 @@ class OAuthServiceController extends Controller
 
     public function login(Request $request)
     {
-        $user = User::find($request->id);
-
-        Auth::login($user);
+        Auth::loginUsingId($request->id);
 
         return redirect()->route('products.index');
     }
