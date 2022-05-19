@@ -35,11 +35,13 @@ __webpack_require__.r(__webpack_exports__);
       this.form.post("/user/account/reset-password", {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this.$notify({
-            group: "success",
-            title: "Success",
-            text: "Your new password has been updated."
-          }, 3500);
+          if (_this.$page.props.auth.isLoggedIn) {
+            _this.$notify({
+              group: "success",
+              title: "Success",
+              text: "Your new password has been updated."
+            }, 3500);
+          }
         },
         onError: function onError() {
           _this.$notify({
