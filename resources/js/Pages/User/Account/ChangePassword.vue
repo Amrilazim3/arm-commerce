@@ -12,6 +12,9 @@
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             Change Password
                         </h3>
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            Feeling unsecured with current password? Change it to enhaced your security.
+                        </p>
                     </div>
 
                     <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
