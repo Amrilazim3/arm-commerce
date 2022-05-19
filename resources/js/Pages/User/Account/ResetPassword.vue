@@ -138,14 +138,16 @@ export default {
             this.form.post("/user/account/reset-password", {
                 preserveScroll: true,
                 onSuccess: () => {
-                    this.$notify(
-                        {
-                            group: "success",
-                            title: "Success",
-                            text: "Your new password has been updated.",
-                        },
-                        3500
-                    );
+                    if (this.$page.props.auth.isLoggedIn) {
+                        this.$notify(
+                            {
+                                group: "success",
+                                title: "Success",
+                                text: "Your new password has been updated.",
+                            },
+                            3500
+                        );
+                    }
                 },
                 onError: () => {
                     this.$notify(
