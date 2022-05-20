@@ -1,4 +1,5 @@
 <template>
+    <!-- small screen -->
     <div class="lg:hidden px-10 py-6 flex space-x-3">
         <Menu as="div">
             <div>
@@ -197,6 +198,7 @@
         </Menu>
     </div>
 
+    <!-- large screen -->
     <div class="hidden lg:flex py-20 h-full justify-end w-2/12">
         <div
             class="w-40 space-y-2 rounded-md bg-indigo-100 border border-purple-600 text-purple-600 p-4"
@@ -348,6 +350,7 @@
 
 <script>
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 
 export default {
     components: {
@@ -355,6 +358,9 @@ export default {
         MenuButton,
         MenuItems,
         MenuItem,
+        Disclosure,
+        DisclosureButton,
+        DisclosurePanel
     },
 };
 </script>
