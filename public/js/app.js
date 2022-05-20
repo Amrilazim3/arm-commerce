@@ -2359,6 +2359,14 @@ var map = {
 		"./resources/js/Pages/Products.vue",
 		"resources_js_Pages_Products_vue"
 	],
+	"./User/Account/Addresses": [
+		"./resources/js/Pages/User/Account/Addresses.vue",
+		"resources_js_Pages_User_Account_Addresses_vue"
+	],
+	"./User/Account/Addresses.vue": [
+		"./resources/js/Pages/User/Account/Addresses.vue",
+		"resources_js_Pages_User_Account_Addresses_vue"
+	],
 	"./User/Account/ChangeEmail": [
 		"./resources/js/Pages/User/Account/ChangeEmail.vue",
 		"resources_js_Pages_User_Account_ChangeEmail_vue"
@@ -2374,6 +2382,14 @@ var map = {
 	"./User/Account/ChangePassword.vue": [
 		"./resources/js/Pages/User/Account/ChangePassword.vue",
 		"resources_js_Pages_User_Account_ChangePassword_vue"
+	],
+	"./User/Account/CreateAddress": [
+		"./resources/js/Pages/User/Account/CreateAddress.vue",
+		"resources_js_Pages_User_Account_CreateAddress_vue"
+	],
+	"./User/Account/CreateAddress.vue": [
+		"./resources/js/Pages/User/Account/CreateAddress.vue",
+		"resources_js_Pages_User_Account_CreateAddress_vue"
 	],
 	"./User/Account/ForgotPassword": [
 		"./resources/js/Pages/User/Account/ForgotPassword.vue",
