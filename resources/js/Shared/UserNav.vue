@@ -199,158 +199,192 @@
     </div>
 
     <!-- large screen -->
-    <div class="hidden lg:flex py-20 h-full justify-end w-2/12">
-        <div
-            class="w-40 space-y-2 rounded-md bg-indigo-100 border border-purple-600 text-purple-600 p-4"
-        >
-            <div>
-                <h3 class="font-medium">My Account</h3>
-                <ul class="space-x-2 cursor-pointer">
-                    <li>
-                        <Link
-                            href="/user/account/profile"
-                            class="ml-2 hover:underline"
-                            :class="
-                                $page.component == 'User/Account/Profile'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            Profile
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/account/payment"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Account/Payment'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            Bank & Cards
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/account/addresses"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Account/Addresses'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            Addresses
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/account/change-password"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Account/ChangePassword'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            Change Password
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+    <div class="hidden lg:flex pt-20 h-full justify-end w-2/12">
+        <div class="inline-grid pr-6 w-32">
+            <Disclosure
+                :defaultOpen="$page.component.includes('User/Account')"
+                v-slot="{ open }"
+            >
+                <DisclosureButton
+                    class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                    :class="open ? 'pl-2' : ''"
+                >
+                    <span>My Account</span>
+                </DisclosureButton>
+                <transition
+                    enter-active-class="transition duration-100 ease-out"
+                    enter-from-class="transform scale-95 opacity-0"
+                    enter-to-class="transform scale-100 opacity-100"
+                    leave-active-class="transition duration-75 ease-out"
+                    leave-from-class="transform scale-100 opacity-100"
+                    leave-to-class="transform scale-95 opacity-0"
+                >
+                    <DisclosurePanel
+                        as="ul"
+                        class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                    >
+                        <li>
+                            <Link
+                                href="/user/account/profile"
+                                :class="
+                                    $page.component == 'User/Account/Profile'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                Profile
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/account/payment"
+                                :class="
+                                    $page.component == 'User/Account/Payment'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                Bank & Cards
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/account/addresses"
+                                :class="
+                                    $page.component == 'User/Account/Addresses'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                Addresses
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/account/change-password"
+                                :class="
+                                    $page.component ==
+                                    'User/Account/ChangePassword'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                Change Password
+                            </Link>
+                        </li>
+                    </DisclosurePanel>
+                </transition>
+            </Disclosure>
+            <Disclosure
+                :defaultOpen="$page.component.includes('User/Payment')"
+                v-slot="{ open }"
+            >
+                <DisclosureButton
+                    class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                    :class="open ? 'pl-2' : ''"
+                >
+                    <span>My purchase</span>
+                </DisclosureButton>
+                <transition
+                    enter-active-class="transition duration-100 ease-out"
+                    enter-from-class="transform scale-95 opacity-0"
+                    enter-to-class="transform scale-100 opacity-100"
+                    leave-active-class="transition duration-75 ease-out"
+                    leave-from-class="transform scale-100 opacity-100"
+                    leave-to-class="transform scale-95 opacity-0"
+                >
+                    <DisclosurePanel
+                        as="ul"
+                        class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                    >
+                        <li>
+                            <Link
+                                href="/user/purchase"
 
-            <div>
-                <h3 class="font-medium">My Purchase</h3>
-                <ul class="space-x-2 cursor-pointer">
-                    <li>
-                        <Link
-                            href="/user/purchase"
-                            class="ml-2 hover:underline"
-                            :class="
-                                $page.component == 'User/Purchase/Index'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            All
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/purchase/to-pay"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Purchase/ToPay'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            To Pay
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/purchase/to-ship"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Purchase/ToShip'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            To Ship
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/purchase/to-receive"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Purchase/ToReceive'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            To Receive
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/purchase/completed"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Purchase/Completed'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            Completed
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/user/purchase/cancelled"
-                            class="hover:underline"
-                            :class="
-                                $page.component == 'User/Purchase/Cancelled'
-                                    ? 'underline'
-                                    : ''
-                            "
-                        >
-                            Cancelled
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+                                :class="
+                                    $page.component == 'User/Purchase/Index'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                All
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/purchase/to-pay"
+
+                                :class="
+                                    $page.component == 'User/Purchase/ToPay'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                To Pay
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/purchase/to-ship"
+
+                                :class="
+                                    $page.component == 'User/Purchase/ToShip'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                To Ship
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/purchase/to-receive"
+
+                                :class="
+                                    $page.component == 'User/Purchase/ToReceive'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                To Receive
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/purchase/completed"
+
+                                :class="
+                                    $page.component == 'User/Purchase/Completed'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                Completed
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/user/purchase/cancelled"
+
+                                :class="
+                                    $page.component == 'User/Purchase/Cancelled'
+                                        ? 'font-bold'
+                                        : ''
+                                "
+                            >
+                                Cancelled
+                            </Link>
+                        </li>
+                    </DisclosurePanel>
+                </transition>
+            </Disclosure>
         </div>
     </div>
 </template>
 
 <script>
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 
 export default {
     components: {
@@ -360,7 +394,7 @@ export default {
         MenuItem,
         Disclosure,
         DisclosureButton,
-        DisclosurePanel
+        DisclosurePanel,
     },
 };
 </script>
