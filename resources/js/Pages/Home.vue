@@ -19,8 +19,8 @@
                 <div>
                     <h2 class="text-5xl font-bold">
                         Commerce For
-                        <span class="text-orange-400">Healthy</span> And
-                        <span class="text-red-400">Strong</span> People
+                        <span class="text-orange-500">Healthy</span> And
+                        <span class="text-red-500">Strong</span> People
                     </h2>
                     <p class="mt-6 text-lg font-medium">
                         We are selling only the best product from gym,fitness
