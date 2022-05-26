@@ -54,10 +54,10 @@
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5"
                         >
                             <label
-                                for="photo"
+                                for="profile-image"
                                 class="block text-sm font-medium text-gray-700"
                             >
-                                Photo
+                                Profile image
                             </label>
                             <div class="mt-1 sm:mt-0 sm:col-span-2">
                                 <div class="flex items-center">
@@ -190,8 +190,7 @@
                             <div class="mt-1 sm:mt-0 sm:col-span-2">
                                 <MazPhoneNumberInput
                                     v-model="user.phoneNumber"
-                                    show-code-on-list
-                                    color="info"
+                                    color="primary"
                                     default-country-code="MY"
                                     :only-countries="['MY', 'ID', 'SG']"
                                     @update="user.phoneResults = $event"
