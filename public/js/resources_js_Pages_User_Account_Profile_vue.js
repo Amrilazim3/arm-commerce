@@ -104,7 +104,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/headlessui.esm.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/menu/menu.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/disclosure/disclosure.js");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -113,9 +114,18 @@ __webpack_require__.r(__webpack_exports__);
     MenuButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.MenuButton,
     MenuItems: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.MenuItems,
     MenuItem: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.MenuItem,
-    Disclosure: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.Disclosure,
-    DisclosureButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.DisclosureButton,
-    DisclosurePanel: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.DisclosurePanel
+    Disclosure: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.Disclosure,
+    DisclosureButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.DisclosureButton,
+    DisclosurePanel: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.DisclosurePanel
+  },
+  methods: {
+    closeOther: function closeOther(except) {
+      document.querySelectorAll('[id^="closure-"]').forEach(function (elem) {
+        if (except !== elem.id && elem.getAttribute("aria-expanded") == "true") {
+          elem.click();
+        }
+      });
+    }
   }
 });
 
@@ -177,9 +187,9 @@ var _hoisted_10 = {
 };
 
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "photo",
+  "for": "profile-image",
   "class": "block text-sm font-medium text-gray-700"
-}, " Photo ", -1
+}, " Profile image ", -1
 /* HOISTED */
 );
 
@@ -436,8 +446,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.user.phoneNumber = $event;
     }),
-    "show-code-on-list": "",
-    color: "info",
+    color: "primary",
     "default-country-code": "MY",
     "only-countries": ['MY', 'ID', 'SG'],
     onUpdate: _cache[5] || (_cache[5] = function ($event) {
@@ -878,12 +887,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* STABLE */
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" large screen "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Disclosure, {
-    defaultOpen: _ctx.$page.component.includes('User/Account')
+    defaultOpen: _ctx.$page.component.includes('User/Account'),
+    as: "div"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
       var open = _ref.open;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosureButton, {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : '']),
+        id: "closure-one",
+        onClick: _cache[0] || (_cache[0] = function ($event) {
+          return $options.closeOther('closure-one');
+        })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_16];
@@ -973,12 +987,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["defaultOpen"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Disclosure, {
-    defaultOpen: _ctx.$page.component.includes('User/Payment')
+    defaultOpen: _ctx.$page.component.includes('User/Payment'),
+    as: "div"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref2) {
       var open = _ref2.open;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosureButton, {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : '']),
+        id: "closure-two",
+        onClick: _cache[1] || (_cache[1] = function ($event) {
+          return $options.closeOther('closure-two');
+        })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_21];
