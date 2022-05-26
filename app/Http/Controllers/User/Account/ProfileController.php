@@ -19,14 +19,14 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        $user = Auth::user();
+
         $request->validate([
             'name' => ['required', 'max:50'],
             'newProfileImageFile' => ['file', 'image', 'nullable'],
-            'phoneNumber' => ['numeric', 'nullable'],
+            'phoneNumber' => ['numeric', 'nullable', 'unique:users,phone_number,' . $user->id],
             'dateOfBirth' => ['date', 'nullable'],
         ]);
-
-        $user = Auth::user();
 
         $user->update([
             'name' => $request->name,
