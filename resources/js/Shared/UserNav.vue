@@ -405,7 +405,6 @@ export default {
                     except !== elem.id &&
                     elem.getAttribute("aria-expanded") == "true"
                 ) {
-                    console.log("element with id " + elem.id + " is clicked");
                     elem.click();
                 }
             });
