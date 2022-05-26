@@ -1,8 +1,8 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp, Link, Head } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
-import UserLayout from './Shared/UserLayout';
-import AdminLayout from './Shared/AdminLayout';
+import Layout from './Shared/Layout';
+import HideSubNavLayout from './Shared/HideSubNavLayout';
 import Notifications from 'notiwind';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
@@ -18,11 +18,11 @@ createInertiaApp({
         ).default;
 
         if (page.layout === undefined) {
-            page.layout = UserLayout;
+            page.layout = Layout;
         }
 
         if (page.layout === null) {
-            page.layout = AdminLayout;
+            page.layout = HideSubNavLayout;
         }
 
         return page;
