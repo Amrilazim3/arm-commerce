@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\OAuthServiceController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\Account\AddressController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\ForgotPasswordController;
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/addresses', [AddressController::class, 'index'])->name('address.index');
         Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('change-email.index');
         Route::patch('/change-email', [ChangeEmailController::class, 'update'])->name('change-email.update');
         Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password.index');
