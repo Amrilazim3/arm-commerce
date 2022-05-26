@@ -204,10 +204,13 @@
             <Disclosure
                 :defaultOpen="$page.component.includes('User/Account')"
                 v-slot="{ open }"
+                as="div"
             >
                 <DisclosureButton
                     class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
                     :class="open ? 'pl-2' : ''"
+                    id="closure-one"
+                    @click="closeOther('closure-one')"
                 >
                     <span>My Account</span>
                 </DisclosureButton>
@@ -275,13 +278,17 @@
                     </DisclosurePanel>
                 </transition>
             </Disclosure>
+
             <Disclosure
                 :defaultOpen="$page.component.includes('User/Payment')"
                 v-slot="{ open }"
+                as="div"
             >
                 <DisclosureButton
                     class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
                     :class="open ? 'pl-2' : ''"
+                    id="closure-two"
+                    @click="closeOther('closure-two')"
                 >
                     <span>My purchase</span>
                 </DisclosureButton>
@@ -300,7 +307,6 @@
                         <li>
                             <Link
                                 href="/user/purchase"
-
                                 :class="
                                     $page.component == 'User/Purchase/Index'
                                         ? 'font-bold'
@@ -313,7 +319,6 @@
                         <li>
                             <Link
                                 href="/user/purchase/to-pay"
-
                                 :class="
                                     $page.component == 'User/Purchase/ToPay'
                                         ? 'font-bold'
@@ -326,7 +331,6 @@
                         <li>
                             <Link
                                 href="/user/purchase/to-ship"
-
                                 :class="
                                     $page.component == 'User/Purchase/ToShip'
                                         ? 'font-bold'
@@ -339,7 +343,6 @@
                         <li>
                             <Link
                                 href="/user/purchase/to-receive"
-
                                 :class="
                                     $page.component == 'User/Purchase/ToReceive'
                                         ? 'font-bold'
@@ -352,7 +355,6 @@
                         <li>
                             <Link
                                 href="/user/purchase/completed"
-
                                 :class="
                                     $page.component == 'User/Purchase/Completed'
                                         ? 'font-bold'
@@ -365,7 +367,6 @@
                         <li>
                             <Link
                                 href="/user/purchase/cancelled"
-
                                 :class="
                                     $page.component == 'User/Purchase/Cancelled'
                                         ? 'font-bold'
@@ -395,6 +396,20 @@ export default {
         Disclosure,
         DisclosureButton,
         DisclosurePanel,
+    },
+
+    methods: {
+        closeOther(except) {
+            document.querySelectorAll('[id^="closure-"]').forEach((elem) => {
+                if (
+                    except !== elem.id &&
+                    elem.getAttribute("aria-expanded") == "true"
+                ) {
+                    console.log("element with id " + elem.id + " is clicked");
+                    elem.click();
+                }
+            });
+        },
     },
 };
 </script>
