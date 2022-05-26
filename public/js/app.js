@@ -77,7 +77,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/headlessui.esm.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/popover/popover.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/menu/menu.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -86,10 +87,10 @@ __webpack_require__.r(__webpack_exports__);
     PopoverButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.PopoverButton,
     PopoverPanel: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.PopoverPanel,
     // dropdown component
-    Menu: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.Menu,
-    MenuButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.MenuButton,
-    MenuItems: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.MenuItems,
-    MenuItem: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.MenuItem
+    Menu: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.Menu,
+    MenuButton: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.MenuButton,
+    MenuItems: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.MenuItems,
+    MenuItem: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.MenuItem
   }
 });
 
@@ -170,15 +171,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/headlessui.esm.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/dialog/dialog.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/transitions/transition.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Dialog: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.Dialog,
     DialogOverlay: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.DialogOverlay,
     DialogTitle: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.DialogTitle,
-    TransitionChild: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.TransitionChild,
-    TransitionRoot: _headlessui_vue__WEBPACK_IMPORTED_MODULE_0__.TransitionRoot
+    TransitionChild: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.TransitionChild,
+    TransitionRoot: _headlessui_vue__WEBPACK_IMPORTED_MODULE_1__.TransitionRoot
   },
   data: function data() {
     return {
@@ -426,7 +428,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "clip-rule": "evenodd"
 })])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mt-8 text-base text-gray-400 md:mt-0 md:order-1"
-}, " © 2022 Arm-commerce, Made with love by Amril Azim. ")])], -1
+}, " © 2022 Arm-Commerce, Made with love by Amril Azim. ")])], -1
 /* HOISTED */
 );
 
@@ -2361,10 +2363,12 @@ var map = {
 	],
 	"./User/Account/Addresses": [
 		"./resources/js/Pages/User/Account/Addresses.vue",
+		"/js/vendor",
 		"resources_js_Pages_User_Account_Addresses_vue"
 	],
 	"./User/Account/Addresses.vue": [
 		"./resources/js/Pages/User/Account/Addresses.vue",
+		"/js/vendor",
 		"resources_js_Pages_User_Account_Addresses_vue"
 	],
 	"./User/Account/ChangeEmail": [
@@ -2377,19 +2381,13 @@ var map = {
 	],
 	"./User/Account/ChangePassword": [
 		"./resources/js/Pages/User/Account/ChangePassword.vue",
+		"/js/vendor",
 		"resources_js_Pages_User_Account_ChangePassword_vue"
 	],
 	"./User/Account/ChangePassword.vue": [
 		"./resources/js/Pages/User/Account/ChangePassword.vue",
+		"/js/vendor",
 		"resources_js_Pages_User_Account_ChangePassword_vue"
-	],
-	"./User/Account/CreateAddress": [
-		"./resources/js/Pages/User/Account/CreateAddress.vue",
-		"resources_js_Pages_User_Account_CreateAddress_vue"
-	],
-	"./User/Account/CreateAddress.vue": [
-		"./resources/js/Pages/User/Account/CreateAddress.vue",
-		"resources_js_Pages_User_Account_CreateAddress_vue"
 	],
 	"./User/Account/ForgotPassword": [
 		"./resources/js/Pages/User/Account/ForgotPassword.vue",
@@ -2401,10 +2399,12 @@ var map = {
 	],
 	"./User/Account/Profile": [
 		"./resources/js/Pages/User/Account/Profile.vue",
+		"/js/vendor",
 		"resources_js_Pages_User_Account_Profile_vue"
 	],
 	"./User/Account/Profile.vue": [
 		"./resources/js/Pages/User/Account/Profile.vue",
+		"/js/vendor",
 		"resources_js_Pages_User_Account_Profile_vue"
 	],
 	"./User/Account/ResetPassword": [
@@ -2426,7 +2426,7 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return __webpack_require__.e(ids[1]).then(() => {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() => {
 		return __webpack_require__(id);
 	});
 }
