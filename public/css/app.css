@@ -1804,6 +1804,10 @@ select {
     margin-top: 1px;
   }
 
+  .sm\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
   .sm\:block {
     display: block;
   }
@@ -1987,6 +1991,10 @@ select {
 
   .md\:mt-0 {
     margin-top: 0px;
+  }
+
+  .md\:-mt-2 {
+    margin-top: -0.5rem;
   }
 
   .md\:block {
