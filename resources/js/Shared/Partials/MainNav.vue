@@ -7,6 +7,9 @@
                         >Arm-Commerce</Link
                     >
 
+                    <!-- 
+                        - large screen
+                     -->
                     <div
                         class="self-center hidden space-x-5 font-semibold md:flex"
                     >
@@ -52,8 +55,6 @@
                                     >
                                 </MenuButton>
 
-                                <!-- make one dropdown for normal user -->
-                                <!-- make one dropdown for admin -->
                                 <MenuItems
                                     class="absolute w-40 bg-gray-600 inline-grid p-1.5 right-5 text-white top-12 rounded-md"
                                 >
@@ -63,7 +64,9 @@
                                             :class="{
                                                 'bg-gray-800 hover:bg-gray-700 rounded-md':
                                                     active ||
-                                                    $page.component.includes('User/Account'),
+                                                    $page.component.includes(
+                                                        'User/Account'
+                                                    ),
                                             }"
                                             href="/user/account/profile"
                                         >
@@ -107,8 +110,10 @@
                         </template>
                     </div>
 
-                    <!-- entering mobile layout -->
-                    <!-- mobile toggle button -->
+                    <!--  
+                        - mobile layout
+                        - mobile toggle button
+                    -->
                     <template v-if="$page.props.auth.isLoggedIn">
                         <div class="self-center -my-2 -mr-2 md:hidden">
                             <PopoverButton>
@@ -227,7 +232,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- hide this when the user is admin -->
                                     <div class="mt-6">
                                         <nav class="grid grid-cols-1 gap-7">
                                             <Link
@@ -286,15 +290,14 @@
                                     <template
                                         v-if="$page.props.auth.isLoggedIn"
                                     >
-                                        <!-- this is content for normal user -->
-                                        <!-- make another dropdown for admin -->
                                         <div class="grid grid-cols-1 gap-7">
                                             <Link
                                                 href="/user/account/profile"
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
                                                 :class="
-                                                    $page.component ==
-                                                    'User/Account/Profile'
+                                                    $page.component.includes(
+                                                        'User/Account'
+                                                    )
                                                         ? 'bg-gray-400 hover:bg-gray-600'
                                                         : ''
                                                 "
