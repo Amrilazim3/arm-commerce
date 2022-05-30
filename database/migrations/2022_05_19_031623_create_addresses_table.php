@@ -18,11 +18,11 @@ class CreateAddressesTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('full_name');
             $table->unsignedBigInteger('phone_number');
-            $table->string('street_name');
+            $table->string('country');
             $table->string('city');
             $table->string('state');
-            $table->string('country');
             $table->string('postal_code');
+            $table->string('street_name');
             $table->timestamps();
         });
     }
