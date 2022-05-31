@@ -121,7 +121,7 @@
                                         "
                                         @click.prevent="removeProfileImage"
                                     >
-                                        remove
+                                        Remove
                                     </button>
                                 </div>
                                 <div
