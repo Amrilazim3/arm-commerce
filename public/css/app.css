@@ -827,6 +827,9 @@ select {
 .w-40 {
   width: 10rem;
 }
+.w-52 {
+  width: 13rem;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1056,6 +1059,9 @@ select {
 .rounded-full {
   border-radius: 9999px;
 }
+.rounded-sm {
+  border-radius: 0.125rem;
+}
 .rounded-none {
   border-radius: 0px;
 }
@@ -1072,6 +1078,9 @@ select {
 }
 .border-2 {
   border-width: 2px;
+}
+.border-0 {
+  border-width: 0px;
 }
 .border-t {
   border-top-width: 1px;
