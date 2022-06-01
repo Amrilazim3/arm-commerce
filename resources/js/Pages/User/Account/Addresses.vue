@@ -17,7 +17,7 @@
 
                     <button
                         @click="isOpen = true"
-                        class="px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                         <p class="flex items-center">
                             <span class="text-2xl mr-1.5">+</span> Add address
@@ -227,7 +227,7 @@
                             <div class="bg-white px-4 sm:rounded-lg sm:px-10">
                                 <form
                                     class="space-y-6"
-                                    @submit.prevent="createAddress"
+                                    @submit.prevent="addAddress()"
                                 >
                                     <div
                                         class="flex items-center justify-between space-x-1.5"
@@ -247,10 +247,12 @@
                                                     autocomplete="phone-number"
                                                     required
                                                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    v-model="
+                                                        addressForm.phoneNumber
+                                                    "
                                                 />
                                             </div>
                                         </div>
-
                                         <div class="flex-1">
                                             <label
                                                 for="full-name"
@@ -266,71 +268,72 @@
                                                     autocomplete="full-name"
                                                     required
                                                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    :disabled="addressForm.phoneNumber == null || addressForm.phoneNumber == ''"
+                                                    v-model="
+                                                        addressForm.fullName
+                                                    "
                                                 />
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="flex-1">
-                                        <label
-                                            for="address-1"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            Address 1
-                                        </label>
-                                        <div class="mt-1">
-                                            <input
-                                                id="address-1"
-                                                name="address-1"
-                                                type="text"
-                                                autocomplete="address"
+                                    <div
+                                        class="flex items-center justify-between space-x-1.5"
+                                    >
+                                        <div class="flex-1">
+                                            <label
+                                                for="country"
+                                                class="block text-sm font-medium text-gray-700"
+                                            >
+                                                Country
+                                            </label>
+                                            <select
+                                                id="country"
+                                                name="country"
+                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                 required
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            />
+                                                :disabled="addressForm.fullName == ''"
+                                                v-model="addressForm.country"
+                                            >
+                                                <option
+                                                    selected
+                                                    value=""
+                                                    class="w-52 bg-gray-50 border-0 rounded-sm"
+                                                >
+                                                    Select Country
+                                                </option>
+                                                <template
+                                                    v-for="country in countries"
+                                                    :key="country.id"
+                                                >
+                                                    <option
+                                                        :value="country.name"
+                                                        class="w-52 bg-gray-50 border-0 rounded-sm"
+                                                    >
+                                                        {{ country.name }}
+                                                    </option>
+                                                </template>
+                                            </select>
                                         </div>
-                                    </div>
-
-                                    <div class="flex-1">
-                                        <label
-                                            for="address-2"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            Address 2<span
-                                                class="text-xs text-gray-600"
+                                        <div class="flex-1">
+                                            <label
+                                                for="state"
+                                                class="block text-sm font-medium text-gray-700"
                                             >
-                                                * optional</span
-                                            >
-                                        </label>
-                                        <div class="mt-1">
-                                            <input
-                                                id="address-2"
-                                                name="address-2"
-                                                type="text"
-                                                autocomplete="address"
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div class="flex-1">
-                                        <label
-                                            for="address-3"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            Address 3<span
-                                                class="text-xs text-gray-600"
-                                            >
-                                                * optional</span
-                                            >
-                                        </label>
-                                        <div class="mt-1">
-                                            <input
-                                                id="address-3"
-                                                name="address-3"
-                                                type="text"
-                                                autocomplete="address"
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            />
+                                                State
+                                            </label>
+                                            <div class="mt-1">
+                                                <input
+                                                    id="state"
+                                                    name="state"
+                                                    type="text"
+                                                    autocomplete="state"
+                                                    required
+                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    :disabled="addressForm.country == ''"
+                                                    v-model="addressForm.state"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
 
@@ -352,47 +355,8 @@
                                                     autocomplete="city"
                                                     required
                                                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="flex-1">
-                                            <label
-                                                for="state"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                State
-                                            </label>
-                                            <div class="mt-1">
-                                                <input
-                                                    id="state"
-                                                    name="state"
-                                                    type="text"
-                                                    autocomplete="state"
-                                                    required
-                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div
-                                        class="flex items-center justify-between space-x-1.5"
-                                    >
-                                        <div class="flex-1">
-                                            <label
-                                                for="country"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                Country
-                                            </label>
-                                            <div class="mt-1">
-                                                <input
-                                                    id="country"
-                                                    name="country"
-                                                    type="text"
-                                                    autocomplete="country"
-                                                    required=""
-                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    :disabled="addressForm.state == ''"
+                                                    v-model="addressForm.city"
                                                 />
                                             </div>
                                         </div>
@@ -411,8 +375,33 @@
                                                     autocomplete="postal-code"
                                                     required
                                                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    :disabled="addressForm.city == ''"
+                                                    v-model="
+                                                        addressForm.postalCode
+                                                    "
                                                 />
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex-1">
+                                        <label
+                                            for="street-name"
+                                            class="block text-sm font-medium text-gray-700"
+                                        >
+                                            Street name
+                                        </label>
+                                        <div class="mt-1">
+                                            <input
+                                                id="street-name"
+                                                name="street-name"
+                                                type="text"
+                                                autocomplete="address"
+                                                required
+                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                :disabled="addressForm.postalCode == null || addressForm.postalCode == ''"
+                                                v-model="addressForm.streetName"
+                                            />
                                         </div>
                                     </div>
 
@@ -420,12 +409,13 @@
                                         <button
                                             type="submit"
                                             class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            @click="addAddress()"
                                         >
-                                            Create
+                                            Save
                                         </button>
                                         <button
                                             type="button"
-                                            class="mt-3 mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+                                            class="mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
                                             @click="isOpen = false"
                                         >
                                             Cancel
@@ -443,6 +433,8 @@
 
 <script>
 import UserNav from "../../../Shared/UserNav.vue";
+import axios from "axios";
+
 import {
     Dialog,
     DialogPanel,
@@ -463,10 +455,39 @@ export default {
         TransitionRoot,
     },
 
+    mounted() {
+        axios.get("https://restcountries.com/v3.1/all").then((response) => {
+            var counter = 1;
+            response.data.map((element) => {
+                let object = {};
+                object.name = element.name.common;
+                object.id = counter;
+                counter++;
+                this.countries.push(object);
+            });
+        });
+    },
+
     data() {
         return {
             isOpen: false,
+            countries: [],
+            addressForm: this.$inertia.form({
+                phoneNumber: null,
+                fullName: "",
+                country: "",
+                state: "",
+                city: "",
+                postalCode: null,
+                streetName: "",
+            }),
         };
+    },
+
+    methods: {
+        addAddress() {
+            console.log("hello");
+        },
     },
 };
 </script>
