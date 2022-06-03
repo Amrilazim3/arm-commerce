@@ -18,7 +18,6 @@ class CreateAddressesTable extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('full_name');
             $table->unsignedBigInteger('phone_number');
-            $table->string('country');
             $table->string('state');
             $table->string('city');
             $table->string('postal_code');
