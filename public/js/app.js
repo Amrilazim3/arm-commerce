@@ -660,7 +660,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "clip-rule": "evenodd"
 })])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mt-8 text-base text-gray-400 md:mt-0 md:order-1"
-}, " © 2022 Arm-Commerce, Made with love by Amril Azim. ")])], -1
+}, " © 2022 Arm-commerce, Made with love by Amril Azim. ")])], -1
 /* HOISTED */
 );
 
@@ -714,7 +714,7 @@ var _hoisted_2 = {
   "class": "flex justify-between"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Arm-Commerce");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Arm-commerce");
 
 var _hoisted_4 = {
   "class": "self-center hidden space-x-5 font-semibold md:flex"
@@ -1815,7 +1815,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }).use(plugin).use(notiwind__WEBPACK_IMPORTED_MODULE_6__["default"]).component("Link", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link).component("Head", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head).component("Datepicker", _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_7__["default"]).component("MazInput", maz_ui_components_MazInput__WEBPACK_IMPORTED_MODULE_11__["default"]).component("MazPhoneNumberInput", maz_ui_components_MazPhoneNumberInput__WEBPACK_IMPORTED_MODULE_12__["default"]).mount(el);
   },
   title: function title(_title) {
-    return "Arm-Commerce | ".concat(_title);
+    return "Arm-commerce | ".concat(_title);
   }
 });
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init({
