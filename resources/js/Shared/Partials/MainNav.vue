@@ -4,7 +4,7 @@
             <div class="px-6 py-3 text-white bg-gray-800">
                 <div class="flex justify-between">
                     <Link href="/" class="text-2xl font-bold"
-                        >Arm-Commerce</Link
+                        >Arm-commerce</Link
                     >
 
                     <!-- 
