@@ -39,7 +39,7 @@ createInertiaApp({
             .mount(el)
     },
 
-    title: title => `Arm-Commerce | ${title}`
+    title: title => `Arm-commerce | ${title}`
 })
 
 InertiaProgress.init({
