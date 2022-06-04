@@ -21,6 +21,7 @@
                         Commerce For
                         <span class="text-orange-500">Healthy</span> And
                         <span class="text-red-500">Strong</span> People
+                        In Malaysia
                     </h2>
                     <p class="mt-6 text-lg font-medium">
                         We are selling only the best product from gym,fitness
