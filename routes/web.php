@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/addresses', [AddressController::class, 'index'])->name('address.index');
+        Route::post('/addresses', [AddressController::class, 'store'])->name('address.store');
         Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('change-email.index');
         Route::patch('/change-email', [ChangeEmailController::class, 'update'])->name('change-email.update');
         Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password.index');
@@ -53,9 +54,19 @@ Route::prefix('/email/verify')->name('verification.')->group(function () {
         ->name('send');
 });
 
+/**
+ * start discussion
+ * combine empat-empat route ni dalam satu controller "PasswordController"
+ * so nanti die ade 4 name route
+ * 1. password.index
+ * 2. password.email
+ * 3. password.reset
+ * 4. password.update
+ */   
 Route::prefix('/user/account')->name('user.account')->group(function () {
     Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password.index');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'email'])->name('forgot-password.email');
 });
 Route::get('/user/account/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
 Route::patch('/user/account/reset-password', [ResetPasswordController::class, 'update'])->name('password.update');
+// end discussion 
