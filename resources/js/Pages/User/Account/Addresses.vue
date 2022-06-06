@@ -229,111 +229,98 @@
                                     class="space-y-6"
                                     @submit.prevent="addAddress()"
                                 >
-                                    <div
-                                        class="flex items-center justify-between space-x-1.5"
-                                    >
-                                        <div class="flex-1">
-                                            <label
-                                                for="phone-number"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                Phone number
-                                            </label>
-                                            <div class="mt-1">
-                                                <input
-                                                    id="phone-number"
-                                                    name="phone-number"
-                                                    type="text"
-                                                    autocomplete="phone-number"
-                                                    required
-                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    v-model="
-                                                        addressForm.phoneNumber
-                                                    "
-                                                />
-                                            </div>
+                                    <div class="flex-1">
+                                        <label
+                                            for="full-name"
+                                            class="block text-sm font-medium text-gray-700"
+                                        >
+                                            Full name
+                                        </label>
+                                        <div class="mt-1">
+                                            <input
+                                                id="full-name"
+                                                name="full-name"
+                                                type="text"
+                                                autocomplete="name"
+                                                required
+                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                v-model="addressForm.fullName"
+                                            />
                                         </div>
-                                        <div class="flex-1">
-                                            <label
-                                                for="full-name"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                Full name
-                                            </label>
-                                            <div class="mt-1">
-                                                <input
-                                                    id="full-name"
-                                                    name="full-name"
-                                                    type="text"
-                                                    autocomplete="full-name"
-                                                    required
-                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    :disabled="addressForm.phoneNumber == null || addressForm.phoneNumber == ''"
-                                                    v-model="
-                                                        addressForm.fullName
-                                                    "
-                                                />
-                                            </div>
+                                        <div
+                                            v-if="addressForm.errors.fullName"
+                                            class="text-red-500 text-sm mt-1"
+                                        >
+                                            {{ addressForm.errors.fullName }}
                                         </div>
                                     </div>
 
-                                    <div
-                                        class="flex items-center justify-between space-x-1.5"
-                                    >
-                                        <div class="flex-1">
-                                            <label
-                                                for="country"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                Country
-                                            </label>
-                                            <select
-                                                id="country"
-                                                name="country"
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    <div class="flex-1">
+                                        <label
+                                            for="phone-number"
+                                            class="block text-sm font-medium text-gray-700"
+                                        >
+                                            Phone number
+                                        </label>
+                                        <div class="mt-1">
+                                            <input
+                                                id="phone-number"
+                                                name="phone-number"
+                                                type="text"
+                                                autocomplete="phone-number"
                                                 required
-                                                :disabled="addressForm.fullName == ''"
-                                                v-model="addressForm.country"
+                                                placeholder="example: 60119872345 / 6011-987-2345"
+                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                v-model="
+                                                    addressForm.phoneNumber
+                                                "
+                                            />
+                                        </div>
+                                        <div
+                                            v-if="
+                                                addressForm.errors.phoneNumber
+                                            "
+                                            class="text-red-500 text-sm mt-1"
+                                        >
+                                            {{ addressForm.errors.phoneNumber }}
+                                        </div>
+                                    </div>
+
+                                    <div class="flex-1">
+                                        <label
+                                            for="state"
+                                            class="block text-sm font-medium text-gray-700"
+                                        >
+                                            State
+                                        </label>
+                                        <select
+                                            id="country"
+                                            name="country"
+                                            autocomplete="country"
+                                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            required
+                                            v-model="addressForm.state"
+                                        >
+                                            <option selected value="">
+                                                Select State
+                                            </option>
+                                            <template
+                                                v-for="state in states"
+                                                :key="state"
                                             >
                                                 <option
-                                                    selected
-                                                    value=""
+                                                    :value="state"
                                                     class="w-52 bg-gray-50 border-0 rounded-sm"
                                                 >
-                                                    Select Country
+                                                    {{ state }}
                                                 </option>
-                                                <template
-                                                    v-for="country in countries"
-                                                    :key="country.id"
-                                                >
-                                                    <option
-                                                        :value="country.name"
-                                                        class="w-52 bg-gray-50 border-0 rounded-sm"
-                                                    >
-                                                        {{ country.name }}
-                                                    </option>
-                                                </template>
-                                            </select>
-                                        </div>
-                                        <div class="flex-1">
-                                            <label
-                                                for="state"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                State
-                                            </label>
-                                            <div class="mt-1">
-                                                <input
-                                                    id="state"
-                                                    name="state"
-                                                    type="text"
-                                                    autocomplete="state"
-                                                    required
-                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    :disabled="addressForm.country == ''"
-                                                    v-model="addressForm.state"
-                                                />
-                                            </div>
+                                            </template>
+                                        </select>
+                                        <div
+                                            v-if="addressForm.errors.state"
+                                            class="text-red-500 text-sm mt-1"
+                                        >
+                                            {{ addressForm.errors.state }}
                                         </div>
                                     </div>
 
@@ -347,17 +334,45 @@
                                             >
                                                 City
                                             </label>
-                                            <div class="mt-1">
-                                                <input
-                                                    id="city"
-                                                    name="city"
-                                                    type="text"
-                                                    autocomplete="city"
-                                                    required
-                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    :disabled="addressForm.state == ''"
-                                                    v-model="addressForm.city"
-                                                />
+                                            <select
+                                                id="city"
+                                                name="city"
+                                                autocomplete="city"
+                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                required
+                                                v-model="addressForm.city"
+                                            >
+                                                <template
+                                                    v-if="
+                                                        addressForm.state == ''
+                                                    "
+                                                >
+                                                    <option selected value="">
+                                                        Select City
+                                                    </option>
+                                                </template>
+                                                <template v-else>
+                                                    <option selected value="">
+                                                        Select City
+                                                    </option>
+                                                    <template
+                                                        v-for="city in cities"
+                                                        :key="city"
+                                                    >
+                                                        <option
+                                                            :value="city"
+                                                            class="w-52 bg-gray-50 border-0 rounded-sm"
+                                                        >
+                                                            {{ city }}
+                                                        </option>
+                                                    </template>
+                                                </template>
+                                            </select>
+                                            <div
+                                                v-if="addressForm.errors.city"
+                                                class="text-red-500 text-sm mt-1"
+                                            >
+                                                {{ addressForm.errors.city }}
                                             </div>
                                         </div>
                                         <div class="flex-1">
@@ -375,11 +390,22 @@
                                                     autocomplete="postal-code"
                                                     required
                                                     class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    :disabled="addressForm.city == ''"
                                                     v-model="
                                                         addressForm.postalCode
                                                     "
                                                 />
+                                            </div>
+                                            <div
+                                                v-if="
+                                                    addressForm.errors
+                                                        .postalCode
+                                                "
+                                                class="text-red-500 text-sm mt-1"
+                                            >
+                                                {{
+                                                    addressForm.errors
+                                                        .postalCode
+                                                }}
                                             </div>
                                         </div>
                                     </div>
@@ -399,17 +425,29 @@
                                                 autocomplete="address"
                                                 required
                                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                :disabled="addressForm.postalCode == null || addressForm.postalCode == ''"
                                                 v-model="addressForm.streetName"
                                             />
+                                        </div>
+                                        <div
+                                            v-if="
+                                                addressForm.errors.streetName
+                                            "
+                                            class="text-red-500 text-sm mt-1"
+                                        >
+                                            {{ addressForm.errors.streetName }}
                                         </div>
                                     </div>
 
                                     <div class="flex flex-row-reverse">
                                         <button
                                             type="submit"
-                                            class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                            @click="addAddress()"
+                                            class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white"
+                                            :disabled="!addressForm.isDirty || addressForm.processing"
+                                            :class="
+                                                !addressForm.isDirty || addressForm.processing
+                                                    ? 'bg-indigo-400 cursor-not-allowed'
+                                                    : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                                            "
                                         >
                                             Save
                                         </button>
@@ -433,7 +471,6 @@
 
 <script>
 import UserNav from "../../../Shared/UserNav.vue";
-import axios from "axios";
 
 import {
     Dialog,
@@ -455,19 +492,6 @@ export default {
         TransitionRoot,
     },
 
-    mounted() {
-        axios.get("https://restcountries.com/v3.1/all").then((response) => {
-            var counter = 1;
-            response.data.map((element) => {
-                let object = {};
-                object.name = element.name.common;
-                object.id = counter;
-                counter++;
-                this.countries.push(object);
-            });
-        });
-    },
-
     data() {
         return {
             isOpen: false,
@@ -475,18 +499,258 @@ export default {
             addressForm: this.$inertia.form({
                 phoneNumber: null,
                 fullName: "",
-                country: "",
                 state: "",
                 city: "",
                 postalCode: null,
                 streetName: "",
             }),
+            states: [
+                "Johor",
+                "Kedah",
+                "Kelantan",
+                "Melaka",
+                "Negeri Sembilan",
+                "Pahang",
+                "Perak",
+                "Perlis",
+                "Pulau Pinang",
+                "Sarawak",
+                "Selangor",
+                "Terengganu",
+                "Kuala Lumpur",
+                "Wilayah Persekutuan",
+            ],
+            statesCities: {
+                Johor: [
+                    "Johor Bahru",
+                    "Tebrau",
+                    "Pasir Gudang",
+                    "Bukit Indah",
+                    "Skudai",
+                    "Kluang",
+                    "Batu Pahat",
+                    "Muar",
+                    "Ulu Tiram",
+                    "Senai",
+                    "Segamat",
+                    "Kulai",
+                    "Kota Tinggi",
+                    "Pontian Kechil",
+                    "Tangkak",
+                    "Bukit Bakri",
+                    "Yong Peng",
+                    "Pekan Nenas",
+                    "Labis",
+                    "Mersing",
+                    "Simpang Renggam",
+                    "Parit Raja",
+                    "Kelapa Sawit",
+                    "Buloh Kasap",
+                    "Chaah",
+                ],
+                Kedah: [
+                    "Sungai Petani",
+                    "Alor Setar",
+                    "Kulim",
+                    "Jitra / Kubang Pasu",
+                    "Baling",
+                    "Pendang",
+                    "Langkawi",
+                    "Yan",
+                    "Sik",
+                    "Kuala Nerang",
+                    "Pokok Sena",
+                    "Bandar Baharu",
+                ],
+                Kelantan: [
+                    "Kota Bharu",
+                    "Pangkal Kalong",
+                    "Tanah Merah",
+                    "Peringat",
+                    "Wakaf Baru",
+                    "Kadok",
+                    "Pasir Mas",
+                    "Gua Musang",
+                    "Kuala Krai",
+                    "Tumpat",
+                ],
+                Melaka: [
+                    "Bandaraya Melaka",
+                    "Bukit Baru",
+                    "Ayer Keroh",
+                    "Klebang",
+                    "Masjid Tanah",
+                    "Sungai Udang",
+                    "Batu Berendam",
+                    "Alor Gajah",
+                    "Bukit Rambai",
+                    "Ayer Molek",
+                    "Bemban",
+                    "Kuala Sungai Baru",
+                    "Pulau Sebang",
+                    "Jasin",
+                ],
+                "Negeri Sembilan": [
+                    "Seremban",
+                    "Port Dickson",
+                    "Nilai",
+                    "Bahau",
+                    "Tampin",
+                    "Kuala Pilah",
+                ],
+                Pahang: [
+                    "Kuantan",
+                    "Temerloh",
+                    "Bentong",
+                    "Mentakab",
+                    "Raub",
+                    "Jerantut",
+                    "Pekan",
+                    "Kuala Lipis",
+                    "Bandar Jengka",
+                    "Bukit Tinggi",
+                ],
+                Perak: [
+                    "Ipoh",
+                    "Taiping",
+                    "Sitiawan",
+                    "Simpang Empat",
+                    "Teluk Intan",
+                    "Batu Gajah",
+                    "Lumut",
+                    "Kampung Koh",
+                    "Kuala Kangsar",
+                    "Sungai Siput Utara",
+                    "Tapah",
+                    "Bidor",
+                    "Parit Buntar",
+                    "Ayer Tawar",
+                    "Bagan Serai",
+                    "Tanjung Malim",
+                    "Lawan Kuda Baharu",
+                    "Pantai Remis",
+                    "Kampar",
+                ],
+                Perlis: ["Kangar", "Kuala Perlis"],
+                "Pulau Pinang": [
+                    "Bukit Mertajam",
+                    "Georgetown",
+                    "Sungai Ara",
+                    "Gelugor",
+                    "Ayer Itam",
+                    "Butterworth",
+                    "Perai",
+                    "Nibong Tebal",
+                    "Permatang Kucing",
+                    "Tanjung Tokong",
+                    "Kepala Batas",
+                    "Tanjung Bungah",
+                    "Juru",
+                ],
+                Sabah: [
+                    "Kota Kinabalu",
+                    "Sandakan",
+                    "Tawau",
+                    "Lahad Datu",
+                    "Keningau",
+                    "Putatan",
+                    "Donggongon",
+                    "Semporna",
+                    "Kudat",
+                    "Kunak",
+                    "Papar",
+                    "Ranau",
+                    "Beaufort",
+                    "Kinarut",
+                    "Kota Belud",
+                ],
+                Sarawak: [
+                    "Kuching",
+                    "Miri",
+                    "Sibu",
+                    "Bintulu",
+                    "Limbang",
+                    "Sarikei",
+                    "Sri Aman",
+                    "Kapit",
+                    "Batu Delapan Bazaar",
+                    "Kota Samarahan",
+                ],
+                Selangor: [
+                    "Subang Jaya",
+                    "Klang",
+                    "Ampang Jaya",
+                    "Shah Alam",
+                    "Petaling Jaya",
+                    "Cheras",
+                    "Kajang",
+                    "Selayang Baru",
+                    "Rawang",
+                    "Taman Greenwood",
+                    "Semenyih",
+                    "Banting",
+                    "Balakong",
+                    "Gombak Setia",
+                    "Kuala Selangor",
+                    "Serendah",
+                    "Bukit Beruntung",
+                    "Pengkalan Kundang",
+                    "Jenjarom",
+                    "Sungai Besar",
+                    "Batu Arang",
+                    "Tanjung Sepat",
+                    "Kuang",
+                    "Kuala Kubu Baharu",
+                    "Batang Berjuntai",
+                    "Bandar Baru Salak Tinggi",
+                    "Sekinchan",
+                    "Sabak",
+                    "Tanjung Karang",
+                    "Beranang",
+                    "Sungai Pelek",
+                ],
+                Terengganu: [
+                    "Kuala Terengganu",
+                    "Chukai",
+                    "Dungun",
+                    "Kerteh",
+                    "Kuala Berang",
+                    "Marang",
+                    "Paka",
+                    "Jerteh",
+                ],
+                "Wilayah Persekutuan": ["Kuala Lumpur", "Labuan", "Putrajaya"],
+            },
+            cities: [],
         };
+    },
+
+    watch: {
+        addressForm: {
+            handler(newValue) {
+                this.cities = this.statesCities[newValue.state];
+            },
+            deep: true,
+        },
     },
 
     methods: {
         addAddress() {
-            console.log("hello");
+            this.addressForm.post("/user/account/addresses", {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.isOpen = false;
+                    this.addressForm = this.$inertia.form({});
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Your address successfully added.",
+                        },
+                        3500
+                    );
+                }
+            });
         },
     },
 };
