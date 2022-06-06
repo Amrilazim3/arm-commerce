@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             group: "success",
             title: "Success",
-            text: "Your address successfully added."
+            text: "Address successfully added."
           }, 3500);
         }
       });
