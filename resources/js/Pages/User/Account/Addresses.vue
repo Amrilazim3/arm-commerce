@@ -745,7 +745,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Your address successfully added.",
+                            text: "Address successfully added.",
                         },
                         3500
                     );
