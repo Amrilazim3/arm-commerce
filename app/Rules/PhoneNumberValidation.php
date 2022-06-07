@@ -26,8 +26,7 @@ class PhoneNumberValidation implements Rule
      */
     public function passes($attribute, $value)
     {
-        // put the api_key in services config/app.php file 
-        $apiCall = Http::get('http://phonevalidation.abstractapi.com/v1/?api_key=e340c3e1cdc54b7487f6d19839bcb67f&phone=' . $value);
+        $apiCall = Http::get('http://phonevalidation.abstractapi.com/v1/?api_key=' . config('services.abstractapi.api_key') . '&phone=' . $value);
         return $apiCall->json('valid');
     }
 
