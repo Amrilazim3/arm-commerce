@@ -2,7 +2,10 @@
     <Head title="Addresses" />
     <div class="lg:flex">
         <UserNav />
-        <div class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1">
+        <div
+            class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
+            :class="addresses.length == 0 ? 'mb-32' : 'mb-10'"
+        >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div class="inline-block md:flex md:justify-between">
                     <div>
@@ -25,151 +28,112 @@
                     </button>
                 </div>
 
-                <div class="flex flex-col">
-                    <div
-                        class="-my-2 overflow-x-auto align-middle sm:-mx-6 lg:-mx-8"
-                    >
+                <template v-if="addresses.length == 0">
+                    <div>
+                        <h1 class="text-2xl mt-4">No address yet.</h1>
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="flex flex-col">
                         <div
-                            class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
+                            class="-my-2 overflow-x-auto align-middle sm:-mx-6 lg:-mx-8"
                         >
                             <div
-                                class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg"
+                                class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
                             >
-                                <table
-                                    class="min-w-full divide-y divide-gray-200"
+                                <div
+                                    class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg"
                                 >
-                                    <!-- loop all address here -->
-                                    <tbody
-                                        class="divide-y divide-gray-200 px-6"
+                                    <table
+                                        class="min-w-full divide-y divide-gray-200"
                                     >
-                                        <tr>
-                                            <td
-                                                class="whitespace-normal px-6 py-4"
-                                            >
-                                                <div
-                                                    class="flex items-center max-w-sm md:max-w-md"
+                                        <tbody
+                                            class="divide-y divide-gray-200 px-6"
+                                            v-for="address in addresses"
+                                            :key="address"
+                                        >
+                                            <tr>
+                                                <td
+                                                    class="whitespace-normal px-6 py-4 hidden md:block"
                                                 >
                                                     <div
-                                                        class="text-sm font-medium text-gray-900"
+                                                        class="items-center max-w-sm lg:max-w-md"
                                                     >
-                                                        <p>
-                                                            Lorong haji miskon
-                                                            kampung parit bareng
-                                                            tepi surau tiang
-                                                            nombor 3
-                                                        </p>
-                                                        <h2>Parit raja</h2>
-                                                        <h2>
-                                                            86400, Batu pahat
-                                                        </h2>
-                                                        <h2>Johor</h2>
+                                                        <div
+                                                            class="text-sm font-medium text-gray-500 text-right space-y-3"
+                                                        >
+                                                            <h2>Full Name</h2>
+                                                            <h2>
+                                                                Phone Number
+                                                            </h2>
+                                                            <h2>Address</h2>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
+                                                </td>
 
-                                            <td
-                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4 text-right text-sm font-medium"
-                                            >
-                                                <a
-                                                    href="#"
-                                                    class="text-indigo-600 hover:text-indigo-900"
-                                                    >Edit</a
-                                                >
-                                                <a
-                                                    href="#"
-                                                    class="text-red-500 hover:text-red-600"
-                                                    >Delete</a
-                                                >
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td
-                                                class="whitespace-normal px-6 py-4"
-                                            >
-                                                <div
-                                                    class="flex items-center max-w-sm md:max-w-md"
+                                                <td
+                                                    class="whitespace-normal px-6 py-4"
                                                 >
                                                     <div
-                                                        class="text-sm font-medium text-gray-900"
+                                                        class="flex items-center max-w-sm md:max-w-md"
                                                     >
-                                                        <p>
-                                                            Lorong haji miskon
-                                                            kampung parit bareng
-                                                            tepi surau tiang
-                                                            nombor 3
-                                                        </p>
-                                                        <h2>Parit raja</h2>
-                                                        <h2>
-                                                            86400, Batu pahat
-                                                        </h2>
-                                                        <h2>Johor</h2>
+                                                        <div
+                                                            class="text-sm font-medium text-gray-900 space-y-3"
+                                                        >
+                                                            <p>
+                                                                {{
+                                                                    address.full_name
+                                                                }}
+                                                            </p>
+                                                            <p>
+                                                                {{
+                                                                    address.phone_number
+                                                                }}
+                                                            </p>
+                                                            <div>
+                                                                <p>
+                                                                    {{
+                                                                        address.street_name
+                                                                    }}
+                                                                </p>
+                                                                <p>
+                                                                    {{
+                                                                        address.postal_code
+                                                                    }},
+                                                                    {{
+                                                                        address.city
+                                                                    }},
+                                                                    {{
+                                                                        address.state
+                                                                    }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
+                                                </td>
 
-                                            <td
-                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4 text-right text-sm font-medium"
-                                            >
-                                                <a
-                                                    href="#"
-                                                    class="text-indigo-600 hover:text-indigo-900"
-                                                    >Edit</a
+                                                <td
+                                                    class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4 text-right text-sm font-medium"
                                                 >
-                                                <a
-                                                    href="#"
-                                                    class="text-red-500 hover:text-red-600"
-                                                    >Delete</a
-                                                >
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td
-                                                class="whitespace-normal px-6 py-4"
-                                            >
-                                                <div
-                                                    class="flex items-center max-w-sm md:max-w-md"
-                                                >
-                                                    <div
-                                                        class="text-sm font-medium text-gray-900"
+                                                    <a
+                                                        href="#"
+                                                        class="text-indigo-600 hover:text-indigo-900"
+                                                        >Edit</a
                                                     >
-                                                        <p>
-                                                            Lorong haji miskon
-                                                            kampung parit bareng
-                                                            tepi surau tiang
-                                                            nombor 3
-                                                        </p>
-                                                        <h2>Parit raja</h2>
-                                                        <h2>
-                                                            86400, Batu pahat
-                                                        </h2>
-                                                        <h2>Johor</h2>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td
-                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4 text-right text-sm font-medium"
-                                            >
-                                                <a
-                                                    href="#"
-                                                    class="text-indigo-600 hover:text-indigo-900"
-                                                    >Edit</a
-                                                >
-                                                <a
-                                                    href="#"
-                                                    class="text-red-500 hover:text-red-600"
-                                                    >Delete</a
-                                                >
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                    <a
+                                                        href="#"
+                                                        class="text-red-500 hover:text-red-600"
+                                                        >Delete</a
+                                                    >
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </template>
             </div>
         </div>
     </div>
@@ -203,6 +167,7 @@
                     aria-hidden="true"
                     >&#8203;</span
                 >
+
                 <TransitionChild
                     as="template"
                     enter="ease-out duration-300"
@@ -429,9 +394,7 @@
                                             />
                                         </div>
                                         <div
-                                            v-if="
-                                                addressForm.errors.streetName
-                                            "
+                                            v-if="addressForm.errors.streetName"
                                             class="text-red-500 text-sm mt-1"
                                         >
                                             {{ addressForm.errors.streetName }}
@@ -442,9 +405,13 @@
                                         <button
                                             type="submit"
                                             class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white"
-                                            :disabled="!addressForm.isDirty || addressForm.processing"
+                                            :disabled="
+                                                !addressForm.isDirty ||
+                                                addressForm.processing
+                                            "
                                             :class="
-                                                !addressForm.isDirty || addressForm.processing
+                                                !addressForm.isDirty ||
+                                                addressForm.processing
                                                     ? 'bg-indigo-400 cursor-not-allowed'
                                                     : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                                             "
@@ -490,6 +457,10 @@ export default {
         DialogDescription,
         TransitionChild,
         TransitionRoot,
+    },
+
+    props: {
+        addresses: Object,
     },
 
     data() {
@@ -739,8 +710,8 @@ export default {
             this.addressForm.post("/user/account/addresses", {
                 preserveScroll: true,
                 onSuccess: () => {
+                    this.addressForm.reset();
                     this.isOpen = false;
-                    this.addressForm = this.$inertia.form({});
                     this.$notify(
                         {
                             group: "success",
@@ -749,7 +720,7 @@ export default {
                         },
                         3500
                     );
-                }
+                },
             });
         },
     },
