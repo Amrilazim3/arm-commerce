@@ -188,14 +188,15 @@
                                 Phone Number
                             </label>
                             <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                <MazPhoneNumberInput
+                                <input
+                                    id="phone-number"
+                                    name="phone-number"
+                                    type="text"
+                                    autocomplete="phone-number"
+                                    class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="example: 60119872345 / 6011-987-2345"
                                     v-model="user.phoneNumber"
-                                    color="primary"
-                                    default-country-code="MY"
-                                    :only-countries="['MY', 'ID', 'SG']"
-                                    @update="user.phoneResults = $event"
-                                    :success="user.phoneResults?.isValid"
-                                    class="max-w-lg"
+                                    required
                                 />
                                 <div
                                     v-if="user.errors.phoneNumber"
@@ -299,15 +300,9 @@
                     <button
                         type="submit"
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white"
-                        :disabled="
-                            user.processing ||
-                            !user.isDirty ||
-                            (user.phoneNumber && !user.phoneResults.isValid)
-                        "
+                        :disabled="user.processing || !user.isDirty"
                         :class="
-                            user.processing ||
-                            !user.isDirty ||
-                            (user.phoneNumber && !user.phoneResults.isValid)
+                            user.processing || !user.isDirty
                                 ? 'cursor-not-allowed bg-indigo-300'
                                 : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                         "
@@ -393,7 +388,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Your account was updated.",
+                            text: "Your profile was updated.",
                         },
                         3500
                     );
@@ -403,7 +398,7 @@ export default {
                         {
                             group: "error",
                             title: "Error",
-                            text: "Your account failed to update. Please try again.",
+                            text: "Your profile failed to update. Please try again.",
                         },
                         3500
                     );
