@@ -443,7 +443,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     autocomplete: "phone-number",
     "class": "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md",
-    placeholder: "example: 60119872345 / 6011-987-2345",
+    placeholder: "Example : 60119872345",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.user.phoneNumber = $event;
     }),
