@@ -6,10 +6,7 @@ import HideSubNavLayout from './Shared/HideSubNavLayout';
 import Notifications from 'notiwind';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-import 'maz-ui/css/main.css';
 import '../css/app.css';
-import MazInput from 'maz-ui/components/MazInput';
-import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput';
 
 createInertiaApp({
     resolve: async name => {
@@ -34,8 +31,6 @@ createInertiaApp({
             .component("Link", Link)
             .component("Head", Head)
             .component("Datepicker", Datepicker)
-            .component("MazInput", MazInput)
-            .component("MazPhoneNumberInput", MazPhoneNumberInput)
             .mount(el)
     },
 
