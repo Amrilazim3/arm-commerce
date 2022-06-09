@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Account;
 
 use App\Http\Controllers\Controller;
+use App\Rules\PhoneNumberValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,7 @@ class ProfileController extends Controller
         $request->validate([
             'name' => ['required', 'max:50'],
             'newProfileImageFile' => ['file', 'image', 'nullable'],
-            'phoneNumber' => ['numeric', 'nullable', 'unique:users,phone_number,' . $user->id],
+            'phoneNumber' => ['integer', 'nullable', new PhoneNumberValidation, 'unique:users,phone_number,' . $user->id],
             'dateOfBirth' => ['date', 'nullable'],
         ]);
 
