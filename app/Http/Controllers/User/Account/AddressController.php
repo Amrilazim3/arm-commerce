@@ -13,7 +13,9 @@ class AddressController extends Controller
 {
     public function index()
     {
-        return Inertia::render('User/Account/Addresses');
+        return Inertia::render('User/Account/Addresses', [
+            'addresses' => Address::where('user_id', Auth::user()->id)->get()
+        ]);
     }
 
     public function store(Request $request)
