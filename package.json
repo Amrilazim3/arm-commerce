@@ -30,7 +30,6 @@
         "@vue/server-renderer": "^3.2.33",
         "@vuepic/vue-datepicker": "^3.2.0",
         "libphonenumber-js": "^1.9.52",
-        "maz-ui": "^3.0.0-next.24",
         "notiwind": "^1.2.5",
         "vue": "^3.2.32",
         "webpack-node-externals": "^3.0.0"
