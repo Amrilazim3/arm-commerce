@@ -91,7 +91,7 @@
                                 class="hover:text-indigo-500 transition ease-out duration-500"
                                 :class="
                                     $page.component == 'Auth/Login'
-                                        ? 'text-indigo-500 underline'
+                                        ? 'text-indigo-500'
                                         : ''
                                 "
                                 >Login</Link
@@ -102,7 +102,7 @@
                                 class="hover:hover:text-indigo-500 transition ease-out duration-500"
                                 :class="
                                     $page.component == 'Auth/Register'
-                                        ? 'text-indigo-500 underline'
+                                        ? 'text-indigo-500'
                                         : ''
                                 "
                                 >Create an account</Link
