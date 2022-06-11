@@ -113,7 +113,7 @@
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
                         >
                             <Link
-                                href="/user/account/forgot-password"
+                                href="/password/forgot"
                                 class="text-sm font-medium text-blue-500"
                             >
                                 Forgot your password?
