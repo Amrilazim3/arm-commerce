@@ -3,15 +3,14 @@
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthServiceController;
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\AddressController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
-use App\Http\Controllers\User\Account\ForgotPasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
-use App\Http\Controllers\User\Account\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -54,19 +53,9 @@ Route::prefix('/email/verify')->name('verification.')->group(function () {
         ->name('send');
 });
 
-/**
- * start discussion
- * combine empat-empat route ni dalam satu controller "PasswordController"
- * so nanti die ade 4 name route
- * 1. password.index
- * 2. password.email
- * 3. password.reset
- * 4. password.update
- */   
-Route::prefix('/user/account')->name('user.account')->group(function () {
-    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password.index');
-    Route::post('/forgot-password', [ForgotPasswordController::class, 'email'])->name('forgot-password.email');
+Route::prefix('/password')->name('password.')->group(function () {
+    Route::get('/forgot', [PasswordController::class, 'forgot'])->name('forgot');
+    Route::post('/forgot', [PasswordController::class, 'email'])->name('email');
+    Route::get('/reset/{token}', [PasswordController::class, 'reset'])->name('reset');
+    Route::patch('/reset', [PasswordController::class, 'update'])->name('update');
 });
-Route::get('/user/account/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
-Route::patch('/user/account/reset-password', [ResetPasswordController::class, 'update'])->name('password.update');
-// end discussion 
