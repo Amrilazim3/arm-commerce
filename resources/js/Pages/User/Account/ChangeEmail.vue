@@ -69,7 +69,7 @@
                 <div class="flex items-center">
                     <div class="text-sm">
                         <Link
-                            href="/user/account/forgot-password"
+                            href="/password/forgot"
                             class="font-medium text-indigo-600 hover:text-indigo-500"
                         >
                             Forgot your password?
