@@ -488,7 +488,6 @@ export default {
                 "Sarawak",
                 "Selangor",
                 "Terengganu",
-                "Kuala Lumpur",
                 "Wilayah Persekutuan",
             ],
             statesCities: {
