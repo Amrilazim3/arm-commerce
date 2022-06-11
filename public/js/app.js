@@ -1029,7 +1029,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         key: 1
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: "/login",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hover:text-indigo-500 transition ease-out duration-500", _ctx.$page.component == 'Auth/Login' ? 'text-indigo-500 underline' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hover:text-indigo-500 transition ease-out duration-500", _ctx.$page.component == 'Auth/Login' ? 'text-indigo-500' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_13];
@@ -1041,7 +1041,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["class"]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: "/register",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hover:hover:text-indigo-500 transition ease-out duration-500", _ctx.$page.component == 'Auth/Register' ? 'text-indigo-500 underline' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hover:hover:text-indigo-500 transition ease-out duration-500", _ctx.$page.component == 'Auth/Register' ? 'text-indigo-500' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_15];
@@ -2320,6 +2320,14 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Auth/ForgotPassword": [
+		"./resources/js/Pages/Auth/ForgotPassword.vue",
+		"resources_js_Pages_Auth_ForgotPassword_vue"
+	],
+	"./Auth/ForgotPassword.vue": [
+		"./resources/js/Pages/Auth/ForgotPassword.vue",
+		"resources_js_Pages_Auth_ForgotPassword_vue"
+	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.vue",
 		"resources_js_Pages_Auth_Login_vue"
@@ -2335,6 +2343,14 @@ var map = {
 	"./Auth/Register.vue": [
 		"./resources/js/Pages/Auth/Register.vue",
 		"resources_js_Pages_Auth_Register_vue"
+	],
+	"./Auth/ResetPassword": [
+		"./resources/js/Pages/Auth/ResetPassword.vue",
+		"resources_js_Pages_Auth_ResetPassword_vue"
+	],
+	"./Auth/ResetPassword.vue": [
+		"./resources/js/Pages/Auth/ResetPassword.vue",
+		"resources_js_Pages_Auth_ResetPassword_vue"
 	],
 	"./Home": [
 		"./resources/js/Pages/Home.vue",
@@ -2380,14 +2396,6 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_User_Account_ChangePassword_vue"
 	],
-	"./User/Account/ForgotPassword": [
-		"./resources/js/Pages/User/Account/ForgotPassword.vue",
-		"resources_js_Pages_User_Account_ForgotPassword_vue"
-	],
-	"./User/Account/ForgotPassword.vue": [
-		"./resources/js/Pages/User/Account/ForgotPassword.vue",
-		"resources_js_Pages_User_Account_ForgotPassword_vue"
-	],
 	"./User/Account/Profile": [
 		"./resources/js/Pages/User/Account/Profile.vue",
 		"/js/vendor",
@@ -2397,14 +2405,6 @@ var map = {
 		"./resources/js/Pages/User/Account/Profile.vue",
 		"/js/vendor",
 		"resources_js_Pages_User_Account_Profile_vue"
-	],
-	"./User/Account/ResetPassword": [
-		"./resources/js/Pages/User/Account/ResetPassword.vue",
-		"resources_js_Pages_User_Account_ResetPassword_vue"
-	],
-	"./User/Account/ResetPassword.vue": [
-		"./resources/js/Pages/User/Account/ResetPassword.vue",
-		"resources_js_Pages_User_Account_ResetPassword_vue"
 	]
 };
 function webpackAsyncContext(req) {
