@@ -25,7 +25,7 @@ class ProfileController extends Controller
         $request->validate([
             'name' => ['required', 'max:50'],
             'newProfileImageFile' => ['file', 'image', 'nullable'],
-            'phoneNumber' => ['integer', 'nullable', new PhoneNumberValidation, 'unique:users,phone_number,' . $user->id],
+            'phoneNumber' => ['nullable', new PhoneNumberValidation, 'integer', 'unique:users,phone_number,' . $user->id],
             'dateOfBirth' => ['date', 'nullable'],
         ]);
 
