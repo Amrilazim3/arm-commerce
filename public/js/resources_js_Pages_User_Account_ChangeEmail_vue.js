@@ -26,7 +26,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     changeEmail: function changeEmail() {
-      this.form.post("/user/account/change-email", {
+      this.form.post("/user/account/email/change", {
         preserveScroll: true
       });
     }
