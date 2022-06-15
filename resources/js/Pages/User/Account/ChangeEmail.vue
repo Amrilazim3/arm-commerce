@@ -119,7 +119,7 @@ export default {
 
     methods: {
         changeEmail() {
-            this.form.post("/user/account/change-email", {
+            this.form.post("/user/account/email/change", {
                 preserveScroll: true,
             });
         },
