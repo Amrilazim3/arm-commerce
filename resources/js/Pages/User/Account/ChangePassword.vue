@@ -164,7 +164,7 @@ export default {
 
     methods: {
         changePassword() {
-            this.form.post("/user/account/change-password", {
+            this.form.post("/user/account/password/change", {
                 preserveScroll: true,
                 onSuccess: () => {
                     this.$notify(
