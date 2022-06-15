@@ -37,8 +37,8 @@ Route::middleware('auth')->group(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/addresses', [AddressController::class, 'index'])->name('address.index');
         Route::post('/addresses', [AddressController::class, 'store'])->name('address.store');
-        Route::delete('/address/{address}', [AddressController::class, 'destroy'])->name('address.destroy');
-        Route::get('/address/{address}', [AddressController::class, 'edit'])->name('address.edit');
+        Route::patch('/addresses/{address}', [AddressController::class, 'update'])->name('address.update');
+        Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('address.destroy');
         Route::get('/change-email', [ChangeEmailController::class, 'index'])->name('change-email.index');
         Route::patch('/change-email', [ChangeEmailController::class, 'update'])->name('change-email.update');
         Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password.index');
