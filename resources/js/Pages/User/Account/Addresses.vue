@@ -50,7 +50,7 @@
                                         <tbody
                                             class="divide-y divide-gray-200 px-6"
                                             v-for="address in addresses"
-                                            :key="address"
+                                            :key="address.id"
                                         >
                                             <tr>
                                                 <td
@@ -113,18 +113,30 @@
                                                 </td>
 
                                                 <td
-                                                    class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4 text-right text-sm font-medium"
+                                                    class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                                 >
-                                                    <a
+                                                    <button
                                                         href="#"
-                                                        class="text-indigo-600 hover:text-indigo-900"
-                                                        >Edit</a
+                                                        class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                        @click="
+                                                            getAddressData(
+                                                                address.id
+                                                            )
+                                                        "
                                                     >
-                                                    <a
+                                                        Edit
+                                                    </button>
+                                                    <button
                                                         href="#"
-                                                        class="text-red-500 hover:text-red-600"
-                                                        >Delete</a
+                                                        class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                        @click="
+                                                            deleteAddress(
+                                                                address.id
+                                                            )
+                                                        "
                                                     >
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -185,7 +197,14 @@
                                 <h2
                                     class="mt-6 text-center text-3xl font-extrabold text-gray-900"
                                 >
-                                    Add Address
+                                    <template
+                                        v-if="addressForm._method == 'patch'"
+                                    >
+                                        Edit Address
+                                    </template>
+                                    <template v-else>
+                                        Add Address
+                                    </template>
                                 </h2>
                             </div>
 
@@ -421,7 +440,7 @@
                                         <button
                                             type="button"
                                             class="mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-                                            @click="isOpen = false"
+                                            @click="isOpen = false; addressForm.reset(); addressForm._method = 'post'"
                                         >
                                             Cancel
                                         </button>
@@ -692,6 +711,7 @@ export default {
                 "Wilayah Persekutuan": ["Kuala Lumpur", "Labuan", "Putrajaya"],
             },
             cities: [],
+            addressIdToEdit: null,
         };
     },
 
@@ -706,6 +726,10 @@ export default {
 
     methods: {
         addAddress() {
+            if (this.addressForm._method == "patch") {
+                this.editAddress(this.addressIdToEdit);
+                return;
+            }
             this.addressForm.post("/user/account/addresses", {
                 preserveScroll: true,
                 onSuccess: () => {
@@ -716,6 +740,78 @@ export default {
                             group: "success",
                             title: "Success",
                             text: "Address successfully added.",
+                        },
+                        3500
+                    );
+                },
+            });
+        },
+
+        deleteAddress(addressId) {
+            this.$inertia.delete(`/user/account/addresses/${addressId}`, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Address successfully deleted.",
+                        },
+                        3500
+                    );
+                },
+                onError: () => {
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Something wrong happen when perfoming this action. Please try again.",
+                        },
+                        3500
+                    );
+                },
+            });
+        },
+
+        getAddressData(addressId) {
+            this.addresses.map((element) => {
+                if (element.id == addressId) {
+                    this.addressIdToEdit = addressId;
+                    this.addressForm.fullName = element.full_name;
+                    this.addressForm.phoneNumber = element.phone_number;
+                    this.addressForm.state = element.state;
+                    this.addressForm.city = element.city;
+                    this.addressForm.postalCode = element.postal_code;
+                    this.addressForm.streetName = element.street_name;
+                    this.addressForm._method = "patch";
+                    this.isOpen = true;
+                    return;
+                }
+            });
+        },
+
+        editAddress(addressId) {
+            this.addressForm.patch(`/user/account/addresses/${addressId}`, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.addressForm.reset();
+                    this.addressForm._method = "post";
+                    this.isOpen = false;
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Address successfully edited.",
+                        },
+                        3500
+                    );
+                },
+                onError: () => {
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Address failed to be edited. Please try again.",
                         },
                         3500
                     );
