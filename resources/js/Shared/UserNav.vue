@@ -70,7 +70,7 @@
 
                     <MenuItem>
                         <Link
-                            href="/user/account/change-password"
+                            href="/user/account/password/change"
                             :class="[
                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
                                 $page.component == 'User/Account/ChangePassword'
@@ -264,7 +264,7 @@
                         </li>
                         <li>
                             <Link
-                                href="/user/account/change-password"
+                                href="/user/account/password/change"
                                 :class="
                                     $page.component ==
                                     'User/Account/ChangePassword'
