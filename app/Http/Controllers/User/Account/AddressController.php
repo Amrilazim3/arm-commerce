@@ -20,14 +20,7 @@ class AddressController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'phoneNumber' => ['required', new PhoneNumberValidation, 'integer'],
-            'fullName' => ['required'],
-            'state' => ['required'],
-            'city' => ['required'],
-            'postalCode' => ['required', 'integer', 'digits:5', 'postal_code:MY'],
-            'streetName' => ['required']
-        ]);
+        $this->validateAddress($request);
 
         Address::create([
             'user_id' => Auth::user()->id,
@@ -42,18 +35,38 @@ class AddressController extends Controller
         return redirect()->back();
     }
 
-    public function edit($id)
+    public function update(Address $address, Request $request)
     {
-        //
+        $this->validateAddress($request);
+
+        Address::where('id', $address->id)->update([
+            'user_id' => Auth::user()->id,
+            'full_name' => $request->fullName,
+            'phone_number' => $request->phoneNumber,
+            'state' => $request->state,
+            'city' => $request->city,
+            'postal_code' => $request->postalCode,
+            'street_name' => $request->streetName,
+        ]);
+
+        return redirect()->back();
     }
 
-    public function update(Request $request, $id)
+    public function destroy(Address $address)
     {
-        //
+        Address::where('id', $address->id)->delete();
+        return redirect()->back();
     }
 
-    public function destroy($id)
+    protected function validateAddress($request)
     {
-        //
+        $request->validate([
+            'phoneNumber' => ['required', new PhoneNumberValidation, 'integer'],
+            'fullName' => ['required'],
+            'state' => ['required'],
+            'city' => ['required'],
+            'postalCode' => ['required', 'integer', 'digits:5', 'postal_code:MY'],
+            'streetName' => ['required']
+        ]);
     }
 }
