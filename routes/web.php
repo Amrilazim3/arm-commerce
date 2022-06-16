@@ -50,7 +50,7 @@ Route::prefix('/email/verify')->name('verification.')->group(function () {
     Route::get('/{id}/{hash}', [EmailVerificationController::class, 'verify'])
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verify');
-    Route::post('/resend', [EmailVerificationController::class, 'resend'])
+    Route::post('/send', [EmailVerificationController::class, 'send'])
         ->middleware(['auth', 'throttle:6,1'])
         ->name('send');
 });
