@@ -96,66 +96,43 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    deleteAddress: function deleteAddress(addressId) {
-      var _this2 = this;
-
-      this.$inertia["delete"]("/user/account/addresses/".concat(addressId), {
-        preserveScroll: true,
-        onSuccess: function onSuccess() {
-          _this2.isOpenDeleteModal = false;
-
-          _this2.$notify({
-            group: "success",
-            title: "Success",
-            text: "Address successfully deleted."
-          }, 3500);
-        },
-        onError: function onError() {
-          _this2.$notify({
-            group: "error",
-            title: "Error",
-            text: "Something wrong happen when perfoming this action. Please try again."
-          }, 3500);
-        }
-      });
-    },
     getAddressData: function getAddressData(addressId) {
-      var _this3 = this;
+      var _this2 = this;
 
       this.addresses.map(function (element) {
         if (element.id == addressId) {
-          _this3.addressIdToEdit = addressId;
-          _this3.addressForm.fullName = element.full_name;
-          _this3.addressForm.phoneNumber = element.phone_number;
-          _this3.addressForm.state = element.state;
-          _this3.addressForm.city = element.city;
-          _this3.addressForm.postalCode = element.postal_code;
-          _this3.addressForm.streetName = element.street_name;
-          _this3.addressForm._method = "patch";
-          _this3.isOpen = true;
+          _this2.addressIdToEdit = addressId;
+          _this2.addressForm.fullName = element.full_name;
+          _this2.addressForm.phoneNumber = element.phone_number;
+          _this2.addressForm.state = element.state;
+          _this2.addressForm.city = element.city;
+          _this2.addressForm.postalCode = element.postal_code;
+          _this2.addressForm.streetName = element.street_name;
+          _this2.addressForm._method = "patch";
+          _this2.isOpen = true;
           return;
         }
       });
     },
     editAddress: function editAddress(addressId) {
-      var _this4 = this;
+      var _this3 = this;
 
       this.addressForm.patch("/user/account/addresses/".concat(addressId), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this4.addressForm.reset();
+          _this3.addressForm.reset();
 
-          _this4.addressForm._method = "post";
-          _this4.isOpen = false;
+          _this3.addressForm._method = "post";
+          _this3.isOpen = false;
 
-          _this4.$notify({
+          _this3.$notify({
             group: "success",
             title: "Success",
             text: "Address successfully edited."
           }, 3500);
         },
         onError: function onError() {
-          _this4.$notify({
+          _this3.$notify({
             group: "error",
             title: "Error",
             text: "Address failed to be edited. Please try again."
@@ -166,6 +143,29 @@ __webpack_require__.r(__webpack_exports__);
     openDeleteAddressModal: function openDeleteAddressModal(addressId) {
       this.addressIdToDelete = addressId;
       this.isOpenDeleteModal = true;
+    },
+    deleteAddress: function deleteAddress(addressId) {
+      var _this4 = this;
+
+      this.$inertia["delete"]("/user/account/addresses/".concat(addressId), {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this4.isOpenDeleteModal = false;
+
+          _this4.$notify({
+            group: "success",
+            title: "Success",
+            text: "Address successfully deleted."
+          }, 3500);
+        },
+        onError: function onError() {
+          _this4.$notify({
+            group: "error",
+            title: "Error",
+            text: "Something wrong happen when perfoming this action. Please try again."
+          }, 3500);
+        }
+      });
     }
   }
 });
