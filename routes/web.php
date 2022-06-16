@@ -35,10 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/addresses', [AddressController::class, 'index'])->name('address.index'); // addresses.index
-        Route::post('/addresses', [AddressController::class, 'store'])->name('address.store'); // addresses.store
-        Route::patch('/addresses/{address}', [AddressController::class, 'update'])->name('address.update'); // addresses.update
-        Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('address.destroy'); // addresses.destroy
+        Route::get('/addresses', [AddressController::class, 'index'])->name('addresses.index');
+        Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+        Route::patch('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
+        Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
         Route::get('/email/change', [ChangeEmailController::class, 'index'])->name('email.change.index');
         Route::patch('/email/change', [ChangeEmailController::class, 'update'])->name('email.change.update');
         Route::get('/password/change', [ChangePasswordController::class, 'index'])->name('password.change.index');
