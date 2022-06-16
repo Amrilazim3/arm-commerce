@@ -171,7 +171,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Your new password is setted.",
+                            text: "Your new password is updated.",
                         },
                         3500
                     );
