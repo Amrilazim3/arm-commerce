@@ -25,7 +25,7 @@ class EmailVerificationController extends Controller
         return redirect()->route('products.index')->with('success', 'email is verified');
     }
 
-    public function resend(Request $request)
+    public function send(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
         
