@@ -30,7 +30,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [LoginController::class, 'destroy'])->name('login.destroy'); // logout.destroy
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout.destroy');
 
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
