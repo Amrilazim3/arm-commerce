@@ -17,15 +17,35 @@
                             products to the right places.
                         </p>
                     </div>
-
-                    <button
-                        @click="isOpen = true"
-                        class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        <p class="flex items-center">
-                            <span class="text-2xl mr-1.5">+</span> Add address
-                        </p>
-                    </button>
+                    
+                    <template v-if="addresses.length == 5">
+                        <div class="tooltip-wrap">
+                            <button
+                                disabled
+                                class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-2.5 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-400 cursor-not-allowed"
+                            >
+                                Limit reached
+                            </button>
+                            <div
+                                class="tooltip-content rounded-md mt-10 lg:w-max"
+                            >
+                                <p class="text-xs cursor-default">
+                                    You can have only 5 address.
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <button
+                            @click="isOpen = true"
+                            class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            <p class="flex items-center">
+                                <span class="text-2xl mr-1.5">+</span> Add
+                                address
+                            </p>
+                        </button>
+                    </template>
                 </div>
 
                 <template v-if="addresses.length == 0">
@@ -202,9 +222,7 @@
                                     >
                                         Edit Address
                                     </template>
-                                    <template v-else>
-                                        Add Address
-                                    </template>
+                                    <template v-else> Add Address </template>
                                 </h2>
                             </div>
 
@@ -440,7 +458,11 @@
                                         <button
                                             type="button"
                                             class="mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-                                            @click="isOpen = false; addressForm.reset(); addressForm._method = 'post'"
+                                            @click="
+                                                isOpen = false;
+                                                addressForm.reset();
+                                                addressForm._method = 'post';
+                                            "
                                         >
                                             Cancel
                                         </button>
@@ -821,3 +843,19 @@ export default {
     },
 };
 </script>
+
+<style>
+.tooltip-wrap {
+    position: relative;
+}
+.tooltip-wrap .tooltip-content {
+    display: none;
+    position: absolute;
+    top: 5%;
+    background-color: rgb(229 231 235);
+    padding: 0.5em;
+}
+.tooltip-wrap:hover .tooltip-content {
+    display: block;
+}
+</style>
