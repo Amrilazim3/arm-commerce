@@ -17,7 +17,7 @@
                             products to the right places.
                         </p>
                     </div>
-                    
+
                     <template v-if="addresses.length == 5">
                         <div class="tooltip-wrap">
                             <button
@@ -150,7 +150,7 @@
                                                         href="#"
                                                         class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
                                                         @click="
-                                                            deleteAddress(
+                                                            openDeleteAddressModal(
                                                                 address.id
                                                             )
                                                         "
@@ -475,6 +475,76 @@
             </div>
         </Dialog>
     </TransitionRoot>
+
+    <TransitionRoot as="template" :show="isOpenDeleteModal">
+        <Dialog
+            as="div"
+            class="fixed z-10 inset-0 overflow-y-auto"
+            @close="isOpenDeleteModal = false"
+        >
+            <TransitionChild
+                as="template"
+                enter="ease-out duration-300"
+                enter-from="opacity-0"
+                enter-to="opacity-100"
+                leave="ease-in duration-200"
+                leave-from="opacity-100"
+                leave-to="opacity-0"
+            >
+                <span
+                    class="fixed inset-0 bg-gray-500 bg-opacity-90 transition-opacity"
+                />
+            </TransitionChild>
+
+            <div class="fixed inset-0 overflow-y-auto">
+                <div
+                    class="flex min-h-full items-center justify-center p-4 text-center"
+                >
+                    <TransitionChild
+                        enter="duration-300 ease-out"
+                        enter-from="opacity-0 scale-95"
+                        enter-to="opacity-100 scale-100"
+                        leave="duration-200 ease-in"
+                        leave-from="opacity-100 scale-100"
+                        leave-to="opacity-0 scale-95"
+                    >
+                        <!-- DialogPanel component make it clickable outside of modal -->
+                        <DialogPanel
+                            class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all"
+                        >
+                            <DialogTitle
+                                as="h3"
+                                class="text-lg font-medium leading-6 text-red-600"
+                            >
+                                Delete this address?
+                            </DialogTitle>
+
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    are you sure want to delete this address?
+                                </p>
+                            </div>
+
+                            <div class="mt-4 flex space-x-2">
+                                <button
+                                    class="inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-500"
+                                    @click="isOpenDeleteModal = false"
+                                >
+                                    no
+                                </button>
+                                <button
+                                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 focus:outline-none"
+                                    @click="deleteAddress(addressIdToDelete)"
+                                >
+                                    yes
+                                </button>
+                            </div>
+                        </DialogPanel>
+                    </TransitionChild>
+                </div>
+            </div>
+        </Dialog>
+    </TransitionRoot>
 </template>
 
 <script>
@@ -507,6 +577,7 @@ export default {
     data() {
         return {
             isOpen: false,
+            isOpenDeleteModal: false,
             countries: [],
             addressForm: this.$inertia.form({
                 phoneNumber: null,
@@ -734,6 +805,7 @@ export default {
             },
             cities: [],
             addressIdToEdit: null,
+            addressIdToDelete: null,
         };
     },
 
@@ -773,6 +845,7 @@ export default {
             this.$inertia.delete(`/user/account/addresses/${addressId}`, {
                 preserveScroll: true,
                 onSuccess: () => {
+                    this.isOpenDeleteModal = false;
                     this.$notify(
                         {
                             group: "success",
@@ -839,6 +912,11 @@ export default {
                     );
                 },
             });
+        },
+
+        openDeleteAddressModal(addressId) {
+            this.addressIdToDelete = addressId;
+            this.isOpenDeleteModal = true;
         },
     },
 };
