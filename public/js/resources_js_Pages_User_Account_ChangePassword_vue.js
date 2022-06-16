@@ -37,7 +37,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             group: "success",
             title: "Success",
-            text: "Your new password is setted."
+            text: "Your new password is updated."
           }, 3500);
         },
         onError: function onError() {
