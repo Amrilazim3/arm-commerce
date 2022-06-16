@@ -841,33 +841,6 @@ export default {
             });
         },
 
-        deleteAddress(addressId) {
-            this.$inertia.delete(`/user/account/addresses/${addressId}`, {
-                preserveScroll: true,
-                onSuccess: () => {
-                    this.isOpenDeleteModal = false;
-                    this.$notify(
-                        {
-                            group: "success",
-                            title: "Success",
-                            text: "Address successfully deleted.",
-                        },
-                        3500
-                    );
-                },
-                onError: () => {
-                    this.$notify(
-                        {
-                            group: "error",
-                            title: "Error",
-                            text: "Something wrong happen when perfoming this action. Please try again.",
-                        },
-                        3500
-                    );
-                },
-            });
-        },
-
         getAddressData(addressId) {
             this.addresses.map((element) => {
                 if (element.id == addressId) {
@@ -917,6 +890,33 @@ export default {
         openDeleteAddressModal(addressId) {
             this.addressIdToDelete = addressId;
             this.isOpenDeleteModal = true;
+        },
+
+        deleteAddress(addressId) {
+            this.$inertia.delete(`/user/account/addresses/${addressId}`, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.isOpenDeleteModal = false;
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Address successfully deleted.",
+                        },
+                        3500
+                    );
+                },
+                onError: () => {
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Something wrong happen when perfoming this action. Please try again.",
+                        },
+                        3500
+                    );
+                },
+            });
         },
     },
 };
