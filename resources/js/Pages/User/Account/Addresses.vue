@@ -136,7 +136,6 @@
                                                     class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                                 >
                                                     <button
-                                                        href="#"
                                                         class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
                                                         @click="
                                                             getAddressData(
@@ -147,7 +146,6 @@
                                                         Edit
                                                     </button>
                                                     <button
-                                                        href="#"
                                                         class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
                                                         @click="
                                                             openDeleteAddressModal(
