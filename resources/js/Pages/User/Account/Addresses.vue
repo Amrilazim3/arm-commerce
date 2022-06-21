@@ -56,7 +56,7 @@
                 <template v-else>
                     <div class="flex flex-col">
                         <div
-                            class="-my-2 overflow-x-auto align-middle sm:-mx-6 lg:-mx-8"
+                            class="mt-2 overflow-x-auto align-middle sm:-mx-6 lg:-mx-8"
                         >
                             <div
                                 class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
