@@ -120,7 +120,7 @@
                                                     <div
                                                         class="text-sm font-medium text-gray-900 whitespace-normal"
                                                     >
-                                                        <img src="../../../assets/card-solid.svg" alt="card-icon" class="h-6">
+                                                        <img src="https://arm-commerce.com/images/card-solid.svg" alt="card-icon" class="h-6">
                                                     </div>
                                                     <p
                                                         class="text-sm px-4 font-medium text-gray-900 whitespace-normal"
@@ -158,7 +158,7 @@
                                                     <div
                                                         class="text-sm font-medium text-gray-900 whitespace-normal"
                                                     >
-                                                        <img src="../../../assets/card-solid.svg" alt="card-icon" class="h-6">
+                                                        <img src="https://arm-commerce.com/images/card-solid.svg" alt="card-icon" class="h-6">
                                                     </div>
                                                     <p
                                                         class="text-sm px-4 font-medium text-gray-900 whitespace-normal"
@@ -196,7 +196,7 @@
                                                     <div
                                                         class="text-sm font-medium text-gray-900 whitespace-normal"
                                                     >
-                                                        <img src="../../../assets/card-solid.svg" alt="card-icon" class="h-6">
+                                                        <img src="https://arm-commerce.com/images/card-solid.svg" alt="card-icon" class="h-6">
                                                     </div>
                                                     <p
                                                         class="text-sm px-4 font-medium text-gray-900 whitespace-normal"
@@ -337,7 +337,7 @@
                                                     <div
                                                         class="text-sm font-medium text-gray-900 whitespace-normal"
                                                     >
-                                                        <img src="../../../assets/bank-building-solid.svg" alt="card-icon" class="h-6">
+                                                        <img src="https://arm-commerce.com/images/bank-building-solid.svg" alt="card-icon" class="h-6">
                                                     </div>
                                                     <div
                                                         class="text-sm px-4 font-medium text-gray-900 whitespace-normal"
