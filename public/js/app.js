@@ -2396,6 +2396,16 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_User_Account_ChangePassword_vue"
 	],
+	"./User/Account/Payments": [
+		"./resources/js/Pages/User/Account/Payments.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Account_Payments_vue"
+	],
+	"./User/Account/Payments.vue": [
+		"./resources/js/Pages/User/Account/Payments.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Account_Payments_vue"
+	],
 	"./User/Account/Profile": [
 		"./resources/js/Pages/User/Account/Profile.vue",
 		"/js/vendor",
