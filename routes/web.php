@@ -10,6 +10,7 @@ use App\Http\Controllers\User\Account\AddressController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\EmailVerificationController;
+use App\Http\Controllers\User\Account\PaymentController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
         Route::get('/addresses', [AddressController::class, 'index'])->name('addresses.index');
         Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
         Route::patch('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
