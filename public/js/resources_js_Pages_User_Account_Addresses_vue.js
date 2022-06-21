@@ -552,7 +552,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(address.postal_code) + ", " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(address.city) + ", " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(address.state), 1
     /* TEXT */
     )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      href: "#",
       "class": "text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium",
       onClick: function onClick($event) {
         return $options.getAddressData(address.id);
@@ -560,7 +559,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, " Edit ", 8
     /* PROPS */
     , _hoisted_24), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      href: "#",
       "class": "text-red-500 hover:text-red-600 text-right text-sm font-medium",
       onClick: function onClick($event) {
         return $options.openDeleteAddressModal(address.id);
