@@ -4,7 +4,7 @@
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <img
                 class="mx-auto h-12 w-auto"
-                src="../../assets/dumbbell-solid.svg"
+                src="https://arm-commerce.com/images/dumbbell-solid.svg"
                 alt="arm-commerce-icon"
             />
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
