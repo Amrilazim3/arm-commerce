@@ -285,7 +285,7 @@
                     </a>
                 </div>
                 <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-                    &copy; 2022 Arm-commerce, Made with love by Amril Azim.
+                    &copy; 2022 Arm-commerce. All rights reserved.
                 </p>
             </div>
         </div>
