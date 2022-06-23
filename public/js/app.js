@@ -660,7 +660,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "clip-rule": "evenodd"
 })])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mt-8 text-base text-gray-400 md:mt-0 md:order-1"
-}, " © 2022 Arm-commerce, Made with love by Amril Azim. ")])], -1
+}, " © 2022 Arm-commerce. All rights reserved. ")])], -1
 /* HOISTED */
 );
 
