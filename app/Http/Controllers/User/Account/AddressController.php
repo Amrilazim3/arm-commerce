@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Account;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\User;
 use App\Rules\PhoneNumberValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class AddressController extends Controller
     public function index()
     {
         return Inertia::render('User/Account/Addresses', [
-            'addresses' => Address::where('user_id', Auth::user()->id)->get()
+            'addresses' => User::where('id', Auth::id())->first()->addresses, // using lazy load still acceptable because we only accessing one user's addresses
         ]);
     }
 
