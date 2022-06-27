@@ -572,12 +572,6 @@
         </Dialog>
     </TransitionRoot>
 
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-
     <TransitionRoot as="template" :show="isOpenAddBankAccount">
         <Dialog
             as="div"
