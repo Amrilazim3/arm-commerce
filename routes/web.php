@@ -19,11 +19,9 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-    Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-
-    Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-    Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+    Route::resource('register', RegisterController::class)->only(['index', 'store']);
+    
+    Route::resource('login', LoginController::class)->only(['index', 'store']);
     
     Route::get('/oauth/{service}', [OAuthServiceController::class, 'redirect']);
     Route::get('/oauth/{service}/callback', [OAuthServiceController::class, 'handleCallback']);
@@ -36,13 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // use resource method
         Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
-        Route::get('/addresses', [AddressController::class, 'index'])->name('addresses.index');
-        Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
-        Route::patch('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
-        Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
+        
+        Route::resource('addresses', AddressController::class)->only(['index', 'store', 'update', 'destroy']);
+        
         Route::get('/email/change', [ChangeEmailController::class, 'index'])->name('email.change.index');
         Route::patch('/email/change', [ChangeEmailController::class, 'update'])->name('email.change.update');
+        
         Route::get('/password/change', [ChangePasswordController::class, 'index'])->name('password.change.index');
         Route::patch('/password/change', [ChangePasswordController::class, 'update'])->name('password.change.update');
     });
