@@ -693,6 +693,17 @@
                                             <option selected value="">
                                                 Select bank name
                                             </option>
+                                            <template
+                                                v-for="bank in bankLists"
+                                                :key="bank"
+                                            >
+                                                <option
+                                                    :value="bank"
+                                                    class="w-52 bg-gray-50 border-0 rounded-sm"
+                                                >
+                                                    {{ bank }}
+                                                </option>
+                                            </template>
                                         </select>
                                     </div>
                                     <!-- <div
@@ -748,6 +759,10 @@ export default {
         DialogDescription,
         TransitionChild,
         TransitionRoot,
+    },
+
+    props: {
+        bankLists: Array,
     },
 
     data() {
