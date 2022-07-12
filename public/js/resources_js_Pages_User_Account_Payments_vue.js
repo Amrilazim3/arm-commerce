@@ -32,8 +32,27 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       isOpenAddCard: false,
-      isOpenAddBankAccount: false
+      isOpenAddBankAccount: false,
+      cardForm: this.$inertia.form({
+        cardNumber: null,
+        expiryDate: null,
+        cvvCode: null,
+        fullName: ""
+      }),
+      bankAccountForm: this.$inertia.form({
+        fullName: "",
+        accountNumber: null,
+        bankName: ""
+      })
     };
+  },
+  methods: {
+    addCard: function addCard() {
+      console.log(this.cardForm);
+    },
+    addBankAccount: function addBankAccount() {
+      console.log(this.bankAccountForm);
+    }
   }
 });
 
@@ -414,198 +433,177 @@ var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_59 = {
   "class": "flex-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "card-number",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Card number "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "card-number",
-  name: "card-number",
-  type: "text",
-  autocomplete: "card-number",
-  required: "",
-  "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                        v-if=\"addressForm.errors.fullName\"\r\n                                        class=\"text-red-500 text-sm mt-1\"\r\n                                    >\r\n                                        {{ addressForm.errors.fullName }}\r\n                                    </div> ")], -1
-/* HOISTED */
-);
-
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex items-center justify-between space-x-1.5"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "expiry-date",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Expiry Date "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "expiry-date",
-  name: "expiry-date",
-  type: "text",
-  autocomplete: "expiry-date",
-  required: "",
-  "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                            v-if=\"addressForm.errors.city\"\r\n                                            class=\"text-red-500 text-sm mt-1\"\r\n                                        >\r\n                                            {{ addressForm.errors.city }}\r\n                                        </div> ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "cvv-code",
-  "class": "block text-sm font-medium text-gray-700"
-}, " CVV Code "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "cvv-code",
-  name: "cvv-code",
-  type: "text",
-  autocomplete: "cvv-code",
-  required: "",
-  "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                            v-if=\"addressForm.errors.postalCode\"\r\n                                            class=\"text-red-500 text-sm mt-1\"\r\n                                        >\r\n                                            {{ addressForm.errors.postalCode }}\r\n                                        </div> ")])], -1
-/* HOISTED */
-);
-
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "full-name",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Full Name "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "full-name",
-  name: "full-name",
-  type: "text",
-  autocomplete: "name",
-  placeholder: "Full name on card.",
-  required: "",
-  "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                        v-if=\"addressForm.errors.fullName\"\r\n                                        class=\"text-red-500 text-sm mt-1\"\r\n                                    >\r\n                                        {{ addressForm.errors.fullName }}\r\n                                    </div> ")], -1
-/* HOISTED */
-);
-
-var _hoisted_62 = {
-  "class": "flex flex-row-reverse pt-4"
 };
 
-var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "submit",
-  "class": "flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-}, " Save ", -1
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "card-number",
+  "class": "block text-sm font-medium text-gray-700"
+}, " Card number ", -1
 /* HOISTED */
 );
 
+var _hoisted_61 = {
+  "class": "mt-1"
+};
+var _hoisted_62 = {
+  key: 0,
+  "class": "text-red-500 text-sm mt-1"
+};
+var _hoisted_63 = {
+  "class": "flex items-center justify-between space-x-1.5"
+};
 var _hoisted_64 = {
+  "class": "flex-1"
+};
+
+var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "expiry-date",
+  "class": "block text-sm font-medium text-gray-700"
+}, " Expiry Date ", -1
+/* HOISTED */
+);
+
+var _hoisted_66 = {
+  key: 0,
+  "class": "text-red-500 text-sm mt-1"
+};
+var _hoisted_67 = {
+  "class": "flex-1"
+};
+
+var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "cvv-code",
+  "class": "block text-sm font-medium text-gray-700"
+}, " CVV Code ", -1
+/* HOISTED */
+);
+
+var _hoisted_69 = {
+  "class": "mt-1"
+};
+var _hoisted_70 = {
+  key: 0,
+  "class": "text-red-500 text-sm mt-1"
+};
+var _hoisted_71 = {
+  "class": "flex-1"
+};
+
+var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "full-name",
+  "class": "block text-sm font-medium text-gray-700"
+}, " Full Name ", -1
+/* HOISTED */
+);
+
+var _hoisted_73 = {
+  "class": "mt-1"
+};
+var _hoisted_74 = {
+  key: 0,
+  "class": "text-red-500 text-sm mt-1"
+};
+var _hoisted_75 = {
+  "class": "flex flex-row-reverse pt-4"
+};
+var _hoisted_76 = {
   "class": "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
 };
 
-var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_77 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "fixed inset-0 bg-gray-500 bg-opacity-90 transition-opacity"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_66 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_78 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "hidden sm:inline-block sm:align-middle sm:h-screen",
   "aria-hidden": "true"
 }, "​", -1
 /* HOISTED */
 );
 
-var _hoisted_67 = {
+var _hoisted_79 = {
   "class": "relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
 };
-var _hoisted_68 = {
+var _hoisted_80 = {
   "class": "md:max-w-xl lg:max-w-2xl w-full space-y-8"
 };
 
-var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_81 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "mt-6 text-center text-3xl font-extrabold text-gray-900"
 }, " Add Bank Account ")], -1
 /* HOISTED */
 );
 
-var _hoisted_70 = {
-  "class": "space-y-6 sm:px-10"
+var _hoisted_82 = {
+  "class": "flex-1"
 };
 
-var _hoisted_71 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "full-name",
   "class": "block text-sm font-medium text-gray-700"
-}, " Full Name "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "full-name",
-  name: "full-name",
-  type: "text",
-  autocomplete: "name",
-  placeholder: "Full name in the bank account",
-  required: "",
-  "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                        v-if=\"addressForm.errors.fullName\"\r\n                                        class=\"text-red-500 text-sm mt-1\"\r\n                                    >\r\n                                        {{ addressForm.errors.fullName }}\r\n                                    </div> ")], -1
+}, " Full Name ", -1
 /* HOISTED */
 );
 
-var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "account-number",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Account number "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_84 = {
   "class": "mt-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  id: "account-number",
-  name: "account-number",
-  type: "text",
-  autocomplete: "account-number",
-  required: "",
-  "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                        v-if=\"addressForm.errors.fullName\"\r\n                                        class=\"text-red-500 text-sm mt-1\"\r\n                                    >\r\n                                        {{ addressForm.errors.fullName }}\r\n                                    </div> ")], -1
-/* HOISTED */
-);
-
-var _hoisted_73 = {
+};
+var _hoisted_85 = {
+  key: 0,
+  "class": "text-red-500 text-sm mt-1"
+};
+var _hoisted_86 = {
   "class": "flex-1"
 };
 
-var _hoisted_74 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_87 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "account-number",
+  "class": "block text-sm font-medium text-gray-700"
+}, " Account number ", -1
+/* HOISTED */
+);
+
+var _hoisted_88 = {
+  "class": "mt-1"
+};
+var _hoisted_89 = {
+  key: 0,
+  "class": "text-red-500 text-sm mt-1"
+};
+var _hoisted_90 = {
+  "class": "flex-1"
+};
+
+var _hoisted_91 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "bank-name",
   "class": "block text-sm font-medium text-gray-700"
 }, " Bank Name ", -1
 /* HOISTED */
 );
 
-var _hoisted_75 = {
+var _hoisted_92 = {
   "class": "mt-1"
 };
-var _hoisted_76 = {
-  id: "bank-name",
-  name: "bank-name",
-  autocomplete: "bank-name",
-  "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-  required: ""
-};
 
-var _hoisted_77 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_93 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
   value: ""
 }, " Select bank name ", -1
 /* HOISTED */
 );
 
-var _hoisted_78 = ["value"];
-var _hoisted_79 = {
+var _hoisted_94 = ["value"];
+var _hoisted_95 = {
+  key: 0,
+  "class": "text-red-500 text-sm mt-1"
+};
+var _hoisted_96 = {
   "class": "flex flex-row-reverse pt-4"
 };
-
-var _hoisted_80 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "submit",
-  "class": "flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-}, " Save ", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -639,7 +637,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dialog, {
         as: "div",
         "class": "fixed z-10 inset-0 overflow-y-auto",
-        onClose: _cache[4] || (_cache[4] = function ($event) {
+        onClose: _cache[9] || (_cache[9] = function ($event) {
           return $data.isOpenAddCard = false;
         })
       }, {
@@ -671,13 +669,76 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
                 "class": "space-y-6 sm:px-10",
-                onSubmit: _cache[3] || (_cache[3] = function ($event) {
-                  return _ctx.console.log('hee');
+                onSubmit: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+                  return $options.addCard && $options.addCard.apply($options, arguments);
+                }, ["prevent"]))
+              }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [_hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+                id: "card-number",
+                name: "card-number",
+                type: "text",
+                autocomplete: "card-number",
+                required: "",
+                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+                  return $data.cardForm.cardNumber = $event;
                 })
-              }, [_hoisted_59, _hoisted_60, _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [_hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+              }, null, 512
+              /* NEED_PATCH */
+              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cardForm.cardNumber]])]), $data.cardForm.errors.cardNumber ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.cardForm.errors.cardNumber), 1
+              /* TEXT */
+              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [_hoisted_65, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+                id: "expiry-date",
+                name: "expiry-date",
+                type: "text",
+                autocomplete: "expiry-date",
+                required: "",
+                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+                  return $data.cardForm.expiryDate = $event;
+                })
+              }, null, 512
+              /* NEED_PATCH */
+              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cardForm.expiryDate]]), $data.cardForm.errors.expiryDate ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.cardForm.errors.expiryDate), 1
+              /* TEXT */
+              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_67, [_hoisted_68, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+                id: "cvv-code",
+                name: "cvv-code",
+                type: "text",
+                autocomplete: "cvv-code",
+                required: "",
+                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+                  return $data.cardForm.cvvCode = $event;
+                })
+              }, null, 512
+              /* NEED_PATCH */
+              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cardForm.cvvCode]])]), $data.cardForm.errors.cvvCode ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_70, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.cardForm.errors.cvvCode), 1
+              /* TEXT */
+              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [_hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+                id: "full-name",
+                name: "full-name",
+                type: "text",
+                autocomplete: "name",
+                placeholder: "Full name on card.",
+                required: "",
+                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+                  return $data.cardForm.fullName = $event;
+                })
+              }, null, 512
+              /* NEED_PATCH */
+              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cardForm.fullName]])]), $data.cardForm.errors.fullName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_74, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.cardForm.errors.fullName), 1
+              /* TEXT */
+              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_75, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+                type: "submit",
+                "class": "flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+                  return $options.addCard && $options.addCard.apply($options, arguments);
+                }, ["prevent"]))
+              }, " Save "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                 type: "button",
                 "class": "mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm",
-                onClick: _cache[2] || (_cache[2] = function ($event) {
+                onClick: _cache[7] || (_cache[7] = function ($event) {
                   return $data.isOpenAddCard = false;
                 })
               }, " Cancel ")])], 32
@@ -707,12 +768,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dialog, {
         as: "div",
         "class": "fixed z-10 inset-0 overflow-y-auto",
-        onClose: _cache[6] || (_cache[6] = function ($event) {
+        onClose: _cache[16] || (_cache[16] = function ($event) {
           return $data.isOpenAddBankAccount = false;
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_76, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
             as: "template",
             enter: "ease-out duration-300",
             "enter-from": "opacity-0",
@@ -722,12 +783,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "leave-to": "opacity-0"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_65];
+              return [_hoisted_77];
             }),
             _: 1
             /* STABLE */
 
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This element is to trick the browser into centering the modal contents. "), _hoisted_66, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This element is to trick the browser into centering the modal contents. "), _hoisted_78, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
             as: "template",
             enter: "ease-out duration-300",
             "enter-from": "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
@@ -737,23 +798,78 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "leave-to": "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [_hoisted_69, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_70, [_hoisted_71, _hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [_hoisted_74, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_75, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_76, [_hoisted_77, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.bankLists, function (bank) {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [_hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+                "class": "space-y-6 sm:px-10",
+                onSubmit: _cache[15] || (_cache[15] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+                  return $options.addBankAccount && $options.addBankAccount.apply($options, arguments);
+                }, ["prevent"]))
+              }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [_hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+                id: "full-name",
+                name: "full-name",
+                type: "text",
+                autocomplete: "name",
+                placeholder: "Full name in the bank account",
+                required: "",
+                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
+                  return $data.bankAccountForm.fullName = $event;
+                })
+              }, null, 512
+              /* NEED_PATCH */
+              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.bankAccountForm.fullName]])]), $data.bankAccountForm.errors.fullName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.bankAccountForm.errors.fullName), 1
+              /* TEXT */
+              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_86, [_hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+                id: "account-number",
+                name: "account-number",
+                type: "text",
+                autocomplete: "account-number",
+                required: "",
+                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+                  return $data.bankAccountForm.accountNumber = $event;
+                })
+              }, null, 512
+              /* NEED_PATCH */
+              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.bankAccountForm.accountNumber]])]), $data.bankAccountForm.errors.accountNumber ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.bankAccountForm.errors.accountNumber), 1
+              /* TEXT */
+              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_90, [_hoisted_91, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_92, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+                id: "bank-name",
+                name: "bank-name",
+                autocomplete: "bank-name",
+                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                required: "",
+                "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
+                  return $data.bankAccountForm.bankName = $event;
+                })
+              }, [_hoisted_93, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.bankLists, function (bank) {
                 return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                   key: bank,
                   value: bank,
                   "class": "w-52 bg-gray-50 border-0 rounded-sm"
                 }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(bank), 9
                 /* TEXT, PROPS */
-                , _hoisted_78);
+                , _hoisted_94);
               }), 128
               /* KEYED_FRAGMENT */
-              ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                        v-if=\"addressForm.errors.fullName\"\r\n                                        class=\"text-red-500 text-sm mt-1\"\r\n                                    >\r\n                                        {{ addressForm.errors.fullName }}\r\n                                    </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [_hoisted_80, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+              ))], 512
+              /* NEED_PATCH */
+              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.bankAccountForm.bankName]])]), $data.bankAccountForm.errors.bankName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_95, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.bankAccountForm.errors.bankName), 1
+              /* TEXT */
+              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_96, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+                type: "submit",
+                "class": "flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                onClick: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+                  return $options.addBankAccount && $options.addBankAccount.apply($options, arguments);
+                }, ["prevent"]))
+              }, " Save "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                 type: "button",
                 "class": "mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm",
-                onClick: _cache[5] || (_cache[5] = function ($event) {
+                onClick: _cache[14] || (_cache[14] = function ($event) {
                   return $data.isOpenAddBankAccount = false;
                 })
-              }, " Cancel ")])])])])];
+              }, " Cancel ")])], 32
+              /* HYDRATE_EVENTS */
+              )])])];
             }),
             _: 1
             /* STABLE */
