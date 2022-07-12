@@ -443,10 +443,7 @@
                                 </h2>
                             </div>
 
-                            <form
-                                class="space-y-6 sm:px-10"
-                                @submit="console.log('hee')"
-                            >
+                            <form class="space-y-6 sm:px-10" @submit.prevent="addCard">
                                 <div class="flex-1">
                                     <label
                                         for="card-number"
@@ -462,14 +459,15 @@
                                             autocomplete="card-number"
                                             required
                                             class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            v-model="cardForm.cardNumber"
                                         />
                                     </div>
-                                    <!-- <div
-                                        v-if="addressForm.errors.fullName"
+                                    <div
+                                        v-if="cardForm.errors.cardNumber"
                                         class="text-red-500 text-sm mt-1"
                                     >
-                                        {{ addressForm.errors.fullName }}
-                                    </div> -->
+                                        {{ cardForm.errors.cardNumber }}
+                                    </div>
                                 </div>
 
                                 <div
@@ -489,13 +487,14 @@
                                             autocomplete="expiry-date"
                                             required
                                             class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            v-model="cardForm.expiryDate"
                                         />
-                                        <!-- <div
-                                            v-if="addressForm.errors.city"
+                                        <div
+                                            v-if="cardForm.errors.expiryDate"
                                             class="text-red-500 text-sm mt-1"
                                         >
-                                            {{ addressForm.errors.city }}
-                                        </div> -->
+                                            {{ cardForm.errors.expiryDate }}
+                                        </div>
                                     </div>
                                     <div class="flex-1">
                                         <label
@@ -512,14 +511,15 @@
                                                 autocomplete="cvv-code"
                                                 required
                                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                v-model="cardForm.cvvCode"
                                             />
                                         </div>
-                                        <!-- <div
-                                            v-if="addressForm.errors.postalCode"
+                                        <div
+                                            v-if="cardForm.errors.cvvCode"
                                             class="text-red-500 text-sm mt-1"
                                         >
-                                            {{ addressForm.errors.postalCode }}
-                                        </div> -->
+                                            {{ cardForm.errors.cvvCode }}
+                                        </div>
                                     </div>
                                 </div>
 
@@ -539,20 +539,22 @@
                                             placeholder="Full name on card."
                                             required
                                             class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            v-model="cardForm.fullName"
                                         />
                                     </div>
-                                    <!-- <div
-                                        v-if="addressForm.errors.fullName"
+                                    <div
+                                        v-if="cardForm.errors.fullName"
                                         class="text-red-500 text-sm mt-1"
                                     >
-                                        {{ addressForm.errors.fullName }}
-                                    </div> -->
+                                        {{ cardForm.errors.fullName }}
+                                    </div>
                                 </div>
 
                                 <div class="flex flex-row-reverse pt-4">
                                     <button
                                         type="submit"
                                         class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        @click.prevent="addCard"
                                     >
                                         Save
                                     </button>
@@ -623,7 +625,7 @@
                                 </h2>
                             </div>
 
-                            <form class="space-y-6 sm:px-10">
+                            <form class="space-y-6 sm:px-10" @submit.prevent="addBankAccount">
                                 <div class="flex-1">
                                     <label
                                         for="full-name"
@@ -640,14 +642,15 @@
                                             placeholder="Full name in the bank account"
                                             required
                                             class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            v-model="bankAccountForm.fullName"
                                         />
                                     </div>
-                                    <!-- <div
-                                        v-if="addressForm.errors.fullName"
+                                    <div
+                                        v-if="bankAccountForm.errors.fullName"
                                         class="text-red-500 text-sm mt-1"
                                     >
-                                        {{ addressForm.errors.fullName }}
-                                    </div> -->
+                                        {{ bankAccountForm.errors.fullName }}
+                                    </div>
                                 </div>
 
                                 <div class="flex-1">
@@ -665,14 +668,15 @@
                                             autocomplete="account-number"
                                             required
                                             class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            v-model="bankAccountForm.accountNumber"
                                         />
                                     </div>
-                                    <!-- <div
-                                        v-if="addressForm.errors.fullName"
+                                    <div
+                                        v-if="bankAccountForm.errors.accountNumber"
                                         class="text-red-500 text-sm mt-1"
                                     >
-                                        {{ addressForm.errors.fullName }}
-                                    </div> -->
+                                        {{ bankAccountForm.errors.accountNumber }}
+                                    </div>
                                 </div>
 
                                 <div class="flex-1">
@@ -689,6 +693,7 @@
                                             autocomplete="bank-name"
                                             class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             required
+                                            v-model="bankAccountForm.bankName"
                                         >
                                             <option selected value="">
                                                 Select bank name
@@ -706,18 +711,19 @@
                                             </template>
                                         </select>
                                     </div>
-                                    <!-- <div
-                                        v-if="addressForm.errors.fullName"
+                                    <div
+                                        v-if="bankAccountForm.errors.bankName"
                                         class="text-red-500 text-sm mt-1"
                                     >
-                                        {{ addressForm.errors.fullName }}
-                                    </div> -->
+                                        {{ bankAccountForm.errors.bankName }}
+                                    </div>
                                 </div>
 
                                 <div class="flex flex-row-reverse pt-4">
                                     <button
                                         type="submit"
                                         class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        @click.prevent="addBankAccount"
                                     >
                                         Save
                                     </button>
@@ -769,7 +775,28 @@ export default {
         return {
             isOpenAddCard: false,
             isOpenAddBankAccount: false,
+            cardForm: this.$inertia.form({
+                cardNumber: null,
+                expiryDate: null,
+                cvvCode: null,
+                fullName: "",
+            }),
+            bankAccountForm: this.$inertia.form({
+                fullName: "",
+                accountNumber: null,
+                bankName: ""
+            }),
         };
+    },
+
+    methods: {
+        addCard() {
+            console.log(this.cardForm);
+        },
+
+        addBankAccount() {
+            console.log(this.bankAccountForm);
+        },
     },
 };
 </script>
