@@ -8,14 +8,26 @@ use App\Models\User;
 use App\Rules\PhoneNumberValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class AddressController extends Controller
 {
     public function index()
     {
+        $states = Cache::remember('states', now()->addMinutes(7200), function () {
+            return Http::get('https://raw.githubusercontent.com/hazz1925/malaysian-states/master/states.json')->json();
+        });
+
+        $statesCities = Cache::remember('states:cities', now()->addMinutes(7200), function () {
+            return Http::get('https://raw.githubusercontent.com/hazz1925/malaysian-states/master/states-cities.json')->json();
+        });
+
         return Inertia::render('User/Account/Addresses', [
             'addresses' => User::where('id', Auth::id())->first()->addresses, // using lazy load still acceptable because we only accessing one user's addresses
+            'states' => $states,
+            'statesCities' => $statesCities
         ]);
     }
 
