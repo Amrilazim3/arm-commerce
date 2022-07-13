@@ -13,6 +13,7 @@ class Card extends Model
 
     protected $casts = [
         'card_number' => 'encrypted',
-        'cvv_code' => 'encrypted'
+        'cvv_code' => 'encrypted',
+        'expiry_date' => 'encrypted'
     ];
 }
