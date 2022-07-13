@@ -443,7 +443,10 @@
                                 </h2>
                             </div>
 
-                            <form class="space-y-6 sm:px-10" @submit.prevent="addCard">
+                            <form
+                                class="space-y-6 sm:px-10"
+                                @submit.prevent="addCard"
+                            >
                                 <div class="flex-1">
                                     <label
                                         for="card-number"
@@ -625,7 +628,10 @@
                                 </h2>
                             </div>
 
-                            <form class="space-y-6 sm:px-10" @submit.prevent="addBankAccount">
+                            <form
+                                class="space-y-6 sm:px-10"
+                                @submit.prevent="addBankAccount"
+                            >
                                 <div class="flex-1">
                                     <label
                                         for="full-name"
@@ -668,14 +674,20 @@
                                             autocomplete="account-number"
                                             required
                                             class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            v-model="bankAccountForm.accountNumber"
+                                            v-model="
+                                                bankAccountForm.accountNumber
+                                            "
                                         />
                                     </div>
                                     <div
-                                        v-if="bankAccountForm.errors.accountNumber"
+                                        v-if="
+                                            bankAccountForm.errors.accountNumber
+                                        "
                                         class="text-red-500 text-sm mt-1"
                                     >
-                                        {{ bankAccountForm.errors.accountNumber }}
+                                        {{
+                                            bankAccountForm.errors.accountNumber
+                                        }}
                                     </div>
                                 </div>
 
@@ -784,18 +796,66 @@ export default {
             bankAccountForm: this.$inertia.form({
                 fullName: "",
                 accountNumber: null,
-                bankName: ""
+                bankName: "",
             }),
         };
     },
 
     methods: {
         addCard() {
-            console.log(this.cardForm);
+            this.cardForm.post("/user/account/card", {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.cardForm.reset();
+                    this.isOpenAddCard = false;
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Card successfully added.",
+                        },
+                        3500
+                    );
+                },
+                onError: () => {
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Card failed to be updated. Please try again.",
+                        },
+                        3500
+                    );
+                },
+            });
         },
 
-        addBankAccount() {
-            console.log(this.bankAccountForm);
+        addBankAccount(id) {
+            this.bankAccountForm.post("/user/account/bank-account", {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.bankAccountForm.reset();
+                    this.isOpenAddBankAccount = false;
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Bank account successfully added.",
+                        },
+                        3500
+                    );
+                },
+                onError: () => {
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Bank account failed to be updated. Please try again.",
+                        },
+                        3500
+                    );
+                },
+            });
         },
     },
 };
