@@ -48,10 +48,54 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addCard: function addCard() {
-      console.log(this.cardForm);
+      var _this = this;
+
+      this.cardForm.post("/user/account/card", {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this.cardForm.reset();
+
+          _this.isOpenAddCard = false;
+
+          _this.$notify({
+            group: "success",
+            title: "Success",
+            text: "Card successfully added."
+          }, 3500);
+        },
+        onError: function onError() {
+          _this.$notify({
+            group: "error",
+            title: "Error",
+            text: "Card failed to be updated. Please try again."
+          }, 3500);
+        }
+      });
     },
-    addBankAccount: function addBankAccount() {
-      console.log(this.bankAccountForm);
+    addBankAccount: function addBankAccount(id) {
+      var _this2 = this;
+
+      this.bankAccountForm.post("/user/account/bank-account", {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this2.bankAccountForm.reset();
+
+          _this2.isOpenAddBankAccount = false;
+
+          _this2.$notify({
+            group: "success",
+            title: "Success",
+            text: "Bank account successfully added."
+          }, 3500);
+        },
+        onError: function onError() {
+          _this2.$notify({
+            group: "error",
+            title: "Error",
+            text: "Bank account failed to be updated. Please try again."
+          }, 3500);
+        }
+      });
     }
   }
 });
