@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\AddressController;
+use App\Http\Controllers\User\Account\BankAccountController;
+use App\Http\Controllers\User\Account\CardController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\EmailVerificationController;
@@ -36,6 +38,9 @@ Route::middleware('auth')->group(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         // use resource method
         Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
+
+        Route::resource('bank-account', BankAccountController::class)->only(['store', 'update', 'destroy']);
+        Route::resource('card', CardController::class)->only(['store', 'update', 'destroy']);
         
         Route::resource('addresses', AddressController::class)->only(['index', 'store', 'update', 'destroy']);
         
