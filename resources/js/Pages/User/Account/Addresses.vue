@@ -605,7 +605,7 @@ export default {
     methods: {
         addAddress() {
             if (this.addressForm._method == "patch") {
-                this.editAddress(this.addressIdToEdit);
+                this.updateAddress(this.addressIdToEdit);
                 return;
             }
             this.addressForm.post("/user/account/addresses", {
@@ -642,7 +642,7 @@ export default {
             });
         },
 
-        editAddress(addressId) {
+        updateAddress(addressId) {
             this.addressForm.patch(`/user/account/addresses/${addressId}`, {
                 preserveScroll: true,
                 onSuccess: () => {
@@ -653,7 +653,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Address successfully edited.",
+                            text: "Address successfully updated.",
                         },
                         3500
                     );
@@ -663,7 +663,7 @@ export default {
                         {
                             group: "error",
                             title: "Error",
-                            text: "Address failed to be edited. Please try again.",
+                            text: "Address failed to be update. Please try again.",
                         },
                         3500
                     );
