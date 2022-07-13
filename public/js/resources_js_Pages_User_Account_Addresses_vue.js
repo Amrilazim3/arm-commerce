@@ -62,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.addressForm._method == "patch") {
-        this.editAddress(this.addressIdToEdit);
+        this.updateAddress(this.addressIdToEdit);
         return;
       }
 
@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    editAddress: function editAddress(addressId) {
+    updateAddress: function updateAddress(addressId) {
       var _this3 = this;
 
       this.addressForm.patch("/user/account/addresses/".concat(addressId), {
@@ -113,14 +113,14 @@ __webpack_require__.r(__webpack_exports__);
           _this3.$notify({
             group: "success",
             title: "Success",
-            text: "Address successfully edited."
+            text: "Address successfully updated."
           }, 3500);
         },
         onError: function onError() {
           _this3.$notify({
             group: "error",
             title: "Error",
-            text: "Address failed to be edited. Please try again."
+            text: "Address failed to be update. Please try again."
           }, 3500);
         }
       });
