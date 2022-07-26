@@ -36,11 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/user/account')->name('user.account.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        // use resource method
-        Route::get('/payments', [PaymentController::class, 'index'])->name('payment.index');
-
-        Route::resource('bank-account', BankAccountController::class)->only(['store', 'update', 'destroy']);
-        Route::resource('card', CardController::class)->only(['store', 'update', 'destroy']);
         
         Route::resource('addresses', AddressController::class)->only(['index', 'store', 'update', 'destroy']);
         
