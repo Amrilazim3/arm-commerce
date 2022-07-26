@@ -60,6 +60,7 @@ class AddressController extends Controller
             'city' => $request->city,
             'postal_code' => $request->postalCode,
             'street_name' => $request->streetName,
+            'is_default' => $request->isDefault
         ]);
 
         return redirect()->back();
@@ -79,7 +80,8 @@ class AddressController extends Controller
             'state' => ['required'],
             'city' => ['required'],
             'postalCode' => ['required', 'integer', 'digits:5', 'postal_code:MY'],
-            'streetName' => ['required']
+            'streetName' => ['required'],
+            'isDefault' => ['boolean']
         ]);
     }
 }
