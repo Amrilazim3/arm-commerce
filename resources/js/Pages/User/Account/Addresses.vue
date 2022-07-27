@@ -128,6 +128,17 @@
                                                                     }}
                                                                 </p>
                                                             </div>
+                                                            <template
+                                                                v-if="
+                                                                    address.is_default
+                                                                "
+                                                            >
+                                                                <h2
+                                                                    class="mt-2 text-lg font-semibold text-gray-600"
+                                                                >
+                                                                    (Default)
+                                                                </h2>
+                                                            </template>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -442,7 +453,10 @@
                                             type="checkbox"
                                             v-model="addressForm.isDefault"
                                             id="default_address"
-                                            @click="addressForm.isDefault = !addressForm.isDefault"
+                                            @click="
+                                                addressForm.isDefault =
+                                                    !addressForm.isDefault
+                                            "
                                         />
                                         <label
                                             class="inline-block text-gray-800"
@@ -594,7 +608,6 @@ export default {
         return {
             isOpen: false,
             isOpenDeleteModal: false,
-            countries: [],
             addressForm: this.$inertia.form({
                 phoneNumber: null,
                 fullName: "",
@@ -652,6 +665,7 @@ export default {
                     this.addressForm.city = element.city;
                     this.addressForm.postalCode = element.postal_code;
                     this.addressForm.streetName = element.street_name;
+                    this.addressForm.isDefault = element.is_default;
                     this.addressForm._method = "patch";
                     this.isOpen = true;
                     return;
