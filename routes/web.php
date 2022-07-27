@@ -7,12 +7,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\AddressController;
-use App\Http\Controllers\User\Account\BankAccountController;
-use App\Http\Controllers\User\Account\CardController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\EmailVerificationController;
-use App\Http\Controllers\User\Account\PaymentController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
