@@ -446,8 +446,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Example : 60119872345",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.user.phoneNumber = $event;
-    }),
-    required: ""
+    })
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.user.phoneNumber]]), $data.user.errors.phoneNumber ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.errors.phoneNumber), 1
