@@ -196,7 +196,6 @@
                                     class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
                                     placeholder="Example : 60119872345"
                                     v-model="user.phoneNumber"
-                                    required
                                 />
                                 <div
                                     v-if="user.errors.phoneNumber"
