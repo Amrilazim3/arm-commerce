@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailVerificationJob;
+use App\Jobs\TriggerRegisteredEventJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +27,10 @@ class RegisterController extends Controller
 
         $user = User::create($validated);
 
-        SendEmailVerificationJob::dispatch($user);
+        // assign new registered user as nomral user.
+        $user->assignRole('user');
+
+        TriggerRegisteredEventJob::dispatch($user);
 
         Auth::login($user, !!$request->isRememberMe);
 
