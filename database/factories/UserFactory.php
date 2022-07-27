@@ -17,8 +17,12 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
+            'profile_image_url' => null,
+            'phone_number' => null,
+            'gender' => 'other',
+            'date_of_birth' => null,
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => 'password', // Automatic encrypted by User Model
             'remember_token' => Str::random(10),
         ];
     }
