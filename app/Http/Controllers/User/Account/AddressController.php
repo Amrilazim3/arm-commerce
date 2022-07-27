@@ -17,7 +17,16 @@ class AddressController extends Controller
     public function index()
     {
         $states = Cache::remember('states', now()->addMinutes(7200), function () {
-            return Http::get('https://raw.githubusercontent.com/hazz1925/malaysian-states/master/states.json')->json();
+            $states = Http::get('https://raw.githubusercontent.com/hazz1925/malaysian-states/master/states.json')->json();
+            // our statesCities variable bellow doesn't have this 3 states, we need to exclude it.
+            foreach ($states as $index => $state) {
+                if ($state == "Kuala Lumpur" || $state == "Labuan" || $state == "Putrajaya") {
+                    unset($states[$index]);
+                }
+            }
+            array_push($states, "Wilayah Persekutuan");
+            sort($states);
+            return $states;
         });
 
         $statesCities = Cache::remember('states:cities', now()->addMinutes(7200), function () {
@@ -34,6 +43,8 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $this->validateAddress($request);
+        
+        $this->setIsDefaultColumnToFalse($request);
 
         Address::create([
             'user_id' => Auth::user()->id,
@@ -43,6 +54,7 @@ class AddressController extends Controller
             'city' => $request->city,
             'postal_code' => $request->postalCode,
             'street_name' => $request->streetName,
+            'is_default' => $request->isDefault
         ]);
 
         return redirect()->back();
@@ -51,6 +63,8 @@ class AddressController extends Controller
     public function update(Address $address, Request $request)
     {
         $this->validateAddress($request);
+
+        $this->setIsDefaultColumnToFalse($request);
 
         Address::where('id', $address->id)->update([
             'user_id' => Auth::user()->id,
@@ -83,5 +97,14 @@ class AddressController extends Controller
             'streetName' => ['required'],
             'isDefault' => ['boolean']
         ]);
+    }
+
+    protected function setIsDefaultColumnToFalse($request)
+    {
+        if ($request->isDefault == true) {
+            Address::where('user_id',  $request->user()->id)
+                ->lazyById(10, 'id')
+                ->each->update(['is_default' => false]);
+        }
     }
 }
