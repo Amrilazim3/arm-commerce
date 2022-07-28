@@ -38,7 +38,7 @@
                 leave-to-class="transform scale-95 opacity-0"
             >
                 <MenuItems
-                    class="focus:outline-none absolute z-10 mt-2 w-32 p-2 origin-top-right divide-y divide-gray-200 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+                    class="focus:outline-none absolute z-10 mt-2 w-40 p-2 origin-top-right divide-y divide-gray-200 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
                 >
                     <template v-if="$page.props.auth.user.isAdmin">
                         <MenuItem>
@@ -46,7 +46,9 @@
                                 href="/admin/account/profile"
                                 :class="[
                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
-                                    $page.component == 'Admin/Account/Profile' ? 'bg-violet-500 text-gray-100' : '',
+                                    $page.component == 'Admin/Account/Profile'
+                                        ? 'bg-violet-500 text-gray-100'
+                                        : '',
                                 ]"
                             >
                                 Profile
@@ -57,7 +59,10 @@
                                 href="/admin/account/password/change"
                                 :class="[
                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
-                                    $page.component == 'Admin/Account/ChangePassword' ? 'bg-violet-500 text-gray-100' : '',
+                                    $page.component ==
+                                    'Admin/Account/ChangePassword'
+                                        ? 'bg-violet-500 text-gray-100'
+                                        : '',
                                 ]"
                             >
                                 Change Password
@@ -70,7 +75,9 @@
                                 href="/user/account/profile"
                                 :class="[
                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
-                                    $page.component == 'User/Account/Profile' ? 'bg-violet-500 text-gray-100' : '',
+                                    $page.component == 'User/Account/Profile'
+                                        ? 'bg-violet-500 text-gray-100'
+                                        : '',
                                 ]"
                             >
                                 Profile
@@ -94,7 +101,8 @@
                                 href="/user/account/password/change"
                                 :class="[
                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
-                                    $page.component == 'User/Account/ChangePassword'
+                                    $page.component ==
+                                    'User/Account/ChangePassword'
                                         ? 'bg-violet-500 text-gray-100'
                                         : '',
                                 ]"
@@ -144,7 +152,7 @@
                 leave-to-class="transform scale-95 opacity-0"
             >
                 <MenuItems
-                    class="focus:outline-none absolute z-10 mt-2 w-32 p-2 origin-top-right divide-y divide-gray-200 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+                    class="focus:outline-none absolute z-10 mt-2 w-40 p-2 origin-top-right divide-y divide-gray-200 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
                 >
                     <template v-if="$page.props.auth.user.isAdmin">
                         <MenuItem>
@@ -159,7 +167,7 @@
                             >
                                 All
                             </Link>
-                        </MenuItem>    
+                        </MenuItem>
                     </template>
                     <template v-else>
                         <MenuItem>
@@ -248,173 +256,277 @@
 
     <!-- large screen -->
     <div class="hidden lg:flex pt-20 h-full justify-end w-2/12">
-        <div class="inline-grid pr-6 w-32">
-            <Disclosure
-                :defaultOpen="$page.component.includes('User/Account')"
-                v-slot="{ open }"
-                as="div"
-            >
-                <DisclosureButton
-                    class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
-                    :class="open ? 'pl-2' : ''"
-                    id="closure-one"
-                    @click="closeOther('closure-one')"
+        <div class="inline-grid w-32">
+            <template v-if="$page.props.auth.user.isAdmin">
+                <Disclosure
+                    :defaultOpen="$page.component.includes('Admin/Account')"
+                    v-slot="{ open }"
+                    as="div"
                 >
-                    <span>My Account</span>
-                </DisclosureButton>
-                <transition
-                    enter-active-class="transition duration-100 ease-out"
-                    enter-from-class="transform scale-95 opacity-0"
-                    enter-to-class="transform scale-100 opacity-100"
-                    leave-active-class="transition duration-75 ease-out"
-                    leave-from-class="transform scale-100 opacity-100"
-                    leave-to-class="transform scale-95 opacity-0"
-                >
-                    <DisclosurePanel
-                        as="ul"
-                        class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                    <DisclosureButton
+                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        :class="open ? 'pl-2' : ''"
+                        id="closure-one"
+                        @click="closeOther('closure-one')"
                     >
-                        <li>
-                            <Link
-                                href="/user/account/profile"
-                                :class="
-                                    $page.component == 'User/Account/Profile'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                Profile
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/user/account/addresses"
-                                :class="
-                                    $page.component == 'User/Account/Addresses'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                Addresses
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/user/account/password/change"
-                                :class="
-                                    $page.component ==
-                                    'User/Account/ChangePassword'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                Change Password
-                            </Link>
-                        </li>
-                    </DisclosurePanel>
-                </transition>
-            </Disclosure>
+                        <span>Admin Account</span>
+                    </DisclosureButton>
+                    <transition
+                        enter-active-class="transition duration-100 ease-out"
+                        enter-from-class="transform scale-95 opacity-0"
+                        enter-to-class="transform scale-100 opacity-100"
+                        leave-active-class="transition duration-75 ease-out"
+                        leave-from-class="transform scale-100 opacity-100"
+                        leave-to-class="transform scale-95 opacity-0"
+                    >
+                        <DisclosurePanel
+                            as="ul"
+                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                        >
+                            <li>
+                                <Link
+                                    href="/admin/account/profile"
+                                    :class="
+                                        $page.component ==
+                                        'Admin/Account/Profile'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Profile
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/admin/account/password/change"
+                                    :class="
+                                        $page.component ==
+                                        'Admin/Account/ChangePassword'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Change Password
+                                </Link>
+                            </li>
+                        </DisclosurePanel>
+                    </transition>
+                </Disclosure>
+            </template>
+            <template v-else>
+                <Disclosure
+                    :defaultOpen="$page.component.includes('User/Account')"
+                    v-slot="{ open }"
+                    as="div"
+                >
+                    <DisclosureButton
+                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        :class="open ? 'pl-2' : ''"
+                        id="closure-one"
+                        @click="closeOther('closure-one')"
+                    >
+                        <span>My Account</span>
+                    </DisclosureButton>
+                    <transition
+                        enter-active-class="transition duration-100 ease-out"
+                        enter-from-class="transform scale-95 opacity-0"
+                        enter-to-class="transform scale-100 opacity-100"
+                        leave-active-class="transition duration-75 ease-out"
+                        leave-from-class="transform scale-100 opacity-100"
+                        leave-to-class="transform scale-95 opacity-0"
+                    >
+                        <DisclosurePanel
+                            as="ul"
+                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                        >
+                            <li>
+                                <Link
+                                    href="/user/account/profile"
+                                    :class="
+                                        $page.component ==
+                                        'User/Account/Profile'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Profile
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/user/account/addresses"
+                                    :class="
+                                        $page.component ==
+                                        'User/Account/Addresses'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Addresses
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/user/account/password/change"
+                                    :class="
+                                        $page.component ==
+                                        'User/Account/ChangePassword'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Change Password
+                                </Link>
+                            </li>
+                        </DisclosurePanel>
+                    </transition>
+                </Disclosure>
+            </template>
 
-            <Disclosure
-                :defaultOpen="$page.component.includes('User/Payment')"
-                v-slot="{ open }"
-                as="div"
-            >
-                <DisclosureButton
-                    class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
-                    :class="open ? 'pl-2' : ''"
-                    id="closure-two"
-                    @click="closeOther('closure-two')"
+            <template v-if="$page.props.auth.user.isAdmin">
+                <Disclosure
+                    :defaultOpen="$page.component.includes('Admin/Products')"
+                    v-slot="{ open }"
+                    as="div"
                 >
-                    <span>My purchase</span>
-                </DisclosureButton>
-                <transition
-                    enter-active-class="transition duration-100 ease-out"
-                    enter-from-class="transform scale-95 opacity-0"
-                    enter-to-class="transform scale-100 opacity-100"
-                    leave-active-class="transition duration-75 ease-out"
-                    leave-from-class="transform scale-100 opacity-100"
-                    leave-to-class="transform scale-95 opacity-0"
-                >
-                    <DisclosurePanel
-                        as="ul"
-                        class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                    <DisclosureButton
+                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        :class="open ? 'pl-2' : ''"
+                        id="closure-two"
+                        @click="closeOther('closure-two')"
                     >
-                        <li>
-                            <Link
-                                href="/user/purchase"
-                                :class="
-                                    $page.component == 'User/Purchase/Index'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                All
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/user/purchase/to-pay"
-                                :class="
-                                    $page.component == 'User/Purchase/ToPay'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                To Pay
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/user/purchase/to-ship"
-                                :class="
-                                    $page.component == 'User/Purchase/ToShip'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                To Ship
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/user/purchase/to-receive"
-                                :class="
-                                    $page.component == 'User/Purchase/ToReceive'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                To Receive
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/user/purchase/completed"
-                                :class="
-                                    $page.component == 'User/Purchase/Completed'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                Completed
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/user/purchase/cancelled"
-                                :class="
-                                    $page.component == 'User/Purchase/Cancelled'
-                                        ? 'font-bold'
-                                        : ''
-                                "
-                            >
-                                Cancelled
-                            </Link>
-                        </li>
-                    </DisclosurePanel>
-                </transition>
-            </Disclosure>
+                        <span>Products</span>
+                    </DisclosureButton>
+                    <transition
+                        enter-active-class="transition duration-100 ease-out"
+                        enter-from-class="transform scale-95 opacity-0"
+                        enter-to-class="transform scale-100 opacity-100"
+                        leave-active-class="transition duration-75 ease-out"
+                        leave-from-class="transform scale-100 opacity-100"
+                        leave-to-class="transform scale-95 opacity-0"
+                    >
+                        <DisclosurePanel
+                            as="ul"
+                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                        >
+                            <li>
+                                <Link
+                                    href="/admin/products"
+                                    :class="
+                                        $page.component == 'Admin/Products/Index'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    All
+                                </Link>
+                            </li>
+                        </DisclosurePanel>
+                    </transition>
+                </Disclosure>
+            </template>
+            <template v-else>
+                <Disclosure
+                    :defaultOpen="$page.component.includes('User/Payment')"
+                    v-slot="{ open }"
+                    as="div"
+                >
+                    <DisclosureButton
+                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        :class="open ? 'pl-2' : ''"
+                        id="closure-two"
+                        @click="closeOther('closure-two')"
+                    >
+                        <span>My purchase</span>
+                    </DisclosureButton>
+                    <transition
+                        enter-active-class="transition duration-100 ease-out"
+                        enter-from-class="transform scale-95 opacity-0"
+                        enter-to-class="transform scale-100 opacity-100"
+                        leave-active-class="transition duration-75 ease-out"
+                        leave-from-class="transform scale-100 opacity-100"
+                        leave-to-class="transform scale-95 opacity-0"
+                    >
+                        <DisclosurePanel
+                            as="ul"
+                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                        >
+                            <li>
+                                <Link
+                                    href="/user/purchase"
+                                    :class="
+                                        $page.component == 'User/Purchase/Index'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    All
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/user/purchase/to-pay"
+                                    :class="
+                                        $page.component == 'User/Purchase/ToPay'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    To Pay
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/user/purchase/to-ship"
+                                    :class="
+                                        $page.component == 'User/Purchase/ToShip'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    To Ship
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/user/purchase/to-receive"
+                                    :class="
+                                        $page.component == 'User/Purchase/ToReceive'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    To Receive
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/user/purchase/completed"
+                                    :class="
+                                        $page.component == 'User/Purchase/Completed'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Completed
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/user/purchase/cancelled"
+                                    :class="
+                                        $page.component == 'User/Purchase/Cancelled'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Cancelled
+                                </Link>
+                            </li>
+                        </DisclosurePanel>
+                    </transition>
+                </Disclosure>
+            </template>
         </div>
     </div>
 </template>
