@@ -58,21 +58,70 @@
                                 <MenuItems
                                     class="absolute w-40 bg-gray-600 inline-grid p-1.5 right-5 text-white top-12 rounded-md"
                                 >
-                                    <MenuItem v-slot="{ active }">
-                                        <Link
-                                            class="px-2"
-                                            :class="{
-                                                'bg-gray-800 hover:bg-gray-700 rounded-md':
-                                                    active ||
-                                                    $page.component.includes(
-                                                        'User/Account'
-                                                    ),
-                                            }"
-                                            href="/user/account/profile"
-                                        >
-                                            My Account
-                                        </Link>
-                                    </MenuItem>
+                                    <template v-if="$page.props.auth.user.isAdmin">
+                                        <MenuItem v-slot="{ active }">
+                                            <Link
+                                                class="px-2"
+                                                :class="{
+                                                    'bg-gray-800 hover:bg-gray-700 rounded-md':
+                                                        active ||
+                                                        $page.component.includes(
+                                                            'Admin/Account'
+                                                        ),
+                                                }"
+                                                href="/admin/account/profile"
+                                            >
+                                                Admin Account
+                                            </Link>
+                                        </MenuItem>
+                                        <MenuItem v-slot="{ active }">
+                                            <Link
+                                                class="px-2"
+                                                :class="{
+                                                    'bg-gray-800 hover:bg-gray-700 rounded-md':
+                                                        active ||
+                                                        $page.component.includes(
+                                                            'Admin/Products'
+                                                        ),
+                                                }"
+                                                href="/admin/products"
+                                            >
+                                                Products
+                                            </Link>
+                                        </MenuItem>
+                                    </template>
+                                    <template v-else>
+                                        <MenuItem v-slot="{ active }">
+                                            <Link
+                                                class="px-2"
+                                                :class="{
+                                                    'bg-gray-800 hover:bg-gray-700 rounded-md':
+                                                        active ||
+                                                        $page.component.includes(
+                                                            'User/Account'
+                                                        ),
+                                                }"
+                                                href="/user/account/profile"
+                                            >
+                                                My Account
+                                            </Link>
+                                        </MenuItem>
+                                        <MenuItem v-slot="{ active }">
+                                            <Link
+                                                class="px-2"
+                                                :class="{
+                                                    'bg-gray-800 hover:bg-gray-700 rounded-md':
+                                                        active ||
+                                                        $page.component.includes(
+                                                            'User/Purchase'
+                                                        ),
+                                                }"
+                                                href="/user/purchase/all"
+                                            >
+                                                My Purchase
+                                            </Link>
+                                        </MenuItem>
+                                    </template>
                                     <MenuItem>
                                         <Link
                                             class="mt-0.5 px-2 text-red-500 font-bold text-left hover:underline"
@@ -291,23 +340,78 @@
                                         v-if="$page.props.auth.isLoggedIn"
                                     >
                                         <div class="grid grid-cols-1 gap-7">
-                                            <Link
-                                                href="/user/account/profile"
-                                                class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
-                                                :class="
-                                                    $page.component.includes(
-                                                        'User/Account'
-                                                    )
-                                                        ? 'bg-gray-400 hover:bg-gray-600'
-                                                        : ''
-                                                "
-                                            >
-                                                <div
-                                                    class="text-base font-medium text-white"
+                                            <template v-if="$page.props.auth.user.isAdmin">
+                                                <Link
+                                                    href="/admin/account/profile"
+                                                    class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
+                                                    :class="
+                                                        $page.component.includes(
+                                                            'Admin/Account'
+                                                        )
+                                                            ? 'bg-gray-400 hover:bg-gray-600'
+                                                            : ''
+                                                    "
                                                 >
-                                                    My Account
-                                                </div>
-                                            </Link>
+                                                    <div
+                                                        class="text-base font-medium text-white"
+                                                    >
+                                                        Admin Account
+                                                    </div>
+                                                </Link>
+                                                <Link
+                                                    href="/admin/products"
+                                                    class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
+                                                    :class="
+                                                        $page.component.includes(
+                                                            'Admin/Products'
+                                                        )
+                                                            ? 'bg-gray-400 hover:bg-gray-600'
+                                                            : ''
+                                                    "
+                                                >
+                                                    <div
+                                                        class="text-base font-medium text-white"
+                                                    >
+                                                        Products
+                                                    </div>
+                                                </Link>
+                                            </template>
+                                            <template v-else>
+                                                <Link
+                                                    href="/user/account/profile"
+                                                    class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
+                                                    :class="
+                                                        $page.component.includes(
+                                                            'User/Account'
+                                                        )
+                                                            ? 'bg-gray-400 hover:bg-gray-600'
+                                                            : ''
+                                                    "
+                                                >
+                                                    <div
+                                                        class="text-base font-medium text-white"
+                                                    >
+                                                        My Account
+                                                    </div>
+                                                </Link>
+                                                <Link
+                                                    href="/user/account/profile"
+                                                    class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
+                                                    :class="
+                                                        $page.component.includes(
+                                                            'User/Account'
+                                                        )
+                                                            ? 'bg-gray-400 hover:bg-gray-600'
+                                                            : ''
+                                                    "
+                                                >
+                                                    <div
+                                                        class="text-base font-medium text-white"
+                                                    >
+                                                        My Purchase
+                                                    </div>
+                                                </Link>
+                                            </template>
                                             <Link
                                                 class="text-red-500 font-bold text-left hover:underline"
                                                 href="/logout"
