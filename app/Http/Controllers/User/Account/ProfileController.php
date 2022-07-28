@@ -45,7 +45,7 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    protected function updateNewProfileImage($request, $oldProfileImageUrl)
+    protected function updateNewProfileImage(Request $request, $oldProfileImageUrl)
     {
         $this->removeRecentProfileImage($oldProfileImageUrl);
 
