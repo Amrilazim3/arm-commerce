@@ -1,7 +1,7 @@
 <template>
     <Head title="Change Password" />
     <div class="lg:flex">
-        <UserNav />
+        <SideNav />
         <form
             class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
             @submit.prevent="changePassword"
@@ -144,11 +144,11 @@
 </template>
 
 <script>
-import UserNav from "../../../Shared/UserNav.vue";
+import SideNav from "../../../Shared/SideNav.vue";
 
 export default {
     components: {
-        UserNav,
+        SideNav,
     },
 
     data() {
