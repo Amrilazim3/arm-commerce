@@ -1,7 +1,7 @@
 <template>
     <Head title="Addresses" />
     <div class="lg:flex">
-        <UserNav />
+        <SideNav />
         <div
             class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
             :class="addresses.length == 0 ? 'mb-32' : 'mb-10'"
@@ -576,7 +576,7 @@
 </template>
 
 <script>
-import UserNav from "../../../Shared/UserNav.vue";
+import SideNav from "../../../Shared/SideNav.vue";
 
 import {
     Dialog,
@@ -589,7 +589,7 @@ import {
 
 export default {
     components: {
-        UserNav,
+        SideNav,
         Dialog,
         DialogPanel,
         DialogTitle,
