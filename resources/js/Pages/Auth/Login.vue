@@ -8,7 +8,7 @@
                 alt="arm-commerce-icon"
             />
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                Log in in to your account
+                Log in to your account
             </h2>
         </div>
 
