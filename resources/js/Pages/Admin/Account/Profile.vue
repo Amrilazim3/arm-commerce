@@ -142,38 +142,47 @@
                                 Email address
                             </label>
                             <div class="self-center mt-1 sm:mt-0 sm:col-span-2">
-                                <span class="max-w-lg sm:text-sm">{{
-                                    admin.email
-                                }}</span>
-                                <template v-if="admin.emailIsVerfied">
-                                    <span class="text-sm ml-1.5 text-blue-500"
-                                        >(verified)</span
-                                    >
-                                </template>
-                                <template v-else>
-                                    <span class="text-sm ml-1.5 text-gray-500"
-                                        >(unverified)</span
-                                    >
-                                    <span
-                                        ><button
-                                            class="text-sm font-medium ml-1.5"
-                                            :class="
-                                                emailVerification.resendButton
-                                                    .processing
-                                                    ? 'text-blue-300 cursor-not-allowed'
-                                                    : 'text-blue-500 hover:underline'
-                                            "
-                                            @click.prevent="requestResendLink"
+                                <div>
+                                    <span class="max-w-lg sm:text-sm">{{
+                                        admin.email
+                                    }}</span>
+                                    <template v-if="admin.emailIsVerfied">
+                                        <span class="text-sm ml-1.5 text-blue-500"
+                                            >(verified)</span
                                         >
-                                            resend link
-                                        </button></span
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-sm ml-1.5 text-gray-500"
+                                            >(unverified)</span
+                                        >
+                                        <span
+                                            ><button
+                                                class="text-sm font-medium ml-1.5"
+                                                :class="
+                                                    emailVerification.resendButton
+                                                        .processing
+                                                        ? 'text-blue-300 cursor-not-allowed'
+                                                        : 'text-blue-500 hover:underline'
+                                                "
+                                                :disabled="emailVerification.resendButton.processing"
+                                                @click.prevent="requestResendLink"
+                                            >
+                                                resend link
+                                            </button></span
+                                        >
+                                    </template>
+                                    <Link
+                                        class="font-medium text-sm ml-2.5 text-red-500 hover:underline"
+                                        href="/admin/account/email/change"
+                                        >Change</Link
                                     >
+                                </div>
+                                <template v-if="emailVerification.isSuccessResent">
+                                    <p class="text-sm text-green-600">Email verification successfully sent.</p>
                                 </template>
-                                <Link
-                                    class="font-medium text-sm ml-2.5 text-red-500 hover:underline"
-                                    href="/admin/account/email/change"
-                                    >Change</Link
-                                >
+                                <template v-if="emailVerification.isFailResent">
+                                    <p class="text-sm text-red-600">Email verification failed to sent. Please try again.</p>
+                                </template>
                             </div>
                         </div>
 
@@ -343,6 +352,8 @@ export default {
 
             emailVerification: {
                 resendButton: this.$inertia.form({}),
+                isSuccessResent: false,
+                isFailResent: false,
             },
         };
     },
@@ -407,7 +418,15 @@ export default {
         },
 
         requestResendLink() {
-            this.emailVerification.resendButton.post("/email/verify/send");
+            this.emailVerification.resendButton.post("/email/verify/send", {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.emailVerification.isSuccessResent = true;
+                },
+                onError: () => {
+                    this.emailVerification.isFailResent = true;
+                }
+            });
         },
     },
 };
