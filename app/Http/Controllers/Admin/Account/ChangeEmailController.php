@@ -11,6 +11,9 @@ use Inertia\Inertia;
 
 class ChangeEmailController extends Controller
 {
+    const ADMIN = 1;
+    const USER = 2;
+
     public function index()
     {
         return Inertia::render('Admin/Account/ChangeEmail');
@@ -28,8 +31,14 @@ class ChangeEmailController extends Controller
 
         $user->update([
             'email' => $request->newEmail,
-            'email_verified_at' => null
+            'email_verified_at' => null,
+            'service' => null,
+            'service_id' => null,
         ]);
+
+        // make this user become a normal user
+        $user = $user->roles->where('id', self::ADMIN)->first();
+        $user->pivot->update(['role_id' => self::USER]);
 
         SendEmailVerificationNotificationJob::dispatch($user);
 
