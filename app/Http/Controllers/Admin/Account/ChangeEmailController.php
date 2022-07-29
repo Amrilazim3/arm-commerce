@@ -40,7 +40,7 @@ class ChangeEmailController extends Controller
         $user = $user->roles->where('id', self::ADMIN)->first();
         $user->pivot->update(['role_id' => self::USER]);
 
-        SendEmailVerificationNotificationJob::dispatch($user);
+        SendEmailVerificationNotificationJob::dispatch(Auth::user());
 
         return redirect()->route('products.index')->with('success', 'email verification link has been sent');
     }
