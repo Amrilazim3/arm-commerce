@@ -87,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     requestResendLink: function requestResendLink() {
-      this.emailVerification.resendButton.post("/email/verify/resend");
+      this.emailVerification.resendButton.post("/email/verify/send");
     }
   }
 });
