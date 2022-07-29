@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Account\ProfileController as AdminProfileControll
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\Account\ChangePasswordController as AdminChangePasswordController;
 use App\Http\Controllers\Admin\Account\ChangeEmailController as AdminChangeEmailController;
+use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthServiceController;
 use App\Http\Controllers\Auth\PasswordController;
@@ -13,7 +14,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\AddressController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
-use App\Http\Controllers\User\Account\EmailVerificationController;
 use App\Http\Controllers\User\Account\ProfileController;
 use Illuminate\Support\Facades\Route;
 
