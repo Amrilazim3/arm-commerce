@@ -196,7 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.hasResendLink = false;
       this.failedResendLink = false;
-      this.resendButton.post("/email/verify/resend", {
+      this.resendButton.post("/email/verify/send", {
         onSuccess: function onSuccess() {
           _this.hasResendLink = true;
         },
