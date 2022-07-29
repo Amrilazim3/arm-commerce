@@ -2481,10 +2481,12 @@ var map = {
 	],
 	"./Admin/Account/ChangePassword": [
 		"./resources/js/Pages/Admin/Account/ChangePassword.vue",
+		"/js/vendor",
 		"resources_js_Pages_Admin_Account_ChangePassword_vue"
 	],
 	"./Admin/Account/ChangePassword.vue": [
 		"./resources/js/Pages/Admin/Account/ChangePassword.vue",
+		"/js/vendor",
 		"resources_js_Pages_Admin_Account_ChangePassword_vue"
 	],
 	"./Admin/Account/Profile": [
