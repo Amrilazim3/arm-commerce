@@ -5,6 +5,7 @@
 
     <section>
         <Notifications />
+        <VerificationNotice />
         <slot />
     </section>
 
@@ -16,13 +17,15 @@
 <script>
 import MainNav from "./Partials/MainNav.vue";
 import Footer from "./Partials/Footer.vue";
+import VerificationNotice from "./VerificationNotice.vue";
 import Notifications from "./Notifications.vue";
 
 export default {
     components: {
         MainNav,
         Footer,
-        Notifications
+        Notifications,
+        VerificationNotice
     },
 };
 </script>
