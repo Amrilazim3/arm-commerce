@@ -19,7 +19,7 @@ class ChangePasswordController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-
+        
         $request->validate([
             'oldPassword' => ['required', new VerifyPassword($user->email)],
             'newPassword' => ['required', 'min:7', new VerifyNewPassword($user->email)],
