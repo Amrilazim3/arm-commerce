@@ -821,20 +821,20 @@ select {
 .w-12 {
   width: 3rem;
 }
-.w-32 {
-  width: 8rem;
+.w-40 {
+  width: 10rem;
 }
 .w-2\/12 {
   width: 16.666667%;
+}
+.w-32 {
+  width: 8rem;
 }
 .w-auto {
   width: auto;
 }
 .w-4 {
   width: 1rem;
-}
-.w-40 {
-  width: 10rem;
 }
 .w-52 {
   width: 13rem;
@@ -1333,9 +1333,6 @@ select {
 }
 .pt-20 {
   padding-top: 5rem;
-}
-.pr-6 {
-  padding-right: 1.5rem;
 }
 .pl-2 {
   padding-left: 0.5rem;
