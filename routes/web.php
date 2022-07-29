@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
             Route::patch('/email/change', [AdminChangeEmailController::class, 'update'])->name('email.change.update');
 
             Route::get('/password/change', [AdminChangePasswordController::class, 'index'])->name('password.change.index');
-            Route::get('/password/change', [AdminChangePasswordController::class, 'update'])->name('password.change.update');
+            Route::patch('/password/change', [AdminChangePasswordController::class, 'update'])->name('password.change.update');
         });
 
         Route::resource('/products', AdminProductController::class);
