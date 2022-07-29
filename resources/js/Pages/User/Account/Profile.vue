@@ -406,7 +406,7 @@ export default {
         },
 
         requestResendLink() {
-            this.emailVerification.resendButton.post("/email/verify/resend");
+            this.emailVerification.resendButton.post("/email/verify/send");
         },
     },
 };
