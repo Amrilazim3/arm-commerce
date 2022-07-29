@@ -411,7 +411,7 @@ export default {
             this.hasResendLink = false;
             this.failedResendLink = false;
             
-            this.resendButton.post("/email/verify/resend", {
+            this.resendButton.post("/email/verify/send", {
                 onSuccess: () => {
                     this.hasResendLink = true;
                 },
