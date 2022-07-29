@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User\Account;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\SendEmailVerificationJob;
+use App\Jobs\SendEmailVerificationNotificationJob;
 use App\Rules\VerifyPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +31,7 @@ class ChangeEmailController extends Controller
             'email_verified_at' => null
         ]);
 
-        SendEmailVerificationJob::dispatch($user);
+        SendEmailVerificationNotificationJob::dispatch($user);
 
         return redirect()->route('products.index')->with('success', 'email verification link has been sent');
     }
