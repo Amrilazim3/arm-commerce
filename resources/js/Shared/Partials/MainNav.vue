@@ -49,10 +49,12 @@
                                             </span>
                                         </template>
                                     </span>
-                                    <span
-                                        class="font-bold text-sm self-center"
-                                        >{{ $page.props.auth.user.name }}</span
-                                    >
+                                    <span class="font-bold text-sm self-center">
+                                        {{ $page.props.auth.user.name }} 
+                                        <template v-if="$page.props.auth.user.isAdmin">
+                                            <span class="text-xs text-blue-500">(admin)</span>
+                                        </template>
+                                    </span>
                                 </MenuButton>
 
                                 <MenuItems
