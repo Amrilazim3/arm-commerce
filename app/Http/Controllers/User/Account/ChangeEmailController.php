@@ -28,7 +28,9 @@ class ChangeEmailController extends Controller
 
         $user->update([
             'email' => $request->newEmail,
-            'email_verified_at' => null
+            'email_verified_at' => null,
+            'service' => null,
+            'service_id' => null,
         ]);
 
         SendEmailVerificationNotificationJob::dispatch($user);
