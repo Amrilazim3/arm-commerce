@@ -147,8 +147,6 @@
 import SideNav from "../../../Shared/SideNav.vue";
 
 export default {
-    layout: null,
-
     components: {
         SideNav,
     },
