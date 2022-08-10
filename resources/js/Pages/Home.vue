@@ -222,5 +222,7 @@
 </template>
 
 <script>
-export default {};
+export default {
+    layout: null,
+};
 </script>
