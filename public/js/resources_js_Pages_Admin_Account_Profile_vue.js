@@ -14,7 +14,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_SideNav_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../Shared/SideNav.vue */ "./resources/js/Shared/SideNav.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  layout: null,
   components: {
     SideNav: _Shared_SideNav_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
