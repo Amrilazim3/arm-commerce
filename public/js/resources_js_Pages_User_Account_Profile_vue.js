@@ -1233,7 +1233,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["defaultOpen"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Disclosure, {
     key: 3,
-    defaultOpen: _ctx.$page.component.includes('User/Payment'),
+    defaultOpen: _ctx.$page.component.includes('User/Purchase'),
     as: "div"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref4) {
