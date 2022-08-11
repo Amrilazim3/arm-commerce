@@ -2676,6 +2676,46 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_Admin_Account_Profile_vue"
 	],
+	"./Admin/Products/Create": [
+		"./resources/js/Pages/Admin/Products/Create.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Create_vue"
+	],
+	"./Admin/Products/Create.vue": [
+		"./resources/js/Pages/Admin/Products/Create.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Create_vue"
+	],
+	"./Admin/Products/Edit": [
+		"./resources/js/Pages/Admin/Products/Edit.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Edit_vue"
+	],
+	"./Admin/Products/Edit.vue": [
+		"./resources/js/Pages/Admin/Products/Edit.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Edit_vue"
+	],
+	"./Admin/Products/Index": [
+		"./resources/js/Pages/Admin/Products/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Index_vue"
+	],
+	"./Admin/Products/Index.vue": [
+		"./resources/js/Pages/Admin/Products/Index.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Index_vue"
+	],
+	"./Admin/Products/Show": [
+		"./resources/js/Pages/Admin/Products/Show.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Show_vue"
+	],
+	"./Admin/Products/Show.vue": [
+		"./resources/js/Pages/Admin/Products/Show.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Show_vue"
+	],
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.vue",
 		"resources_js_Pages_Auth_ForgotPassword_vue"
