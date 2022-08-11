@@ -892,66 +892,96 @@ var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_41 = {
   "class": "flex space-x-2 self-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+};
+
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 640 512",
+  "class": "h-5 text-white fill-current"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M0 155.2C0 147.9 2.153 140.8 6.188 134.7L81.75 21.37C90.65 8.021 105.6 0 121.7 0H518.3C534.4 0 549.3 8.021 558.2 21.37L633.8 134.7C637.8 140.8 640 147.9 640 155.2C640 174.5 625.2 190.3 606.3 191.9C586.1 172.2 558.5 160 528 160C497.5 160 469.8 172.2 449.6 192H36.84C16.5 192 .0003 175.5 .0003 155.2H0zM384 224V464C384 490.5 362.5 512 336 512H112C85.49 512 64 490.5 64 464V224H128V384H320V224H384zM528 192C572.2 192 608 227.8 608 272V320C625.7 320 640 334.3 640 352V480C640 497.7 625.7 512 608 512H448C430.3 512 416 497.7 416 480V352C416 334.3 430.3 320 448 320V272C448 227.8 483.8 192 528 192zM528 240C510.3 240 496 254.3 496 272V320H560V272C560 254.3 545.7 240 528 240z"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 576 512",
   "class": "h-5 text-white fill-current"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
   d: "M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "0")], -1
+})], -1
 /* HOISTED */
 );
 
-var _hoisted_42 = {
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "0", -1
+/* HOISTED */
+);
+
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 576 512",
+  "class": "h-5 text-white fill-current"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "0", -1
+/* HOISTED */
+);
+
+var _hoisted_47 = {
   "class": "px-5 py-6"
 };
-var _hoisted_43 = {
+var _hoisted_48 = {
   key: 0,
   "class": "grid grid-cols-1 gap-7"
 };
 
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-base font-medium text-white"
 }, " Admin Account ", -1
 /* HOISTED */
 );
 
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-base font-medium text-white"
 }, " Products ", -1
 /* HOISTED */
 );
 
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-base font-medium text-white"
 }, " My Account ", -1
 /* HOISTED */
 );
 
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-base font-medium text-white"
 }, " My Purchase ", -1
 /* HOISTED */
 );
 
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Log out");
+var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Log out");
 
-var _hoisted_49 = {
+var _hoisted_54 = {
   key: 1,
   "class": "mt-6"
 };
 
-var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create an account ");
+var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create an account ");
 
-var _hoisted_51 = {
+var _hoisted_56 = {
   "class": "mt-6 text-base font-medium text-center text-gray-500"
 };
 
-var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Existing customer? ");
+var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Existing customer? ");
 
-var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Login ");
+var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Login ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
@@ -1234,14 +1264,54 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 _: 1
                 /* STABLE */
 
-              }), _hoisted_41])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" dynamic content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+              }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                key: 0
+              }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+                key: 0,
+                href: "/admin/account/profile"
+              }, {
+                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                  return [_hoisted_42];
+                }),
+                _: 1
+                /* STABLE */
+
+              })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                key: 1
+              }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+                href: "/user/account/profile"
+              }, {
+                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                  return [_hoisted_43];
+                }),
+                _: 1
+                /* STABLE */
+
+              }), _hoisted_44], 64
+              /* STABLE_FRAGMENT */
+              ))], 2112
+              /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+              )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                key: 1
+              }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+                href: "/login"
+              }, {
+                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                  return [_hoisted_45];
+                }),
+                _: 1
+                /* STABLE */
+
+              }), _hoisted_46], 64
+              /* STABLE_FRAGMENT */
+              ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 key: 0
               }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                 href: "/admin/account/profile",
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component.includes('Admin/Account') ? 'bg-gray-400 hover:bg-gray-600' : ''])
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_44];
+                  return [_hoisted_49];
                 }),
                 _: 1
                 /* STABLE */
@@ -1253,7 +1323,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component.includes('Admin/Products') ? 'bg-gray-400 hover:bg-gray-600' : ''])
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_45];
+                  return [_hoisted_50];
                 }),
                 _: 1
                 /* STABLE */
@@ -1269,7 +1339,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component.includes('User/Account') ? 'bg-gray-400 hover:bg-gray-600' : ''])
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_46];
+                  return [_hoisted_51];
                 }),
                 _: 1
                 /* STABLE */
@@ -1277,11 +1347,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }, 8
               /* PROPS */
               , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                href: "/user/account/profile",
-                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component.includes('User/Account') ? 'bg-gray-400 hover:bg-gray-600' : ''])
+                href: "/user/purchase",
+                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component.includes('User/Purchase') ? 'bg-gray-400 hover:bg-gray-600' : ''])
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_47];
+                  return [_hoisted_52];
                 }),
                 _: 1
                 /* STABLE */
@@ -1297,27 +1367,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 as: "button"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_48];
+                  return [_hoisted_53];
                 }),
                 _: 1
                 /* STABLE */
 
-              })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+              })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                 href: "/register",
                 "class": "flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:from-purple-700 hover:to-indigo-700"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_50];
+                  return [_hoisted_55];
                 }),
                 _: 1
                 /* STABLE */
 
-              }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+              }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_56, [_hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                 href: "/login",
                 "class": "text-white hover:underline"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_53];
+                  return [_hoisted_58];
                 }),
                 _: 1
                 /* STABLE */
@@ -1406,14 +1476,65 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 576 512",
+  "class": "h-5 text-white fill-current"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "0", -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \r\n        apply for \"desktop\" layout only \r\n        if user browsing in mobile size, \r\n        this content will be apply in MainNav component\r\n    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \r\n        apply for \"desktop\" layout only \r\n        if user browsing in mobile size, \r\n        this content will be apply in MainNav component\r\n    "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" public/shop-lock-solid.svg "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" the reason we use the svg tag because we can directly change the icon color "), _hoisted_6], 2112
+  }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 0
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" public/shop-lock-solid.svg "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" the reason we use the svg tag because we can directly change the icon color "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    href: "/admin/account/profile"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_6];
+    }),
+    _: 1
+    /* STABLE */
+
+  })], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" public/cart-shopping-solid.svg "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" the reason we use the svg tag because we can directly change the icon color "), _hoisted_7, _hoisted_8], 64
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" public/cart-shopping-solid.svg "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" the reason we use the svg tag because we can directly change the icon color "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    href: "/user/account/profile"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_7];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), _hoisted_8], 64
+  /* STABLE_FRAGMENT */
+  ))], 2112
+  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    href: "/login"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_9];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), _hoisted_10], 64
   /* STABLE_FRAGMENT */
   ))])])])], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
