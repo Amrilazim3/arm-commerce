@@ -427,7 +427,7 @@
             </template>
             <template v-else>
                 <Disclosure
-                    :defaultOpen="$page.component.includes('User/Payment')"
+                    :defaultOpen="$page.component.includes('User/Purchase')"
                     v-slot="{ open }"
                     as="div"
                 >
