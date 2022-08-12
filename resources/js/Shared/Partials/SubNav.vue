@@ -28,7 +28,7 @@
                     <template v-if="$page.props.auth.user.isAdmin">
                         <!-- public/shop-lock-solid.svg -->
                         <!-- the reason we use the svg tag because we can directly change the icon color -->
-                        <Link href="/admin/account/profile">
+                        <Link href="/admin/products">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 640 512"
