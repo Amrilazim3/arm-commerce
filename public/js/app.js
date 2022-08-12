@@ -1268,7 +1268,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 0
               }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
                 key: 0,
-                href: "/admin/account/profile"
+                href: "/admin/products"
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                   return [_hoisted_42];
@@ -1498,7 +1498,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" public/shop-lock-solid.svg "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" the reason we use the svg tag because we can directly change the icon color "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/admin/account/profile"
+    href: "/admin/products"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_6];
