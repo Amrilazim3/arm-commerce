@@ -12,12 +12,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        dd('index method');
+        return Inertia::render('Admin/Products/Index');
     }
 
     public function create()
     {
-        dd('create method');
+        return Inertia::render('Admin/Products/Create');
     }
 
     public function store(Request $request)
@@ -27,12 +27,12 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        dd('show method');
+        return Inertia::render('Admin/Products/Show');
     }
 
     public function edit(Product $product)
     {
-        dd('edit method');
+        return Inertia::render('Admin/Products/Edit');
     }
 
     public function update(Request $request, Product $product)
