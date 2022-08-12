@@ -734,6 +734,9 @@ select {
 .mr-2 {
   margin-right: 0.5rem;
 }
+.mb-20 {
+  margin-bottom: 5rem;
+}
 .mb-32 {
   margin-bottom: 8rem;
 }
@@ -1434,6 +1437,9 @@ select {
 }
 .font-thin {
   font-weight: 100;
+}
+.font-light {
+  font-weight: 300;
 }
 .uppercase {
   text-transform: uppercase;
