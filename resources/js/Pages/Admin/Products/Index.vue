@@ -2,7 +2,7 @@
     <Head title="Products" />
     <div class="lg:flex">
         <SideNav />
-        <div class="px-10 lg:pl-10 lg:pr-28 py-6 mb-20 lg:flex-1">
+        <div class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1" :class="products.data.length == 0 ? 'mb-20' : ''">
             <h1 class="text-xl font-semibold text-gray-900">Products Store</h1>
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -38,7 +38,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <template v-if="products.data.length == 100">
+                                    <template v-if="products.data.length == 0">
                                         <tr class="border-b">
                                             <td class="text-lg px-6 py-4">No products created yet.</td>
                                         </tr>
