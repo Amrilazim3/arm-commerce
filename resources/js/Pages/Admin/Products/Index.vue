@@ -38,150 +38,157 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="border-b">
-                                        <td
-                                            class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                        >
-                                            1
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Mark is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Fitness
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            20
-                                        </td>
-                                        <td 
-                                            class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                        >
-                                            <button
-                                                class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                    <template v-if="products.data.length == 100">
+                                        <tr class="border-b">
+                                            <td class="text-lg px-6 py-4">No products created yet.</td>
+                                        </tr>
+                                    </template>
+                                    <template v-else>
+                                        <tr class="border-b">
+                                            <td
+                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
                                             >
-                                                Edit
-                                            </button>
-                                            <button
-                                                class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                1
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b">
-                                        <td
-                                            class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                        >
-                                            2
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Mark is simply dummy 
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Gym
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            122
-                                        </td>
-                                        <td 
-                                            class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                        >
-                                            <button
-                                                class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                Mark is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                             >
-                                                Edit
-                                            </button>
-                                            <button
-                                                class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                Fitness
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b">
-                                        <td
-                                            class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                        >
-                                            3
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Whey protein
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Supplement
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            10
-                                        </td>
-                                        <td 
-                                            class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                        >
-                                            <button
-                                                class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                20
+                                            </td>
+                                            <td 
+                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                             >
-                                                Edit
-                                            </button>
-                                            <button
-                                                class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                <button
+                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td
+                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b">
-                                        <td
-                                            class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                        >
-                                            4
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Black King Skipping
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            Fitness
-                                        </td>
-                                        <td
-                                            class="text-sm text-gray-900 font-light px-6 py-4 whitespace-normal"
-                                        >
-                                            15
-                                        </td>
-                                        <td 
-                                            class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                        >
-                                            <button
-                                                class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                2
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                             >
-                                                Edit
-                                            </button>
-                                            <button
-                                                class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                Mark is simply dummy 
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                             >
-                                                Delete
-                                            </button>
-                                        </td>
-                                    </tr>
+                                                Gym
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
+                                            >
+                                                122
+                                            </td>
+                                            <td 
+                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
+                                            >
+                                                <button
+                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td
+                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
+                                            >
+                                                3
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
+                                            >
+                                                Whey protein
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
+                                            >
+                                                Supplement
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
+                                            >
+                                                10
+                                            </td>
+                                            <td 
+                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
+                                            >
+                                                <button
+                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td
+                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
+                                            >
+                                                4
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
+                                            >
+                                                Black King Skipping
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
+                                            >
+                                                Fitness
+                                            </td>
+                                            <td
+                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
+                                            >
+                                                15
+                                            </td>
+                                            <td 
+                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
+                                            >
+                                                <button
+                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </template>
                                 </tbody>
                             </table>
                         </div>
@@ -196,6 +203,10 @@
 import SideNav from "../../../Shared/SideNav.vue";
 
 export default {
+    props: {
+        products: Object
+    },
+
     components: {
         SideNav,
     },
