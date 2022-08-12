@@ -329,7 +329,7 @@
                                             >
                                                 <template v-if="$page.props.auth.isLoggedIn">
                                                     <template v-if="$page.props.auth.user.isAdmin">
-                                                        <Link href="/admin/account/profile">
+                                                        <Link href="/admin/products">
                                                             <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 0 640 512"
