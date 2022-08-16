@@ -2070,15 +2070,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_HideSubNavLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Shared/HideSubNavLayout */ "./resources/js/Shared/HideSubNavLayout.vue");
 /* harmony import */ var notiwind__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! notiwind */ "./node_modules/notiwind/dist/index.esm.js");
 /* harmony import */ var _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @vuepic/vue-datepicker */ "./node_modules/@vuepic/vue-datepicker/dist/vue-datepicker.es.js");
-/* harmony import */ var vue_media_upload__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-media-upload */ "./node_modules/vue-media-upload/index.js");
-/* harmony import */ var _vuepic_vue_datepicker_dist_main_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @vuepic/vue-datepicker/dist/main.css */ "./node_modules/@vuepic/vue-datepicker/dist/main.css");
-/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../css/app.css */ "./resources/css/app.css");
+/* harmony import */ var _vuepic_vue_datepicker_dist_main_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @vuepic/vue-datepicker/dist/main.css */ "./node_modules/@vuepic/vue-datepicker/dist/main.css");
+/* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/app.css */ "./resources/css/app.css");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 
 
@@ -2136,7 +2134,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       render: function render() {
         return (0,vue__WEBPACK_IMPORTED_MODULE_1__.h)(App, props);
       }
-    }).use(plugin).use(notiwind__WEBPACK_IMPORTED_MODULE_6__["default"]).component("Link", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link).component("Head", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head).component("Datepicker", _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_7__["default"]).component("UploadMedia", vue_media_upload__WEBPACK_IMPORTED_MODULE_8__.UploadMedia).component("UpdateMedia", vue_media_upload__WEBPACK_IMPORTED_MODULE_8__.UpdateMedia).mount(el);
+    }).use(plugin).use(notiwind__WEBPACK_IMPORTED_MODULE_6__["default"]).component("Link", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link).component("Head", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head).component("Datepicker", _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_7__["default"]).mount(el);
   },
   title: function title(_title) {
     return "Arm-commerce | ".concat(_title);
