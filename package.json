@@ -13,6 +13,7 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.0",
+        "@tailwindcss/typography": "^0.5.4",
         "autoprefixer": "^10.4.4",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
@@ -27,6 +28,10 @@
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
         "@inertiajs/server": "^0.1.0",
+        "@tiptap/extension-floating-menu": "^2.0.0-beta.56",
+        "@tiptap/extension-placeholder": "^2.0.0-beta.53",
+        "@tiptap/starter-kit": "^2.0.0-beta.191",
+        "@tiptap/vue-3": "^2.0.0-beta.96",
         "@vue/server-renderer": "^3.2.33",
         "@vuepic/vue-datepicker": "^3.2.0",
         "notiwind": "^1.2.5",
