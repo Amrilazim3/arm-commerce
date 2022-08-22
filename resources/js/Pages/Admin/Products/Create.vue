@@ -4,9 +4,13 @@
         <SideNav />
         <div class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1">
             <h1 class="text-xl font-semibold text-gray-900">Create product</h1>
-            <div class="mt-6 space-y-3 divide-y divide-gray-300">
-                <div class="md:flex">
-                    <div class="md:w-1/2">
+            <form
+                class="mt-6 space-y-3 divide-y divide-gray-300"
+                @submit.prevent="createProduct()"
+            >
+                <div class="lg:flex">
+                    <!-- left side -->
+                    <div class="lg:w-1/2 pr-6">
                         <div class="mb-3 min-w-full">
                             <label
                                 for="product-name"
@@ -15,27 +19,21 @@
                             >
                             <input
                                 type="text"
-                                class="form-control block w-full lg:w-3/4 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
                                 id="product-name"
-                                placeholder="Enter product name"
+                                placeholder="Heavy skipping rope"
                                 v-model="product.name"
+                                required
                             />
                         </div>
 
-                        <!-- use quill editor -->
                         <div class="mb-3 min-w-full">
                             <label
                                 for="product-description"
                                 class="form-label font-medium inline-block mb-2 text-gray-700"
                                 >Product Description</label
                             >
-                            <textarea
-                                class="form-control block w-full lg:w-3/4 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                id="product-description"
-                                rows="5"
-                                placeholder="Describe your product here"
-                                v-model="product.description"
-                            ></textarea>
+                            <Tiptap v-model="product.description" />
                         </div>
 
                         <div class="mb-3 min-w-full">
@@ -44,123 +42,291 @@
                                 class="form-label font-medium inline-block mb-2 text-gray-700"
                                 >Product Category</label
                             >
-                            <input
-                                type="text"
-                                class="form-control block w-full lg:w-3/4 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                list="categories"
+                            <Listbox
                                 v-model="product.category"
-                                placeholder="Select product category"
-                            />
-                            <datalist id="categories">
-                                <option value="Fitness">Fitness</option>
-                                <option value="Gym">Gym</option>
-                                <option value="Supplement">Supplement</option>
-                            </datalist>
+                                :disabled="isCustomCategory"
+                            >
+                                <div class="relative">
+                                    <ListboxButton
+                                        class="relative w-full lg:w-1/2 border rounded-md py-2 pl-3 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm"
+                                        :class="
+                                            isCustomCategory
+                                                ? 'cursor-not-allowed bg-gray-200'
+                                                : 'cursor-pointer bg-white'
+                                        "
+                                    >
+                                        <span class="block truncate">{{
+                                            product.category == ""
+                                                ? "Select category"
+                                                : product.category
+                                        }}</span>
+                                        <span
+                                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
+                                        >
+                                            <SelectorIcon
+                                                class="h-5 w-5 text-gray-400"
+                                                aria-hidden="true"
+                                            />
+                                        </span>
+                                    </ListboxButton>
+
+                                    <transition
+                                        leave-active-class="transition duration-100 ease-in"
+                                        leave-from-class="opacity-100"
+                                        leave-to-class="opacity-0"
+                                    >
+                                        <ListboxOptions
+                                            class="mt-1 max-h-60 w-1/2 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                                            :class="
+                                                isCustomCategory
+                                                    ? 'hidden'
+                                                    : 'absolute'
+                                            "
+                                        >
+                                            <ListboxOption
+                                                v-slot="{ active, selected }"
+                                                v-for="variant in variants"
+                                                :key="variant.id"
+                                                :value="variant.name"
+                                                as="template"
+                                            >
+                                                <li
+                                                    :class="[
+                                                        active
+                                                            ? 'bg-indigo-100 text-gray-900'
+                                                            : 'text-gray-900',
+                                                        'relative cursor-pointer select-none py-2 pl-10 pr-4',
+                                                    ]"
+                                                >
+                                                    <span
+                                                        :class="[
+                                                            selected
+                                                                ? 'font-medium'
+                                                                : 'font-normal',
+                                                            'block truncate',
+                                                        ]"
+                                                    >
+                                                        {{ variant.name }}
+                                                    </span>
+                                                    <span
+                                                        v-if="selected"
+                                                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
+                                                    >
+                                                        <CheckIcon
+                                                            class="h-5 w-5"
+                                                            aria-hidden="true"
+                                                        />
+                                                    </span>
+                                                </li>
+                                            </ListboxOption>
+                                            <ListboxOption>
+                                                <li
+                                                    @click.prevent="
+                                                        isCustomCategory = true
+                                                    "
+                                                    class="relative cursor-pointer select-none py-2 w-full pl-10 pr-4 hover:bg-indigo-100"
+                                                >
+                                                    <span
+                                                        class="relative cursor-pointer select-none py-2 pr-4"
+                                                        >Custom category</span
+                                                    >
+                                                    <span
+                                                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
+                                                        ><PlusSmIcon
+                                                            class="h-5 w-5"
+                                                    /></span>
+                                                </li>
+                                            </ListboxOption>
+                                        </ListboxOptions>
+                                    </transition>
+                                </div>
+                            </Listbox>
                         </div>
 
-                        <!-- still in research -->
-                        <div class="flex mb-3">
-                            <button
-                                class="inline-block px-6 py-2.5 bg-indigo-600 text-white leading-tight rounded-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out"
-                            >
-                                add variation
-                            </button>
-                        </div>
+                        <template v-if="isCustomCategory">
+                            <div class="mb-3 min-w-full">
+                                <label
+                                    for="product-description"
+                                    class="form-label font-medium inline-block mb-2 text-gray-700"
+                                    >Custom category</label
+                                >
+                                <div class="flex space-x-3">
+                                    <input
+                                        type="text"
+                                        class="form-control block w-full lg:w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                        id="product-name"
+                                        placeholder="Heavy skipping rope"
+                                        v-model="product.category"
+                                        required
+                                    />
+                                    <XCircleIcon
+                                        @click.prevent="
+                                            isCustomCategory = false
+                                        "
+                                        class="h-5 w-5 cursor-pointer self-center text-indigo-500"
+                                    />
+                                </div>
+                            </div>
+                        </template>
 
-                        <div class="mb-3 min-w-">
-                            <label
-                                for="product-stock"
-                                class="form-label font-medium inline-block mb-2 text-gray-700"
-                                >Product stock</label
-                            >
-                            <input
-                                type="number"
-                                class="form-control block w-1/3 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                id="product-stock"
-                                min="0"
-                                placeholder="Enter your available stock"
-                                v-model="product.stock"
-                            />
-                        </div>
+                        <div class="mb-3 min-w-full flex justify-between">
+                            <div>
+                                <label
+                                    for="product-stock"
+                                    class="form-label font-medium inline-block mb-2 text-gray-700"
+                                    >Product stock</label
+                                >
+                                <input
+                                    type="number"
+                                    class="form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                    id="product-stock"
+                                    min="0"
+                                    placeholder="500"
+                                    v-model="product.stock"
+                                    required
+                                />
+                            </div>
 
-                        <div class="mb-3 min-w-">
-                            <label
-                                for="product-price"
-                                class="form-label font-medium inline-block mb-2 text-gray-700"
-                                >Product price</label
-                            >
-                            <input
-                                type="number"
-                                class="form-control block w-1/3 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                id="product-price"
-                                min="0"
-                                placeholder="Enter product price"
-                                v-model="product.price"
-                            />
+                            <div>
+                                <label
+                                    for="product-price"
+                                    class="form-label font-medium inline-block mb-2 text-gray-700"
+                                    >Product price</label
+                                >
+                                <input
+                                    type="number"
+                                    class="form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                    id="product-price"
+                                    min="0"
+                                    placeholder="0.00"
+                                    v-model="product.price"
+                                    required
+                                />
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mt-10 md:-mt-2 md:w-1/2">
-                        <label
-                            for="product-images"
-                            class="flex flex-col cursor-pointer w-4/6 bg-white py-4 border border-gray-300 rounded-md-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            <input
-                                multiple
-                                type="file"
-                                id="product-images"
-                                name="product-images"
-                                accept="image/*"
-                                class="hidden"
-                                @change="handleProductImageUpload($event)"
-                            />
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"
-                                class="h-6 self-center"
+                    <!-- right side -->
+                    <div class="mt-10 lg:w-1/2 lg:mt-0 pl-6">
+                        <div>
+                            <label
+                                for="product-name"
+                                class="form-label font-medium inline-block mb-2 text-gray-700"
+                                >Media</label
                             >
-                                <path
-                                    d="M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z"
+                            <label
+                                for="product-images"
+                                class="flex flex-col cursor-pointer w-full bg-white py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                <input
+                                    multiple
+                                    type="file"
+                                    id="product-images"
+                                    name="product-images"
+                                    accept="image/*"
+                                    class="hidden"
+                                    @change="handleProductImageUpload($event)"
                                 />
-                            </svg>
-                            <p class="text-center">
-                                Upload product images
-                            </p>
-                        </label>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512"
+                                    class="h-6 self-center"
+                                >
+                                    <path
+                                        d="M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z"
+                                    />
+                                </svg>
+                                <p class="text-center">
+                                    Upload product images / videos
+                                </p>
+                            </label>
+                        </div>
 
+                        <!-- display selected image/video -->
                         <div class="mt-6">
-                            <div class="flex w-4/6 justify-between mb-2 bg-white border border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300" v-for="(image, index) in product.images" :key="index">
+                            <div
+                                class="flex w-full justify-between mb-2 bg-white border border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300"
+                                v-for="(image, index) in product.images"
+                                :key="index"
+                            >
                                 <div class="px-3">{{ image.name }}</div>
-                                <button class="px-3 hover:text-red-500" @click.prevent="product.images.splice(index, 1)">delete</button>
+                                <button
+                                    class="px-3 hover:text-red-500"
+                                    @click.prevent="
+                                        product.images.splice(index, 1)
+                                    "
+                                >
+                                    remove
+                                </button>
                             </div>
+                        </div>
+
+                        <!-- still in research -->
+                        <div class="mt-8">
+                            <!-- use checkbox -->
                         </div>
                     </div>
                 </div>
 
                 <div class="flex pt-4 justify-end">
                     <button
-                        type="button"
-                        class="inline-block px-4 py-2.5 bg-indigo-600 text-white font-medium text-sm leading-tight rounded-md shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out"
-                        @click.prevent="createProduct"
+                        type="submit"
+                        class="inline-block px-4 py-2.5 bg-indigo-600 text-white font-medium text-sm leading-tight rounded-md shadow-md"
+                        :disabled="!product.isDirty || product.processing"
+                        :class="
+                            !product.isDirty || product.processing
+                                ? 'bg-indigo-400 cursor-not-allowed'
+                                : 'hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out'
+                        "
                     >
-                        Create
+                        Save
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>
 
 <script>
 import SideNav from "../../../Shared/SideNav.vue";
+import Tiptap from "../../../Shared/Tiptap.vue";
+import {
+    Listbox,
+    ListboxLabel,
+    ListboxButton,
+    ListboxOptions,
+    ListboxOption,
+} from "@headlessui/vue";
+import {
+    CheckIcon,
+    SelectorIcon,
+    PlusSmIcon,
+    XCircleIcon,
+} from "@heroicons/vue/solid";
 
 export default {
     components: {
         SideNav,
+        Tiptap,
+        Listbox,
+        ListboxLabel,
+        ListboxButton,
+        ListboxOptions,
+        ListboxOption,
+        CheckIcon,
+        SelectorIcon,
+        PlusSmIcon,
+        XCircleIcon,
+    },
+
+    props: {
+        variants: Object,
     },
 
     data() {
         return {
+            isCustomCategory: false,
+            isProductOptions: false,
             product: this.$inertia.form({
                 name: "",
                 description: "",
@@ -179,8 +345,10 @@ export default {
 
     methods: {
         handleProductImageUpload(event) {
-            console.log(event.target.files[0]);
-            this.product.images = [ ...this.product.images, event.target.files[0]  ];
+            Object.entries(event.target.files).map((item) => {
+                this.product.images = [...this.product.images, item[1]];
+            });
+
             // send the received image to the back-end for each image.
         },
 
@@ -208,6 +376,10 @@ export default {
                     );
                 },
             });
+        },
+
+        addCustomCategory() {
+            console.log("custom cate");
         },
 
         /**
