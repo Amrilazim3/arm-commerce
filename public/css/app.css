@@ -1465,6 +1465,12 @@ select {
 .h-1\/2 {
   height: 50%;
 }
+.h-40 {
+  height: 10rem;
+}
+.h-72 {
+  height: 18rem;
+}
 .max-h-60 {
   max-height: 15rem;
 }
@@ -2063,6 +2069,14 @@ select {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
+.px-1\.5 {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
 .pt-0\.5 {
   padding-top: 0.125rem;
 }
@@ -2417,6 +2431,10 @@ select {
 .checked\:border-blue-600:checked {
   --tw-border-opacity: 1;
   border-color: rgb(37 99 235 / var(--tw-border-opacity));
+}
+.checked\:border-indigo-600:checked {
+  --tw-border-opacity: 1;
+  border-color: rgb(79 70 229 / var(--tw-border-opacity));
 }
 .checked\:bg-indigo-600:checked {
   --tw-bg-opacity: 1;
