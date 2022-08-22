@@ -1,5 +1,5 @@
 <template>
-    <!-- small screen -->
+    <!-- sm screen -->
     <div class="lg:hidden px-10 py-6 flex space-x-3">
         <Menu as="div">
             <div>
@@ -167,7 +167,7 @@
                                         : '',
                                 ]"
                             >
-                                All
+                                Products
                             </Link>
                         </MenuItem>
                         <MenuItem>
@@ -433,7 +433,7 @@
                                             : ''
                                     "
                                 >
-                                    All
+                                    Products
                                 </Link>
                             </li>
                             <li>
@@ -575,7 +575,7 @@ export default {
 
     methods: {
         closeOther(except) {
-            document.querySelectorAll('[id^="closure-"]').forEach((elem) => {
+            document.querySelectorProducts('[id^="closure-"]').forEach((elem) => {
                 if (
                     except !== elem.id &&
                     elem.getAttribute("aria-expanded") == "true"
