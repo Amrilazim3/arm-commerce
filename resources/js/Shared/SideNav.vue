@@ -167,7 +167,7 @@
                                         : '',
                                 ]"
                             >
-                                Products
+                                Inventory
                             </Link>
                         </MenuItem>
                         <MenuItem>
@@ -433,7 +433,7 @@
                                             : ''
                                     "
                                 >
-                                    Products
+                                    Inventory
                                 </Link>
                             </li>
                             <li>
@@ -575,7 +575,7 @@ export default {
 
     methods: {
         closeOther(except) {
-            document.querySelectorProducts('[id^="closure-"]').forEach((elem) => {
+            document.querySelectorAll('[id^="closure-"]').forEach((elem) => {
                 if (
                     except !== elem.id &&
                     elem.getAttribute("aria-expanded") == "true"
