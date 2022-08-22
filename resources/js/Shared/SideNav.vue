@@ -167,7 +167,7 @@
                                         : '',
                                 ]"
                             >
-                                Inventory
+                                Store
                             </Link>
                         </MenuItem>
                         <MenuItem>
@@ -433,7 +433,7 @@
                                             : ''
                                     "
                                 >
-                                    Inventory
+                                    Store
                                 </Link>
                             </li>
                             <li>
