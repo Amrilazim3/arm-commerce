@@ -155,13 +155,14 @@
                                         type="text"
                                         class="form-control block w-full lg:w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
                                         id="product-name"
-                                        placeholder="Heavy skipping rope"
+                                        placeholder="Lifestyle"
                                         v-model="product.category"
                                         required
                                     />
                                     <XCircleIcon
                                         @click.prevent="
-                                            isCustomCategory = false
+                                            isCustomCategory = false;
+                                            product.category = '';
                                         "
                                         class="h-5 w-5 cursor-pointer self-center text-indigo-500"
                                     />
@@ -169,7 +170,9 @@
                             </div>
                         </template>
 
-                        <div class="mb-3 min-w-full flex justify-between">
+                        <div
+                            class="mb-3 min-w-full flex space-x-3 lg:space-x-6"
+                        >
                             <div>
                                 <label
                                     for="product-stock"
@@ -207,7 +210,7 @@
                     </div>
 
                     <!-- right side -->
-                    <div class="mt-10 lg:w-1/2 lg:mt-0 pl-6">
+                    <div class="mt-10 lg:w-1/2 lg:mt-0 lg:pl-6">
                         <div>
                             <label
                                 for="product-name"
@@ -215,17 +218,17 @@
                                 >Media</label
                             >
                             <label
-                                for="product-images"
+                                for="product-media"
                                 class="flex flex-col cursor-pointer w-full bg-white py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 <input
                                     multiple
                                     type="file"
-                                    id="product-images"
-                                    name="product-images"
-                                    accept="image/*"
+                                    id="product-media"
+                                    name="product-media"
+                                    accept="image/*,video/*"
                                     class="hidden"
-                                    @change="handleProductImageUpload($event)"
+                                    @change="handleProductMediaUpload($event)"
                                 />
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -243,27 +246,62 @@
                         </div>
 
                         <!-- display selected image/video -->
-                        <div class="mt-6">
+                        <div
+                            class="mt-6 bg-white py-4 px-2 h-72 border rounded-md overflow-y-scroll"
+                            v-if="previewMediaUploaded.length !== 0"
+                        >
                             <div
-                                class="flex w-full justify-between mb-2 bg-white border border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300"
-                                v-for="(image, index) in product.images"
+                                class="flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300"
+                                v-for="(media, index) in previewMediaUploaded"
                                 :key="index"
                             >
-                                <div class="px-3">{{ image.name }}</div>
+                                <template v-if="media[1].includes('video')">
+                                    <video
+                                        :src="media[0]"
+                                        controls
+                                        class="pl-6 object-contain w-full h-52"
+                                    />
+                                </template>
+                                <template v-else>
+                                    <img
+                                        :src="media[0]"
+                                        :alt="index"
+                                        class="pl-6 object-contain w-full h-52"
+                                    />
+                                </template>
                                 <button
                                     class="px-3 hover:text-red-500"
                                     @click.prevent="
-                                        product.images.splice(index, 1)
+                                        product.media.splice(index, 1);
+                                        previewMediaUploaded.splice(index, 1);
                                     "
                                 >
-                                    remove
+                                    <TrashIcon class="h-5 w-5" />
                                 </button>
                             </div>
                         </div>
 
                         <!-- still in research -->
                         <div class="mt-8">
-                            <!-- use checkbox -->
+                            <label
+                                for="product-name"
+                                class="form-label font-medium inline-block mb-2 text-gray-700"
+                                >Variations</label
+                            >
+                            <div>
+                                <input
+                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                    type="checkbox"
+                                    v-model="isHasProductVariations"
+                                    id="product-variations"
+                                />
+                                <label
+                                    class="form-check-label inline-block text-gray-800"
+                                    for="product-variations"
+                                >
+                                    This product has variations, like size or color
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -302,6 +340,7 @@ import {
     SelectorIcon,
     PlusSmIcon,
     XCircleIcon,
+    TrashIcon,
 } from "@heroicons/vue/solid";
 
 export default {
@@ -317,6 +356,7 @@ export default {
         SelectorIcon,
         PlusSmIcon,
         XCircleIcon,
+        TrashIcon,
     },
 
     props: {
@@ -326,15 +366,16 @@ export default {
     data() {
         return {
             isCustomCategory: false,
-            isProductOptions: false,
+            isHasProductVariations: false,
             product: this.$inertia.form({
                 name: "",
                 description: "",
                 category: "",
                 stock: null,
                 price: null,
-                images: [],
+                media: [],
             }),
+            previewMediaUploaded: [],
 
             // variant: '',
             // variants: [],
@@ -344,9 +385,28 @@ export default {
     },
 
     methods: {
-        handleProductImageUpload(event) {
+        handleProductMediaUpload(event) {
             Object.entries(event.target.files).map((item) => {
-                this.product.images = [...this.product.images, item[1]];
+                this.product.media.push(item[1]);
+
+                // send data to the back end to be validate
+
+                if (item[1].type == "video") {
+                    let reader = new FileReader();
+                    reader.readAsDataURL(item[1]);
+                    reader.addEventListener("load", function () {
+                        this.previewMediaUploaded.push([
+                            reader.result,
+                            item[1].type,
+                        ]);
+                    });
+                    return;
+                }
+
+                this.previewMediaUploaded.push([
+                    URL.createObjectURL(item[1]),
+                    item[1].type,
+                ]);
             });
 
             // send the received image to the back-end for each image.
@@ -376,10 +436,6 @@ export default {
                     );
                 },
             });
-        },
-
-        addCustomCategory() {
-            console.log("custom cate");
         },
 
         /**
