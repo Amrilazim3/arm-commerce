@@ -88,7 +88,7 @@ export default {
             ],
             editorProps: {
                 attributes: {
-                    class: "form-control prose prose-sm block w-full h-52 overflow-y-scroll px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
+                    class: "form-control prose prose-sm block w-full h-52 overflow-y-scroll px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
                 },
             },
             content: this.modelValue,
