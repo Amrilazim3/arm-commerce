@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -19,12 +20,18 @@ class ProductController extends Controller
 
     public function create()
     {
-        return Inertia::render('Admin/Products/Create');
+        return Inertia::render('Admin/Products/Create', [
+            'variants' => Variant::take(3)->get()
+        ]);
     }
 
     public function store(Request $request)
     {
-        dd('store  method');
+        if ($request->allFiles()) {
+            return $request->file('image');            
+        } 
+        
+        return redirect()->back();
     }
 
     public function show(Product $product)
@@ -45,5 +52,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         dd('destroy method');
+    }
+
+    protected function handleMediaUpload()
+    {
+        return redirect()->back();
     }
 }
