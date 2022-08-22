@@ -3,14 +3,14 @@
     <div class="lg:flex">
         <SideNav />
         <div class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1" :class="products.data.length == 0 ? 'mb-20' : ''">
-            <h1 class="text-xl font-semibold text-gray-900">Products Store</h1>
+            <h1 class="text-xl font-semibold text-gray-900">Store</h1>
             <template v-if="products.data.length == 0">
                 <div class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center">
                     <div>
-                        <h3 class="text-xl text-gray-800 text-left mb-6">You don't have any product to see</h3>
+                        <h3 class="text-xl font-bold text-gray-800 text-left mb-6">You don't have any product to see</h3>
                         <p class="text-sm text-gray-400 text-left">You need some product in order to see it here</p>
-                        <button class="mt-6 px-3 py-2.5 bg-indigo-500 hover:bg-indigo-700 text-white text-sm border rounded-md">
-                            <a href="/admin/products/create">Create product now</a>
+                        <button class="mt-6 font-semibold px-3 py-2.5 bg-indigo-500 hover:bg-indigo-700 text-white text-sm border rounded-md">
+                            <Link href="/admin/products/create">Create product now</Link>
                         </button>
                     </div>
                 </div>
