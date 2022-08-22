@@ -1459,6 +1459,12 @@ select {
 .h-7 {
   height: 1.75rem;
 }
+.h-10 {
+  height: 2.5rem;
+}
+.h-1\/2 {
+  height: 50%;
+}
 .max-h-60 {
   max-height: 15rem;
 }
@@ -1503,6 +1509,9 @@ select {
 }
 .w-52 {
   width: 13rem;
+}
+.w-10 {
+  width: 2.5rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1932,6 +1941,10 @@ select {
 }
 .fill-current {
   fill: currentColor;
+}
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .object-cover {
   -o-object-fit: cover;
@@ -3013,6 +3026,10 @@ select {
 
   .lg\:pr-28 {
     padding-right: 7rem;
+  }
+
+  .lg\:pl-6 {
+    padding-left: 1.5rem;
   }
 }
 @media (min-width: 1280px) {
