@@ -4,46 +4,52 @@
         <SideNav />
         <div class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1" :class="products.data.length == 0 ? 'mb-20' : ''">
             <h1 class="text-xl font-semibold text-gray-900">Products Store</h1>
-            <div class="flex flex-col">
-                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="overflow-hidden">
-                            <table class="min-w-full">
-                                <thead class="border-b">
-                                    <tr>
-                                        <th
-                                            scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                        >
-                                            #
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                        >
-                                            Name
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                        >
-                                            Category
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                        >
-                                            Stock
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <template v-if="products.data.length == 0">
-                                        <tr class="border-b">
-                                            <td class="text-lg px-6 py-4">No products created yet.</td>
+            <template v-if="products.data.length == 0">
+                <div class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center">
+                    <div>
+                        <h3 class="text-xl text-gray-800 text-left mb-6">You don't have any product to see</h3>
+                        <p class="text-sm text-gray-400 text-left">You need some product in order to see it here</p>
+                        <button class="mt-6 px-3 py-2.5 bg-indigo-500 hover:bg-indigo-700 text-white text-sm border rounded-md">
+                            <a href="/admin/products/create">Create product now</a>
+                        </button>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="flex flex-col">
+                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                            <div class="overflow-hidden">
+                                <table class="min-w-full">
+                                    <thead class="border-b">
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                            >
+                                                #
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                            >
+                                                Name
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                            >
+                                                Category
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                            >
+                                                Stock
+                                            </th>
                                         </tr>
-                                    </template>
-                                    <template v-else>
+                                    </thead>
+                                    <tbody>
                                         <tr class="border-b">
                                             <td
                                                 class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
@@ -188,13 +194,13 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                    </template>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
     </div>
 </template>
