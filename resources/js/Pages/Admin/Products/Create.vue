@@ -247,7 +247,7 @@
 
                         <!-- display selected image/video -->
                         <div
-                            class="mt-6 bg-white py-4 px-2 h-72 border rounded-md overflow-y-scroll"
+                            class="mt-6 bg-white py-4 px-2 h-64 border rounded-md overflow-y-scroll"
                             v-if="previewMediaUploaded.length !== 0"
                         >
                             <div
@@ -272,8 +272,7 @@
                                 <button
                                     class="px-3 hover:text-red-500"
                                     @click.prevent="
-                                        product.media.splice(index, 1);
-                                        previewMediaUploaded.splice(index, 1);
+                                        handleProductMediaRemove(index)
                                     "
                                 >
                                     <TrashIcon class="h-5 w-5" />
@@ -299,7 +298,8 @@
                                     class="form-check-label inline-block text-gray-800"
                                     for="product-variations"
                                 >
-                                    This product has variations, like size or color
+                                    This product has variations, like size or
+                                    color
                                 </label>
                             </div>
                         </div>
@@ -386,30 +386,91 @@ export default {
 
     methods: {
         handleProductMediaUpload(event) {
-            Object.entries(event.target.files).map((item) => {
-                this.product.media.push(item[1]);
+            var uploadedMedia = event.target.files;
 
-                // send data to the back end to be validate
+            // send data to the back end to be validate
+            this.$inertia.post(
+                "temp/media",
+                {
+                    media: uploadedMedia,
+                },
+                {
+                    preserveScroll: true,
+                    onSuccess: (response) => {
+                        Object.entries(uploadedMedia).map((item, index) => {
+                            this.product.media.push(
+                                response.props.flash.success[index]
+                            );
 
-                if (item[1].type == "video") {
-                    let reader = new FileReader();
-                    reader.readAsDataURL(item[1]);
-                    reader.addEventListener("load", function () {
-                        this.previewMediaUploaded.push([
-                            reader.result,
-                            item[1].type,
-                        ]);
-                    });
-                    return;
+                            if (item[1].type == "video") {
+                                let reader = new FileReader();
+                                reader.readAsDataURL(item[1]);
+                                reader.addEventListener("load", function () {
+                                    this.previewMediaUploaded.push([
+                                        reader.result,
+                                        item[1].type,
+                                    ]);
+                                });
+                                return;
+                            }
+                            this.previewMediaUploaded.push([
+                                URL.createObjectURL(item[1]),
+                                item[1].type,
+                            ]);
+                        });
+                        this.$notify(
+                            {
+                                group: "success",
+                                title: "Success",
+                                text: "Upload success.",
+                            },
+                            3500
+                        );
+                    },
+                    onError: () => {
+                        this.$notify(
+                            {
+                                group: "error",
+                                title: "Error",
+                                text: "Upload failed.",
+                            },
+                            3500
+                        );
+                    },
                 }
+            );
+        },
 
-                this.previewMediaUploaded.push([
-                    URL.createObjectURL(item[1]),
-                    item[1].type,
-                ]);
-            });
-
-            // send the received image to the back-end for each image.
+        handleProductMediaRemove(index) {
+            this.$inertia.patch(
+                "temp/media",
+                { filePath: this.product.media[index] },
+                {
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.product.media.splice(index, 1);
+                        this.previewMediaUploaded.splice(index, 1);
+                        this.$notify(
+                            {
+                                group: "success",
+                                title: "Success",
+                                text: "File removed.",
+                            },
+                            3500
+                        );
+                    },
+                    onError: () => {
+                        this.$notify(
+                            {
+                                group: "error",
+                                title: "Error",
+                                text: "File failed to be removed.",
+                            },
+                            3500
+                        );
+                    },
+                }
+            );
         },
 
         createProduct() {
@@ -445,11 +506,6 @@ export default {
             // var colour = ["A", "B"];
             // var size = ["Big", "Small", "Large"];
             // console.log(colour.flatMap(d => size.map(v => d + '-' + v))); guna untuk combine more than 1 variation values
-            
-            console.log('adding variant');
-            this.variantValues[variant] = [];
-            console.log(this.variantValues[variant])
-            Object.assign(this.variantValues, {size: ['small', 'large']});
         },
 
         addToList() {
