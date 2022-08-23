@@ -647,7 +647,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Address successfully added.",
+                            text: "Address successfully added",
                         },
                         3500
                     );
@@ -684,7 +684,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Address successfully updated.",
+                            text: "Address successfully updated",
                         },
                         3500
                     );
@@ -694,7 +694,7 @@ export default {
                         {
                             group: "error",
                             title: "Error",
-                            text: "Address failed to be update. Please try again.",
+                            text: "Address failed to be update. Please try again",
                         },
                         3500
                     );
@@ -716,7 +716,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Address successfully deleted.",
+                            text: "Address successfully deleted",
                         },
                         3500
                     );
@@ -726,7 +726,7 @@ export default {
                         {
                             group: "error",
                             title: "Error",
-                            text: "Something wrong happen when perfoming this action. Please try again.",
+                            text: "Something wrong happen when perfoming this action. Please try again",
                         },
                         3500
                     );
