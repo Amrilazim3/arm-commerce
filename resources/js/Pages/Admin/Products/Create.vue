@@ -432,7 +432,7 @@ export default {
                             {
                                 group: "error",
                                 title: "Error",
-                                text: "Something went wrong, Please try again.",
+                                text: "Something went wrong, Please try again",
                             },
                             3500
                         );
@@ -454,7 +454,7 @@ export default {
                             {
                                 group: "success",
                                 title: "Success",
-                                text: "File removed.",
+                                text: "File removed",
                             },
                             3500
                         );
@@ -464,7 +464,7 @@ export default {
                             {
                                 group: "error",
                                 title: "Error",
-                                text: "Something went wrong, please try again.",
+                                text: "Something went wrong, please try again",
                             },
                             3500
                         );
@@ -481,7 +481,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Product successfully created.",
+                            text: "Product successfully created",
                         },
                         3500
                     );
@@ -491,7 +491,7 @@ export default {
                         {
                             group: "error",
                             title: "Error",
-                            text: "Product failed to be create.",
+                            text: "Product failed to be create",
                         },
                         3500
                     );
