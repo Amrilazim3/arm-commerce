@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Variant;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -21,16 +21,16 @@ class ProductController extends Controller
     public function create()
     {
         return Inertia::render('Admin/Products/Create', [
-            'variants' => Variant::take(3)->get()
+            'variants' => Variant::select('id', 'name')->take(3)->get()
         ]);
     }
 
     public function store(Request $request)
     {
         if ($request->allFiles()) {
-            return $request->file('image');            
-        } 
-        
+            return $request->file('image');
+        }
+
         return redirect()->back();
     }
 
@@ -54,8 +54,34 @@ class ProductController extends Controller
         dd('destroy method');
     }
 
-    protected function handleMediaUpload()
+    protected function handleMediaUpload(Request $request)
     {
-        return redirect()->back();
+        if ($request->hasFile('media')) {
+            $request->validate([
+                'media.*' => ['file', 'max:5000']
+            ]);
+    
+            $mediaLength = count($request->file('media'));
+            $mediaResponse = [];
+            $i = 0;
+            for ($mediaLength; $i < $mediaLength; $i++) {
+                $path = $request->file('media')[$i]->store('temp', 'public');
+                $mediaResponse[] = $path;
+            }
+    
+            return redirect()->back()->with('success', $mediaResponse);
+        }
+
+        return redirect()->back()->withErrors('something went wrong');
+    }
+
+    protected function handleMediaRemove(Request $request)
+    {
+        if (Storage::disk('public')->exists($request->filePath)) {
+            Storage::disk('public')->delete($request->filePath);
+            return redirect()->back();
+        }
+
+        return redirect()->back()->withErrors('failed to removed.');
     }
 }
