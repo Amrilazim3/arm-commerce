@@ -44,7 +44,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       isCustomCategory: false,
-      isHasProductVariations: false,
+      isHasOptions: false,
       product: this.$inertia.form({
         name: "",
         description: "",
@@ -96,7 +96,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             group: "error",
             title: "Error",
-            text: "Something went wrong, Please try again."
+            text: "Something went wrong, Please try again"
           }, 3500);
         }
       });
@@ -116,14 +116,14 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$notify({
             group: "success",
             title: "Success",
-            text: "File removed."
+            text: "File removed"
           }, 3500);
         },
         onError: function onError() {
           _this2.$notify({
             group: "error",
             title: "Error",
-            text: "Something went wrong, please try again."
+            text: "Something went wrong, please try again"
           }, 3500);
         }
       });
@@ -137,14 +137,14 @@ __webpack_require__.r(__webpack_exports__);
           _this3.$notify({
             group: "success",
             title: "Success",
-            text: "Product successfully created."
+            text: "Product successfully created"
           }, 3500);
         },
         onError: function onError() {
           _this3.$notify({
             group: "error",
             title: "Error",
-            text: "Product failed to be create."
+            text: "Product failed to be create"
           }, 3500);
         }
       });
@@ -444,14 +444,14 @@ var _hoisted_33 = {
 var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-name",
   "class": "form-label font-medium inline-block mb-2 text-gray-700"
-}, "Variations", -1
+}, "Options", -1
 /* HOISTED */
 );
 
 var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-check-label inline-block text-gray-800",
   "for": "product-variations"
-}, " This product has variations, like size or color ", -1
+}, " This product has options, like size or color ", -1
 /* HOISTED */
 );
 
@@ -693,12 +693,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer",
     type: "checkbox",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-      return $data.isHasProductVariations = $event;
+      return $data.isHasOptions = $event;
     }),
     id: "product-variations"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.isHasProductVariations]]), _hoisted_35])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.isHasOptions]]), _hoisted_35])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-4 py-2.5 bg-indigo-600 text-white font-medium text-sm leading-tight rounded-md shadow-md", !$data.product.isDirty || $data.product.processing ? 'bg-indigo-400 cursor-not-allowed' : 'hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out']),
     disabled: !$data.product.isDirty || $data.product.processing
