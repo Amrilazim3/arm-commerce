@@ -143,7 +143,7 @@ export default {
                             {
                                 group: "success",
                                 title: "Success",
-                                text: "Your new password has been updated.",
+                                text: "Your new password has been updated",
                             },
                             3500
                         );
@@ -154,7 +154,7 @@ export default {
                         {
                             group: "error",
                             title: "Error",
-                            text: "Your new password failed to be updated, please try again.",
+                            text: "Your new password failed to be updated, please try again",
                         },
                         3500
                     );
