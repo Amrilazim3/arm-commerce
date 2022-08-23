@@ -398,7 +398,7 @@ export default {
                         {
                             group: "success",
                             title: "Success",
-                            text: "Your profile was updated.",
+                            text: "Your profile was updated",
                         },
                         3500
                     );
@@ -408,7 +408,7 @@ export default {
                         {
                             group: "error",
                             title: "Error",
-                            text: "Your profile failed to update. Please try again.",
+                            text: "Your profile failed to update. Please try again",
                         },
                         3500
                     );
