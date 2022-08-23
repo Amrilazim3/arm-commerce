@@ -285,20 +285,20 @@
                             <label
                                 for="product-name"
                                 class="form-label font-medium inline-block mb-2 text-gray-700"
-                                >Variations</label
+                                >Options</label
                             >
                             <div>
                                 <input
                                     class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                     type="checkbox"
-                                    v-model="isHasProductVariations"
+                                    v-model="isHasOptions"
                                     id="product-variations"
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
                                     for="product-variations"
                                 >
-                                    This product has variations, like size or
+                                    This product has options, like size or
                                     color
                                 </label>
                             </div>
@@ -366,7 +366,7 @@ export default {
     data() {
         return {
             isCustomCategory: false,
-            isHasProductVariations: false,
+            isHasOptions: false,
             product: this.$inertia.form({
                 name: "",
                 description: "",
