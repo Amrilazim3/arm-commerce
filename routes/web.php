@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::resource('/products', AdminProductController::class);
+        Route::post("/products/temp/media", [AdminProductController::class, 'handleMediaUpload']);
+        Route::patch("/products/temp/media", [AdminProductController::class, 'handleMediaRemove']);
     });
 
     // route for user role
