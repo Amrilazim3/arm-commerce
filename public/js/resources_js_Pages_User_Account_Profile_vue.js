@@ -76,14 +76,14 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             group: "success",
             title: "Success",
-            text: "Your profile was updated."
+            text: "Your profile was updated"
           }, 3500);
         },
         onError: function onError() {
           _this.$notify({
             group: "error",
             title: "Error",
-            text: "Your profile failed to update. Please try again."
+            text: "Your profile failed to update. Please try again"
           }, 3500);
         }
       });
