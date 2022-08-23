@@ -422,7 +422,7 @@ export default {
                             {
                                 group: "success",
                                 title: "Success",
-                                text: "Upload success.",
+                                text: "File uploaded",
                             },
                             3500
                         );
@@ -432,7 +432,7 @@ export default {
                             {
                                 group: "error",
                                 title: "Error",
-                                text: "Upload failed.",
+                                text: "Something went wrong, Please try again.",
                             },
                             3500
                         );
@@ -464,7 +464,7 @@ export default {
                             {
                                 group: "error",
                                 title: "Error",
-                                text: "File failed to be removed.",
+                                text: "Something went wrong, please try again.",
                             },
                             3500
                         );
