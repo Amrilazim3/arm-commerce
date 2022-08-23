@@ -76,7 +76,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             group: "success",
             title: "Success",
-            text: "Address successfully added."
+            text: "Address successfully added"
           }, 3500);
         }
       });
@@ -114,14 +114,14 @@ __webpack_require__.r(__webpack_exports__);
           _this3.$notify({
             group: "success",
             title: "Success",
-            text: "Address successfully updated."
+            text: "Address successfully updated"
           }, 3500);
         },
         onError: function onError() {
           _this3.$notify({
             group: "error",
             title: "Error",
-            text: "Address failed to be update. Please try again."
+            text: "Address failed to be update. Please try again"
           }, 3500);
         }
       });
@@ -141,14 +141,14 @@ __webpack_require__.r(__webpack_exports__);
           _this4.$notify({
             group: "success",
             title: "Success",
-            text: "Address successfully deleted."
+            text: "Address successfully deleted"
           }, 3500);
         },
         onError: function onError() {
           _this4.$notify({
             group: "error",
             title: "Error",
-            text: "Something wrong happen when perfoming this action. Please try again."
+            text: "Something wrong happen when perfoming this action. Please try again"
           }, 3500);
         }
       });
