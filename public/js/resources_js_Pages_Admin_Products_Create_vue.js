@@ -64,36 +64,84 @@ __webpack_require__.r(__webpack_exports__);
     handleProductMediaUpload: function handleProductMediaUpload(event) {
       var _this = this;
 
-      Object.entries(event.target.files).map(function (item) {
-        _this.product.media.push(item[1]); // send data to the back end to be validate
+      var uploadedMedia = event.target.files; // send data to the back end to be validate
 
+      this.$inertia.post("temp/media", {
+        media: uploadedMedia
+      }, {
+        preserveScroll: true,
+        onSuccess: function onSuccess(response) {
+          Object.entries(uploadedMedia).map(function (item, index) {
+            _this.product.media.push(response.props.flash.success[index]);
 
-        if (item[1].type == "video") {
-          var reader = new FileReader();
-          reader.readAsDataURL(item[1]);
-          reader.addEventListener("load", function () {
-            this.previewMediaUploaded.push([reader.result, item[1].type]);
+            if (item[1].type == "video") {
+              var reader = new FileReader();
+              reader.readAsDataURL(item[1]);
+              reader.addEventListener("load", function () {
+                this.previewMediaUploaded.push([reader.result, item[1].type]);
+              });
+              return;
+            }
+
+            _this.previewMediaUploaded.push([URL.createObjectURL(item[1]), item[1].type]);
           });
-          return;
-        }
 
-        _this.previewMediaUploaded.push([URL.createObjectURL(item[1]), item[1].type]);
-      }); // send the received image to the back-end for each image.
+          _this.$notify({
+            group: "success",
+            title: "Success",
+            text: "Upload success."
+          }, 3500);
+        },
+        onError: function onError() {
+          _this.$notify({
+            group: "error",
+            title: "Error",
+            text: "Upload failed."
+          }, 3500);
+        }
+      });
+    },
+    handleProductMediaRemove: function handleProductMediaRemove(index) {
+      var _this2 = this;
+
+      this.$inertia.patch("temp/media", {
+        filePath: this.product.media[index]
+      }, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this2.product.media.splice(index, 1);
+
+          _this2.previewMediaUploaded.splice(index, 1);
+
+          _this2.$notify({
+            group: "success",
+            title: "Success",
+            text: "File removed."
+          }, 3500);
+        },
+        onError: function onError() {
+          _this2.$notify({
+            group: "error",
+            title: "Error",
+            text: "File failed to be removed."
+          }, 3500);
+        }
+      });
     },
     createProduct: function createProduct() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.product.post("/admin/products", {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this2.$notify({
+          _this3.$notify({
             group: "success",
             title: "Success",
             text: "Product successfully created."
           }, 3500);
         },
         onError: function onError() {
-          _this2.$notify({
+          _this3.$notify({
             group: "error",
             title: "Error",
             text: "Product failed to be create."
@@ -108,11 +156,6 @@ __webpack_require__.r(__webpack_exports__);
         // var colour = ["A", "B"];
         // var size = ["Big", "Small", "Large"];
         // console.log(colour.flatMap(d => size.map(v => d + '-' + v))); guna untuk combine more than 1 variation values
-        
-        console.log('adding variant');
-        this.variantValues[variant] = [];
-        console.log(this.variantValues[variant])
-        Object.assign(this.variantValues, {size: ['small', 'large']});
     },
       addToList() {
         console.log('adding variant value');
@@ -219,7 +262,7 @@ __webpack_require__.r(__webpack_exports__);
       })],
       editorProps: {
         attributes: {
-          "class": "form-control prose prose-sm block w-full h-52 overflow-y-scroll px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border-2 border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+          "class": "form-control prose prose-sm block w-full h-52 overflow-y-scroll px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
         }
       },
       content: this.modelValue,
@@ -389,7 +432,7 @@ var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_29 = {
   key: 0,
-  "class": "mt-6 bg-white py-4 px-2 h-72 border rounded-md overflow-y-scroll"
+  "class": "mt-6 bg-white py-4 px-2 h-64 border rounded-md overflow-y-scroll"
 };
 var _hoisted_30 = ["src"];
 var _hoisted_31 = ["src", "alt"];
@@ -637,8 +680,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_31)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "px-3 hover:text-red-500",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        $data.product.media.splice(index, 1);
-        $data.previewMediaUploaded.splice(index, 1);
+        return $options.handleProductMediaRemove(index);
       }, ["prevent"])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TrashIcon, {
       "class": "h-5 w-5"
@@ -705,7 +747,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" My Purchase ");
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Inventory ");
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ");
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ");
 
@@ -750,7 +792,7 @@ var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Inventory ");
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ");
 
 var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ");
 
