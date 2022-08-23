@@ -89,14 +89,14 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             group: "success",
             title: "Success",
-            text: "Upload success."
+            text: "File uploaded"
           }, 3500);
         },
         onError: function onError() {
           _this.$notify({
             group: "error",
             title: "Error",
-            text: "Upload failed."
+            text: "Something went wrong, Please try again."
           }, 3500);
         }
       });
@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$notify({
             group: "error",
             title: "Error",
-            text: "File failed to be removed."
+            text: "Something went wrong, please try again."
           }, 3500);
         }
       });
