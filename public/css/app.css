@@ -1462,11 +1462,11 @@ select {
 .h-7 {
   height: 1.75rem;
 }
-.h-72 {
-  height: 18rem;
-}
 .h-64 {
   height: 16rem;
+}
+.h-72 {
+  height: 18rem;
 }
 .max-h-60 {
   max-height: 15rem;
