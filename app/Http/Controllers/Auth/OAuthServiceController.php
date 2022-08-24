@@ -58,6 +58,8 @@ class OAuthServiceController extends Controller
             'service_id' => $sUser->getId(),
         ]);
 
+        $user->assignRole('user');
+
         return $user;
     }
 
