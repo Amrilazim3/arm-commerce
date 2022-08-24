@@ -31,6 +31,7 @@
                                                         .profileImageUrl
                                                 "
                                                 alt="profile-image"
+                                                class="h-full w-full object-cover"
                                             />
                                         </template>
                                         <template v-else>
@@ -189,6 +190,7 @@
                                                     .profileImageUrl
                                             "
                                             alt="profile-image"
+                                            class="h-full w-full object-cover"
                                         />
                                     </template>
                                     <template v-else>
