@@ -10,6 +10,7 @@
                 <h1 class="text-xl font-semibold text-gray-900">Store</h1>
                 <button
                     class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    v-if="products.data.length !== 0"
                 >
                     <Link href="/admin/products/create" class="flex items-center">
                         <span class="text-2xl mr-1.5">+</span> add product
