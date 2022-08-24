@@ -2,15 +2,39 @@
     <Head title="Products" />
     <div class="lg:flex">
         <SideNav />
-        <div class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1" :class="products.data.length == 0 ? 'mb-20' : ''">
-            <h1 class="text-xl font-semibold text-gray-900">Store</h1>
+        <div
+            class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
+            :class="products.data.length == 0 ? 'mb-20' : ''"
+        >
+            <div class="flex justify-between">
+                <h1 class="text-xl font-semibold text-gray-900">Store</h1>
+                <button
+                    class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                    <Link href="/admin/products/create" class="flex items-center">
+                        <span class="text-2xl mr-1.5">+</span> add product
+                    </Link>
+                </button>
+            </div>
             <template v-if="products.data.length == 0">
-                <div class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center">
+                <div
+                    class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center"
+                >
                     <div>
-                        <h3 class="text-xl font-bold text-gray-800 text-left mb-6">You don't have any product to see</h3>
-                        <p class="text-sm text-gray-400 text-left">You need some product in order to see it here</p>
-                        <button class="mt-6 font-semibold px-3 py-2.5 bg-indigo-500 hover:bg-indigo-700 text-white text-sm border rounded-md">
-                            <Link href="/admin/products/create">Create product now</Link>
+                        <h3
+                            class="text-xl font-bold text-gray-800 text-left mb-6"
+                        >
+                            You don't have any product to see
+                        </h3>
+                        <p class="text-sm text-gray-400 text-left">
+                            You need some product in order to see it here
+                        </p>
+                        <button
+                            class="mt-6 font-semibold px-3 py-2.5 bg-indigo-500 hover:bg-indigo-700 text-white text-sm border rounded-md"
+                        >
+                            <Link href="/admin/products/create"
+                                >Create product now</Link
+                            >
                         </button>
                     </div>
                 </div>
@@ -18,7 +42,9 @@
             <template v-else>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div
+                            class="py-2 inline-block min-w-full sm:px-6 lg:px-8"
+                        >
                             <div class="overflow-hidden">
                                 <table class="min-w-full">
                                     <thead class="border-b">
@@ -59,7 +85,10 @@
                                             <td
                                                 class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                             >
-                                                Mark is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
+                                                Mark is simply dummy text of the
+                                                printing and typesetting
+                                                industry. Lorem Ipsum has been
+                                                the industry's standard dummy
                                             </td>
                                             <td
                                                 class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
@@ -71,7 +100,7 @@
                                             >
                                                 20
                                             </td>
-                                            <td 
+                                            <td
                                                 class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                             >
                                                 <button
@@ -95,7 +124,7 @@
                                             <td
                                                 class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                             >
-                                                Mark is simply dummy 
+                                                Mark is simply dummy
                                             </td>
                                             <td
                                                 class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
@@ -107,7 +136,7 @@
                                             >
                                                 122
                                             </td>
-                                            <td 
+                                            <td
                                                 class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                             >
                                                 <button
@@ -143,7 +172,7 @@
                                             >
                                                 10
                                             </td>
-                                            <td 
+                                            <td
                                                 class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                             >
                                                 <button
@@ -179,7 +208,7 @@
                                             >
                                                 15
                                             </td>
-                                            <td 
+                                            <td
                                                 class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                             >
                                                 <button
@@ -210,7 +239,7 @@ import SideNav from "../../../Shared/SideNav.vue";
 
 export default {
     props: {
-        products: Object
+        products: Object,
     },
 
     components: {
