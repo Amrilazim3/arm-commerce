@@ -14,6 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        $user = User::factory()->unverified()->make(); // create a user without persisting into database 
+        // $user = User::factory()->count(3)->unverified()->create(); // create unverified email and persisting into database
+        // $user = User::factory()->create(); // create default user and persisting into database
+        dd($user);
     }
 }
