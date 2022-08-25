@@ -85,9 +85,9 @@
                                         >
                                             <ListboxOption
                                                 v-slot="{ active, selected }"
-                                                v-for="variant in variants"
-                                                :key="variant.id"
-                                                :value="variant.name"
+                                                v-for="category in categories"
+                                                :key="category.id"
+                                                :value="category.name"
                                                 as="template"
                                             >
                                                 <li
@@ -106,7 +106,7 @@
                                                             'block truncate',
                                                         ]"
                                                     >
-                                                        {{ variant.name }}
+                                                        {{ category.name }}
                                                     </span>
                                                     <span
                                                         v-if="selected"
@@ -360,7 +360,7 @@ export default {
     },
 
     props: {
-        variants: Object,
+        categories: Object,
     },
 
     data() {
