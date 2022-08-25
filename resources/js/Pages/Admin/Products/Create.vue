@@ -25,6 +25,12 @@
                                 v-model="product.name"
                                 required
                             />
+                            <div
+                                v-if="product.errors.name"
+                                class="text-red-500 text-sm mt-1"
+                            >
+                                {{ product.errors.name }}
+                            </div>
                         </div>
 
                         <div class="mb-3 min-w-full">
@@ -34,6 +40,12 @@
                                 >Product Description</label
                             >
                             <Tiptap v-model="product.description" />
+                            <div
+                                v-if="product.errors.description"
+                                class="text-red-500 text-sm mt-1"
+                            >
+                                {{ product.errors.description }}
+                            </div>
                         </div>
 
                         <div class="mb-3 min-w-full">
@@ -48,7 +60,7 @@
                             >
                                 <div class="relative">
                                     <ListboxButton
-                                        class="relative w-full lg:w-1/2 border rounded-md py-2 pl-3 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm"
+                                        class="relative w-full lg:w-1/2 border rounded-md py-2 pl-3 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm focus:text-gray-700 focus:bg-white focus:border-indigo-600"
                                         :class="
                                             isCustomCategory
                                                 ? 'cursor-not-allowed bg-gray-200'
@@ -141,6 +153,15 @@
                                     </transition>
                                 </div>
                             </Listbox>
+                            <div
+                                v-if="
+                                    product.errors.category &&
+                                    isCustomCategory == false
+                                "
+                                class="text-red-500 text-sm mt-1"
+                            >
+                                {{ product.errors.category }}
+                            </div>
                         </div>
 
                         <template v-if="isCustomCategory">
@@ -167,6 +188,12 @@
                                         class="h-5 w-5 cursor-pointer self-center text-indigo-500"
                                     />
                                 </div>
+                                <div
+                                    v-if="product.errors.category"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ product.errors.category }}
+                                </div>
                             </div>
                         </template>
 
@@ -188,6 +215,12 @@
                                     v-model="product.stock"
                                     required
                                 />
+                                <div
+                                    v-if="product.errors.stock"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ product.errors.stock }}
+                                </div>
                             </div>
 
                             <div>
@@ -205,6 +238,12 @@
                                     v-model="product.price"
                                     required
                                 />
+                                <div
+                                    v-if="product.errors.price"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ product.errors.price }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -243,6 +282,12 @@
                                     Upload product images / videos
                                 </p>
                             </label>
+                            <div
+                                v-if="product.errors.media"
+                                class="text-red-500 text-sm mt-1"
+                            >
+                                {{ product.errors.media }}
+                            </div>
                         </div>
 
                         <!-- display selected image/video -->
@@ -298,8 +343,7 @@
                                     class="form-check-label inline-block text-gray-800"
                                     for="product-variations"
                                 >
-                                    This product has options, like size or
-                                    color
+                                    This product has options, like size or color
                                 </label>
                             </div>
                         </div>
@@ -500,8 +544,8 @@ export default {
         },
 
         /**
-         * 
-         * 
+         *
+         *
         addVariant(variant) {
             // var colour = ["A", "B"];
             // var size = ["Big", "Small", "Large"];
