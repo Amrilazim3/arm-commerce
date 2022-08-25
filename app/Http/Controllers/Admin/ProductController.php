@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Variant;
+use App\Rules\MediaValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,7 @@ class ProductController extends Controller
     public function create()
     {
         return Inertia::render('Admin/Products/Create', [
-            'categories' => Category::select('id', 'name')->take(5)->first()->get()
+            'categories' => Category::select('id', 'name')->take(5)->get()
         ]);
     }
 
@@ -37,11 +38,13 @@ class ProductController extends Controller
             'category' => ['required'],
             'stock' => ['required'],
             'price' => ['required'],
-            'media.*' => ['required', 'string']
+            'media' => ['array', new MediaValidation()],
+            'media.*' => ['string']
         ]);
 
         $category = Category::firstOrCreate([
-            'name' => $request->category
+            'name' => ucwords($request->category),
+            'slug' => Str::slug($request->category)
         ]);
 
         $product = Product::create([
@@ -55,13 +58,15 @@ class ProductController extends Controller
         ]);
 
         foreach ($request->media as $tempPath) {
-            $mediaAbsolutePath = str_replace('temp/', '', $tempPath);
-            Storage::disk('public')->move($tempPath, 'product/' . $mediaAbsolutePath);
-            
-            ProductImage::create([
-                'product_id' => $product->id,
-                'url' => asset('storage/product/' . $mediaAbsolutePath)
-            ]);
+            if (Storage::disk('public')->exists($tempPath)) {
+                $mediaAbsolutePath = str_replace('temp/', '', $tempPath);
+                Storage::disk('public')->move($tempPath, 'product/' . $mediaAbsolutePath);
+                
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'url' => asset('storage/product/' . $mediaAbsolutePath)
+                ]);
+            }
         }
 
         return redirect('admin/products');
