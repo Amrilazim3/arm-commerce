@@ -18,15 +18,29 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $products = Product::select([
+            'id',
+            'name',
+            'slug',
+            'description',
+            'category_id',
+            'stock'
+        ])
+        ->with(['category' => function ($query) {
+            return $query->select(['id', 'name', 'slug']);
+        }])
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+
         return Inertia::render('Admin/Products/Index', [
-            'products' => Product::paginate(20)
+            'products' => $products
         ]);
     }
 
     public function create()
     {
         return Inertia::render('Admin/Products/Create', [
-            'categories' => Category::select('id', 'name')->take(5)->get()
+            'categories' => Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get()
         ]);
     }
 
@@ -61,7 +75,7 @@ class ProductController extends Controller
             if (Storage::disk('public')->exists($tempPath)) {
                 $mediaAbsolutePath = str_replace('temp/', '', $tempPath);
                 Storage::disk('public')->move($tempPath, 'product/' . $mediaAbsolutePath);
-                
+
                 ProductImage::create([
                     'product_id' => $product->id,
                     'url' => asset('storage/product/' . $mediaAbsolutePath)
@@ -98,7 +112,7 @@ class ProductController extends Controller
             $request->validate([
                 'media.*' => ['file', 'max:5000']
             ]);
-    
+
             $mediaLength = count($request->file('media'));
             $mediaResponse = [];
             $i = 0;
@@ -106,7 +120,7 @@ class ProductController extends Controller
                 $path = $request->file('media')[$i]->store('temp', 'public');
                 $mediaResponse[] = $path;
             }
-    
+
             return redirect()->back()->with('success', $mediaResponse);
         }
 
