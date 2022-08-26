@@ -12,7 +12,10 @@
                     class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     v-if="products.data.length !== 0"
                 >
-                    <Link href="/admin/products/create" class="flex items-center">
+                    <Link
+                        href="/admin/products/create"
+                        class="flex items-center"
+                    >
                         <span class="text-2xl mr-1.5">+</span> add product
                     </Link>
                 </button>
@@ -77,153 +80,47 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="border-b">
-                                            <td
-                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                            >
-                                                1
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Mark is simply dummy text of the
-                                                printing and typesetting
-                                                industry. Lorem Ipsum has been
-                                                the industry's standard dummy
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Fitness
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                20
-                                            </td>
-                                            <td
-                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                            >
-                                                <button
-                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                        <template
+                                            v-for="product in products.data"
+                                            :key="product.id"
+                                        >
+                                            <tr class="border-b">
+                                                <td
+                                                    class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
                                                 >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                    -
+                                                </td>
+                                                <td
+                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
-                                                    Delete
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td
-                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                            >
-                                                2
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Mark is simply dummy
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Gym
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                122
-                                            </td>
-                                            <td
-                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                            >
-                                                <button
-                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                    {{ product.name }}
+                                                </td>
+                                                <td
+                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                    {{ product.category.name }}
+                                                </td>
+                                                <td
+                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
-                                                    Delete
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td
-                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                            >
-                                                3
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Whey protein
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Supplement
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                10
-                                            </td>
-                                            <td
-                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                            >
-                                                <button
-                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                    {{ product.stock }}
+                                                </td>
+                                                <td
+                                                    class="flex justify-end space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                                 >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
-                                                >
-                                                    Delete
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td
-                                                class="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
-                                            >
-                                                4
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Black King Skipping
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                Fitness
-                                            </td>
-                                            <td
-                                                class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
-                                            >
-                                                15
-                                            </td>
-                                            <td
-                                                class="space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
-                                            >
-                                                <button
-                                                    class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
-                                                >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
-                                                >
-                                                    Delete
-                                                </button>
-                                            </td>
-                                        </tr>
+                                                    <button
+                                                        class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </template>
                                     </tbody>
                                 </table>
                             </div>
