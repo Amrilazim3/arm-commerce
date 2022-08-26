@@ -126,10 +126,63 @@ var _hoisted_12 = {
   key: 1,
   "class": "flex flex-col"
 };
+var _hoisted_13 = {
+  "class": "overflow-x-auto sm:-mx-6 lg:-mx-8"
+};
+var _hoisted_14 = {
+  "class": "py-2 inline-block min-w-full sm:px-6 lg:px-8"
+};
+var _hoisted_15 = {
+  "class": "overflow-hidden"
+};
+var _hoisted_16 = {
+  "class": "min-w-full"
+};
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"overflow-x-auto sm:-mx-6 lg:-mx-8\"><div class=\"py-2 inline-block min-w-full sm:px-6 lg:px-8\"><div class=\"overflow-hidden\"><table class=\"min-w-full\"><thead class=\"border-b\"><tr><th scope=\"col\" class=\"text-sm font-medium text-gray-900 px-6 py-4 text-left\"> # </th><th scope=\"col\" class=\"text-sm font-medium text-gray-900 px-6 py-4 text-left\"> Name </th><th scope=\"col\" class=\"text-sm font-medium text-gray-900 px-6 py-4 text-left\"> Category </th><th scope=\"col\" class=\"text-sm font-medium text-gray-900 px-6 py-4 text-left\"> Stock </th></tr></thead><tbody><tr class=\"border-b\"><td class=\"px-6 py-4 whitespace-normal text-sm font-medium text-gray-900\"> 1 </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Mark is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Fitness </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> 20 </td><td class=\"space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4\"><button class=\"text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium\"> Edit </button><button class=\"text-red-500 hover:text-red-600 text-right text-sm font-medium\"> Delete </button></td></tr><tr class=\"border-b\"><td class=\"px-6 py-4 whitespace-normal text-sm font-medium text-gray-900\"> 2 </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Mark is simply dummy </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Gym </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> 122 </td><td class=\"space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4\"><button class=\"text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium\"> Edit </button><button class=\"text-red-500 hover:text-red-600 text-right text-sm font-medium\"> Delete </button></td></tr><tr class=\"border-b\"><td class=\"px-6 py-4 whitespace-normal text-sm font-medium text-gray-900\"> 3 </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Whey protein </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Supplement </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> 10 </td><td class=\"space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4\"><button class=\"text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium\"> Edit </button><button class=\"text-red-500 hover:text-red-600 text-right text-sm font-medium\"> Delete </button></td></tr><tr class=\"border-b\"><td class=\"px-6 py-4 whitespace-normal text-sm font-medium text-gray-900\"> 4 </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Black King Skipping </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> Fitness </td><td class=\"text-sm text-gray-900 px-6 py-4 whitespace-normal\"> 15 </td><td class=\"space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4\"><button class=\"text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium\"> Edit </button><button class=\"text-red-500 hover:text-red-600 text-right text-sm font-medium\"> Delete </button></td></tr></tbody></table></div></div></div>", 1);
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "border-b"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " # "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " Name "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " Category "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " Stock ")])], -1
+/* HOISTED */
+);
 
-var _hoisted_14 = [_hoisted_13];
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "px-6 py-4 whitespace-normal text-sm font-medium text-gray-900"
+}, " - ", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-normal"
+};
+var _hoisted_20 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-normal"
+};
+var _hoisted_21 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-normal"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "flex justify-end space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+}, " Edit "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "text-red-500 hover:text-red-600 text-right text-sm font-medium"
+}, " Delete ")], -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -160,7 +213,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, _hoisted_14))], 2
+  })])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.products.data, function (product) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+      key: product.id,
+      "class": "border-b"
+    }, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.category.name), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.stock), 1
+    /* TEXT */
+    ), _hoisted_22]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])])])]))], 2
   /* CLASS */
   )])], 64
   /* STABLE_FRAGMENT */
