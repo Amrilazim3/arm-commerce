@@ -26,14 +26,19 @@ class ProductController extends Controller
             'category_id',
             'stock'
         ])
-        ->with(['category' => function ($query) {
-            return $query->select(['id', 'name', 'slug']);
-        }])
-        ->orderBy('id', 'desc')
-        ->paginate(10);
+            ->with(['category' => function ($query) {
+                return $query->select(['id', 'name', 'slug']);
+            }])
+            ->filter(
+                request(['created_at', 'stock'])
+            )
+            ->paginate(20);
+
+        $products->appends(request(['created_at', 'stock']));
 
         return Inertia::render('Admin/Products/Index', [
-            'products' => $products
+            'products' => $products,
+            'requests' => request(['created_at', 'stock'])
         ]);
     }
 
