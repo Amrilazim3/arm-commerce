@@ -34,7 +34,7 @@ class ProductController extends Controller
             )
             ->paginate(20);
 
-        $products->appends(request(['created_at', 'stock']));
+        $products->withQueryString();
 
         return Inertia::render('Admin/Products/Index', [
             'products' => $products,
