@@ -20,6 +20,10 @@ class Product extends Model
         $query->when($filters['stock'] ?? false, function ($query, $stock) {
             $query->orderBy('stock', $stock);
         });
+
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        });
     }
 
     public function category()
