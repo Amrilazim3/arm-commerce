@@ -20,6 +20,16 @@
                     </Link>
                 </button>
             </div>
+            <div class="form-floating mt-3 xl:w-96">
+                <input
+                    type="text"
+                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    id="search-input"
+                    placeholder="Search product"
+                    v-model="params.search"
+                    ref="search"
+                />
+            </div>
             <template v-if="products.data.length == 0">
                 <div
                     class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center"
@@ -46,9 +56,7 @@
             <template v-else>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div
-                            class="py-2 inline-block min-w-full sm:px-6 lg:px-8"
-                        >
+                        <div class="inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="overflow-hidden">
                                 <table class="min-w-full">
                                     <thead class="border-b">
@@ -79,11 +87,11 @@
                                             </th>
                                             <th
                                                 scope="col"
-                                                class="flex justify-end px-6 py-4"
+                                                class="flex justify-end px-6"
                                             >
                                                 <Menu
                                                     as="div"
-                                                    class="relative inline-block text-left"
+                                                    class="absolute inline-block text-left"
                                                 >
                                                     <MenuButton
                                                         class="flex px-6 pt-2.5 pb-2 bg-gray-200 text-gray-900 font-medium text-sm leading-normal rounded border hover:bg-gray-300 focus:bg-gray-300 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out align-center"
@@ -237,7 +245,9 @@
                                                 <td
                                                     class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
-                                                    {{ product.name }}
+                                                    <Link :href="product.slug">
+                                                        {{ product.name }}
+                                                    </Link>
                                                 </td>
                                                 <td
                                                     class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
@@ -285,7 +295,7 @@ import SideNav from "../../../Shared/SideNav.vue";
 import Pagination from "../../../Shared/Pagination.vue";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { SwitchVerticalIcon } from "@heroicons/vue/outline";
-import { pickBy, throttle } from "lodash";
+import { pickBy, debounce } from "lodash";
 
 export default {
     props: {
@@ -308,8 +318,28 @@ export default {
             params: {
                 created_at: this.requests.created_at,
                 stock: this.requests.stock,
+                search: this.requests.search,
             },
         };
+    },
+
+    watch: {
+        params: {
+            handler: debounce(function () {
+                let params = this.params;
+                params = pickBy(params);
+                this.$inertia.get("/admin/products/", params, {
+                    preserveScroll: true,
+                });
+            }, 150),
+            deep: true,
+        },
+    },
+
+    mounted() {
+        if (this.params.search !== "") {
+            this.$nextTick(() => this.$refs.search.focus());
+        }
     },
 
     methods: {
