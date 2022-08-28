@@ -25,7 +25,7 @@
                     type="text"
                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
                     id="search-input"
-                    placeholder="Search product"
+                    placeholder="Search product or category"
                     v-model="params.search"
                     ref="search"
                 />
@@ -245,7 +245,13 @@
                                                 <td
                                                     class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
-                                                    <Link :href="product.slug">
+                                                    <Link
+                                                        :href="
+                                                            'products/' +
+                                                            product.slug
+                                                        "
+                                                        class="hover:font-semibold hover:text-indigo-600"
+                                                    >
                                                         {{ product.name }}
                                                     </Link>
                                                 </td>
@@ -264,11 +270,21 @@
                                                 >
                                                     <button
                                                         class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
+                                                        @click.prevent="
+                                                            editProduct(
+                                                                product.slug
+                                                            )
+                                                        "
                                                     >
                                                         Edit
                                                     </button>
                                                     <button
                                                         class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
+                                                        @click.prevent="
+                                                            deleteProduct(
+                                                                product.slug
+                                                            )
+                                                        "
                                                     >
                                                         Delete
                                                     </button>
@@ -325,19 +341,18 @@ export default {
 
     watch: {
         params: {
-            handler: debounce(function () {
-                let params = this.params;
-                params = pickBy(params);
-                this.$inertia.get("/admin/products/", params, {
-                    preserveScroll: true,
-                });
-            }, 150),
+            handler(newObject) {
+                    if (newObject.search.includes(' ')) {
+                        return false;
+                    }
+                    this.searchInput();
+            },
             deep: true,
         },
     },
 
     mounted() {
-        if (this.params.search !== "") {
+        if (this.params.search !== "" || this.params.search !== null) {
             this.$nextTick(() => this.$refs.search.focus());
         }
     },
@@ -379,6 +394,22 @@ export default {
                     preserveState: true,
                 }
             );
+        },
+
+        searchInput: debounce(function() {
+            let params = this.params;
+            params = pickBy(params);
+            this.$inertia.get("/admin/products/", params, {
+                preserveScroll: true,
+            });
+        }, 1000),
+
+        editProduct(slug) {
+            this.$inertia.patch("/admin/products/" + slug);
+        },
+
+        deleteProduct(slug) {
+            this.$inertia.delete("/admin/products/" + slug);
         },
     },
 };
