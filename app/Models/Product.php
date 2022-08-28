@@ -27,7 +27,10 @@ class Product extends Model
         });
 
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
+            $query->orWhereHas('category', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->orWhere('name', 'like', '%' . $search . '%');
         });
     }
 
