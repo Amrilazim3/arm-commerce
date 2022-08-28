@@ -1290,9 +1290,6 @@ select {
 .left-0 {
   left: 0px;
 }
-.top-16 {
-  top: 4rem;
-}
 .z-10 {
   z-index: 10;
 }
@@ -3101,6 +3098,10 @@ select {
 
   .xl\:grid {
     display: grid;
+  }
+
+  .xl\:w-96 {
+    width: 24rem;
   }
 
   .xl\:max-w-5xl {
