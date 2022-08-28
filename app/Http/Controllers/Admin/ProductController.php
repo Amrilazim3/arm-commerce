@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -44,8 +45,12 @@ class ProductController extends Controller
 
     public function create()
     {
+        $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
+            return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
+        });      
+        
         return Inertia::render('Admin/Products/Create', [
-            'categories' => Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get()
+            'categories' => $categories 
         ]);
     }
 
