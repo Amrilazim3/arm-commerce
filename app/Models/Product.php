@@ -11,6 +11,11 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['created_at'] ?? false, function ($query, $created_at) {
