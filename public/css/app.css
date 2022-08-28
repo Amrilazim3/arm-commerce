@@ -2536,6 +2536,12 @@ select {
 .hover\:to-indigo-700:hover {
   --tw-gradient-to: #4338ca;
 }
+.hover\:font-bold:hover {
+  font-weight: 700;
+}
+.hover\:font-semibold:hover {
+  font-weight: 600;
+}
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -2571,6 +2577,10 @@ select {
 .hover\:text-red-600:hover {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+.hover\:text-indigo-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(79 70 229 / var(--tw-text-opacity));
 }
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
