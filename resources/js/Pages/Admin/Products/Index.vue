@@ -20,10 +20,13 @@
                     </Link>
                 </button>
             </div>
-            <div class="form-floating mt-3 xl:w-96">
+            <div class="relative mt-3 xl:w-96">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                    <SearchIcon  class="h-5 w-5 text-black" />
+                </span>
                 <input
                     type="text"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    class="form-control block w-full pl-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
                     id="search-input"
                     placeholder="Search product or category"
                     v-model="params.search"
@@ -31,27 +34,36 @@
                 />
             </div>
             <template v-if="products.data.length == 0">
-                <div
-                    class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center"
-                >
-                    <div>
-                        <h3
-                            class="text-xl font-bold text-gray-800 text-left mb-6"
-                        >
-                            You don't have any product to see
-                        </h3>
-                        <p class="text-sm text-gray-400 text-left">
-                            You need some product in order to see it here
+                <template v-if="$page.url.includes('search')">
+                    <div class="flex items-center justify-center w-full h-72">
+                        <p class="text-indigo-500 font-semibold text-xl">
+                            No result for this search.
                         </p>
-                        <button
-                            class="mt-6 font-semibold px-3 py-2.5 bg-indigo-500 hover:bg-indigo-700 text-white text-sm border rounded-md"
-                        >
-                            <Link href="/admin/products/create"
-                                >Create product now</Link
-                            >
-                        </button>
                     </div>
-                </div>
+                </template>
+                <template v-else>
+                    <div
+                        class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center"
+                    >
+                        <div>
+                            <h3
+                                class="text-xl font-bold text-gray-800 text-left mb-6"
+                            >
+                                You don't have any product to see
+                            </h3>
+                            <p class="text-sm text-gray-400 text-left">
+                                You need some product in order to see it here
+                            </p>
+                            <button
+                                class="mt-6 font-semibold px-3 py-2.5 bg-indigo-500 hover:bg-indigo-700 text-white text-sm border rounded-md"
+                            >
+                                <Link href="/admin/products/create"
+                                    >Create product now</Link
+                                >
+                            </button>
+                        </div>
+                    </div>
+                </template>
             </template>
             <template v-else>
                 <div class="flex flex-col">
@@ -310,6 +322,7 @@
 import SideNav from "../../../Shared/SideNav.vue";
 import Pagination from "../../../Shared/Pagination.vue";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { SearchIcon } from "@heroicons/vue/solid";
 import { SwitchVerticalIcon } from "@heroicons/vue/outline";
 import { pickBy, debounce } from "lodash";
 
@@ -327,6 +340,7 @@ export default {
         MenuButton,
         MenuItems,
         MenuItem,
+        SearchIcon,
     },
 
     data() {
@@ -341,20 +355,15 @@ export default {
 
     watch: {
         params: {
-            handler(newObject) {
-                    if (newObject.search.includes(' ')) {
-                        return false;
-                    }
-                    this.searchInput();
+            handler() {
+                this.searchInput();
             },
             deep: true,
         },
     },
 
     mounted() {
-        if (this.params.search !== "" || this.params.search !== null) {
-            this.$nextTick(() => this.$refs.search.focus());
-        }
+        this.$nextTick(() => this.$refs.search.focus());
     },
 
     methods: {
@@ -396,13 +405,13 @@ export default {
             );
         },
 
-        searchInput: debounce(function() {
+        searchInput: debounce(function () {
             let params = this.params;
             params = pickBy(params);
             this.$inertia.get("/admin/products/", params, {
                 preserveScroll: true,
             });
-        }, 1000),
+        }, 500),
 
         editProduct(slug) {
             this.$inertia.patch("/admin/products/" + slug);
