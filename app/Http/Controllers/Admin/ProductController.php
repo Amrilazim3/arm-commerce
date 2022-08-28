@@ -93,11 +93,15 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return Inertia::render('Admin/Products/Show');
+        return Inertia::render('Admin/Products/Show', [
+            'product' => $product->only(['name', 'description', 'slug', 'stock', 'price'])
+        ]);
     }
 
     public function edit(Product $product)
     {
+        dd('edit product');
+
         return Inertia::render('Admin/Products/Edit');
     }
 
