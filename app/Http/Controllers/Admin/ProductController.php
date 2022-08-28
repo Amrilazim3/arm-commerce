@@ -30,7 +30,7 @@ class ProductController extends Controller
                 return $query->select(['id', 'name', 'slug']);
             }])
             ->filter(
-                request(['created_at', 'stock'])
+                request(['created_at', 'stock', 'search'])
             )
             ->paginate(20);
 
@@ -38,7 +38,7 @@ class ProductController extends Controller
 
         return Inertia::render('Admin/Products/Index', [
             'products' => $products,
-            'requests' => request(['created_at', 'stock'])
+            'requests' => request(['created_at', 'stock', 'search'])
         ]);
     }
 
