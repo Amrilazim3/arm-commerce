@@ -259,7 +259,6 @@
                                                 >
                                                     <Link
                                                         :href="
-                                                            'products/' +
                                                             product.slug
                                                         "
                                                         class="hover:font-semibold hover:text-indigo-600"
