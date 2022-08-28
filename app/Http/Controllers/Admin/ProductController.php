@@ -48,7 +48,7 @@ class ProductController extends Controller
         $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
             return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
         });      
-        
+
         return Inertia::render('Admin/Products/Create', [
             'categories' => $categories 
         ]);
