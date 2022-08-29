@@ -45,12 +45,17 @@ class ProductController extends Controller
 
     public function create()
     {
+        $variants = Cache::remember('variants', now()->addMinutes(7200), function () {
+            return Variant::select('id', 'name')->take(3)->get();
+        });
+
         $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
             return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
         });      
 
         return Inertia::render('Admin/Products/Create', [
-            'categories' => $categories 
+            'categories' => $categories,
+            'variants' => $variants
         ]);
     }
 
