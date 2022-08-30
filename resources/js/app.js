@@ -7,6 +7,7 @@ import Notifications from 'notiwind';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import '../css/app.css';
+import { plugin as FormKitPlugin, defaultConfig } from '@formkit/vue';
 
 createInertiaApp({
     resolve: async name => {
@@ -28,12 +29,12 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(Notifications)
+            .use(FormKitPlugin, defaultConfig)
             .component("Link", Link)
             .component("Head", Head)
             .component("Datepicker", Datepicker)
             .mount(el)
     },
-
     title: title => `Arm-commerce | ${title}`
 })
 
