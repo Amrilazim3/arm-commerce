@@ -1,3 +1,5 @@
+const formKitTailwind = require('@formkit/themes/tailwindcss');
+
 module.exports = {
     content: [
         "./resources/**/*.blade.php",
@@ -12,5 +14,6 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('autoprefixer'),
         require('@tailwindcss/typography'),
+        formKitTailwind
     ],
 }
