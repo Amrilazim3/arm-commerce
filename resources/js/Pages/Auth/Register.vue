@@ -4,11 +4,15 @@
         class="bg-gray-100 min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8"
     >
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <img
+            <svg
                 class="mx-auto h-12 w-auto"
-                src="https://arm-commerce.com/images/dumbbell-solid.svg"
-                alt="arm-commerce-icon"
-            />
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 512"
+            >
+                <path
+                    d="M104 96h-48C42.75 96 32 106.8 32 120V224C14.33 224 0 238.3 0 256c0 17.67 14.33 32 31.1 32L32 392C32 405.3 42.75 416 56 416h48C117.3 416 128 405.3 128 392v-272C128 106.8 117.3 96 104 96zM456 32h-48C394.8 32 384 42.75 384 56V224H256V56C256 42.75 245.3 32 232 32h-48C170.8 32 160 42.75 160 56v400C160 469.3 170.8 480 184 480h48C245.3 480 256 469.3 256 456V288h128v168c0 13.25 10.75 24 24 24h48c13.25 0 24-10.75 24-24V56C480 42.75 469.3 32 456 32zM608 224V120C608 106.8 597.3 96 584 96h-48C522.8 96 512 106.8 512 120v272c0 13.25 10.75 24 24 24h48c13.25 0 24-10.75 24-24V288c17.67 0 32-14.33 32-32C640 238.3 625.7 224 608 224z"
+                />
+            </svg>
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 Create your account here
             </h2>
@@ -18,139 +22,65 @@
             <div
                 class="bg-white border py-8 px-4 shadow sm:rounded-lg sm:px-10"
             >
-                <form class="space-y-6" @submit.prevent="register">
-                    <div>
-                        <label
-                            for="email"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            Name
-                        </label>
-                        <div class="mt-1">
-                            <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                autocomplete="name"
-                                required=""
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                v-model="form.name"
-                            />
-                        </div>
-                        <div
-                            v-if="form.errors.name"
-                            class="text-red-500 text-sm"
-                        >
-                            {{ form.errors.name }}
-                        </div>
-                    </div>
+                <FormKit
+                    type="form"
+                    submit-label="Create account"
+                    form-class="space-y-6"
+                    :submit-attrs="{
+                        inputClass: 'w-full',
+                    }"
+                    :disabled="form.processing"
+                    @submit="register"
+                    :input-errors="{
+                        name: form.errors.name ? form.errors.name : '',
+                        email: form.errors.email ? form.errors.email : '',
+                        password: form.errors.password
+                            ? form.errors.password
+                            : '',
+                    }"
+                >
+                    <FormKit
+                        name="name"
+                        label="Name"
+                        type="text"
+                        validation="required|length:5,30"
+                        placeholder="Enter your name"
+                        v-model="form.name"
+                    />
 
-                    <div>
-                        <label
-                            for="email"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            Email address
-                        </label>
-                        <div class="mt-1">
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                autocomplete="email"
-                                required=""
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                v-model="form.email"
-                            />
-                        </div>
-                        <div
-                            v-if="form.errors.email"
-                            class="text-red-500 text-sm"
-                        >
-                            {{ form.errors.email }}
-                        </div>
-                    </div>
+                    <FormKit
+                        name="email"
+                        label="Email address"
+                        type="text"
+                        validation="required|email"
+                        placeholder="Enter your email address"
+                        v-model="form.email"
+                    />
 
-                    <div>
-                        <label
-                            for="password"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            Password
-                        </label>
-                        <div class="mt-1">
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autocomplete="current-password"
-                                required=""
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                v-model="form.password"
-                            />
-                        </div>
-                        <div
-                            v-if="form.errors.password"
-                            class="text-red-500 text-sm"
-                        >
-                            {{ form.errors.password }}
-                        </div>
-                    </div>
+                    <FormKit
+                        name="password"
+                        label="Password"
+                        type="password"
+                        validation="required|length:7"
+                        placeholder="Enter your password"
+                        v-model="form.password"
+                    />
 
-                    <div>
-                        <label
-                            for="password"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            Password confirmation
-                        </label>
-                        <div class="mt-1">
-                            <input
-                                id="password-confirmation"
-                                name="password-confirmation"
-                                type="password"
-                                autocomplete="password-confirmation"
-                                required=""
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                v-model="form.password_confirmation"
-                            />
-                        </div>
-                    </div>
+                    <FormKit
+                        name="password_confirm"
+                        label="Password confirmation"
+                        type="password"
+                        validation="required|length:7|confirm:password"
+                        placeholder="Confirm your password"
+                        v-model="form.password_confirmation"
+                    />
 
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input
-                                id="remember-me"
-                                name="remember-me"
-                                type="checkbox"
-                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                v-model="form.isRememberMe"
-                            />
-                            <label
-                                for="remember-me"
-                                class="ml-2 block text-sm text-gray-900"
-                            >
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button
-                            type="submit"
-                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white"
-                            :disabled="form.processing"
-                            :class="
-                                form.processing
-                                    ? 'bg-indigo-300 cursor-not-allowed'
-                                    : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                            "
-                        >
-                            create an account
-                        </button>
-                    </div>
-                </form>
-
+                    <FormKit
+                        label="Remember me"
+                        type="checkbox"
+                        v-model="form.isRememberMe"
+                    />
+                </FormKit>
                 <ThirdPartyServices />
             </div>
         </div>
