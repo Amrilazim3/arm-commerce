@@ -24,7 +24,7 @@ const buttonClassification = {
 export default {
     // the global key will apply to all inputs
     global: {
-        outer: 'mb-5 formkit-disabled:opacity-50',
+        outer: 'formkit-disabled:opacity-50',
         help: 'text-xs text-gray-500',
         messages: 'list-none p-0 mt-1 mb-0',
         message: 'text-red-500 mb-1 text-sm',
