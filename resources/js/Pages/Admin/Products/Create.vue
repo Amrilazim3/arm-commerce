@@ -14,7 +14,7 @@
                         <div class="mb-3 min-w-full">
                             <label
                                 for="product-name"
-                                class="form-label font-medium inline-block mb-2 text-gray-700"
+                                class="font-medium inline-block mb-2 text-gray-700"
                                 >Product name</label
                             >
                             <input
@@ -36,7 +36,7 @@
                         <div class="mb-3 min-w-full">
                             <label
                                 for="product-description"
-                                class="form-label font-medium inline-block mb-2 text-gray-700"
+                                class="font-medium inline-block mb-2 text-gray-700"
                                 >Product Description</label
                             >
                             <Tiptap v-model="product.description" />
@@ -51,7 +51,7 @@
                         <div class="mb-3 min-w-full">
                             <label
                                 for="product-description"
-                                class="form-label font-medium inline-block mb-2 text-gray-700"
+                                class="font-medium inline-block mb-2 text-gray-700"
                                 >Product Category</label
                             >
                             <Listbox
@@ -168,7 +168,7 @@
                             <div class="mb-3 min-w-full">
                                 <label
                                     for="product-description"
-                                    class="form-label font-medium inline-block mb-2 text-gray-700"
+                                    class="font-medium inline-block mb-2 text-gray-700"
                                     >Custom category</label
                                 >
                                 <div class="flex space-x-3">
@@ -203,7 +203,7 @@
                             <div>
                                 <label
                                     for="product-stock"
-                                    class="form-label font-medium inline-block mb-2 text-gray-700"
+                                    class="font-medium inline-block mb-2 text-gray-700"
                                     >Product stock</label
                                 >
                                 <input
@@ -226,7 +226,7 @@
                             <div>
                                 <label
                                     for="product-price"
-                                    class="form-label font-medium inline-block mb-2 text-gray-700"
+                                    class="font-medium inline-block mb-2 text-gray-700"
                                     >Product price</label
                                 >
                                 <input
@@ -253,7 +253,7 @@
                         <div>
                             <label
                                 for="product-name"
-                                class="form-label font-medium inline-block mb-2 text-gray-700"
+                                class="font-medium inline-block mb-2 text-gray-700"
                                 >Media</label
                             >
                             <label
@@ -290,7 +290,6 @@
                             </div>
                         </div>
 
-                        <!-- display selected image/video -->
                         <div
                             class="mt-6 bg-white py-4 px-2 h-64 border rounded-md overflow-y-scroll"
                             v-if="previewMediaUploaded.length !== 0"
@@ -325,27 +324,331 @@
                             </div>
                         </div>
 
-                        <!-- still in research -->
-                        <div class="mt-8">
-                            <label
-                                for="product-name"
-                                class="form-label font-medium inline-block mb-2 text-gray-700"
-                                >Options</label
-                            >
+                        <!-- options -->
+                        <div
+                            class="mt-8 border bg-white rounded-md p-4 space-y-6"
+                            :class="isHasOptions ? 'mb-4' : ''"
+                        >
+                            <!-- option message with checkbox -->
                             <div>
-                                <input
-                                    class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                    type="checkbox"
-                                    v-model="isHasOptions"
-                                    id="product-variations"
-                                />
                                 <label
-                                    class="form-check-label inline-block text-gray-800"
-                                    for="product-variations"
+                                    for="product-options"
+                                    class="font-medium inline-block mb-2 text-gray-700"
+                                    >Options</label
                                 >
-                                    This product has options, like size or color
-                                </label>
+                                <div>
+                                    <input
+                                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                        type="checkbox"
+                                        v-model="isHasOptions"
+                                        :checked="
+                                            isHasOptions ||
+                                            isHasSecondOptions ||
+                                            isHasThirdOptions
+                                        "
+                                        id="product-options"
+                                    />
+                                    <label
+                                        class="form-check-label inline-block text-gray-800"
+                                        for="product-variants"
+                                    >
+                                        This product has options, like size or
+                                        color
+                                    </label>
+                                </div>
                             </div>
+
+                            
+                            <!-- option 1 -->
+                            <!-- <div
+                                :class="[
+                                    'border-t',
+                                    isHasOptions ? 'block' : 'hidden',
+                                ]"
+                            >
+                                <div class="px-6">
+                                    <div>
+                                        <label
+                                            for="option-one"
+                                            class="font-medium inline-block my-2 text-gray-700"
+                                            >Option name</label
+                                        >
+                                        <div class="flex">
+                                            <input
+                                                type="text"
+                                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                                id="option-one"
+                                                placeholder="Size"
+                                                @click.prevent="
+                                                    showOptionNamesList
+                                                "
+                                                @focus="
+                                                    isFocusOptionNameInputOne = true
+                                                "
+                                                :required="isHasOptions"
+                                            />
+                                            <TrashIcon
+                                                @click.prevent="
+                                                    isHasOptions = false
+                                                "
+                                                class="self-center pl-2 cursor-pointer w-7 h-7"
+                                            />
+                                        </div>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md"
+                                                :class="
+                                                    isShowOptionNamesList &&
+                                                    isFocusOptionNameInputOne
+                                                        ? 'block'
+                                                        : 'hidden'
+                                                "
+                                                ref="optionNamesList"
+                                            >
+                                                <ul class="space-y-1.5">
+                                                    <template
+                                                        v-for="variant in variants"
+                                                        :key="variant.id"
+                                                    >
+                                                        <li
+                                                            @click.prevent="
+                                                                selectOptionName(
+                                                                    variant.name
+                                                                )
+                                                            "
+                                                            class="px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200"
+                                                        >
+                                                            {{ variant.name }}
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label
+                                            for="option-one-values"
+                                            class="font-medium inline-block my-2 text-gray-700"
+                                            >Option values</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                            id="option-one-values"
+                                            placeholder="Big"
+                                            :required="isHasOptions"
+                                        />
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
+                                    >
+                                        Done
+                                    </button>
+                                </div>
+                            </div> -->
+
+                            <!-- option 2 -->
+                            <!-- <div
+                                :class="[
+                                    'border-t',
+                                    isHasSecondOptions ? 'block' : 'hidden',
+                                ]"
+                            >
+                                <div class="px-6">
+                                    <div>
+                                        <label
+                                            for="option-two"
+                                            class="font-medium inline-block my-2 text-gray-700"
+                                            >Option name</label
+                                        >
+                                        <div class="flex">
+                                            <input
+                                                type="text"
+                                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                                id="option-two"
+                                                placeholder="Color"
+                                                @click.prevent="
+                                                    showOptionNamesList
+                                                "
+                                                @focus="
+                                                    isFocusOptionNameInputTwo = true
+                                                "
+                                                :required="isHasSecondOptions"
+                                            />
+                                            <TrashIcon
+                                                @click.prevent="
+                                                    isHasSecondOptions = false
+                                                "
+                                                class="self-center cursor-pointer pl-2 w-7 h-7"
+                                            />
+                                        </div>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md"
+                                                :class="
+                                                    isShowOptionNamesList &&
+                                                    isFocusOptionNameInputTwo
+                                                        ? 'block'
+                                                        : 'hidden'
+                                                "
+                                                ref="optionNamesList"
+                                            >
+                                                <ul class="space-y-1.5">
+                                                    <template
+                                                        v-for="variant in variants"
+                                                        :key="variant.id"
+                                                    >
+                                                        <li
+                                                            @click.prevent="
+                                                                selectOptionName(
+                                                                    variant.name
+                                                                )
+                                                            "
+                                                            class="px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200"
+                                                        >
+                                                            {{ variant.name }}
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label
+                                            for="option-two-values"
+                                            class="font-medium inline-block my-2 text-gray-700"
+                                            >Option values</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                            id="option-two-values"
+                                            placeholder="Black"
+                                            :required="isHasSecondOptions"
+                                        />
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
+                                    >
+                                        Done
+                                    </button>
+                                </div>
+                            </div> -->
+
+                            <!-- option 3 (limit reached) -->
+                            <!-- <div
+                                :class="[
+                                    'border-t',
+                                    isHasThirdOptions ? 'block' : 'hidden',
+                                ]"
+                            >
+                                <div class="px-6">
+                                    <div>
+                                        <label
+                                            for="option-three"
+                                            class="font-medium inline-block my-2 text-gray-700"
+                                            >Option name</label
+                                        >
+                                        <div class="flex">
+                                            <input
+                                                type="text"
+                                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                                id="option-three"
+                                                placeholder="Weight"
+                                                @click.prevent="
+                                                    showOptionNamesList
+                                                "
+                                                @focus="
+                                                    isFocusOptionNameInputThree = true
+                                                "
+                                                :required="isHasThirdOptions"
+                                            />
+                                            <TrashIcon
+                                                @click.prevent="
+                                                    isHasThirdOptions = false
+                                                "
+                                                class="self-center cursor-pointer pl-2 w-7 h-7"
+                                            />
+                                        </div>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md"
+                                                :class="
+                                                    isShowOptionNamesList &&
+                                                    isFocusOptionNameInputThree
+                                                        ? 'block'
+                                                        : 'hidden'
+                                                "
+                                                ref="optionNamesList"
+                                            >
+                                                <ul class="space-y-1.5">
+                                                    <template
+                                                        v-for="variant in variants"
+                                                        :key="variant.id"
+                                                    >
+                                                        <li
+                                                            @click.prevent="
+                                                                selectOptionName(
+                                                                    variant.name
+                                                                )
+                                                            "
+                                                            class="px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200"
+                                                        >
+                                                            {{ variant.name }}
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label
+                                            for="option-three-values"
+                                            class="font-medium inline-block my-2 text-gray-700"
+                                            >Option values</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                                            id="option-three-values"
+                                            placeholder="15 kg"
+                                            :required="isHasThirdOptions"
+                                        />
+                                    </div>
+                                    <button
+                                        type="button"
+                                        class="mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
+                                    >
+                                        Done
+                                    </button>
+                                </div>
+                            </div> -->
+
+                            <!-- make this button dynamic -->
+                            <!-- not finish yet (29/8/2022) -->
+                            <!-- <div
+                                class="border-t pt-3"
+                                :class="
+                                    (!isHasOptions &&
+                                        isHasSecondOptions &&
+                                        isHasThirdOptions) ||
+                                    (isHasOptions &&
+                                        isHasSecondOptions &&
+                                        isHasThirdOptions)
+                                        ? 'hidden'
+                                        : 'block'
+                                "
+                            >
+                                <button
+                                    type="button"
+                                    class="text-indigo-500 text-sm font-semibold"
+                                    @click.prevent="addOptions"
+                                >
+                                    Add another option
+                                </button>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -384,8 +687,8 @@ import {
     SelectorIcon,
     PlusSmIcon,
     XCircleIcon,
-    TrashIcon,
 } from "@heroicons/vue/solid";
+import { TrashIcon } from "@heroicons/vue/outline";
 
 export default {
     components: {
@@ -405,12 +708,19 @@ export default {
 
     props: {
         categories: Object,
+        variants: Object,
     },
 
     data() {
         return {
             isCustomCategory: false,
             isHasOptions: false,
+            isHasSecondOptions: false,
+            isHasThirdOptions: false,
+            isShowOptionNamesList: false,
+            isFocusOptionNameInputOne: false,
+            isFocusOptionNameInputTwo: false,
+            isFocusOptionNameInputThree: false,
             product: this.$inertia.form({
                 name: "",
                 description: "",
@@ -427,6 +737,19 @@ export default {
             // variantValues: {},
         };
     },
+
+    // watch: {
+    //     isHasOptions(condition) {
+    //         if (
+    //             condition == false &&
+    //             (this.isHasSecondOptions == false ||
+    //                 this.isHasThirdOptions == false)
+    //         ) {
+    //             this.isHasSecondOptions = false;
+    //             this.isHasThirdOptions = false;
+    //         }
+    //     },
+    // },
 
     methods: {
         handleProductMediaUpload(event) {
@@ -541,6 +864,41 @@ export default {
                     );
                 },
             });
+        },
+
+        addOptions() {
+            if (this.isHasOptions) {
+                if (this.isHasSecondOptions) {
+                    this.isHasThirdOptions = true;
+                    return;
+                }
+                this.isHasSecondOptions = true;
+                return;
+            }
+            this.isHasOptions = true;
+        },
+
+        showOptionNamesList() {
+            this.isShowOptionNamesList = !this.isShowOptionNamesList;
+            setTimeout(
+                () =>
+                    window.addEventListener("click", this.hideOptionNamesList),
+                100
+            );
+        },
+
+        hideOptionNamesList(e) {
+            if (!this.$refs.optionNamesList.contains(e.target)) {
+                this.isShowOptionNamesList = false;
+                window.removeEventListener("click", this.hideOptionNamesList);
+            }
+            this.isFocusOptionNameInputOne = false;
+            this.isFocusOptionNameInputTwo = false;
+            this.isFocusOptionNameInputThree = false;
+        },
+
+        selectOptionName(option) {
+            console.log(option);
         },
 
         /**
