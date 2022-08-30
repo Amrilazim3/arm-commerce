@@ -18,7 +18,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/SelectorIcon.js");
 /* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/PlusSmIcon.js");
 /* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/XCircleIcon.js");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/TrashIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/TrashIcon.js");
+
 
 
 
@@ -36,15 +37,22 @@ __webpack_require__.r(__webpack_exports__);
     SelectorIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_4__["default"],
     PlusSmIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_5__["default"],
     XCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__["default"],
-    TrashIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_7__["default"]
+    TrashIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   props: {
-    categories: Object
+    categories: Object,
+    variants: Object
   },
   data: function data() {
     return {
       isCustomCategory: false,
       isHasOptions: false,
+      isHasSecondOptions: false,
+      isHasThirdOptions: false,
+      isShowOptionNamesList: false,
+      isFocusOptionNameInputOne: false,
+      isFocusOptionNameInputTwo: false,
+      isFocusOptionNameInputThree: false,
       product: this.$inertia.form({
         name: "",
         description: "",
@@ -60,6 +68,18 @@ __webpack_require__.r(__webpack_exports__);
 
     };
   },
+  // watch: {
+  //     isHasOptions(condition) {
+  //         if (
+  //             condition == false &&
+  //             (this.isHasSecondOptions == false ||
+  //                 this.isHasThirdOptions == false)
+  //         ) {
+  //             this.isHasSecondOptions = false;
+  //             this.isHasThirdOptions = false;
+  //         }
+  //     },
+  // },
   methods: {
     handleProductMediaUpload: function handleProductMediaUpload(event) {
       var _this = this;
@@ -148,6 +168,40 @@ __webpack_require__.r(__webpack_exports__);
           }, 3500);
         }
       });
+    },
+    addOptions: function addOptions() {
+      if (this.isHasOptions) {
+        if (this.isHasSecondOptions) {
+          this.isHasThirdOptions = true;
+          return;
+        }
+
+        this.isHasSecondOptions = true;
+        return;
+      }
+
+      this.isHasOptions = true;
+    },
+    showOptionNamesList: function showOptionNamesList() {
+      var _this4 = this;
+
+      this.isShowOptionNamesList = !this.isShowOptionNamesList;
+      setTimeout(function () {
+        return window.addEventListener("click", _this4.hideOptionNamesList);
+      }, 100);
+    },
+    hideOptionNamesList: function hideOptionNamesList(e) {
+      if (!this.$refs.optionNamesList.contains(e.target)) {
+        this.isShowOptionNamesList = false;
+        window.removeEventListener("click", this.hideOptionNamesList);
+      }
+
+      this.isFocusOptionNameInputOne = false;
+      this.isFocusOptionNameInputTwo = false;
+      this.isFocusOptionNameInputThree = false;
+    },
+    selectOptionName: function selectOptionName(option) {
+      console.log(option);
     }
     /**
      *
@@ -315,7 +369,7 @@ var _hoisted_6 = {
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-name",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Product name", -1
 /* HOISTED */
 );
@@ -330,7 +384,7 @@ var _hoisted_9 = {
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-description",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Product Description", -1
 /* HOISTED */
 );
@@ -345,7 +399,7 @@ var _hoisted_12 = {
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-description",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Product Category", -1
 /* HOISTED */
 );
@@ -384,7 +438,7 @@ var _hoisted_21 = {
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-description",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Custom category", -1
 /* HOISTED */
 );
@@ -402,7 +456,7 @@ var _hoisted_25 = {
 
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-stock",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Product stock", -1
 /* HOISTED */
 );
@@ -414,7 +468,7 @@ var _hoisted_27 = {
 
 var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-price",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Product price", -1
 /* HOISTED */
 );
@@ -429,7 +483,7 @@ var _hoisted_30 = {
 
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-name",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Media", -1
 /* HOISTED */
 );
@@ -466,20 +520,19 @@ var _hoisted_36 = {
 var _hoisted_37 = ["src"];
 var _hoisted_38 = ["src", "alt"];
 var _hoisted_39 = ["onClick"];
-var _hoisted_40 = {
-  "class": "mt-8"
-};
 
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-name",
-  "class": "form-label font-medium inline-block mb-2 text-gray-700"
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "product-options",
+  "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Options", -1
 /* HOISTED */
 );
 
+var _hoisted_41 = ["checked"];
+
 var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-check-label inline-block text-gray-800",
-  "for": "product-variations"
+  "for": "product-variants"
 }, " This product has options, like size or color ", -1
 /* HOISTED */
 );
@@ -702,7 +755,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* HYDRATE_EVENTS */
   ), _hoisted_33, _hoisted_34]), $data.product.errors.media ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.media), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" display selected image/video "), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300",
       key: index
@@ -732,16 +785,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_39)]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" still in research "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" options "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-8 border bg-white rounded-md p-4 space-y-6", $data.isHasOptions ? 'mb-4' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option message with checkbox "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer",
     type: "checkbox",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
       return $data.isHasOptions = $event;
     }),
-    id: "product-variations"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.isHasOptions]]), _hoisted_42])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    checked: $data.isHasOptions || $data.isHasSecondOptions || $data.isHasThirdOptions,
+    id: "product-options"
+  }, null, 8
+  /* PROPS */
+  , _hoisted_41), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.isHasOptions]]), _hoisted_42])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 1 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-one\"\r\n                                                placeholder=\"Size\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputOne = true\r\n                                                \"\r\n                                                :required=\"isHasOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasOptions = false\r\n                                                \"\r\n                                                class=\"self-center pl-2 cursor-pointer w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputOne\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-one-values\"\r\n                                            placeholder=\"Big\"\r\n                                            :required=\"isHasOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 2 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasSecondOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-two\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-two\"\r\n                                                placeholder=\"Color\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputTwo = true\r\n                                                \"\r\n                                                :required=\"isHasSecondOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasSecondOptions = false\r\n                                                \"\r\n                                                class=\"self-center cursor-pointer pl-2 w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputTwo\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-two-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-two-values\"\r\n                                            placeholder=\"Black\"\r\n                                            :required=\"isHasSecondOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 3 (limit reached) "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasThirdOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-three\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-three\"\r\n                                                placeholder=\"Weight\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputThree = true\r\n                                                \"\r\n                                                :required=\"isHasThirdOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasThirdOptions = false\r\n                                                \"\r\n                                                class=\"self-center cursor-pointer pl-2 w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputThree\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-three-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-three-values\"\r\n                                            placeholder=\"15 kg\"\r\n                                            :required=\"isHasThirdOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" make this button dynamic "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" not finish yet (29/8/2022) "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                class=\"border-t pt-3\"\r\n                                :class=\"\r\n                                    (!isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions) ||\r\n                                    (isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions)\r\n                                        ? 'hidden'\r\n                                        : 'block'\r\n                                \"\r\n                            >\r\n                                <button\r\n                                    type=\"button\"\r\n                                    class=\"text-indigo-500 text-sm font-semibold\"\r\n                                    @click.prevent=\"addOptions\"\r\n                                >\r\n                                    Add another option\r\n                                </button>\r\n                            </div> ")], 2
+  /* CLASS */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-4 py-2.5 bg-indigo-600 text-white font-medium text-sm leading-tight rounded-md shadow-md", !$data.product.isDirty || $data.product.processing ? 'bg-indigo-400 cursor-not-allowed' : 'hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out']),
     disabled: !$data.product.isDirty || $data.product.processing
