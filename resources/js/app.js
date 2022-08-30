@@ -8,6 +8,7 @@ import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import '../css/app.css';
 import { plugin as FormKitPlugin, defaultConfig } from '@formkit/vue';
+import TailwindFormKitConfig from '../../formkit.config';
 
 createInertiaApp({
     resolve: async name => {
@@ -29,7 +30,10 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(Notifications)
-            .use(FormKitPlugin, defaultConfig)
+            .use(
+                FormKitPlugin,
+                defaultConfig(TailwindFormKitConfig)
+            )
             .component("Link", Link)
             .component("Head", Head)
             .component("Datepicker", Datepicker)
