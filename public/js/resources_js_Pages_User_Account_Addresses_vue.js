@@ -516,12 +516,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 disabled: $data.addressForm.processing,
                 onSubmit: $options.addAddress,
                 "input-errors": {
-                  full_name: $data.addressForm.errors.full_name ? $data.addressForm.errors.full_name : '',
-                  phone_number: $data.addressForm.errors.phone_number ? $data.addressForm.errors.phone_number : '',
+                  full_name: $data.addressForm.errors.fullName ? $data.addressForm.errors.fullName : '',
+                  phone_number: $data.addressForm.errors.phoneNumber ? $data.addressForm.errors.phoneNumber : '',
                   state: $data.addressForm.errors.state ? $data.addressForm.errors.state : '',
                   city: $data.addressForm.errors.city ? $data.addressForm.errors.city : '',
-                  postal_code: $data.addressForm.errors.postal_code ? $data.addressForm.errors.postal_code : '',
-                  street_name: $data.addressForm.errors.street_name ? $data.addressForm.errors.street_name : ''
+                  postal_code: $data.addressForm.errors.postalCode ? $data.addressForm.errors.postalCode : '',
+                  street_name: $data.addressForm.errors.streetName ? $data.addressForm.errors.streetName : ''
                 }
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -541,8 +541,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     name: "phone_number",
                     label: "Phone number",
                     type: "number",
-                    validation: "required|number|length:11",
-                    placeholder: "Enter your phone number",
+                    validation: "required|number|length:11,12",
+                    placeholder: "60178891233",
                     modelValue: $data.addressForm.phoneNumber,
                     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
                       return $data.addressForm.phoneNumber = $event;
@@ -596,7 +596,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     label: "Postal code",
                     type: "number",
                     "outer-class": "flex-1",
-                    validation: "required|length:5",
+                    validation: "required|length:5,5",
                     placeholder: "Enter postal code",
                     modelValue: $data.addressForm.postalCode,
                     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
