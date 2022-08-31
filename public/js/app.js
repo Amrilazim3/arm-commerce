@@ -2185,11 +2185,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/app.css */ "./resources/css/app.css");
 /* harmony import */ var _formkit_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @formkit/vue */ "./node_modules/@formkit/vue/dist/index.mjs");
 /* harmony import */ var _formkit_config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../formkit.config */ "./formkit.config.js");
+/* harmony import */ var vue_tippy__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-tippy */ "./node_modules/vue-tippy/dist/vue-tippy.esm-browser.js");
+/* harmony import */ var tippy_js_dist_tippy_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tippy.js/dist/tippy.css */ "./node_modules/tippy.js/dist/tippy.css");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -2249,7 +2253,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       render: function render() {
         return (0,vue__WEBPACK_IMPORTED_MODULE_1__.h)(App, props);
       }
-    }).use(plugin).use(notiwind__WEBPACK_IMPORTED_MODULE_6__["default"]).use(_formkit_vue__WEBPACK_IMPORTED_MODULE_10__.plugin, (0,_formkit_vue__WEBPACK_IMPORTED_MODULE_10__.defaultConfig)(_formkit_config__WEBPACK_IMPORTED_MODULE_11__["default"])).component("Link", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link).component("Head", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head).component("Datepicker", _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_7__["default"]).mount(el);
+    }).use(plugin).use(notiwind__WEBPACK_IMPORTED_MODULE_6__["default"]).use(_formkit_vue__WEBPACK_IMPORTED_MODULE_10__.plugin, (0,_formkit_vue__WEBPACK_IMPORTED_MODULE_10__.defaultConfig)(_formkit_config__WEBPACK_IMPORTED_MODULE_11__["default"])).use(vue_tippy__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      directive: 'tippy',
+      // => v-tippy
+      component: 'tippy',
+      // => <tippy/>
+      componentSingleton: 'tippy-singleton',
+      // => <tippy-singleton/>,
+      defaultProps: {
+        placement: 'bottom',
+        allowHTML: true
+      }
+    }).component("Link", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Link).component("Head", _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__.Head).component("Datepicker", _vuepic_vue_datepicker__WEBPACK_IMPORTED_MODULE_7__["default"]).mount(el);
   },
   title: function title(_title) {
     return "Arm-commerce | ".concat(_title);
