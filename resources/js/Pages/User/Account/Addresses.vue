@@ -37,11 +37,12 @@
                     </template>
                     <template v-else>
                         <button
-                            @click="isOpen = true"
+                            @click="openAddressForm"
                             class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             <p class="flex items-center">
-                                <span class="text-2xl mr-1.5">+</span> add address
+                                <span class="text-2xl mr-1.5">+</span> Add
+                                address
                             </p>
                         </button>
                     </template>
@@ -182,7 +183,7 @@
         <Dialog
             as="div"
             class="fixed z-10 inset-0 overflow-y-auto"
-            @close="isOpen = false"
+            @close="closeAddressForm"
         >
             <div
                 class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
@@ -235,238 +236,117 @@
                             </div>
 
                             <div class="bg-white px-4 sm:rounded-lg sm:px-10">
-                                <form
-                                    class="space-y-6"
-                                    @submit.prevent="addAddress()"
+                                <FormKit
+                                    type="form"
+                                    submit-label="Save"
+                                    form-class="space-y-6"
+                                    :actions="false"
+                                    :submit-attrs="{
+                                        outerClass: 'flex justify-end',
+                                    }"
+                                    :disabled="addressForm.processing"
+                                    @submit="addAddress"
+                                    :input-errors="{
+                                        full_name: addressForm.errors.full_name
+                                            ? addressForm.errors.full_name
+                                            : '',
+                                        phone_number: addressForm.errors
+                                            .phone_number
+                                            ? addressForm.errors.phone_number
+                                            : '',
+                                        state: addressForm.errors.state
+                                            ? addressForm.errors.state
+                                            : '',
+                                        city: addressForm.errors.city
+                                            ? addressForm.errors.city
+                                            : '',
+                                        postal_code: addressForm.errors
+                                            .postal_code
+                                            ? addressForm.errors.postal_code
+                                            : '',
+                                        street_name: addressForm.errors
+                                            .street_name
+                                            ? addressForm.errors.street_name
+                                            : '',
+                                    }"
                                 >
-                                    <div class="flex-1">
-                                        <label
-                                            for="full-name"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            Full name
-                                        </label>
-                                        <div class="mt-1">
-                                            <input
-                                                id="full-name"
-                                                name="full-name"
-                                                type="text"
-                                                autocomplete="name"
-                                                required
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                v-model="addressForm.fullName"
-                                            />
-                                        </div>
-                                        <div
-                                            v-if="addressForm.errors.fullName"
-                                            class="text-red-500 text-sm mt-1"
-                                        >
-                                            {{ addressForm.errors.fullName }}
-                                        </div>
-                                    </div>
-
-                                    <div class="flex-1">
-                                        <label
-                                            for="phone-number"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            Phone number
-                                        </label>
-                                        <div class="mt-1">
-                                            <input
-                                                id="phone-number"
-                                                name="phone-number"
-                                                type="text"
-                                                autocomplete="phone-number"
-                                                required
-                                                placeholder="Example : 60119872345"
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                v-model="
-                                                    addressForm.phoneNumber
-                                                "
-                                            />
-                                        </div>
-                                        <div
-                                            v-if="
-                                                addressForm.errors.phoneNumber
-                                            "
-                                            class="text-red-500 text-sm mt-1"
-                                        >
-                                            {{ addressForm.errors.phoneNumber }}
-                                        </div>
-                                    </div>
-
-                                    <div class="flex-1">
-                                        <label
-                                            for="state"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            State
-                                        </label>
-                                        <select
-                                            id="country"
-                                            name="country"
-                                            autocomplete="country"
-                                            class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            required
-                                            v-model="addressForm.state"
-                                        >
-                                            <option selected value="">
-                                                Select State
-                                            </option>
-                                            <template
-                                                v-for="state in states"
-                                                :key="state"
-                                            >
-                                                <option
-                                                    :value="state"
-                                                    class="w-52 bg-gray-50 border-0 rounded-sm"
-                                                >
-                                                    {{ state }}
-                                                </option>
-                                            </template>
-                                        </select>
-                                        <div
-                                            v-if="addressForm.errors.state"
-                                            class="text-red-500 text-sm mt-1"
-                                        >
-                                            {{ addressForm.errors.state }}
-                                        </div>
-                                    </div>
-
+                                    <FormKit
+                                        name="full_name"
+                                        label="Full name"
+                                        type="text"
+                                        validation="required|length:5,30"
+                                        placeholder="Enter your full name"
+                                        v-model="addressForm.fullName"
+                                    />
+                                    <FormKit
+                                        name="phone_number"
+                                        label="Phone number"
+                                        type="number"
+                                        validation="required|number|length:11"
+                                        placeholder="Enter your phone number"
+                                        v-model="addressForm.phoneNumber"
+                                    />
+                                    <FormKit
+                                        name="state"
+                                        label="State"
+                                        type="select"
+                                        :options="states"
+                                        validation="required"
+                                        placeholder="Select state"
+                                        v-model="addressForm.state"
+                                    />
                                     <div
                                         class="flex items-center justify-between space-x-1.5"
                                     >
-                                        <div class="flex-1">
-                                            <label
-                                                for="city"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                City
-                                            </label>
-                                            <select
-                                                id="city"
-                                                name="city"
-                                                autocomplete="city"
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                required
-                                                v-model="addressForm.city"
-                                            >
-                                                <template
-                                                    v-if="
-                                                        addressForm.state == ''
-                                                    "
-                                                >
-                                                    <option selected value="">
-                                                        Select City
-                                                    </option>
-                                                </template>
-                                                <template v-else>
-                                                    <option selected value="">
-                                                        Select City
-                                                    </option>
-                                                    <template
-                                                        v-for="city in cities"
-                                                        :key="city"
-                                                    >
-                                                        <option
-                                                            :value="city"
-                                                            class="w-52 bg-gray-50 border-0 rounded-sm"
-                                                        >
-                                                            {{ city }}
-                                                        </option>
-                                                    </template>
-                                                </template>
-                                            </select>
-                                            <div
-                                                v-if="addressForm.errors.city"
-                                                class="text-red-500 text-sm mt-1"
-                                            >
-                                                {{ addressForm.errors.city }}
-                                            </div>
-                                        </div>
-                                        <div class="flex-1">
-                                            <label
-                                                for="postal-code"
-                                                class="block text-sm font-medium text-gray-700"
-                                            >
-                                                Postal code
-                                            </label>
-                                            <div class="mt-1">
-                                                <input
-                                                    id="postal-code"
-                                                    name="postal-code"
-                                                    type="text"
-                                                    autocomplete="postal-code"
-                                                    required
-                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                    v-model="
-                                                        addressForm.postalCode
-                                                    "
-                                                />
-                                            </div>
-                                            <div
-                                                v-if="
-                                                    addressForm.errors
-                                                        .postalCode
-                                                "
-                                                class="text-red-500 text-sm mt-1"
-                                            >
-                                                {{
-                                                    addressForm.errors
-                                                        .postalCode
-                                                }}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex-1">
-                                        <label
-                                            for="street-name"
-                                            class="block text-sm font-medium text-gray-700"
+                                        <FormKit
+                                            name="city"
+                                            label="City"
+                                            type="select"
+                                            outer-class="flex-1"
+                                            validation="required"
+                                            v-model="addressForm.city"
+                                            placeholder="Select city"
                                         >
-                                            Street name
-                                        </label>
-                                        <div class="mt-1">
-                                            <input
-                                                id="street-name"
-                                                name="street-name"
-                                                type="text"
-                                                autocomplete="address"
-                                                required
-                                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                v-model="addressForm.streetName"
-                                            />
-                                        </div>
-                                        <div
-                                            v-if="addressForm.errors.streetName"
-                                            class="text-red-500 text-sm mt-1"
-                                        >
-                                            {{ addressForm.errors.streetName }}
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <input
-                                            class="appearance-none h-4 w-4 border border-gray-400 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                            type="checkbox"
-                                            v-model="addressForm.isDefault"
-                                            id="default_address"
-                                            @click="
-                                                addressForm.isDefault =
-                                                    !addressForm.isDefault
-                                            "
+                                            <option value="" selected>
+                                                Select city
+                                            </option>
+                                            <template
+                                                v-for="city in cities"
+                                                :key="city"
+                                            >
+                                                <option :value="city">
+                                                    {{ city }}
+                                                </option>
+                                            </template>
+                                        </FormKit>
+                                        <FormKit
+                                            name="postal_code"
+                                            label="Postal code"
+                                            type="number"
+                                            outer-class="flex-1"
+                                            validation="required|length:5"
+                                            placeholder="Enter postal code"
+                                            v-model="addressForm.postalCode"
                                         />
-                                        <label
-                                            class="inline-block text-gray-800"
-                                            for="default_address"
-                                        >
-                                            set to default
-                                        </label>
                                     </div>
+                                    <FormKit
+                                        name="street_name"
+                                        label="Street name"
+                                        type="text"
+                                        validation="required"
+                                        placeholder="Enter your street name"
+                                        v-model="addressForm.streetName"
+                                    />
 
                                     <div class="flex flex-row-reverse">
-                                        <button
+                                        <FormKit type="submit" label="Save" />
+                                        <FormKit
+                                            type="button"
+                                            label="Cancel"
+                                            @click="closeAddressForm"
+                                            input-class="$reset mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+                                        />
+                                        <!-- <button
                                             type="submit"
                                             class="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white"
                                             :disabled="
@@ -480,8 +360,9 @@
                                                     : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                                             "
                                         >
-                                            Save
+                                            Save john doe
                                         </button>
+                                        
                                         <button
                                             type="button"
                                             class="mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
@@ -492,9 +373,9 @@
                                             "
                                         >
                                             Cancel
-                                        </button>
+                                        </button> -->
                                     </div>
-                                </form>
+                                </FormKit>
                             </div>
                         </div>
                     </div>
@@ -632,6 +513,11 @@ export default {
     },
 
     methods: {
+        openAddressForm() {
+            this.isOpen = true;
+            window.addEventListener("close", this.closeAddressForm);
+        },
+
         addAddress() {
             if (this.addressForm._method == "patch") {
                 this.updateAddress(this.addressIdToEdit);
@@ -731,6 +617,15 @@ export default {
                     );
                 },
             });
+        },
+
+        closeAddressForm() {
+            this.isOpen = false;
+            setTimeout(() => {
+                this.addressForm.reset();
+                window.removeEventListener("click", this.closeAddressForm);
+            }, 100);
+            this.addressForm._method = "post";
         },
     },
 };
