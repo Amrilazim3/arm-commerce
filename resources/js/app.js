@@ -9,6 +9,8 @@ import '@vuepic/vue-datepicker/dist/main.css';
 import '../css/app.css';
 import { plugin as FormKitPlugin, defaultConfig } from '@formkit/vue';
 import TailwindFormKitConfig from '../../formkit.config';
+import VueTippy from 'vue-tippy'
+import 'tippy.js/dist/tippy.css'
 
 createInertiaApp({
     resolve: async name => {
@@ -34,6 +36,15 @@ createInertiaApp({
                 FormKitPlugin,
                 defaultConfig(TailwindFormKitConfig)
             )
+            .use(VueTippy, {
+                directive: 'tippy', // => v-tippy
+                component: 'tippy', // => <tippy/>
+                componentSingleton: 'tippy-singleton', // => <tippy-singleton/>,
+                defaultProps: {
+                    placement: 'bottom',
+                    allowHTML: true,
+                },
+            })
             .component("Link", Link)
             .component("Head", Head)
             .component("Datepicker", Datepicker)
