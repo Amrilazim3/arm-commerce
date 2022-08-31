@@ -10,7 +10,7 @@ const boxClassification = {
     wrapper: 'flex items-center cursor-pointer',
     help: 'mb-2',
     input:
-        'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded',
+        'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-full',
     label: 'ml-2 block text-sm text-semibold text-gray-900',
 }
 const buttonClassification = {
@@ -31,7 +31,7 @@ export default {
     },
     button: buttonClassification,
     color: {
-        label: 'block mb-1 font-bold text-sm',
+        label: 'block mb-1 font-semibold text-sm',
         input:
             'w-16 h-8 appearance-none cursor-pointer border border-indigo-300 rounded-md mb-2 p-1',
     },
@@ -43,10 +43,10 @@ export default {
         label: 'block mb-1 font-bold text-sm',
         inner: 'max-w-md cursor-pointer',
         input:
-            'text-gray-600 text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-indigo-500 file:text-white hover:file:bg-indigo-600',
+          'text-gray-600 text-sm mb-1 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-indigo-500 file:text-white hover:file:bg-indigo-600',
         noFiles: 'block text-gray-800 text-sm mb-1',
         fileItem: 'block flex text-gray-800 text-sm mb-1',
-        fileRemove: 'ml-auto text-indigo-500 text-sm',
+        fileRemove: 'ml-auto text-blue-500 text-sm',
     },
     month: textClassification,
     number: textClassification,
