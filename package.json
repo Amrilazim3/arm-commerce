@@ -39,6 +39,7 @@
         "@vuepic/vue-datepicker": "^3.2.0",
         "notiwind": "^1.2.5",
         "vue": "^3.2.32",
+        "vue-tippy": "^6.0.0-alpha.63",
         "webpack-node-externals": "^3.0.0"
     }
 }
