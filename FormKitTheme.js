@@ -10,7 +10,7 @@ const boxClassification = {
     wrapper: 'flex items-center cursor-pointer',
     help: 'mb-2',
     input:
-        'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-full',
+        'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-sm',
     label: 'ml-2 block text-sm text-semibold text-gray-900',
 }
 const buttonClassification = {
