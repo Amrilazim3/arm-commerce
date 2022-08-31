@@ -282,7 +282,7 @@
                                         name="phone_number"
                                         label="Phone number"
                                         type="number"
-                                        validation="required|number|length:11"
+                                        validation="required|number|length:11,12"
                                         placeholder="Enter your phone number"
                                         v-model="addressForm.phoneNumber"
                                     />
@@ -324,7 +324,7 @@
                                             label="Postal code"
                                             type="number"
                                             outer-class="flex-1"
-                                            validation="required|length:5"
+                                            validation="required|length:5,5"
                                             placeholder="Enter postal code"
                                             v-model="addressForm.postalCode"
                                         />
