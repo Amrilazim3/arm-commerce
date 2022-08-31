@@ -7,7 +7,7 @@
             :class="addresses.length == 0 ? 'mb-32' : 'mb-10'"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                <div class="inline-block md:flex md:justify-between">
+                <div class="inline-block items-center md:flex md:justify-between">
                     <div>
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             My addresses
@@ -19,32 +19,24 @@
                     </div>
 
                     <template v-if="addresses.length == 5">
-                        <div class="tooltip-wrap">
-                            <button
+                        <tippy content="Can have only 5 address maximum.">
+                            <FormKit
+                                type="button"
+                                label="Limit reached"
                                 disabled
-                                class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-2.5 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-400 cursor-not-allowed"
-                            >
-                                Limit reached
-                            </button>
-                            <div
-                                class="tooltip-content rounded-md mt-10 lg:w-max"
-                            >
-                                <p class="text-xs cursor-default">
-                                    You can have only 5 address.
-                                </p>
-                            </div>
-                        </div>
+                                input-class="$reset mt-2 md:-mt-2 px-4 border border-transparent self-center py-2.5 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-400 cursor-not-allowed"
+                            />
+                        </tippy>
                     </template>
                     <template v-else>
-                        <button
+                        <FormKit
+                            type="button"
+                            prefix-icon="add"
+                            input-class="flex"
+                            prefix-icon-class="w-4 h-4 self-center mr-1.5"
+                            label="Add address"
                             @click="openAddressForm"
-                            class="mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            <p class="flex items-center">
-                                <span class="text-2xl mr-1.5">+</span> Add
-                                address
-                            </p>
-                        </button>
+                        />
                     </template>
                 </div>
 
@@ -630,19 +622,3 @@ export default {
     },
 };
 </script>
-
-<style>
-.tooltip-wrap {
-    position: relative;
-}
-.tooltip-wrap .tooltip-content {
-    display: none;
-    position: absolute;
-    top: 5%;
-    background-color: rgb(229 231 235);
-    padding: 0.5em;
-}
-.tooltip-wrap:hover .tooltip-content {
-    display: block;
-}
-</style>
