@@ -425,7 +425,7 @@
                                 </p>
                             </div>
 
-                            <div class="mt-4 flex space-x-2">
+                            <div class="mt-4 flex justify-end space-x-2">
                                 <button
                                     class="inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-500"
                                     @click="isOpenDeleteModal = false"
