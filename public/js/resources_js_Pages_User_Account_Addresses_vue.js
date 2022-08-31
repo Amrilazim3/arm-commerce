@@ -58,6 +58,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    openAddressForm: function openAddressForm() {
+      this.isOpen = true;
+      window.addEventListener("close", this.closeAddressForm);
+    },
     addAddress: function addAddress() {
       var _this = this;
 
@@ -152,6 +156,17 @@ __webpack_require__.r(__webpack_exports__);
           }, 3500);
         }
       });
+    },
+    closeAddressForm: function closeAddressForm() {
+      var _this5 = this;
+
+      this.isOpen = false;
+      setTimeout(function () {
+        _this5.addressForm.reset();
+
+        window.removeEventListener("click", _this5.closeAddressForm);
+      }, 100);
+      this.addressForm._method = "post";
     }
   }
 });
@@ -251,7 +266,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "flex items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-2xl mr-1.5"
-}, "+"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" add address ")], -1
+}, "+"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Add address ")], -1
 /* HOISTED */
 );
 
@@ -347,161 +362,37 @@ var _hoisted_35 = {
   "class": "bg-white px-4 sm:rounded-lg sm:px-10"
 };
 var _hoisted_36 = {
-  "class": "flex-1"
-};
-
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "full-name",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Full name ", -1
-/* HOISTED */
-);
-
-var _hoisted_38 = {
-  "class": "mt-1"
-};
-var _hoisted_39 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_40 = {
-  "class": "flex-1"
-};
-
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "phone-number",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Phone number ", -1
-/* HOISTED */
-);
-
-var _hoisted_42 = {
-  "class": "mt-1"
-};
-var _hoisted_43 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_44 = {
-  "class": "flex-1"
-};
-
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "state",
-  "class": "block text-sm font-medium text-gray-700"
-}, " State ", -1
-/* HOISTED */
-);
-
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  selected: "",
-  value: ""
-}, " Select State ", -1
-/* HOISTED */
-);
-
-var _hoisted_47 = ["value"];
-var _hoisted_48 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_49 = {
   "class": "flex items-center justify-between space-x-1.5"
 };
-var _hoisted_50 = {
-  "class": "flex-1"
-};
 
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "city",
-  "class": "block text-sm font-medium text-gray-700"
-}, " City ", -1
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "",
+  selected: ""
+}, " Select city ", -1
 /* HOISTED */
 );
 
-var _hoisted_52 = {
-  key: 0,
-  selected: "",
-  value: ""
-};
-
-var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  selected: "",
-  value: ""
-}, " Select City ", -1
-/* HOISTED */
-);
-
-var _hoisted_54 = ["value"];
-var _hoisted_55 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_56 = {
-  "class": "flex-1"
-};
-
-var _hoisted_57 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "postal-code",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Postal code ", -1
-/* HOISTED */
-);
-
-var _hoisted_58 = {
-  "class": "mt-1"
-};
-var _hoisted_59 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_60 = {
-  "class": "flex-1"
-};
-
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "street-name",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Street name ", -1
-/* HOISTED */
-);
-
-var _hoisted_62 = {
-  "class": "mt-1"
-};
-var _hoisted_63 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-
-var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "inline-block text-gray-800",
-  "for": "default_address"
-}, " set to default ", -1
-/* HOISTED */
-);
-
-var _hoisted_65 = {
+var _hoisted_38 = ["value"];
+var _hoisted_39 = {
   "class": "flex flex-row-reverse"
 };
-var _hoisted_66 = ["disabled"];
 
-var _hoisted_67 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "fixed inset-0 bg-gray-500 bg-opacity-90 transition-opacity"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_68 = {
+var _hoisted_41 = {
   "class": "fixed inset-0 overflow-y-auto"
 };
-var _hoisted_69 = {
+var _hoisted_42 = {
   "class": "flex min-h-full items-center justify-center p-4 text-center"
 };
 
-var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete this address? ");
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete this address? ");
 
-var _hoisted_71 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-sm text-gray-500"
@@ -509,7 +400,7 @@ var _hoisted_71 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_72 = {
+var _hoisted_45 = {
   "class": "mt-4 flex space-x-2"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -518,6 +409,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_SideNav = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SideNav");
 
   var _component_TransitionChild = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TransitionChild");
+
+  var _component_FormKit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormKit");
 
   var _component_Dialog = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Dialog");
 
@@ -533,8 +426,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1", $props.addresses.length == 0 ? 'mb-32' : 'mb-10'])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, $props.addresses.length == 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, _hoisted_8)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 1,
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $data.isOpen = true;
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.openAddressForm && $options.openAddressForm.apply($options, arguments);
     }),
     "class": "mt-2 md:-mt-2 px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
   }, _hoisted_10))]), $props.addresses.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, _hoisted_13)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.addresses, function (address) {
@@ -576,9 +469,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dialog, {
         as: "div",
         "class": "fixed z-10 inset-0 overflow-y-auto",
-        onClose: _cache[11] || (_cache[11] = function ($event) {
-          return $data.isOpen = false;
-        })
+        onClose: $options.closeAddressForm
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
@@ -614,147 +505,135 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 1
               }, [_hoisted_34], 2112
               /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-              ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-                "class": "space-y-6",
-                onSubmit: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-                  return $options.addAddress();
-                }, ["prevent"]))
-              }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                id: "full-name",
-                name: "full-name",
-                type: "text",
-                autocomplete: "name",
-                required: "",
-                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-                "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-                  return $data.addressForm.fullName = $event;
-                })
-              }, null, 512
-              /* NEED_PATCH */
-              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressForm.fullName]])]), $data.addressForm.errors.fullName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.addressForm.errors.fullName), 1
-              /* TEXT */
-              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                id: "phone-number",
-                name: "phone-number",
-                type: "text",
-                autocomplete: "phone-number",
-                required: "",
-                placeholder: "Example : 60119872345",
-                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-                "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-                  return $data.addressForm.phoneNumber = $event;
-                })
-              }, null, 512
-              /* NEED_PATCH */
-              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressForm.phoneNumber]])]), $data.addressForm.errors.phoneNumber ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.addressForm.errors.phoneNumber), 1
-              /* TEXT */
-              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-                id: "country",
-                name: "country",
-                autocomplete: "country",
-                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-                required: "",
-                "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-                  return $data.addressForm.state = $event;
-                })
-              }, [_hoisted_46, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.states, function (state) {
-                return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-                  key: state,
-                  value: state,
-                  "class": "w-52 bg-gray-50 border-0 rounded-sm"
-                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(state), 9
-                /* TEXT, PROPS */
-                , _hoisted_47);
-              }), 128
-              /* KEYED_FRAGMENT */
-              ))], 512
-              /* NEED_PATCH */
-              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addressForm.state]]), $data.addressForm.errors.state ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.addressForm.errors.state), 1
-              /* TEXT */
-              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-                id: "city",
-                name: "city",
-                autocomplete: "city",
-                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-                required: "",
-                "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-                  return $data.addressForm.city = $event;
-                })
-              }, [$data.addressForm.state == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_52, " Select City ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                key: 1
-              }, [_hoisted_53, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.cities, function (city) {
-                return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-                  key: city,
-                  value: city,
-                  "class": "w-52 bg-gray-50 border-0 rounded-sm"
-                }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(city), 9
-                /* TEXT, PROPS */
-                , _hoisted_54);
-              }), 128
-              /* KEYED_FRAGMENT */
-              ))], 64
-              /* STABLE_FRAGMENT */
-              ))], 512
-              /* NEED_PATCH */
-              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addressForm.city]]), $data.addressForm.errors.city ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.addressForm.errors.city), 1
-              /* TEXT */
-              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [_hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                id: "postal-code",
-                name: "postal-code",
-                type: "text",
-                autocomplete: "postal-code",
-                required: "",
-                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-                "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-                  return $data.addressForm.postalCode = $event;
-                })
-              }, null, 512
-              /* NEED_PATCH */
-              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressForm.postalCode]])]), $data.addressForm.errors.postalCode ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.addressForm.errors.postalCode), 1
-              /* TEXT */
-              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [_hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                id: "street-name",
-                name: "street-name",
-                type: "text",
-                autocomplete: "address",
-                required: "",
-                "class": "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-                "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-                  return $data.addressForm.streetName = $event;
-                })
-              }, null, 512
-              /* NEED_PATCH */
-              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressForm.streetName]])]), $data.addressForm.errors.streetName ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.addressForm.errors.streetName), 1
-              /* TEXT */
-              )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-                "class": "appearance-none h-4 w-4 border border-gray-400 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer",
-                type: "checkbox",
-                "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
-                  return $data.addressForm.isDefault = $event;
+              ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                type: "form",
+                "submit-label": "Save",
+                "form-class": "space-y-6",
+                actions: false,
+                "submit-attrs": {
+                  outerClass: 'flex justify-end'
+                },
+                disabled: $data.addressForm.processing,
+                onSubmit: $options.addAddress,
+                "input-errors": {
+                  full_name: $data.addressForm.errors.full_name ? $data.addressForm.errors.full_name : '',
+                  phone_number: $data.addressForm.errors.phone_number ? $data.addressForm.errors.phone_number : '',
+                  state: $data.addressForm.errors.state ? $data.addressForm.errors.state : '',
+                  city: $data.addressForm.errors.city ? $data.addressForm.errors.city : '',
+                  postal_code: $data.addressForm.errors.postal_code ? $data.addressForm.errors.postal_code : '',
+                  street_name: $data.addressForm.errors.street_name ? $data.addressForm.errors.street_name : ''
+                }
+              }, {
+                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    name: "full_name",
+                    label: "Full name",
+                    type: "text",
+                    validation: "required|length:5,30",
+                    placeholder: "Enter your full name",
+                    modelValue: $data.addressForm.fullName,
+                    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+                      return $data.addressForm.fullName = $event;
+                    })
+                  }, null, 8
+                  /* PROPS */
+                  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    name: "phone_number",
+                    label: "Phone number",
+                    type: "number",
+                    validation: "required|number|length:11",
+                    placeholder: "Enter your phone number",
+                    modelValue: $data.addressForm.phoneNumber,
+                    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+                      return $data.addressForm.phoneNumber = $event;
+                    })
+                  }, null, 8
+                  /* PROPS */
+                  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    name: "state",
+                    label: "State",
+                    type: "select",
+                    options: $props.states,
+                    validation: "required",
+                    placeholder: "Select state",
+                    modelValue: $data.addressForm.state,
+                    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+                      return $data.addressForm.state = $event;
+                    })
+                  }, null, 8
+                  /* PROPS */
+                  , ["options", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    name: "city",
+                    label: "City",
+                    type: "select",
+                    "outer-class": "flex-1",
+                    validation: "required",
+                    modelValue: $data.addressForm.city,
+                    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+                      return $data.addressForm.city = $event;
+                    }),
+                    placeholder: "Select city"
+                  }, {
+                    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                      return [_hoisted_37, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.cities, function (city) {
+                        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+                          key: city,
+                          value: city
+                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(city), 9
+                        /* TEXT, PROPS */
+                        , _hoisted_38);
+                      }), 128
+                      /* KEYED_FRAGMENT */
+                      ))];
+                    }),
+                    _: 1
+                    /* STABLE */
+
+                  }, 8
+                  /* PROPS */
+                  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    name: "postal_code",
+                    label: "Postal code",
+                    type: "number",
+                    "outer-class": "flex-1",
+                    validation: "required|length:5",
+                    placeholder: "Enter postal code",
+                    modelValue: $data.addressForm.postalCode,
+                    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+                      return $data.addressForm.postalCode = $event;
+                    })
+                  }, null, 8
+                  /* PROPS */
+                  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    name: "street_name",
+                    label: "Street name",
+                    type: "text",
+                    validation: "required",
+                    placeholder: "Enter your street name",
+                    modelValue: $data.addressForm.streetName,
+                    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+                      return $data.addressForm.streetName = $event;
+                    })
+                  }, null, 8
+                  /* PROPS */
+                  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    type: "submit",
+                    label: "Save"
+                  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+                    type: "button",
+                    label: "Cancel",
+                    onClick: $options.closeAddressForm,
+                    "input-class": "$reset mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+                  }, null, 8
+                  /* PROPS */
+                  , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button\r\n                                            type=\"submit\"\r\n                                            class=\"flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white\"\r\n                                            :disabled=\"\r\n                                                !addressForm.isDirty ||\r\n                                                addressForm.processing\r\n                                            \"\r\n                                            :class=\"\r\n                                                !addressForm.isDirty ||\r\n                                                addressForm.processing\r\n                                                    ? 'bg-indigo-400 cursor-not-allowed'\r\n                                                    : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'\r\n                                            \"\r\n                                        >\r\n                                            Save john doe\r\n                                        </button>\r\n                                        \r\n                                        <button\r\n                                            type=\"button\"\r\n                                            class=\"mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm\"\r\n                                            @click=\"\r\n                                                isOpen = false;\r\n                                                addressForm.reset();\r\n                                                addressForm._method = 'post';\r\n                                            \"\r\n                                        >\r\n                                            Cancel\r\n                                        </button> ")])];
                 }),
-                id: "default_address",
-                onClick: _cache[8] || (_cache[8] = function ($event) {
-                  return $data.addressForm.isDefault = !$data.addressForm.isDefault;
-                })
-              }, null, 512
-              /* NEED_PATCH */
-              ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.addressForm.isDefault]]), _hoisted_64]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                type: "submit",
-                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white", !$data.addressForm.isDirty || $data.addressForm.processing ? 'bg-indigo-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500']),
-                disabled: !$data.addressForm.isDirty || $data.addressForm.processing
-              }, " Save ", 10
-              /* CLASS, PROPS */
-              , _hoisted_66), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                type: "button",
-                "class": "mr-2.5 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm",
-                onClick: _cache[9] || (_cache[9] = function ($event) {
-                  $data.isOpen = false;
-                  $data.addressForm.reset();
-                  $data.addressForm._method = 'post';
-                })
-              }, " Cancel ")])], 32
-              /* HYDRATE_EVENTS */
-              )])])])];
+                _: 1
+                /* STABLE */
+
+              }, 8
+              /* PROPS */
+              , ["disabled", "onSubmit", "input-errors"])])])])];
             }),
             _: 1
             /* STABLE */
@@ -764,7 +643,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      })];
+      }, 8
+      /* PROPS */
+      , ["onClose"])];
     }),
     _: 1
     /* STABLE */
@@ -779,7 +660,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dialog, {
         as: "div",
         "class": "fixed z-10 inset-0 overflow-y-auto",
-        onClose: _cache[14] || (_cache[14] = function ($event) {
+        onClose: _cache[9] || (_cache[9] = function ($event) {
           return $data.isOpenDeleteModal = false;
         })
       }, {
@@ -794,12 +675,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "leave-to": "opacity-0"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_67];
+              return [_hoisted_40];
             }),
             _: 1
             /* STABLE */
 
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
+          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
             enter: "duration-300 ease-out",
             "enter-from": "opacity-0 scale-95",
             "enter-to": "opacity-100 scale-100",
@@ -817,19 +698,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": "text-lg font-medium leading-6 text-red-600"
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_70];
+                      return [_hoisted_43];
                     }),
                     _: 1
                     /* STABLE */
 
-                  }), _hoisted_71, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_72, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+                  }), _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                     "class": "inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-500",
-                    onClick: _cache[12] || (_cache[12] = function ($event) {
+                    onClick: _cache[7] || (_cache[7] = function ($event) {
                       return $data.isOpenDeleteModal = false;
                     })
                   }, " no "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                     "class": "inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 focus:outline-none",
-                    onClick: _cache[13] || (_cache[13] = function ($event) {
+                    onClick: _cache[8] || (_cache[8] = function ($event) {
                       return $options.deleteAddress($data.addressIdToDelete);
                     })
                   }, " yes ")])];
