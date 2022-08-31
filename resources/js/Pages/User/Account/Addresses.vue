@@ -247,12 +247,12 @@
                                     :disabled="addressForm.processing"
                                     @submit="addAddress"
                                     :input-errors="{
-                                        full_name: addressForm.errors.full_name
-                                            ? addressForm.errors.full_name
+                                        full_name: addressForm.errors.fullName
+                                            ? addressForm.errors.fullName
                                             : '',
                                         phone_number: addressForm.errors
-                                            .phone_number
-                                            ? addressForm.errors.phone_number
+                                            .phoneNumber
+                                            ? addressForm.errors.phoneNumber
                                             : '',
                                         state: addressForm.errors.state
                                             ? addressForm.errors.state
@@ -261,12 +261,12 @@
                                             ? addressForm.errors.city
                                             : '',
                                         postal_code: addressForm.errors
-                                            .postal_code
-                                            ? addressForm.errors.postal_code
+                                            .postalCode
+                                            ? addressForm.errors.postalCode
                                             : '',
                                         street_name: addressForm.errors
-                                            .street_name
-                                            ? addressForm.errors.street_name
+                                            .streetName
+                                            ? addressForm.errors.streetName
                                             : '',
                                     }"
                                 >
@@ -283,7 +283,7 @@
                                         label="Phone number"
                                         type="number"
                                         validation="required|number|length:11,12"
-                                        placeholder="Enter your phone number"
+                                        placeholder="60178891233"
                                         v-model="addressForm.phoneNumber"
                                     />
                                     <FormKit
