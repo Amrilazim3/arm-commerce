@@ -2,114 +2,225 @@
     <Head title="Change Password" />
     <div class="lg:flex">
         <SideNav />
-        <form
-            class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
-            @submit.prevent="changePassword"
+        <FormKit
+            type="form"
+            submit-label="Save"
+            form-class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
+            :submit-attrs="{
+                outerClass: '$reset',
+                wrapperClass: 'mt-6 flex justify-end',
+            }"
+            messages-class="$reset pt-5"
+            :disabled="form.processing"
+            @submit="changePassword"
+            :input-errors="{
+                old_password: form.errors.oldPassword
+                    ? form.errors.oldPassword
+                    : '',
+                new_password: form.errors.newPassword
+                    ? form.errors.newPassword
+                    : '',
+                new_password_confirm: form.errors.newPasswordConfirmation
+                    ? form.errors.newPasswordConfirmation
+                    : '',
+            }"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div>
-                    <div>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Change Password
+                    </h3>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                        Feeling unsecured with current password? Change it to
+                        enhaced your security.
+                    </p>
+                </div>
+
+                <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
+                    <div
+                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                        <label
+                            for="old_password"
+                            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >
+                            Old password
+                        </label>
+                        <FormKit
+                            name="old_password"
+                            type="password"
+                            outer-class="$reset mt-1 sm:mt-0 sm:col-span-2"
+                            inner-class="$reset max-w-lg rounded-md shadow-sm"
+                            validation="required"
+                            validation-label="Old password"
+                            placeholder="Enter your old password"
+                            v-model="form.oldPassword"
+                        />
+                    </div>
+                    <div
+                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                        <label
+                            for="new_password"
+                            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >
+                            New password
+                        </label>
+                        <FormKit
+                            name="new_password"
+                            type="password"
+                            outer-class="$reset mt-1 sm:mt-0 sm:col-span-2"
+                            inner-class="$reset max-w-lg rounded-md shadow-sm"
+                            validation="required|length:7"
+                            validation-label="New password"
+                            placeholder="Enter your new password"
+                            v-model="form.newPassword"
+                        />
+                    </div>
+                    <div
+                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                        <label
+                            for="new_password_confirm"
+                            class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                        >
+                            New password confirm
+                        </label>
+                        <FormKit
+                            name="new_password_confirm"
+                            type="password"
+                            outer-class="$reset mt-1 sm:mt-0 sm:col-span-2"
+                            inner-class="$reset max-w-lg rounded-md shadow-sm"
+                            validation="required|length:7|confirm:new_password"
+                            validation-label="New password confirm"
+                            placeholder="Confirm your password"
+                            v-model="form.newPasswordConfirmation"
+                        />
+                    </div>
+                    <div
+                        class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+                    >
+                        <Link
+                            href="/password/forgot"
+                            class="text-sm font-medium text-blue-500"
+                        >
+                            Forgot your password?
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </FormKit>
+
+        <!--  -->
+        <!-- <form
+            class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
+            @submit.prevent="changePassword"
+        > -->
+        <!-- <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5"> -->
+        <!-- <div> -->
+        <!-- <div>
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             Change Password
                         </h3>
                         <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                            Feeling unsecured with current password? Change it to enhaced your security.
+                            Feeling unsecured with current password? Change it
+                            to enhaced your security.
                         </p>
+                    </div> -->
+
+        <!-- <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5"> -->
+        <!-- <div
+                class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+            >
+                <label
+                    for="old-password"
+                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                    Old password
+                </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <div class="max-w-lg flex rounded-md shadow-sm">
+                        <input
+                            type="password"
+                            name="old-password"
+                            id="old-password"
+                            autocomplete="password"
+                            class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+                            placeholder="Enter your old password"
+                            v-model="form.oldPassword"
+                            required
+                        />
                     </div>
+                    <div
+                        v-if="form.errors.oldPassword"
+                        class="text-red-500 text-sm mt-1"
+                    >
+                        {{ form.errors.oldPassword }}
+                    </div>
+                </div>
+            </div> -->
 
-                    <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-                        <div
-                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-                        >
-                            <label
-                                for="old-password"
-                                class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                            >
-                                Old password
-                            </label>
-                            <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                <div class="max-w-lg flex rounded-md shadow-sm">
-                                    <input
-                                        type="password"
-                                        name="old-password"
-                                        id="old-password"
-                                        autocomplete="password"
-                                        class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder="Enter your old password"
-                                        v-model="form.oldPassword"
-                                        required
-                                    />
-                                </div>
-                                <div
-                                    v-if="form.errors.oldPassword"
-                                    class="text-red-500 text-sm mt-1"
-                                >
-                                    {{ form.errors.oldPassword }}
-                                </div>
-                            </div>
-                        </div>
+        <!-- <div
+                class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+            >
+                <label
+                    for="new-password"
+                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                    New password
+                </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <div class="max-w-lg flex rounded-md shadow-sm">
+                        <input
+                            type="password"
+                            name="new-password"
+                            id="new-password"
+                            class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+                            placeholder="Enter your new password"
+                            v-model="form.newPassword"
+                            required
+                        />
+                    </div>
+                    <div
+                        v-if="form.errors.newPassword"
+                        class="text-red-500 text-sm mt-1"
+                    >
+                        {{ form.errors.newPassword }}
+                    </div>
+                </div>
+            </div> -->
 
-                        <div
-                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-                        >
-                            <label
-                                for="new-password"
-                                class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                            >
-                                New password
-                            </label>
-                            <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                <div class="max-w-lg flex rounded-md shadow-sm">
-                                    <input
-                                        type="password"
-                                        name="new-password"
-                                        id="new-password"
-                                        class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder="Enter your new password"
-                                        v-model="form.newPassword"
-                                        required
-                                    />
-                                </div>
-                                <div
-                                    v-if="form.errors.newPassword"
-                                    class="text-red-500 text-sm mt-1"
-                                >
-                                    {{ form.errors.newPassword }}
-                                </div>
-                            </div>
-                        </div>
+        <!-- <div
+                class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+            >
+                <label
+                    for="new-password-confirmation"
+                    class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                    New password confirmation
+                </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <div class="max-w-lg flex rounded-md shadow-sm">
+                        <input
+                            type="password"
+                            name="new-password-confirmation"
+                            id="new-password-confirmation"
+                            class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+                            placeholder="Confirm your new password"
+                            v-model="form.newPasswordConfirmation"
+                            required
+                        />
+                    </div>
+                    <div
+                        v-if="form.errors.newPasswordConfirmation"
+                        class="text-red-500 text-sm mt-1"
+                    >
+                        {{ form.errors.newPasswordConfirmation }}
+                    </div>
+                </div>
+            </div> -->
 
-                        <div
-                            class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-                        >
-                            <label
-                                for="new-password-confirmation"
-                                class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                            >
-                                New password confirmation
-                            </label>
-                            <div class="mt-1 sm:mt-0 sm:col-span-2">
-                                <div class="max-w-lg flex rounded-md shadow-sm">
-                                    <input
-                                        type="password"
-                                        name="new-password-confirmation"
-                                        id="new-password-confirmation"
-                                        class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder="Confirm your new password"
-                                        v-model="form.newPasswordConfirmation"
-                                        required
-                                    />
-                                </div>
-                                <div
-                                    v-if="form.errors.newPasswordConfirmation"
-                                    class="text-red-500 text-sm mt-1"
-                                >
-                                    {{ form.errors.newPasswordConfirmation }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
+        <!-- <div
                             class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
                         >
                             <Link
@@ -118,12 +229,12 @@
                             >
                                 Forgot your password?
                             </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
 
-            <div class="pt-5">
+        <!-- <div class="pt-5">
                 <div class="flex justify-end">
                     <button
                         type="submit"
@@ -138,8 +249,8 @@
                         Change
                     </button>
                 </div>
-            </div>
-        </form>
+            </div> -->
+        <!-- </form> -->
     </div>
 </template>
 
