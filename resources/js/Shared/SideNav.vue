@@ -5,7 +5,7 @@
             <div>
                 <template v-if="$page.props.auth.user.isAdmin">
                     <MenuButton
-                        class="inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        class="inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                         :class="
                             $page.component.includes('Admin/Account')
                                 ? 'bg-indigo-300'
@@ -17,7 +17,7 @@
                 </template>
                 <template v-else>
                     <MenuButton
-                        class="inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        class="inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                         :class="
                             $page.component.includes('User/Account')
                                 ? 'bg-indigo-300'
@@ -120,7 +120,7 @@
             <div>
                 <template v-if="$page.props.auth.user.isAdmin">
                     <MenuButton
-                        class="inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        class="inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                         :class="
                             $page.component.includes('Admin/Products')
                                 ? 'bg-indigo-300'
@@ -132,7 +132,7 @@
                 </template>
                 <template v-else>
                     <MenuButton
-                        class="inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        class="inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                         :class="
                             $page.component.includes('User/Purchase')
                                 ? 'bg-indigo-300'
@@ -279,7 +279,7 @@
                     as="div"
                 >
                     <DisclosureButton
-                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        class="text-left text-md font-medium text-indigo-600 hover:text-indigo-700"
                         :class="open ? 'pl-2' : ''"
                         id="closure-one"
                         @click="closeOther('closure-one')"
@@ -296,7 +296,7 @@
                     >
                         <DisclosurePanel
                             as="ul"
-                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                            class="pl-2 pt-2 pb-2 text-sm text-indigo-500"
                         >
                             <li>
                                 <Link
@@ -335,7 +335,7 @@
                     as="div"
                 >
                     <DisclosureButton
-                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        class="text-left text-md font-medium text-indigo-600 hover:text-indigo-700"
                         :class="open ? 'pl-2' : ''"
                         id="closure-one"
                         @click="closeOther('closure-one')"
@@ -352,7 +352,7 @@
                     >
                         <DisclosurePanel
                             as="ul"
-                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                            class="pl-2 pt-2 pb-2 text-sm text-indigo-500"
                         >
                             <li>
                                 <Link
@@ -405,7 +405,7 @@
                     as="div"
                 >
                     <DisclosureButton
-                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        class="text-left text-md font-medium text-indigo-600 hover:text-indigo-700"
                         :class="open ? 'pl-2' : ''"
                         id="closure-two"
                         @click="closeOther('closure-two')"
@@ -422,7 +422,7 @@
                     >
                         <DisclosurePanel
                             as="ul"
-                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                            class="pl-2 pt-2 pb-2 text-sm text-indigo-500"
                         >
                             <li>
                                 <Link
@@ -459,7 +459,7 @@
                     as="div"
                 >
                     <DisclosureButton
-                        class="text-left text-md font-medium text-purple-600 hover:text-purple-700"
+                        class="text-left text-md font-medium text-indigo-600 hover:text-indigo-700"
                         :class="open ? 'pl-2' : ''"
                         id="closure-two"
                         @click="closeOther('closure-two')"
@@ -476,7 +476,7 @@
                     >
                         <DisclosurePanel
                             as="ul"
-                            class="pl-2 pt-2 pb-2 text-sm text-purple-500"
+                            class="pl-2 pt-2 pb-2 text-sm text-indigo-500"
                         >
                             <li>
                                 <Link
