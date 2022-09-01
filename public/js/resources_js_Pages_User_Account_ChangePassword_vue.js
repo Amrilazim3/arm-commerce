@@ -126,153 +126,129 @@ var _hoisted_5 = {
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "old-password",
+  "for": "old_password",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
 }, " Old password ", -1
 /* HOISTED */
 );
 
 var _hoisted_7 = {
-  "class": "mt-1 sm:mt-0 sm:col-span-2"
-};
-var _hoisted_8 = {
-  "class": "max-w-lg flex rounded-md shadow-sm"
-};
-var _hoisted_9 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_10 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "new-password",
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "new_password",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
 }, " New password ", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
-  "class": "mt-1 sm:mt-0 sm:col-span-2"
-};
-var _hoisted_13 = {
-  "class": "max-w-lg flex rounded-md shadow-sm"
-};
-var _hoisted_14 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_15 = {
+var _hoisted_9 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "new-password-confirmation",
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "new_password_confirm",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-}, " New password confirmation ", -1
+}, " New password confirm ", -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
-  "class": "mt-1 sm:mt-0 sm:col-span-2"
-};
-var _hoisted_18 = {
-  "class": "max-w-lg flex rounded-md shadow-sm"
-};
-var _hoisted_19 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_20 = {
+var _hoisted_11 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Forgot your password? ");
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Forgot your password? ");
 
-var _hoisted_22 = {
-  "class": "pt-5"
-};
-var _hoisted_23 = {
-  "class": "flex justify-end"
-};
-var _hoisted_24 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   var _component_SideNav = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SideNav");
 
+  var _component_FormKit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormKit");
+
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Change Password"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    "class": "px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1",
-    onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.changePassword && $options.changePassword.apply($options, arguments);
-    }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "password",
-    name: "old-password",
-    id: "old-password",
-    autocomplete: "password",
-    "class": "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md",
-    placeholder: "Enter your old password",
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.form.oldPassword = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.oldPassword]])]), $data.form.errors.oldPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.errors.oldPassword), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "password",
-    name: "new-password",
-    id: "new-password",
-    "class": "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md",
-    placeholder: "Enter your new password",
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.form.newPassword = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.newPassword]])]), $data.form.errors.newPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.errors.newPassword), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "password",
-    name: "new-password-confirmation",
-    id: "new-password-confirmation",
-    "class": "block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md",
-    placeholder: "Confirm your new password",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.form.newPasswordConfirmation = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.newPasswordConfirmation]])]), $data.form.errors.newPasswordConfirmation ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.form.errors.newPasswordConfirmation), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/password/forgot",
-    "class": "text-sm font-medium text-blue-500"
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+    type: "form",
+    "submit-label": "Save",
+    "form-class": "px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1",
+    "submit-attrs": {
+      outerClass: '$reset',
+      wrapperClass: 'mt-6 flex justify-end'
+    },
+    "messages-class": "$reset pt-5",
+    disabled: $data.form.processing,
+    onSubmit: $options.changePassword,
+    "input-errors": {
+      old_password: $data.form.errors.oldPassword ? $data.form.errors.oldPassword : '',
+      new_password: $data.form.errors.newPassword ? $data.form.errors.newPassword : '',
+      new_password_confirm: $data.form.errors.newPasswordConfirmation ? $data.form.errors.newPasswordConfirmation : ''
+    }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_21];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        name: "old_password",
+        type: "password",
+        "outer-class": "$reset mt-1 sm:mt-0 sm:col-span-2",
+        "inner-class": "$reset max-w-lg rounded-md shadow-sm",
+        validation: "required",
+        "validation-label": "Old password",
+        placeholder: "Enter your old password",
+        modelValue: $data.form.oldPassword,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return $data.form.oldPassword = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        name: "new_password",
+        type: "password",
+        "outer-class": "$reset mt-1 sm:mt-0 sm:col-span-2",
+        "inner-class": "$reset max-w-lg rounded-md shadow-sm",
+        validation: "required|length:7",
+        "validation-label": "New password",
+        placeholder: "Enter your new password",
+        modelValue: $data.form.newPassword,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $data.form.newPassword = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        name: "new_password_confirm",
+        type: "password",
+        "outer-class": "$reset mt-1 sm:mt-0 sm:col-span-2",
+        "inner-class": "$reset max-w-lg rounded-md shadow-sm",
+        validation: "required|length:7|confirm:new_password",
+        "validation-label": "New password confirm",
+        placeholder: "Confirm your password",
+        modelValue: $data.form.newPasswordConfirmation,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.form.newPasswordConfirmation = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+        href: "/password/forgot",
+        "class": "text-sm font-medium text-blue-500"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_12];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])])])];
     }),
     _: 1
     /* STABLE */
 
-  })])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "submit",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white", $data.form.processing || !$data.form.isDirty ? 'cursor-not-allowed bg-indigo-300' : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500']),
-    disabled: $data.form.processing || !$data.form.isDirty
-  }, " Change ", 10
-  /* CLASS, PROPS */
-  , _hoisted_24)])])], 32
-  /* HYDRATE_EVENTS */
-  )])], 64
+  }, 8
+  /* PROPS */
+  , ["disabled", "onSubmit", "input-errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form\r\n            class=\"px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1\"\r\n            @submit.prevent=\"changePassword\"\r\n        > "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"space-y-8 divide-y divide-gray-200 sm:space-y-5\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>\r\n                        <h3 class=\"text-lg leading-6 font-medium text-gray-900\">\r\n                            Change Password\r\n                        </h3>\r\n                        <p class=\"mt-1 max-w-2xl text-sm text-gray-500\">\r\n                            Feeling unsecured with current password? Change it\r\n                            to enhaced your security.\r\n                        </p>\r\n                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"mt-6 sm:mt-5 space-y-6 sm:space-y-5\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n            >\r\n                <label\r\n                    for=\"old-password\"\r\n                    class=\"block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2\"\r\n                >\r\n                    Old password\r\n                </label>\r\n                <div class=\"mt-1 sm:mt-0 sm:col-span-2\">\r\n                    <div class=\"max-w-lg flex rounded-md shadow-sm\">\r\n                        <input\r\n                            type=\"password\"\r\n                            name=\"old-password\"\r\n                            id=\"old-password\"\r\n                            autocomplete=\"password\"\r\n                            class=\"block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md\"\r\n                            placeholder=\"Enter your old password\"\r\n                            v-model=\"form.oldPassword\"\r\n                            required\r\n                        />\r\n                    </div>\r\n                    <div\r\n                        v-if=\"form.errors.oldPassword\"\r\n                        class=\"text-red-500 text-sm mt-1\"\r\n                    >\r\n                        {{ form.errors.oldPassword }}\r\n                    </div>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n            >\r\n                <label\r\n                    for=\"new-password\"\r\n                    class=\"block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2\"\r\n                >\r\n                    New password\r\n                </label>\r\n                <div class=\"mt-1 sm:mt-0 sm:col-span-2\">\r\n                    <div class=\"max-w-lg flex rounded-md shadow-sm\">\r\n                        <input\r\n                            type=\"password\"\r\n                            name=\"new-password\"\r\n                            id=\"new-password\"\r\n                            class=\"block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md\"\r\n                            placeholder=\"Enter your new password\"\r\n                            v-model=\"form.newPassword\"\r\n                            required\r\n                        />\r\n                    </div>\r\n                    <div\r\n                        v-if=\"form.errors.newPassword\"\r\n                        class=\"text-red-500 text-sm mt-1\"\r\n                    >\r\n                        {{ form.errors.newPassword }}\r\n                    </div>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n            >\r\n                <label\r\n                    for=\"new-password-confirmation\"\r\n                    class=\"block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2\"\r\n                >\r\n                    New password confirmation\r\n                </label>\r\n                <div class=\"mt-1 sm:mt-0 sm:col-span-2\">\r\n                    <div class=\"max-w-lg flex rounded-md shadow-sm\">\r\n                        <input\r\n                            type=\"password\"\r\n                            name=\"new-password-confirmation\"\r\n                            id=\"new-password-confirmation\"\r\n                            class=\"block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md\"\r\n                            placeholder=\"Confirm your new password\"\r\n                            v-model=\"form.newPasswordConfirmation\"\r\n                            required\r\n                        />\r\n                    </div>\r\n                    <div\r\n                        v-if=\"form.errors.newPasswordConfirmation\"\r\n                        class=\"text-red-500 text-sm mt-1\"\r\n                    >\r\n                        {{ form.errors.newPasswordConfirmation }}\r\n                    </div>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                            class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n                        >\r\n                            <Link\r\n                                href=\"/password/forgot\"\r\n                                class=\"text-sm font-medium text-blue-500\"\r\n                            >\r\n                                Forgot your password?\r\n                            </Link>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"pt-5\">\r\n                <div class=\"flex justify-end\">\r\n                    <button\r\n                        type=\"submit\"\r\n                        class=\"ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white\"\r\n                        :disabled=\"form.processing || !form.isDirty\"\r\n                        :class=\"\r\n                            form.processing || !form.isDirty\r\n                                ? 'cursor-not-allowed bg-indigo-300'\r\n                                : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'\r\n                        \"\r\n                    >\r\n                        Change\r\n                    </button>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </form> ")])], 64
   /* STABLE_FRAGMENT */
   );
 }
