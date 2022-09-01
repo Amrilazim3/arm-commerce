@@ -7,7 +7,11 @@
             type="form"
             form-class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
             messages-class="$reset pt-5"
-            :actions="false"
+            submit-label="Save"
+            :submit-attrs="{
+                outerClass: '$reset',
+                wrapperClass: '$reset mt-6 flex justify-end'
+            }"
             :disabled="user.processing"
             @submit="updateProfile"
             :input-errors="{
@@ -262,13 +266,6 @@
                         </div>
                     </div>
                 </div>
-
-                <FormKit
-                    type="submit"
-                    label="Save"
-                    outer-class="$reset"
-                    wrapper-class="mt-6 flex justify-end"
-                />
             </div>
         </FormKit>
     </div>
