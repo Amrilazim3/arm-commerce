@@ -10,7 +10,6 @@
                 <h1 class="text-xl font-semibold text-gray-900">Store</h1>
                 <button
                     class="px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    v-if="products.data.length !== 0"
                 >
                     <Link
                         href="/admin/products/create"
@@ -20,19 +19,24 @@
                     </Link>
                 </button>
             </div>
-            <div class="relative mt-3 xl:w-96">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                    <SearchIcon  class="h-5 w-5 text-black" />
-                </span>
-                <input
-                    type="text"
-                    class="form-control block w-full pl-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                    id="search-input"
-                    placeholder="Search product or category"
-                    v-model="params.search"
-                    ref="search"
-                />
-            </div>
+            <!-- try using formkit with prefix icon -->
+            <template v-if="products.data.length !== 0">
+                <div class="relative mt-3 xl:w-96">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-2"
+                    >
+                        <SearchIcon class="h-5 w-5 text-black" />
+                    </span>
+                    <input
+                        type="text"
+                        class="form-control block w-full pl-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                        id="search-input"
+                        placeholder="Search product or category"
+                        v-model="params.search"
+                        ref="search"
+                    />
+                </div>
+            </template>
             <template v-if="products.data.length == 0">
                 <template v-if="$page.url.includes('search')">
                     <div class="flex items-center justify-center w-full h-72">
@@ -124,7 +128,7 @@
                                                         leave-to-class="transform scale-95 opacity-0"
                                                     >
                                                         <MenuItems
-                                                            class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                            class="absolute font-normal  text-sm right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                                         >
                                                             <div
                                                                 class="px-1 py-1"
@@ -140,9 +144,9 @@
                                                                             $page.url.includes(
                                                                                 'created_at=asc'
                                                                             )
-                                                                                ? 'bg-indigo-200 text-gray-900'
+                                                                                ? 'bg-indigo-200 text-gray-800'
                                                                                 : 'hover:bg-indigo-200',
-                                                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                                                            'group flex w-full items-center rounded-md px-2 py-2',
                                                                         ]"
                                                                         @click.prevent="
                                                                             sortByCreated(
@@ -166,9 +170,9 @@
                                                                             $page.url.includes(
                                                                                 'created_at=desc'
                                                                             )
-                                                                                ? 'bg-indigo-200 text-gray-900'
+                                                                                ? 'bg-indigo-200 text-gray-800'
                                                                                 : 'hover:bg-indigo-200',
-                                                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                                                            'group flex w-full items-center rounded-md px-2 py-2',
                                                                         ]"
                                                                         @click.prevent="
                                                                             sortByCreated(
@@ -197,9 +201,9 @@
                                                                             $page.url.includes(
                                                                                 'stock=asc'
                                                                             )
-                                                                                ? 'bg-indigo-200 text-gray-900'
+                                                                                ? 'bg-indigo-200 text-gray-800'
                                                                                 : 'hover:bg-indigo-200',
-                                                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                                                            'group flex w-full items-center rounded-md px-2 py-2',
                                                                         ]"
                                                                         @click.prevent="
                                                                             sortByStock(
@@ -222,9 +226,9 @@
                                                                             $page.url.includes(
                                                                                 'stock=desc'
                                                                             )
-                                                                                ? 'bg-indigo-200 text-gray-900'
+                                                                                ? 'bg-indigo-200 text-gray-800'
                                                                                 : 'hover:bg-indigo-200',
-                                                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                                                            'group flex w-full items-center rounded-md px-2 py-2',
                                                                         ]"
                                                                         @click.prevent="
                                                                             sortByStock(
@@ -258,9 +262,7 @@
                                                     class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
                                                     <Link
-                                                        :href="
-                                                            product.slug
-                                                        "
+                                                        :href="product.slug"
                                                         class="hover:font-semibold hover:text-indigo-600"
                                                     >
                                                         {{ product.name }}
