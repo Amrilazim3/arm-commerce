@@ -5,13 +5,9 @@
 
         <FormKit
             type="form"
-            submit-label="Save"
             form-class="px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1"
-            :submit-attrs="{
-                outerClass: '$reset',
-                wrapperClass: 'mt-6 flex justify-end',
-            }"
             messages-class="$reset pt-5"
+            :actions="false"
             :disabled="user.processing"
             @submit="updateProfile"
             :input-errors="{
@@ -45,16 +41,15 @@
                         >
                             name
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            <FormKit
-                                name="name"
-                                type="text"
-                                validation="required|length:5:30"
-                                inner-class="$reset max-w-lg flex rounded-md shadow-sm"
-                                placeholder="Enter your name"
-                                v-model="user.name"
-                            />
-                        </div>
+                        <FormKit
+                            name="name"
+                            type="text"
+                            outer-class="$reset mt-1 sm:mt-0 sm:col-span-2"
+                            inner-class="$reset max-w-lg flex rounded-md shadow-sm"
+                            validation="required|length:5:30"
+                            placeholder="Enter your name"
+                            v-model="user.name"
+                        />
                     </div>
 
                     <div
@@ -215,17 +210,16 @@
                         >
                             Phone Number
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            <FormKit
-                                name="phone_number"
-                                type="number"
-                                validation="number|length:11"
-                                validation-label="Phone number"
-                                inner-class="$reset max-w-lg flex rounded-md shadow-sm"
-                                placeholder="60119872345"
-                                v-model="user.phoneNumber"
-                            />
-                        </div>
+                        <FormKit
+                            name="phone_number"
+                            type="number"
+                            outer-class="$reset mt-1 sm:mt-0 sm:col-span-2"
+                            inner-class="$reset max-w-lg flex rounded-md shadow-sm"
+                            validation="number|length:11"
+                            validation-label="Phone number"
+                            placeholder="60119872345"
+                            v-model="user.phoneNumber"
+                        />
                     </div>
 
                     <div
@@ -237,16 +231,16 @@
                         >
                             Gender
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:pt-2 sm:col-span-2">
-                            <FormKit
-                                name="gender"
-                                type="radio"
-                                :options="['Male', 'Female', 'Other']"
-                                options-class="$reset flex space-x-10"
-                                fieldset-class="$reset"
-                                v-model="user.gender"
-                            />
-                        </div>
+                        <FormKit
+                            name="gender"
+                            type="radio"
+                            outer-class="$reset mt-1 sm:mt-0 sm:col-span-2"
+                            inner-class="$reset max-w-lg flex rounded-md shadow-sm"
+                            :options="['Male', 'Female', 'Other']"
+                            options-class="$reset flex space-x-10"
+                            fieldset-class="$reset"
+                            v-model="user.gender"
+                        />
                     </div>
 
                     <div
@@ -268,6 +262,13 @@
                         </div>
                     </div>
                 </div>
+
+                <FormKit
+                    type="submit"
+                    label="Save"
+                    outer-class="$reset"
+                    wrapper-class="mt-6 flex justify-end"
+                />
             </div>
         </FormKit>
     </div>
