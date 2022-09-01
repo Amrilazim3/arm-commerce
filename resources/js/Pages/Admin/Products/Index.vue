@@ -9,23 +9,27 @@
             <div class="flex justify-between">
                 <h1 class="text-xl font-semibold text-gray-900">Store</h1>
                 <button
-                    class="px-4 border border-transparent self-center py-1 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    class="px-4 border border-transparent self-center py-2 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                     <Link
                         href="/admin/products/create"
                         class="flex items-center"
                     >
-                        <span class="text-2xl mr-1.5">+</span> add product
+                        <PlusCircleIcon class="h-4 w-4 mr-2 self-center" />
+                        add product
                     </Link>
                 </button>
             </div>
-            <!-- try using formkit with prefix icon -->
-            <template v-if="products.data.length !== 0">
-                <div class="relative mt-3 xl:w-96">
+            <template
+                v-if="
+                    $page.url.includes('search') || products.data.length !== 0
+                "
+            >
+                <div class="relative mt-3 mb-3 w-60 lg:mb-0 lg:w-96">
                     <span
                         class="absolute inset-y-0 left-0 flex items-center pl-2"
                     >
-                        <SearchIcon class="h-5 w-5 text-black" />
+                        <SearchIcon class="h-5 w-5 font-thin text-gray-500" />
                     </span>
                     <input
                         type="text"
@@ -107,7 +111,7 @@
                                             >
                                                 <Menu
                                                     as="div"
-                                                    class="absolute inline-block text-left"
+                                                    class="lg:absolute inline-block text-left"
                                                 >
                                                     <MenuButton
                                                         class="flex px-6 pt-2.5 pb-2 bg-gray-200 text-gray-900 font-medium text-sm leading-normal rounded border hover:bg-gray-300 focus:bg-gray-300 focus:outline-none focus:ring-0 active:bg-gray-300 transition duration-150 ease-in-out align-center"
@@ -128,7 +132,7 @@
                                                         leave-to-class="transform scale-95 opacity-0"
                                                     >
                                                         <MenuItems
-                                                            class="absolute font-normal  text-sm right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                            class="absolute font-normal text-sm right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                                         >
                                                             <div
                                                                 class="px-1 py-1"
@@ -324,7 +328,7 @@ import SideNav from "../../../Shared/SideNav.vue";
 import Pagination from "../../../Shared/Pagination.vue";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { SearchIcon } from "@heroicons/vue/solid";
-import { SwitchVerticalIcon } from "@heroicons/vue/outline";
+import { SwitchVerticalIcon, PlusCircleIcon } from "@heroicons/vue/outline";
 import { pickBy, debounce } from "lodash";
 
 export default {
@@ -342,6 +346,7 @@ export default {
         MenuItems,
         MenuItem,
         SearchIcon,
+        PlusCircleIcon
     },
 
     data() {
