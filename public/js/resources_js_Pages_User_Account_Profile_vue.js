@@ -324,7 +324,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "form",
     "form-class": "px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1",
     "messages-class": "$reset pt-5",
-    actions: false,
+    "submit-label": "Save",
+    "submit-attrs": {
+      outerClass: '$reset',
+      wrapperClass: '$reset mt-6 flex justify-end'
+    },
     disabled: $data.user.processing,
     onSubmit: $options.updateProfile,
     "input-errors": {
@@ -444,12 +448,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "max-w-lg"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
-        type: "submit",
-        label: "Save",
-        "outer-class": "$reset",
-        "wrapper-class": "mt-6 flex justify-end"
-      })])];
+      , ["modelValue"])])])])])];
     }),
     _: 1
     /* STABLE */
