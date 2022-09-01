@@ -248,7 +248,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["disabled", "onSubmit", "input-errors"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form\r\n            class=\"px-10 lg:pl-10 lg:pr-28 py-6 space-y-8 divide-y divide-gray-200 lg:flex-1\"\r\n            @submit.prevent=\"changePassword\"\r\n        > "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"space-y-8 divide-y divide-gray-200 sm:space-y-5\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>\r\n                        <h3 class=\"text-lg leading-6 font-medium text-gray-900\">\r\n                            Change Password\r\n                        </h3>\r\n                        <p class=\"mt-1 max-w-2xl text-sm text-gray-500\">\r\n                            Feeling unsecured with current password? Change it\r\n                            to enhaced your security.\r\n                        </p>\r\n                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"mt-6 sm:mt-5 space-y-6 sm:space-y-5\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n            >\r\n                <label\r\n                    for=\"old-password\"\r\n                    class=\"block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2\"\r\n                >\r\n                    Old password\r\n                </label>\r\n                <div class=\"mt-1 sm:mt-0 sm:col-span-2\">\r\n                    <div class=\"max-w-lg flex rounded-md shadow-sm\">\r\n                        <input\r\n                            type=\"password\"\r\n                            name=\"old-password\"\r\n                            id=\"old-password\"\r\n                            autocomplete=\"password\"\r\n                            class=\"block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md\"\r\n                            placeholder=\"Enter your old password\"\r\n                            v-model=\"form.oldPassword\"\r\n                            required\r\n                        />\r\n                    </div>\r\n                    <div\r\n                        v-if=\"form.errors.oldPassword\"\r\n                        class=\"text-red-500 text-sm mt-1\"\r\n                    >\r\n                        {{ form.errors.oldPassword }}\r\n                    </div>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n            >\r\n                <label\r\n                    for=\"new-password\"\r\n                    class=\"block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2\"\r\n                >\r\n                    New password\r\n                </label>\r\n                <div class=\"mt-1 sm:mt-0 sm:col-span-2\">\r\n                    <div class=\"max-w-lg flex rounded-md shadow-sm\">\r\n                        <input\r\n                            type=\"password\"\r\n                            name=\"new-password\"\r\n                            id=\"new-password\"\r\n                            class=\"block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md\"\r\n                            placeholder=\"Enter your new password\"\r\n                            v-model=\"form.newPassword\"\r\n                            required\r\n                        />\r\n                    </div>\r\n                    <div\r\n                        v-if=\"form.errors.newPassword\"\r\n                        class=\"text-red-500 text-sm mt-1\"\r\n                    >\r\n                        {{ form.errors.newPassword }}\r\n                    </div>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n            >\r\n                <label\r\n                    for=\"new-password-confirmation\"\r\n                    class=\"block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2\"\r\n                >\r\n                    New password confirmation\r\n                </label>\r\n                <div class=\"mt-1 sm:mt-0 sm:col-span-2\">\r\n                    <div class=\"max-w-lg flex rounded-md shadow-sm\">\r\n                        <input\r\n                            type=\"password\"\r\n                            name=\"new-password-confirmation\"\r\n                            id=\"new-password-confirmation\"\r\n                            class=\"block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md\"\r\n                            placeholder=\"Confirm your new password\"\r\n                            v-model=\"form.newPasswordConfirmation\"\r\n                            required\r\n                        />\r\n                    </div>\r\n                    <div\r\n                        v-if=\"form.errors.newPasswordConfirmation\"\r\n                        class=\"text-red-500 text-sm mt-1\"\r\n                    >\r\n                        {{ form.errors.newPasswordConfirmation }}\r\n                    </div>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                            class=\"sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5\"\r\n                        >\r\n                            <Link\r\n                                href=\"/password/forgot\"\r\n                                class=\"text-sm font-medium text-blue-500\"\r\n                            >\r\n                                Forgot your password?\r\n                            </Link>\r\n                        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"pt-5\">\r\n                <div class=\"flex justify-end\">\r\n                    <button\r\n                        type=\"submit\"\r\n                        class=\"ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white\"\r\n                        :disabled=\"form.processing || !form.isDirty\"\r\n                        :class=\"\r\n                            form.processing || !form.isDirty\r\n                                ? 'cursor-not-allowed bg-indigo-300'\r\n                                : 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'\r\n                        \"\r\n                    >\r\n                        Change\r\n                    </button>\r\n                </div>\r\n            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </form> ")])], 64
+  , ["disabled", "onSubmit", "input-errors"])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -377,7 +377,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_MenuButton, {
         key: 0,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('Admin/Account') ? 'bg-indigo-300' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('Admin/Account') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_2];
@@ -389,7 +389,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["class"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_MenuButton, {
         key: 1,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('User/Account') ? 'bg-indigo-300' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('User/Account') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_3];
@@ -536,7 +536,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_MenuButton, {
         key: 0,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('Admin/Products') ? 'bg-indigo-300' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('Admin/Products') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_9];
@@ -548,7 +548,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["class"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_MenuButton, {
         key: 1,
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-purple-600 text-purple-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('User/Purchase') ? 'bg-indigo-300' : ''])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('User/Purchase') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_10];
@@ -754,7 +754,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
       var open = _ref.open;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosureButton, {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : '']),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-indigo-600 hover:text-indigo-700", open ? 'pl-2' : '']),
         id: "closure-one",
         onClick: _cache[0] || (_cache[0] = function ($event) {
           return $options.closeOther('closure-one');
@@ -779,7 +779,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosurePanel, {
             as: "ul",
-            "class": "pl-2 pt-2 pb-2 text-sm text-purple-500"
+            "class": "pl-2 pt-2 pb-2 text-sm text-indigo-500"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -831,7 +831,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref2) {
       var open = _ref2.open;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosureButton, {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : '']),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-indigo-600 hover:text-indigo-700", open ? 'pl-2' : '']),
         id: "closure-one",
         onClick: _cache[1] || (_cache[1] = function ($event) {
           return $options.closeOther('closure-one');
@@ -856,7 +856,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosurePanel, {
             as: "ul",
-            "class": "pl-2 pt-2 pb-2 text-sm text-purple-500"
+            "class": "pl-2 pt-2 pb-2 text-sm text-indigo-500"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -920,7 +920,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref3) {
       var open = _ref3.open;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosureButton, {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : '']),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-indigo-600 hover:text-indigo-700", open ? 'pl-2' : '']),
         id: "closure-two",
         onClick: _cache[2] || (_cache[2] = function ($event) {
           return $options.closeOther('closure-two');
@@ -945,7 +945,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosurePanel, {
             as: "ul",
-            "class": "pl-2 pt-2 pb-2 text-sm text-purple-500"
+            "class": "pl-2 pt-2 pb-2 text-sm text-indigo-500"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -997,7 +997,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref4) {
       var open = _ref4.open;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosureButton, {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-purple-600 hover:text-purple-700", open ? 'pl-2' : '']),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-left text-md font-medium text-indigo-600 hover:text-indigo-700", open ? 'pl-2' : '']),
         id: "closure-two",
         onClick: _cache[3] || (_cache[3] = function ($event) {
           return $options.closeOther('closure-two');
@@ -1022,7 +1022,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosurePanel, {
             as: "ul",
-            "class": "pl-2 pt-2 pb-2 text-sm text-purple-500"
+            "class": "pl-2 pt-2 pb-2 text-sm text-indigo-500"
           }, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
               return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
