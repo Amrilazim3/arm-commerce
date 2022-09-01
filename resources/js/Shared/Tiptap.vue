@@ -4,7 +4,7 @@
             :editor="editor"
             :tippy-options="{ duration: 50 }"
             v-if="editor"
-            class="border rounded-md px-2 py-0.5 border-gray-800 bg-white space-x-2"
+            class="border rounded-md px-2 py-0.5 border-gray-800 text-indigo-500 bg-white space-x-2"
         >
             <!-- Bullet List -->
             <button
