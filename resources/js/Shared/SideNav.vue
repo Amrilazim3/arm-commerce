@@ -270,7 +270,7 @@
     </div>
 
     <!-- large screen -->
-    <div class="hidden lg:flex pt-20 h-full justify-end w-2/12">
+    <div class="hidden lg:flex pt-20 justify-end w-2/12"  :class="$page.component.includes('Admin/Products/Create') ? 'absolute' : 'h-full'">
         <div class="inline-grid w-32">
             <template v-if="$page.props.auth.user.isAdmin">
                 <Disclosure
