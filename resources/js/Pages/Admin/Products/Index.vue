@@ -159,8 +159,7 @@
                                                                         "
                                                                     >
                                                                         Created
-                                                                        (newest
-                                                                        first)
+                                                                        (oldest first)
                                                                     </button>
                                                                 </MenuItem>
                                                                 <MenuItem
@@ -185,8 +184,7 @@
                                                                         "
                                                                     >
                                                                         Created
-                                                                        (oldest
-                                                                        first)
+                                                                        (newest first)
                                                                     </button>
                                                                 </MenuItem>
                                                             </div>
