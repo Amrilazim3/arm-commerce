@@ -19,6 +19,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/PlusSmIcon.js");
 /* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/XCircleIcon.js");
 /* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/TrashIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/UploadIcon.js");
 
 
 
@@ -37,7 +38,8 @@ __webpack_require__.r(__webpack_exports__);
     SelectorIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_4__["default"],
     PlusSmIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_5__["default"],
     XCircleIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_6__["default"],
-    TrashIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_7__["default"]
+    TrashIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_7__["default"],
+    UploadIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   props: {
     categories: Object,
@@ -68,18 +70,6 @@ __webpack_require__.r(__webpack_exports__);
 
     };
   },
-  // watch: {
-  //     isHasOptions(condition) {
-  //         if (
-  //             condition == false &&
-  //             (this.isHasSecondOptions == false ||
-  //                 this.isHasThirdOptions == false)
-  //         ) {
-  //             this.isHasSecondOptions = false;
-  //             this.isHasThirdOptions = false;
-  //         }
-  //     },
-  // },
   methods: {
     handleProductMediaUpload: function handleProductMediaUpload(event) {
       var _this = this;
@@ -348,29 +338,29 @@ var _hoisted_1 = {
   "class": "lg:flex"
 };
 var _hoisted_2 = {
-  "class": "px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
+  "class": "flex-1"
+};
+var _hoisted_3 = {
+  "class": "container max-w-xl mx-auto mt-10 mb-6"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-xl font-semibold text-gray-900"
-}, "Create product", -1
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "text-xl font-semibold mb-6 text-gray-900"
+}, " Create product ", -1
 /* HOISTED */
 );
 
-var _hoisted_4 = {
-  "class": "lg:flex"
-};
 var _hoisted_5 = {
-  "class": "lg:w-1/2 pr-6"
+  "class": "space-y-8 sm:space-y-5"
 };
 var _hoisted_6 = {
-  "class": "mb-3 min-w-full"
+  "class": "w-full"
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-name",
-  "class": "font-medium inline-block mb-2 text-gray-700"
-}, "Product name", -1
+  "for": "product-description",
+  "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
+}, "Product Description", -1
 /* HOISTED */
 );
 
@@ -379,85 +369,84 @@ var _hoisted_8 = {
   "class": "text-red-500 text-sm mt-1"
 };
 var _hoisted_9 = {
-  "class": "mb-3 min-w-full"
+  "class": "w-full"
 };
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-description",
-  "class": "font-medium inline-block mb-2 text-gray-700"
-}, "Product Description", -1
-/* HOISTED */
-);
-
-var _hoisted_11 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_12 = {
-  "class": "mb-3 min-w-full"
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-description",
-  "class": "font-medium inline-block mb-2 text-gray-700"
+  "for": "product-category",
+  "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
 }, "Product Category", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_11 = {
   "class": "relative"
 };
-var _hoisted_15 = {
+var _hoisted_12 = {
   "class": "block truncate"
 };
-var _hoisted_16 = {
+var _hoisted_13 = {
   "class": "pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
 };
-var _hoisted_17 = {
+var _hoisted_14 = {
   key: 0,
   "class": "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "relative cursor-pointer select-none py-2 pr-4"
 }, "Custom category", -1
 /* HOISTED */
 );
 
-var _hoisted_19 = {
+var _hoisted_16 = {
   "class": "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
 };
-var _hoisted_20 = {
+var _hoisted_17 = {
   key: 0,
   "class": "text-red-500 text-sm mt-1"
 };
-var _hoisted_21 = {
+var _hoisted_18 = {
   key: 0,
-  "class": "mb-3 min-w-full"
+  "class": "w-full"
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-description",
-  "class": "font-medium inline-block mb-2 text-gray-700"
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "custom-category",
+  "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
 }, "Custom category", -1
 /* HOISTED */
 );
 
-var _hoisted_23 = {
+var _hoisted_20 = {
   "class": "flex space-x-3"
 };
-var _hoisted_24 = {
+var _hoisted_21 = {
   key: 0,
   "class": "text-red-500 text-sm mt-1"
 };
-var _hoisted_25 = {
-  "class": "mb-3 min-w-full flex space-x-3 lg:space-x-6"
+var _hoisted_22 = {
+  "class": "w-full flex space-x-3"
+};
+var _hoisted_23 = {
+  "class": "pt-8"
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-stock",
-  "class": "font-medium inline-block mb-2 text-gray-700"
-}, "Product stock", -1
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "product-media",
+  "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
+}, "Media", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = {
+  "for": "product-media",
+  "class": "flex flex-col cursor-pointer w-full bg-white py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+};
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-center"
+}, " Upload product images / videos ", -1
 /* HOISTED */
 );
 
@@ -465,86 +454,30 @@ var _hoisted_27 = {
   key: 0,
   "class": "text-red-500 text-sm mt-1"
 };
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-price",
-  "class": "font-medium inline-block mb-2 text-gray-700"
-}, "Product price", -1
-/* HOISTED */
-);
-
-var _hoisted_29 = {
+var _hoisted_28 = {
   key: 0,
-  "class": "text-red-500 text-sm mt-1"
+  "class": "mt-4 bg-white py-4 px-2 max-h-64 border rounded-md overflow-y-scroll"
 };
-var _hoisted_30 = {
-  "class": "mt-10 lg:w-1/2 lg:mt-0 lg:pl-6"
-};
-
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-name",
-  "class": "font-medium inline-block mb-2 text-gray-700"
-}, "Media", -1
-/* HOISTED */
-);
-
+var _hoisted_29 = ["src"];
+var _hoisted_30 = ["src", "alt"];
+var _hoisted_31 = ["onClick"];
 var _hoisted_32 = {
-  "for": "product-media",
-  "class": "flex flex-col cursor-pointer w-full bg-white py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  "class": "pt-8"
 };
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 448 512",
-  "class": "h-6 self-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-center"
-}, " Upload product images / videos ", -1
-/* HOISTED */
-);
-
-var _hoisted_35 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_36 = {
-  key: 0,
-  "class": "mt-6 bg-white py-4 px-2 h-64 border rounded-md overflow-y-scroll"
-};
-var _hoisted_37 = ["src"];
-var _hoisted_38 = ["src", "alt"];
-var _hoisted_39 = ["onClick"];
-
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-options",
   "class": "font-medium inline-block mb-2 text-gray-700"
 }, "Options", -1
 /* HOISTED */
 );
 
-var _hoisted_41 = ["checked"];
-
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "form-check-label inline-block text-gray-800",
-  "for": "product-variants"
-}, " This product has options, like size or color ", -1
-/* HOISTED */
-);
-
-var _hoisted_43 = {
-  "class": "flex pt-4 justify-end"
-};
-var _hoisted_44 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   var _component_SideNav = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SideNav");
+
+  var _component_FormKit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormKit");
 
   var _component_Tiptap = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Tiptap");
 
@@ -564,54 +497,142 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_XCircleIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("XCircleIcon");
 
+  var _component_UploadIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("UploadIcon");
+
   var _component_TrashIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TrashIcon");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Create Product"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    "class": "mt-6 space-y-3 divide-y divide-gray-300",
-    onSubmit: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $options.createProduct();
-    }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left side "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "text",
-    "class": "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
-    id: "product-name",
-    placeholder: "Heavy skipping rope",
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.product.name = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.name]]), $data.product.errors.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.name), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Tiptap, {
-    modelValue: $data.product.description,
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.product.description = $event;
-    })
-  }, null, 8
-  /* PROPS */
-  , ["modelValue"]), $data.product.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.description), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Listbox, {
-    modelValue: $data.product.category,
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $data.product.category = $event;
-    }),
-    disabled: $data.isCustomCategory
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+    type: "form",
+    "form-class": "p-3 sm:p-5 lg:p-6 bg-white border border-gray-300 rounded-md shadow-md space-y-3",
+    "messages-class": "$reset pt-5",
+    "submit-label": "Save",
+    "submit-attrs": {
+      outerClass: '$reset',
+      wrapperClass: '$reset mt-6 flex justify-end'
+    },
+    disabled: $data.product.processing,
+    onSubmit: $options.createProduct,
+    "input-errors": {
+      name: $data.product.errors.name ? $data.product.errors.name : '',
+      stock: $data.product.errors.stock ? $data.product.errors.stock : '',
+      price: $data.product.errors.price ? $data.product.errors.price : ''
+    }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxButton, {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative w-full lg:w-1/2 border rounded-md py-2 pl-3 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm focus:text-gray-700 focus:bg-white focus:border-indigo-600", $data.isCustomCategory ? 'cursor-not-allowed bg-gray-200' : 'cursor-pointer bg-white'])
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        type: "text",
+        name: "name",
+        label: "Product name",
+        placeholder: "Heavy skipping rope",
+        validation: "required",
+        "validation-label": "Product name",
+        modelValue: $data.product.name,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+          return $data.product.name = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Tiptap, {
+        modelValue: $data.product.description,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $data.product.description = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), $data.product.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.description), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Listbox, {
+        modelValue: $data.product.category,
+        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+          return $data.product.category = $event;
+        }),
+        disabled: $data.isCustomCategory
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.category == "" ? "Select category" : $data.product.category), 1
-          /* TEXT */
-          ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SelectorIcon, {
-            "class": "h-5 w-5 text-gray-400",
-            "aria-hidden": "true"
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxButton, {
+            "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative w-full lg:w-1/2 border rounded-md py-2 pl-3 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm focus:text-gray-700 focus:bg-white focus:border-indigo-600", $data.isCustomCategory ? 'cursor-not-allowed bg-gray-200' : 'cursor-pointer bg-white'])
+          }, {
+            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.category == "" ? "Select category" : $data.product.category), 1
+              /* TEXT */
+              ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SelectorIcon, {
+                "class": "h-5 w-5 text-gray-400",
+                "aria-hidden": "true"
+              })])];
+            }),
+            _: 1
+            /* STABLE */
+
+          }, 8
+          /* PROPS */
+          , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+            "leave-active-class": "transition duration-100 ease-in",
+            "leave-from-class": "opacity-100",
+            "leave-to-class": "opacity-0"
+          }, {
+            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxOptions, {
+                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-1 max-h-60 w-1/2 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm", $data.isCustomCategory ? 'hidden' : 'absolute'])
+              }, {
+                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                  return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories, function (category) {
+                    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ListboxOption, {
+                      key: category.id,
+                      value: category.name,
+                      as: "template"
+                    }, {
+                      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
+                        var active = _ref.active,
+                            selected = _ref.selected;
+                        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+                          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([active ? 'bg-indigo-100 text-gray-900' : 'text-gray-900', 'relative cursor-pointer select-none py-2 pl-10 pr-4'])
+                        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+                          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([selected ? 'font-medium' : 'font-normal', 'block truncate'])
+                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 3
+                        /* TEXT, CLASS */
+                        ), selected ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CheckIcon, {
+                          "class": "h-5 w-5",
+                          "aria-hidden": "true"
+                        })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
+                        /* CLASS */
+                        )];
+                      }),
+                      _: 2
+                      /* DYNAMIC */
+
+                    }, 1032
+                    /* PROPS, DYNAMIC_SLOTS */
+                    , ["value"]);
+                  }), 128
+                  /* KEYED_FRAGMENT */
+                  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxOption, null, {
+                    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+                        onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+                          return $data.isCustomCategory = true;
+                        }, ["prevent"])),
+                        "class": "relative cursor-pointer select-none py-2 w-full pl-10 pr-4 hover:bg-indigo-100"
+                      }, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PlusSmIcon, {
+                        "class": "h-5 w-5"
+                      })])])];
+                    }),
+                    _: 1
+                    /* STABLE */
+
+                  })];
+                }),
+                _: 1
+                /* STABLE */
+
+              }, 8
+              /* PROPS */
+              , ["class"])];
+            }),
+            _: 1
+            /* STABLE */
+
           })])];
         }),
         _: 1
@@ -619,195 +640,112 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-        "leave-active-class": "transition duration-100 ease-in",
-        "leave-from-class": "opacity-100",
-        "leave-to-class": "opacity-0"
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxOptions, {
-            "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-1 max-h-60 w-1/2 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm", $data.isCustomCategory ? 'hidden' : 'absolute'])
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories, function (category) {
-                return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ListboxOption, {
-                  key: category.id,
-                  value: category.name,
-                  as: "template"
-                }, {
-                  "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
-                    var active = _ref.active,
-                        selected = _ref.selected;
-                    return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-                      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([active ? 'bg-indigo-100 text-gray-900' : 'text-gray-900', 'relative cursor-pointer select-none py-2 pl-10 pr-4'])
-                    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-                      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([selected ? 'font-medium' : 'font-normal', 'block truncate'])
-                    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 3
-                    /* TEXT, CLASS */
-                    ), selected ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CheckIcon, {
-                      "class": "h-5 w-5",
-                      "aria-hidden": "true"
-                    })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
-                    /* CLASS */
-                    )];
-                  }),
-                  _: 2
-                  /* DYNAMIC */
-
-                }, 1032
-                /* PROPS, DYNAMIC_SLOTS */
-                , ["value"]);
-              }), 128
-              /* KEYED_FRAGMENT */
-              )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxOption, null, {
-                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-                    onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-                      return $data.isCustomCategory = true;
-                    }, ["prevent"])),
-                    "class": "relative cursor-pointer select-none py-2 w-full pl-10 pr-4 hover:bg-indigo-100"
-                  }, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PlusSmIcon, {
-                    "class": "h-5 w-5"
-                  })])])];
-                }),
-                _: 1
-                /* STABLE */
-
-              })];
-            }),
-            _: 1
-            /* STABLE */
-
-          }, 8
-          /* PROPS */
-          , ["class"])];
+      , ["modelValue", "disabled"]), $data.product.errors.category && $data.isCustomCategory == false ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.category), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.isCustomCategory ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        "class": "form-control block w-full lg:w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
+        id: "product-name",
+        placeholder: "Lifestyle",
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return $data.product.category = $event;
         }),
-        _: 1
-        /* STABLE */
-
-      })])];
+        required: ""
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.category]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XCircleIcon, {
+        onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          $data.isCustomCategory = false;
+          $data.product.category = '';
+        }, ["prevent"])),
+        "class": "h-5 w-5 cursor-pointer self-center text-indigo-500"
+      })]), $data.product.errors.category ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.category), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        type: "number",
+        name: "stock",
+        label: "Product stock",
+        "outer-class": "flex-1",
+        placeholder: "500",
+        validation: "required|number",
+        "validation-label": "Product stock",
+        modelValue: $data.product.stock,
+        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+          return $data.product.stock = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        type: "number",
+        name: "price",
+        label: "Product price",
+        placeholder: "100",
+        "outer-class": "flex-1",
+        validation: "required|number",
+        "validation-label": "Product price",
+        modelValue: $data.product.price,
+        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+          return $data.product.price = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        multiple: "",
+        type: "file",
+        id: "product-media",
+        name: "product-media",
+        accept: "image/*,video/*",
+        "class": "hidden",
+        onChange: _cache[8] || (_cache[8] = function ($event) {
+          return $options.handleProductMediaUpload($event);
+        })
+      }, null, 32
+      /* HYDRATE_EVENTS */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UploadIcon, {
+        "class": "h-6 self-center"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <svg\r\n                                        xmlns=\"http://www.w3.org/2000/svg\"\r\n                                        viewBox=\"0 0 448 512\"\r\n                                        class=\"h-6 self-center\"\r\n                                    >\r\n                                        <path\r\n                                            d=\"M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z\"\r\n                                        />\r\n                                    </svg> "), _hoisted_26]), $data.product.errors.media ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.media), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+          "class": "flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300",
+          key: index
+        }, [media[1].includes('video') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", {
+          key: 0,
+          src: media[0],
+          controls: "",
+          "class": "pl-6 object-contain w-full h-52"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_29)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+          key: 1,
+          src: media[0],
+          alt: index,
+          "class": "pl-6 object-contain w-full h-52"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_30)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+          "class": "px-3 hover:text-red-500",
+          onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+            return $options.handleProductMediaRemove(index);
+          }, ["prevent"])
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TrashIcon, {
+          "class": "h-5 w-5"
+        })], 8
+        /* PROPS */
+        , _hoisted_31)]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        type: "checkbox",
+        label: "This product has options, like size or color"
+      })])])];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["modelValue", "disabled"]), $data.product.errors.category && $data.isCustomCategory == false ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.category), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.isCustomCategory ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "text",
-    "class": "form-control block w-full lg:w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
-    id: "product-name",
-    placeholder: "Lifestyle",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return $data.product.category = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.category]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XCircleIcon, {
-    onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      $data.isCustomCategory = false;
-      $data.product.category = '';
-    }, ["prevent"])),
-    "class": "h-5 w-5 cursor-pointer self-center text-indigo-500"
-  })]), $data.product.errors.category ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.category), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "number",
-    "class": "form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
-    id: "product-stock",
-    min: "0",
-    placeholder: "500",
-    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-      return $data.product.stock = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.stock]]), $data.product.errors.stock ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.stock), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "number",
-    "class": "form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
-    id: "product-price",
-    min: "0",
-    placeholder: "0.00",
-    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
-      return $data.product.price = $event;
-    }),
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.price]]), $data.product.errors.price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.price), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right side "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    multiple: "",
-    type: "file",
-    id: "product-media",
-    name: "product-media",
-    accept: "image/*,video/*",
-    "class": "hidden",
-    onChange: _cache[8] || (_cache[8] = function ($event) {
-      return $options.handleProductMediaUpload($event);
-    })
-  }, null, 32
-  /* HYDRATE_EVENTS */
-  ), _hoisted_33, _hoisted_34]), $data.product.errors.media ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.media), 1
-  /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300",
-      key: index
-    }, [media[1].includes('video') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", {
-      key: 0,
-      src: media[0],
-      controls: "",
-      "class": "pl-6 object-contain w-full h-52"
-    }, null, 8
-    /* PROPS */
-    , _hoisted_37)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
-      key: 1,
-      src: media[0],
-      alt: index,
-      "class": "pl-6 object-contain w-full h-52"
-    }, null, 8
-    /* PROPS */
-    , _hoisted_38)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      "class": "px-3 hover:text-red-500",
-      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.handleProductMediaRemove(index);
-      }, ["prevent"])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TrashIcon, {
-      "class": "h-5 w-5"
-    })], 8
-    /* PROPS */
-    , _hoisted_39)]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" options "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-8 border bg-white rounded-md p-4 space-y-6", $data.isHasOptions ? 'mb-4' : ''])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option message with checkbox "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "class": "form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer",
-    type: "checkbox",
-    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-      return $data.isHasOptions = $event;
-    }),
-    checked: $data.isHasOptions || $data.isHasSecondOptions || $data.isHasThirdOptions,
-    id: "product-options"
-  }, null, 8
-  /* PROPS */
-  , _hoisted_41), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.isHasOptions]]), _hoisted_42])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 1 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-one\"\r\n                                                placeholder=\"Size\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputOne = true\r\n                                                \"\r\n                                                :required=\"isHasOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasOptions = false\r\n                                                \"\r\n                                                class=\"self-center pl-2 cursor-pointer w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputOne\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-one-values\"\r\n                                            placeholder=\"Big\"\r\n                                            :required=\"isHasOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 2 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasSecondOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-two\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-two\"\r\n                                                placeholder=\"Color\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputTwo = true\r\n                                                \"\r\n                                                :required=\"isHasSecondOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasSecondOptions = false\r\n                                                \"\r\n                                                class=\"self-center cursor-pointer pl-2 w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputTwo\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-two-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-two-values\"\r\n                                            placeholder=\"Black\"\r\n                                            :required=\"isHasSecondOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 3 (limit reached) "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasThirdOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-three\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-three\"\r\n                                                placeholder=\"Weight\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputThree = true\r\n                                                \"\r\n                                                :required=\"isHasThirdOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasThirdOptions = false\r\n                                                \"\r\n                                                class=\"self-center cursor-pointer pl-2 w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputThree\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-three-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-three-values\"\r\n                                            placeholder=\"15 kg\"\r\n                                            :required=\"isHasThirdOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" make this button dynamic "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" not finish yet (29/8/2022) "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                class=\"border-t pt-3\"\r\n                                :class=\"\r\n                                    (!isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions) ||\r\n                                    (isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions)\r\n                                        ? 'hidden'\r\n                                        : 'block'\r\n                                \"\r\n                            >\r\n                                <button\r\n                                    type=\"button\"\r\n                                    class=\"text-indigo-500 text-sm font-semibold\"\r\n                                    @click.prevent=\"addOptions\"\r\n                                >\r\n                                    Add another option\r\n                                </button>\r\n                            </div> ")], 2
-  /* CLASS */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "submit",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-4 py-2.5 bg-indigo-600 text-white font-medium text-sm leading-tight rounded-md shadow-md", !$data.product.isDirty || $data.product.processing ? 'bg-indigo-400 cursor-not-allowed' : 'hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out']),
-    disabled: !$data.product.isDirty || $data.product.processing
-  }, " Save ", 10
-  /* CLASS, PROPS */
-  , _hoisted_44)])], 32
-  /* HYDRATE_EVENTS */
-  )])])], 64
+  , ["disabled", "onSubmit", "input-errors"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 1 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-one\"\r\n                                                placeholder=\"Size\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputOne = true\r\n                                                \"\r\n                                                :required=\"isHasOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasOptions = false\r\n                                                \"\r\n                                                class=\"self-center pl-2 cursor-pointer w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputOne\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-one-values\"\r\n                                            placeholder=\"Big\"\r\n                                            :required=\"isHasOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                class=\"border-t pt-3\"\r\n                                :class=\"\r\n                                    (!isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions) ||\r\n                                    (isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions)\r\n                                        ? 'hidden'\r\n                                        : 'block'\r\n                                \"\r\n                            >\r\n                                <button\r\n                                    type=\"button\"\r\n                                    class=\"text-indigo-500 text-sm font-semibold\"\r\n                                    @click.prevent=\"addOptions\"\r\n                                >\r\n                                    Add another option\r\n                                </button>\r\n                            </div> ")])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -865,53 +803,50 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cancelled ");
 
 var _hoisted_19 = {
-  "class": "hidden lg:flex pt-20 h-full justify-end w-2/12"
-};
-var _hoisted_20 = {
   "class": "inline-grid w-32"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Admin Account", -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Admin Account", -1
 /* HOISTED */
 );
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My Account", -1
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My Account", -1
 /* HOISTED */
 );
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Addresses ");
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Addresses ");
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
 
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Products", -1
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Products", -1
 /* HOISTED */
 );
 
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ");
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ");
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ");
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ");
 
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My purchase", -1
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My purchase", -1
 /* HOISTED */
 );
 
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All ");
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All ");
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Pay ");
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Pay ");
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Ship ");
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Ship ");
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Receive ");
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Receive ");
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Completed ");
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Completed ");
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cancelled ");
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cancelled ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_MenuButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("MenuButton");
@@ -1305,7 +1240,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" large screen "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Disclosure, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" large screen "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hidden lg:flex pt-20 justify-end w-2/12", _ctx.$page.component.includes('Admin/Products/Create') ? 'absolute' : 'h-full'])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Disclosure, {
     key: 0,
     defaultOpen: _ctx.$page.component.includes('Admin/Account'),
     as: "div"
@@ -1320,7 +1257,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_21];
+          return [_hoisted_20];
         }),
         _: 2
         /* DYNAMIC */
@@ -1346,7 +1283,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Account/Profile' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_22];
+                  return [_hoisted_21];
                 }),
                 _: 1
                 /* STABLE */
@@ -1358,7 +1295,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Account/ChangePassword' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_23];
+                  return [_hoisted_22];
                 }),
                 _: 1
                 /* STABLE */
@@ -1397,7 +1334,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_24];
+          return [_hoisted_23];
         }),
         _: 2
         /* DYNAMIC */
@@ -1423,7 +1360,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Account/Profile' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_25];
+                  return [_hoisted_24];
                 }),
                 _: 1
                 /* STABLE */
@@ -1435,7 +1372,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Account/Addresses' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_26];
+                  return [_hoisted_25];
                 }),
                 _: 1
                 /* STABLE */
@@ -1447,7 +1384,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Account/ChangePassword' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_27];
+                  return [_hoisted_26];
                 }),
                 _: 1
                 /* STABLE */
@@ -1486,7 +1423,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_28];
+          return [_hoisted_27];
         }),
         _: 2
         /* DYNAMIC */
@@ -1512,7 +1449,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Products/Index' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_29];
+                  return [_hoisted_28];
                 }),
                 _: 1
                 /* STABLE */
@@ -1524,7 +1461,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Products/Create' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_30];
+                  return [_hoisted_29];
                 }),
                 _: 1
                 /* STABLE */
@@ -1563,7 +1500,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_31];
+          return [_hoisted_30];
         }),
         _: 2
         /* DYNAMIC */
@@ -1589,7 +1526,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/Index' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_32];
+                  return [_hoisted_31];
                 }),
                 _: 1
                 /* STABLE */
@@ -1601,7 +1538,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/ToPay' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_33];
+                  return [_hoisted_32];
                 }),
                 _: 1
                 /* STABLE */
@@ -1613,7 +1550,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/ToShip' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_34];
+                  return [_hoisted_33];
                 }),
                 _: 1
                 /* STABLE */
@@ -1625,7 +1562,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/ToReceive' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_35];
+                  return [_hoisted_34];
                 }),
                 _: 1
                 /* STABLE */
@@ -1637,7 +1574,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/Completed' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_36];
+                  return [_hoisted_35];
                 }),
                 _: 1
                 /* STABLE */
@@ -1649,7 +1586,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/Cancelled' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_37];
+                  return [_hoisted_36];
                 }),
                 _: 1
                 /* STABLE */
@@ -1673,7 +1610,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["defaultOpen"]))])])], 64
+  , ["defaultOpen"]))])], 2
+  /* CLASS */
+  )], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -1703,7 +1642,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "tippy-options": {
       duration: 50
     },
-    "class": "border rounded-md px-2 py-0.5 border-gray-800 bg-white space-x-2"
+    "class": "border rounded-md px-2 py-0.5 border-gray-800 text-indigo-500 bg-white space-x-2"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bullet List "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
