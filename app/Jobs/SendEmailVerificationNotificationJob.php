@@ -21,11 +21,7 @@ class SendEmailVerificationNotificationJob implements ShouldQueue
         $this->user = $user;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
+    // this action take such a long time to be completed. Better use jobs for this action.
     public function handle()
     {
         $this->user->sendEmailVerificationNotification();
