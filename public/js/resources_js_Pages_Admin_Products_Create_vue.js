@@ -49,12 +49,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isCustomCategory: false,
       isHasOptions: false,
-      isHasSecondOptions: false,
-      isHasThirdOptions: false,
-      isShowOptionNamesList: false,
-      isFocusOptionNameInputOne: false,
-      isFocusOptionNameInputTwo: false,
-      isFocusOptionNameInputThree: false,
       product: this.$inertia.form({
         name: "",
         description: "",
@@ -158,40 +152,6 @@ __webpack_require__.r(__webpack_exports__);
           }, 3500);
         }
       });
-    },
-    addOptions: function addOptions() {
-      if (this.isHasOptions) {
-        if (this.isHasSecondOptions) {
-          this.isHasThirdOptions = true;
-          return;
-        }
-
-        this.isHasSecondOptions = true;
-        return;
-      }
-
-      this.isHasOptions = true;
-    },
-    showOptionNamesList: function showOptionNamesList() {
-      var _this4 = this;
-
-      this.isShowOptionNamesList = !this.isShowOptionNamesList;
-      setTimeout(function () {
-        return window.addEventListener("click", _this4.hideOptionNamesList);
-      }, 100);
-    },
-    hideOptionNamesList: function hideOptionNamesList(e) {
-      if (!this.$refs.optionNamesList.contains(e.target)) {
-        this.isShowOptionNamesList = false;
-        window.removeEventListener("click", this.hideOptionNamesList);
-      }
-
-      this.isFocusOptionNameInputOne = false;
-      this.isFocusOptionNameInputTwo = false;
-      this.isFocusOptionNameInputThree = false;
-    },
-    selectOptionName: function selectOptionName(option) {
-      console.log(option);
     }
     /**
      *
@@ -341,7 +301,7 @@ var _hoisted_2 = {
   "class": "flex-1"
 };
 var _hoisted_3 = {
-  "class": "container max-w-xl mx-auto mt-10 mb-6"
+  "class": "container max-w-xl mx-auto my-10"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
@@ -467,8 +427,40 @@ var _hoisted_32 = {
 
 var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-options",
-  "class": "font-medium inline-block mb-2 text-gray-700"
+  "class": "font-semibold text-sm inline-block mb-2 text-gray-700"
 }, "Options", -1
+/* HOISTED */
+);
+
+var _hoisted_34 = {
+  "class": "px-6"
+};
+
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "option-one",
+  "class": "font-medium inline-block my-2 text-gray-700"
+}, "Option name", -1
+/* HOISTED */
+);
+
+var _hoisted_36 = {
+  "class": "flex"
+};
+var _hoisted_37 = ["required"];
+
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "option-one-values",
+  "class": "font-medium inline-block my-2 text-gray-700"
+}, "Option values", -1
+/* HOISTED */
+);
+
+var _hoisted_39 = ["required"];
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "button",
+  "class": "mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
+}, " Done ", -1
 /* HOISTED */
 );
 
@@ -737,15 +729,47 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* KEYED_FRAGMENT */
       ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         type: "checkbox",
-        label: "This product has options, like size or color"
-      })])])];
+        label: "This product has options, like size or color",
+        "outer-class": "mb-4",
+        modelValue: $data.isHasOptions,
+        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+          return $data.isHasOptions = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['border-t', $data.isHasOptions ? 'block' : 'hidden'])
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        "class": "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
+        id: "option-one",
+        placeholder: "Size",
+        required: $data.isHasOptions
+      }, null, 8
+      /* PROPS */
+      , _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TrashIcon, {
+        onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+          return $data.isHasOptions = false;
+        }, ["prevent"])),
+        "class": "self-center pl-2 cursor-pointer w-7 h-7"
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        "class": "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
+        id: "option-one-values",
+        placeholder: "Big",
+        required: $data.isHasOptions
+      }, null, 8
+      /* PROPS */
+      , _hoisted_39)]), _hoisted_40])], 2
+      /* CLASS */
+      )])])];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["disabled", "onSubmit", "input-errors"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option 1 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                :class=\"[\r\n                                    'border-t',\r\n                                    isHasOptions ? 'block' : 'hidden',\r\n                                ]\"\r\n                            >\r\n                                <div class=\"px-6\">\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option name</label\r\n                                        >\r\n                                        <div class=\"flex\">\r\n                                            <input\r\n                                                type=\"text\"\r\n                                                class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                                id=\"option-one\"\r\n                                                placeholder=\"Size\"\r\n                                                @click.prevent=\"\r\n                                                    showOptionNamesList\r\n                                                \"\r\n                                                @focus=\"\r\n                                                    isFocusOptionNameInputOne = true\r\n                                                \"\r\n                                                :required=\"isHasOptions\"\r\n                                            />\r\n                                            <TrashIcon\r\n                                                @click.prevent=\"\r\n                                                    isHasOptions = false\r\n                                                \"\r\n                                                class=\"self-center pl-2 cursor-pointer w-7 h-7\"\r\n                                            />\r\n                                        </div>\r\n                                        <div class=\"relative\">\r\n                                            <div\r\n                                                class=\"absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md\"\r\n                                                :class=\"\r\n                                                    isShowOptionNamesList &&\r\n                                                    isFocusOptionNameInputOne\r\n                                                        ? 'block'\r\n                                                        : 'hidden'\r\n                                                \"\r\n                                                ref=\"optionNamesList\"\r\n                                            >\r\n                                                <ul class=\"space-y-1.5\">\r\n                                                    <template\r\n                                                        v-for=\"variant in variants\"\r\n                                                        :key=\"variant.id\"\r\n                                                    >\r\n                                                        <li\r\n                                                            @click.prevent=\"\r\n                                                                selectOptionName(\r\n                                                                    variant.name\r\n                                                                )\r\n                                                            \"\r\n                                                            class=\"px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200\"\r\n                                                        >\r\n                                                            {{ variant.name }}\r\n                                                        </li>\r\n                                                    </template>\r\n                                                </ul>\r\n                                            </div>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div>\r\n                                        <label\r\n                                            for=\"option-one-values\"\r\n                                            class=\"font-medium inline-block my-2 text-gray-700\"\r\n                                            >Option values</label\r\n                                        >\r\n                                        <input\r\n                                            type=\"text\"\r\n                                            class=\"form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none\"\r\n                                            id=\"option-one-values\"\r\n                                            placeholder=\"Big\"\r\n                                            :required=\"isHasOptions\"\r\n                                        />\r\n                                    </div>\r\n                                    <button\r\n                                        type=\"button\"\r\n                                        class=\"mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100\"\r\n                                    >\r\n                                        Done\r\n                                    </button>\r\n                                </div>\r\n                            </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                                class=\"border-t pt-3\"\r\n                                :class=\"\r\n                                    (!isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions) ||\r\n                                    (isHasOptions &&\r\n                                        isHasSecondOptions &&\r\n                                        isHasThirdOptions)\r\n                                        ? 'hidden'\r\n                                        : 'block'\r\n                                \"\r\n                            >\r\n                                <button\r\n                                    type=\"button\"\r\n                                    class=\"text-indigo-500 text-sm font-semibold\"\r\n                                    @click.prevent=\"addOptions\"\r\n                                >\r\n                                    Add another option\r\n                                </button>\r\n                            </div> ")])], 64
+  , ["disabled", "onSubmit", "input-errors"])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
