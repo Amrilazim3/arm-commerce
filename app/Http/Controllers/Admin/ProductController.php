@@ -9,7 +9,6 @@ use App\Models\ProductImage;
 use App\Models\Variant;
 use App\Rules\MediaValidation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
