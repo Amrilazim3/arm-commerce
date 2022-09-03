@@ -2,41 +2,42 @@
     <Head title="Create Product" />
     <div class="lg:flex">
         <SideNav />
-        <div class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1">
-            <h1 class="text-xl font-semibold text-gray-900">Create product</h1>
-            <form
-                class="mt-6 space-y-3 divide-y divide-gray-300"
-                @submit.prevent="createProduct()"
-            >
-                <div class="lg:flex">
-                    <!-- left side -->
-                    <div class="lg:w-1/2 pr-6">
-                        <div class="mb-3 min-w-full">
-                            <label
-                                for="product-name"
-                                class="font-medium inline-block mb-2 text-gray-700"
-                                >Product name</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                id="product-name"
-                                placeholder="Heavy skipping rope"
-                                v-model="product.name"
-                                required
-                            />
-                            <div
-                                v-if="product.errors.name"
-                                class="text-red-500 text-sm mt-1"
-                            >
-                                {{ product.errors.name }}
-                            </div>
-                        </div>
-
-                        <div class="mb-3 min-w-full">
+        <div class="flex-1">
+            <div class="container max-w-xl mx-auto my-10">
+                <h1 class="text-xl font-semibold mb-6 text-gray-900">
+                    Create product
+                </h1>
+                <FormKit
+                    type="form"
+                    form-class="p-3 sm:p-5 lg:p-6 bg-white border border-gray-300 rounded-md shadow-md space-y-3"
+                    messages-class="$reset pt-5"
+                    submit-label="Save"
+                    :submit-attrs="{
+                        outerClass: '$reset',
+                        wrapperClass: '$reset mt-6 flex justify-end',
+                    }"
+                    :disabled="product.processing"
+                    @submit="createProduct"
+                    :input-errors="{
+                        name: product.errors.name ? product.errors.name : '',
+                        stock: product.errors.stock ? product.errors.stock : '',
+                        price: product.errors.price ? product.errors.price : '',
+                    }"
+                >
+                    <div class="space-y-8 sm:space-y-5">
+                        <FormKit
+                            type="text"
+                            name="name"
+                            label="Product name"
+                            placeholder="Heavy skipping rope"
+                            validation="required"
+                            validation-label="Product name"
+                            v-model="product.name"
+                        />
+                        <div class="w-full">
                             <label
                                 for="product-description"
-                                class="font-medium inline-block mb-2 text-gray-700"
+                                class="font-semibold text-sm inline-block mb-1 text-gray-700"
                                 >Product Description</label
                             >
                             <Tiptap v-model="product.description" />
@@ -47,11 +48,10 @@
                                 {{ product.errors.description }}
                             </div>
                         </div>
-
-                        <div class="mb-3 min-w-full">
+                        <div class="w-full">
                             <label
-                                for="product-description"
-                                class="font-medium inline-block mb-2 text-gray-700"
+                                for="product-category"
+                                class="font-semibold text-sm inline-block mb-1 text-gray-700"
                                 >Product Category</label
                             >
                             <Listbox
@@ -163,12 +163,11 @@
                                 {{ product.errors.category }}
                             </div>
                         </div>
-
                         <template v-if="isCustomCategory">
-                            <div class="mb-3 min-w-full">
+                            <div class="w-full">
                                 <label
-                                    for="product-description"
-                                    class="font-medium inline-block mb-2 text-gray-700"
+                                    for="custom-category"
+                                    class="font-semibold text-sm inline-block mb-1 text-gray-700"
                                     >Custom category</label
                                 >
                                 <div class="flex space-x-3">
@@ -196,171 +195,120 @@
                                 </div>
                             </div>
                         </template>
-
-                        <div
-                            class="mb-3 min-w-full flex space-x-3 lg:space-x-6"
-                        >
+                        <div class="w-full flex space-x-3">
+                            <FormKit
+                                type="number"
+                                name="stock"
+                                label="Product stock"
+                                outer-class="flex-1"
+                                placeholder="500"
+                                validation="required|number"
+                                validation-label="Product stock"
+                                v-model="product.stock"
+                            />
+                            <FormKit
+                                type="number"
+                                name="price"
+                                label="Product price"
+                                placeholder="100"
+                                outer-class="flex-1"
+                                validation="required|number"
+                                validation-label="Product price"
+                                v-model="product.price"
+                            />
+                        </div>
+                        <div class="pt-8">
                             <div>
                                 <label
-                                    for="product-stock"
-                                    class="font-medium inline-block mb-2 text-gray-700"
-                                    >Product stock</label
+                                    for="product-media"
+                                    class="font-semibold text-sm inline-block mb-1 text-gray-700"
+                                    >Media</label
                                 >
-                                <input
-                                    type="number"
-                                    class="form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                    id="product-stock"
-                                    min="0"
-                                    placeholder="500"
-                                    v-model="product.stock"
-                                    required
-                                />
-                                <div
-                                    v-if="product.errors.stock"
-                                    class="text-red-500 text-sm mt-1"
-                                >
-                                    {{ product.errors.stock }}
-                                </div>
-                            </div>
-
-                            <div>
                                 <label
-                                    for="product-price"
-                                    class="font-medium inline-block mb-2 text-gray-700"
-                                    >Product price</label
+                                    for="product-media"
+                                    class="flex flex-col cursor-pointer w-full bg-white py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 >
-                                <input
-                                    type="number"
-                                    class="form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                    id="product-price"
-                                    min="0"
-                                    placeholder="0.00"
-                                    v-model="product.price"
-                                    required
-                                />
-                                <div
-                                    v-if="product.errors.price"
-                                    class="text-red-500 text-sm mt-1"
-                                >
-                                    {{ product.errors.price }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- right side -->
-                    <div class="mt-10 lg:w-1/2 lg:mt-0 lg:pl-6">
-                        <div>
-                            <label
-                                for="product-name"
-                                class="font-medium inline-block mb-2 text-gray-700"
-                                >Media</label
-                            >
-                            <label
-                                for="product-media"
-                                class="flex flex-col cursor-pointer w-full bg-white py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                            >
-                                <input
-                                    multiple
-                                    type="file"
-                                    id="product-media"
-                                    name="product-media"
-                                    accept="image/*,video/*"
-                                    class="hidden"
-                                    @change="handleProductMediaUpload($event)"
-                                />
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 448 512"
-                                    class="h-6 self-center"
-                                >
-                                    <path
-                                        d="M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z"
-                                    />
-                                </svg>
-                                <p class="text-center">
-                                    Upload product images / videos
-                                </p>
-                            </label>
-                            <div
-                                v-if="product.errors.media"
-                                class="text-red-500 text-sm mt-1"
-                            >
-                                {{ product.errors.media }}
-                            </div>
-                        </div>
-
-                        <div
-                            class="mt-6 bg-white py-4 px-2 h-64 border rounded-md overflow-y-scroll"
-                            v-if="previewMediaUploaded.length !== 0"
-                        >
-                            <div
-                                class="flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300"
-                                v-for="(media, index) in previewMediaUploaded"
-                                :key="index"
-                            >
-                                <template v-if="media[1].includes('video')">
-                                    <video
-                                        :src="media[0]"
-                                        controls
-                                        class="pl-6 object-contain w-full h-52"
-                                    />
-                                </template>
-                                <template v-else>
-                                    <img
-                                        :src="media[0]"
-                                        :alt="index"
-                                        class="pl-6 object-contain w-full h-52"
-                                    />
-                                </template>
-                                <button
-                                    class="px-3 hover:text-red-500"
-                                    @click.prevent="
-                                        handleProductMediaRemove(index)
-                                    "
-                                >
-                                    <TrashIcon class="h-5 w-5" />
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- options -->
-                        <div
-                            class="mt-8 border bg-white rounded-md p-4 space-y-6"
-                            :class="isHasOptions ? 'mb-4' : ''"
-                        >
-                            <!-- option message with checkbox -->
-                            <div>
-                                <label
-                                    for="product-options"
-                                    class="font-medium inline-block mb-2 text-gray-700"
-                                    >Options</label
-                                >
-                                <div>
                                     <input
-                                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-600 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                        type="checkbox"
-                                        v-model="isHasOptions"
-                                        :checked="
-                                            isHasOptions ||
-                                            isHasSecondOptions ||
-                                            isHasThirdOptions
+                                        multiple
+                                        type="file"
+                                        id="product-media"
+                                        name="product-media"
+                                        accept="image/*,video/*"
+                                        class="hidden"
+                                        @change="
+                                            handleProductMediaUpload($event)
                                         "
-                                        id="product-options"
                                     />
-                                    <label
-                                        class="form-check-label inline-block text-gray-800"
-                                        for="product-variants"
+                                    <UploadIcon class="h-6 self-center" />
+                                    <!-- <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 448 512"
+                                        class="h-6 self-center"
                                     >
-                                        This product has options, like size or
-                                        color
-                                    </label>
+                                        <path
+                                            d="M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z"
+                                        />
+                                    </svg> -->
+                                    <p class="text-center">
+                                        Upload product images / videos
+                                    </p>
+                                </label>
+                                <div
+                                    v-if="product.errors.media"
+                                    class="text-red-500 text-sm mt-1"
+                                >
+                                    {{ product.errors.media }}
                                 </div>
                             </div>
-
-                            
-                            <!-- option 1 -->
-                            <!-- <div
+                            <div
+                                class="mt-4 bg-white py-4 px-2 max-h-64 border rounded-md overflow-y-scroll"
+                                v-if="previewMediaUploaded.length !== 0"
+                            >
+                                <div
+                                    class="flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300"
+                                    v-for="(
+                                        media, index
+                                    ) in previewMediaUploaded"
+                                    :key="index"
+                                >
+                                    <template v-if="media[1].includes('video')">
+                                        <video
+                                            :src="media[0]"
+                                            controls
+                                            class="pl-6 object-contain w-full h-52"
+                                        />
+                                    </template>
+                                    <template v-else>
+                                        <img
+                                            :src="media[0]"
+                                            :alt="index"
+                                            class="pl-6 object-contain w-full h-52"
+                                        />
+                                    </template>
+                                    <button
+                                        class="px-3 hover:text-red-500"
+                                        @click.prevent="
+                                            handleProductMediaRemove(index)
+                                        "
+                                    >
+                                        <TrashIcon class="h-5 w-5" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-8">
+                            <label
+                                for="product-options"
+                                class="font-semibold text-sm inline-block mb-2 text-gray-700"
+                                >Options</label
+                            >
+                            <FormKit
+                                type="checkbox"
+                                label="This product has options, like size or color"
+                                outer-class="mb-4"
+                                v-model="isHasOptions"
+                            />
+                            <div
                                 :class="[
                                     'border-t',
                                     isHasOptions ? 'block' : 'hidden',
@@ -379,12 +327,6 @@
                                                 class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
                                                 id="option-one"
                                                 placeholder="Size"
-                                                @click.prevent="
-                                                    showOptionNamesList
-                                                "
-                                                @focus="
-                                                    isFocusOptionNameInputOne = true
-                                                "
                                                 :required="isHasOptions"
                                             />
                                             <TrashIcon
@@ -393,36 +335,6 @@
                                                 "
                                                 class="self-center pl-2 cursor-pointer w-7 h-7"
                                             />
-                                        </div>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md"
-                                                :class="
-                                                    isShowOptionNamesList &&
-                                                    isFocusOptionNameInputOne
-                                                        ? 'block'
-                                                        : 'hidden'
-                                                "
-                                                ref="optionNamesList"
-                                            >
-                                                <ul class="space-y-1.5">
-                                                    <template
-                                                        v-for="variant in variants"
-                                                        :key="variant.id"
-                                                    >
-                                                        <li
-                                                            @click.prevent="
-                                                                selectOptionName(
-                                                                    variant.name
-                                                                )
-                                                            "
-                                                            class="px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200"
-                                                        >
-                                                            {{ variant.name }}
-                                                        </li>
-                                                    </template>
-                                                </ul>
-                                            </div>
                                         </div>
                                     </div>
                                     <div>
@@ -446,228 +358,11 @@
                                         Done
                                     </button>
                                 </div>
-                            </div> -->
-
-                            <!-- option 2 -->
-                            <!-- <div
-                                :class="[
-                                    'border-t',
-                                    isHasSecondOptions ? 'block' : 'hidden',
-                                ]"
-                            >
-                                <div class="px-6">
-                                    <div>
-                                        <label
-                                            for="option-two"
-                                            class="font-medium inline-block my-2 text-gray-700"
-                                            >Option name</label
-                                        >
-                                        <div class="flex">
-                                            <input
-                                                type="text"
-                                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                                id="option-two"
-                                                placeholder="Color"
-                                                @click.prevent="
-                                                    showOptionNamesList
-                                                "
-                                                @focus="
-                                                    isFocusOptionNameInputTwo = true
-                                                "
-                                                :required="isHasSecondOptions"
-                                            />
-                                            <TrashIcon
-                                                @click.prevent="
-                                                    isHasSecondOptions = false
-                                                "
-                                                class="self-center cursor-pointer pl-2 w-7 h-7"
-                                            />
-                                        </div>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md"
-                                                :class="
-                                                    isShowOptionNamesList &&
-                                                    isFocusOptionNameInputTwo
-                                                        ? 'block'
-                                                        : 'hidden'
-                                                "
-                                                ref="optionNamesList"
-                                            >
-                                                <ul class="space-y-1.5">
-                                                    <template
-                                                        v-for="variant in variants"
-                                                        :key="variant.id"
-                                                    >
-                                                        <li
-                                                            @click.prevent="
-                                                                selectOptionName(
-                                                                    variant.name
-                                                                )
-                                                            "
-                                                            class="px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200"
-                                                        >
-                                                            {{ variant.name }}
-                                                        </li>
-                                                    </template>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label
-                                            for="option-two-values"
-                                            class="font-medium inline-block my-2 text-gray-700"
-                                            >Option values</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                            id="option-two-values"
-                                            placeholder="Black"
-                                            :required="isHasSecondOptions"
-                                        />
-                                    </div>
-                                    <button
-                                        type="button"
-                                        class="mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
-                                    >
-                                        Done
-                                    </button>
-                                </div>
-                            </div> -->
-
-                            <!-- option 3 (limit reached) -->
-                            <!-- <div
-                                :class="[
-                                    'border-t',
-                                    isHasThirdOptions ? 'block' : 'hidden',
-                                ]"
-                            >
-                                <div class="px-6">
-                                    <div>
-                                        <label
-                                            for="option-three"
-                                            class="font-medium inline-block my-2 text-gray-700"
-                                            >Option name</label
-                                        >
-                                        <div class="flex">
-                                            <input
-                                                type="text"
-                                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                                id="option-three"
-                                                placeholder="Weight"
-                                                @click.prevent="
-                                                    showOptionNamesList
-                                                "
-                                                @focus="
-                                                    isFocusOptionNameInputThree = true
-                                                "
-                                                :required="isHasThirdOptions"
-                                            />
-                                            <TrashIcon
-                                                @click.prevent="
-                                                    isHasThirdOptions = false
-                                                "
-                                                class="self-center cursor-pointer pl-2 w-7 h-7"
-                                            />
-                                        </div>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute w-full mt-2 p-2 border rounded-md bg-white shadow-md"
-                                                :class="
-                                                    isShowOptionNamesList &&
-                                                    isFocusOptionNameInputThree
-                                                        ? 'block'
-                                                        : 'hidden'
-                                                "
-                                                ref="optionNamesList"
-                                            >
-                                                <ul class="space-y-1.5">
-                                                    <template
-                                                        v-for="variant in variants"
-                                                        :key="variant.id"
-                                                    >
-                                                        <li
-                                                            @click.prevent="
-                                                                selectOptionName(
-                                                                    variant.name
-                                                                )
-                                                            "
-                                                            class="px-1.5 py-2 rounded-md cursor-pointer hover:bg-indigo-200"
-                                                        >
-                                                            {{ variant.name }}
-                                                        </li>
-                                                    </template>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label
-                                            for="option-three-values"
-                                            class="font-medium inline-block my-2 text-gray-700"
-                                            >Option values</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                            id="option-three-values"
-                                            placeholder="15 kg"
-                                            :required="isHasThirdOptions"
-                                        />
-                                    </div>
-                                    <button
-                                        type="button"
-                                        class="mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
-                                    >
-                                        Done
-                                    </button>
-                                </div>
-                            </div> -->
-
-                            <!-- make this button dynamic -->
-                            <!-- not finish yet (29/8/2022) -->
-                            <!-- <div
-                                class="border-t pt-3"
-                                :class="
-                                    (!isHasOptions &&
-                                        isHasSecondOptions &&
-                                        isHasThirdOptions) ||
-                                    (isHasOptions &&
-                                        isHasSecondOptions &&
-                                        isHasThirdOptions)
-                                        ? 'hidden'
-                                        : 'block'
-                                "
-                            >
-                                <button
-                                    type="button"
-                                    class="text-indigo-500 text-sm font-semibold"
-                                    @click.prevent="addOptions"
-                                >
-                                    Add another option
-                                </button>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="flex pt-4 justify-end">
-                    <button
-                        type="submit"
-                        class="inline-block px-4 py-2.5 bg-indigo-600 text-white font-medium text-sm leading-tight rounded-md shadow-md"
-                        :disabled="!product.isDirty || product.processing"
-                        :class="
-                            !product.isDirty || product.processing
-                                ? 'bg-indigo-400 cursor-not-allowed'
-                                : 'hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out'
-                        "
-                    >
-                        Save
-                    </button>
-                </div>
-            </form>
+                </FormKit>
+            </div>
         </div>
     </div>
 </template>
@@ -688,7 +383,7 @@ import {
     PlusSmIcon,
     XCircleIcon,
 } from "@heroicons/vue/solid";
-import { TrashIcon } from "@heroicons/vue/outline";
+import { TrashIcon, UploadIcon } from "@heroicons/vue/outline";
 
 export default {
     components: {
@@ -704,6 +399,7 @@ export default {
         PlusSmIcon,
         XCircleIcon,
         TrashIcon,
+        UploadIcon,
     },
 
     props: {
@@ -715,12 +411,6 @@ export default {
         return {
             isCustomCategory: false,
             isHasOptions: false,
-            isHasSecondOptions: false,
-            isHasThirdOptions: false,
-            isShowOptionNamesList: false,
-            isFocusOptionNameInputOne: false,
-            isFocusOptionNameInputTwo: false,
-            isFocusOptionNameInputThree: false,
             product: this.$inertia.form({
                 name: "",
                 description: "",
@@ -737,19 +427,6 @@ export default {
             // variantValues: {},
         };
     },
-
-    // watch: {
-    //     isHasOptions(condition) {
-    //         if (
-    //             condition == false &&
-    //             (this.isHasSecondOptions == false ||
-    //                 this.isHasThirdOptions == false)
-    //         ) {
-    //             this.isHasSecondOptions = false;
-    //             this.isHasThirdOptions = false;
-    //         }
-    //     },
-    // },
 
     methods: {
         handleProductMediaUpload(event) {
@@ -864,41 +541,6 @@ export default {
                     );
                 },
             });
-        },
-
-        addOptions() {
-            if (this.isHasOptions) {
-                if (this.isHasSecondOptions) {
-                    this.isHasThirdOptions = true;
-                    return;
-                }
-                this.isHasSecondOptions = true;
-                return;
-            }
-            this.isHasOptions = true;
-        },
-
-        showOptionNamesList() {
-            this.isShowOptionNamesList = !this.isShowOptionNamesList;
-            setTimeout(
-                () =>
-                    window.addEventListener("click", this.hideOptionNamesList),
-                100
-            );
-        },
-
-        hideOptionNamesList(e) {
-            if (!this.$refs.optionNamesList.contains(e.target)) {
-                this.isShowOptionNamesList = false;
-                window.removeEventListener("click", this.hideOptionNamesList);
-            }
-            this.isFocusOptionNameInputOne = false;
-            this.isFocusOptionNameInputTwo = false;
-            this.isFocusOptionNameInputThree = false;
-        },
-
-        selectOptionName(option) {
-            console.log(option);
         },
 
         /**
