@@ -22,6 +22,8 @@ class TriggerRegisteredEventJob implements ShouldQueue
         $this->user = $user;
     }
 
+    // the reason we trigger this Registered event in job because it take a long time for user to wait.
+    // so we decide to put this in jobs so the user doesn't need to wait longer.
     public function handle()
     {
         event(new Registered($this->user));
