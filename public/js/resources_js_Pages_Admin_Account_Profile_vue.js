@@ -415,7 +415,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "number",
         "outer-class": "$reset mt-1 sm:mt-0 sm:col-span-2",
         "inner-class": "$reset max-w-lg flex rounded-md shadow-sm",
-        validation: "number|length:11",
         "validation-label": "Phone number",
         placeholder: "60119872345",
         modelValue: $data.admin.phoneNumber,
