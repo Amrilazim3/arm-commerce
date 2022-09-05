@@ -264,7 +264,7 @@
                                                     class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
                                                     <Link
-                                                        :href="product.slug"
+                                                        :href="'/admin/products/' + product.slug"
                                                         class="hover:font-semibold hover:text-indigo-600"
                                                     >
                                                         {{ product.name }}
