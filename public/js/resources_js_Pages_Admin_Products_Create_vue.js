@@ -55,14 +55,40 @@ __webpack_require__.r(__webpack_exports__);
         category: "",
         stock: null,
         price: null,
-        media: []
-      }),
-      previewMediaUploaded: [] // variant: '',
-      // variants: [],
-      // variantValue: '',
-      // variantValues: {},
+        media: [],
+        optionsFtValues: [] // variants: [
+        //     { name: "big-red", stock: 0, price: 0, imageUrl: null },
+        // ],
 
+      }),
+      previewMediaUploaded: []
     };
+  },
+  watch: {
+    isHasOptions: function isHasOptions(newCondition) {
+      if (!newCondition) {
+        this.product.optionsFtValues = [];
+        return;
+      }
+
+      this.product.optionsFtValues = [{
+        name: "",
+        values: [""],
+        isSaved: false
+      }];
+    },
+    product: {
+      handler: function handler(newObject) {
+        if (newObject.description == "<p></p>") {
+          this.product.description = "";
+        }
+
+        if (newObject.optionsFtValues.length == 0) {
+          this.isHasOptions = false;
+        }
+      },
+      deep: true
+    }
   },
   methods: {
     handleProductMediaUpload: function handleProductMediaUpload(event) {
@@ -152,6 +178,36 @@ __webpack_require__.r(__webpack_exports__);
           }, 3500);
         }
       });
+    },
+    addOptionValueInput: function addOptionValueInput(objectKey, currentArrayKey) {
+      if (currentArrayKey + 1 in this.product.optionsFtValues[objectKey].values == false) {
+        this.product.optionsFtValues[objectKey].values.push("");
+      }
+    },
+    removeOptionValueInput: function removeOptionValueInput(objectKey, currentArrayKey) {
+      this.product.optionsFtValues[objectKey].values.splice(currentArrayKey, 1);
+    },
+    addNewOption: function addNewOption() {
+      if (this.product.optionsFtValues.length <= 3) {
+        this.product.optionsFtValues.push({
+          name: "",
+          values: [""],
+          isSaved: false
+        });
+      }
+    },
+    removeOption: function removeOption(objectKey) {
+      this.product.optionsFtValues.splice(objectKey, 1);
+    },
+    saveOption: function saveOption(objectKey) {
+      this.product.optionsFtValues[objectKey].isSaved = true;
+    },
+    editOption: function editOption(objectKey) {
+      this.product.optionsFtValues[objectKey].isSaved = false;
+    },
+    closeCustomCategory: function closeCustomCategory() {
+      this.isCustomCategory = false;
+      this.product.category = "";
     }
     /**
      *
@@ -318,152 +374,89 @@ var _hoisted_6 = {
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-description",
   "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
-}, "Product Description", -1
+}, "Description", -1
 /* HOISTED */
 );
 
 var _hoisted_8 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_9 = {
-  "class": "w-full"
+  "class": "w-1/2"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "product-category",
-  "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
-}, "Product Category", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "",
+  selected: ""
+}, " Select category ", -1
 /* HOISTED */
 );
 
+var _hoisted_10 = {
+  key: 0,
+  "class": "w-1/2"
+};
 var _hoisted_11 = {
-  "class": "relative"
-};
-var _hoisted_12 = {
-  "class": "block truncate"
-};
-var _hoisted_13 = {
-  "class": "pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
-};
-var _hoisted_14 = {
-  key: 0,
-  "class": "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
-};
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "relative cursor-pointer select-none py-2 pr-4"
-}, "Custom category", -1
-/* HOISTED */
-);
-
-var _hoisted_16 = {
-  "class": "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
-};
-var _hoisted_17 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_18 = {
-  key: 0,
-  "class": "w-full"
-};
-
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "custom-category",
-  "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
-}, "Custom category", -1
-/* HOISTED */
-);
-
-var _hoisted_20 = {
-  "class": "flex space-x-3"
-};
-var _hoisted_21 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_22 = {
   "class": "w-full flex space-x-3"
 };
-var _hoisted_23 = {
+var _hoisted_12 = {
   "class": "pt-8"
 };
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-media",
   "class": "font-semibold text-sm inline-block mb-1 text-gray-700"
 }, "Media", -1
 /* HOISTED */
 );
 
-var _hoisted_25 = {
+var _hoisted_14 = {
   "for": "product-media",
   "class": "flex flex-col cursor-pointer w-full bg-white py-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-center"
 }, " Upload product images / videos ", -1
 /* HOISTED */
 );
 
-var _hoisted_27 = {
-  key: 0,
-  "class": "text-red-500 text-sm mt-1"
-};
-var _hoisted_28 = {
+var _hoisted_16 = {
   key: 0,
   "class": "mt-4 bg-white py-4 px-2 max-h-64 border rounded-md overflow-y-scroll"
 };
-var _hoisted_29 = ["src"];
-var _hoisted_30 = ["src", "alt"];
-var _hoisted_31 = ["onClick"];
-var _hoisted_32 = {
+var _hoisted_17 = ["src"];
+var _hoisted_18 = ["src", "alt"];
+var _hoisted_19 = ["onClick"];
+var _hoisted_20 = {
   "class": "pt-8"
 };
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "product-options",
   "class": "font-semibold text-sm inline-block mb-2 text-gray-700"
 }, "Options", -1
 /* HOISTED */
 );
 
-var _hoisted_34 = {
+var _hoisted_22 = {
   "class": "px-6"
 };
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "option-one",
-  "class": "font-medium inline-block my-2 text-gray-700"
-}, "Option name", -1
-/* HOISTED */
-);
-
-var _hoisted_36 = {
-  "class": "flex"
+var _hoisted_23 = {
+  key: 0,
+  "class": "flex justify-between"
 };
-var _hoisted_37 = ["required"];
-
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "option-one-values",
-  "class": "font-medium inline-block my-2 text-gray-700"
-}, "Option values", -1
-/* HOISTED */
-);
-
-var _hoisted_39 = ["required"];
-
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "button",
-  "class": "mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
-}, " Done ", -1
-/* HOISTED */
-);
-
+var _hoisted_24 = {
+  "class": "mt-2.5"
+};
+var _hoisted_25 = {
+  "class": "text-base font-semibold"
+};
+var _hoisted_26 = {
+  "class": "flex flex-wrap text-gray-600 text-sm"
+};
+var _hoisted_27 = {
+  key: 0,
+  "class": "border border-gray-300 rounded-md mb-1 mr-1.5 px-3 py-1 bg-indigo-200"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -472,22 +465,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_FormKit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormKit");
 
   var _component_Tiptap = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Tiptap");
-
-  var _component_SelectorIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SelectorIcon");
-
-  var _component_ListboxButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ListboxButton");
-
-  var _component_CheckIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CheckIcon");
-
-  var _component_ListboxOption = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ListboxOption");
-
-  var _component_PlusSmIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PlusSmIcon");
-
-  var _component_ListboxOptions = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ListboxOptions");
-
-  var _component_Listbox = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Listbox");
-
-  var _component_XCircleIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("XCircleIcon");
 
   var _component_UploadIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("UploadIcon");
 
@@ -507,19 +484,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     disabled: $data.product.processing,
     onSubmit: $options.createProduct,
     "input-errors": {
-      name: $data.product.errors.name ? $data.product.errors.name : '',
+      product_name: $data.product.errors.name ? $data.product.errors.name : '',
+      description: $data.product.errors.description ? $data.product.errors.description : '',
+      category: $data.product.errors.category ? $data.product.errors.category : '',
       stock: $data.product.errors.stock ? $data.product.errors.stock : '',
-      price: $data.product.errors.price ? $data.product.errors.price : ''
+      price: $data.product.errors.price ? $data.product.errors.price : '',
+      media: $data.product.errors.media ? $data.product.errors.media : ''
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         type: "text",
-        name: "name",
-        label: "Product name",
+        name: "product_name",
+        label: "Name",
         placeholder: "Heavy skipping rope",
         validation: "required",
-        "validation-label": "Product name",
+        "validation-label": "Name",
         modelValue: $data.product.name,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return $data.product.name = $event;
@@ -533,130 +513,70 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"]), $data.product.errors.description ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.description), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Listbox, {
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" just to use the validation for the description "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        name: "description",
+        type: "text",
+        validation: "required|length:100",
+        "wrapper-class": "hidden",
+        modelValue: $data.product.description,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.product.description = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        label: "Category",
+        type: "select",
+        validation: "required",
         modelValue: $data.product.category,
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $data.product.category = $event;
-        }),
-        disabled: $data.isCustomCategory
+        })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxButton, {
-            "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative w-full lg:w-1/2 border rounded-md py-2 pl-3 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm focus:text-gray-700 focus:bg-white focus:border-indigo-600", $data.isCustomCategory ? 'cursor-not-allowed bg-gray-200' : 'cursor-pointer bg-white'])
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.category == "" ? "Select category" : $data.product.category), 1
-              /* TEXT */
-              ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SelectorIcon, {
-                "class": "h-5 w-5 text-gray-400",
-                "aria-hidden": "true"
-              })])];
-            }),
-            _: 1
-            /* STABLE */
-
-          }, 8
-          /* PROPS */
-          , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-            "leave-active-class": "transition duration-100 ease-in",
-            "leave-from-class": "opacity-100",
-            "leave-to-class": "opacity-0"
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxOptions, {
-                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-1 max-h-60 w-1/2 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm", $data.isCustomCategory ? 'hidden' : 'absolute'])
-              }, {
-                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories, function (category) {
-                    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ListboxOption, {
-                      key: category.id,
-                      value: category.name,
-                      as: "template"
-                    }, {
-                      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
-                        var active = _ref.active,
-                            selected = _ref.selected;
-                        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-                          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([active ? 'bg-indigo-100 text-gray-900' : 'text-gray-900', 'relative cursor-pointer select-none py-2 pl-10 pr-4'])
-                        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-                          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([selected ? 'font-medium' : 'font-normal', 'block truncate'])
-                        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 3
-                        /* TEXT, CLASS */
-                        ), selected ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CheckIcon, {
-                          "class": "h-5 w-5",
-                          "aria-hidden": "true"
-                        })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
-                        /* CLASS */
-                        )];
-                      }),
-                      _: 2
-                      /* DYNAMIC */
-
-                    }, 1032
-                    /* PROPS, DYNAMIC_SLOTS */
-                    , ["value"]);
-                  }), 128
-                  /* KEYED_FRAGMENT */
-                  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ListboxOption, null, {
-                    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-                        onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-                          return $data.isCustomCategory = true;
-                        }, ["prevent"])),
-                        "class": "relative cursor-pointer select-none py-2 w-full pl-10 pr-4 hover:bg-indigo-100"
-                      }, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PlusSmIcon, {
-                        "class": "h-5 w-5"
-                      })])])];
-                    }),
-                    _: 1
-                    /* STABLE */
-
-                  })];
-                }),
-                _: 1
-                /* STABLE */
-
-              }, 8
-              /* PROPS */
-              , ["class"])];
-            }),
-            _: 1
-            /* STABLE */
-
-          })])];
+          return [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.categories, function (category) {
+            return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+              key: category.id
+            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1
+            /* TEXT */
+            );
+          }), 128
+          /* KEYED_FRAGMENT */
+          ))];
         }),
         _: 1
         /* STABLE */
 
       }, 8
       /* PROPS */
-      , ["modelValue", "disabled"]), $data.product.errors.category && $data.isCustomCategory == false ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.category), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.isCustomCategory ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        type: "button",
+        "input-class": "$reset border-transparent text-sm font-medium text-blue-500 bg-white hover:underline",
+        label: "custom category",
+        onClick: _cache[4] || (_cache[4] = function ($event) {
+          return $data.isCustomCategory = true;
+        })
+      })]), $data.isCustomCategory ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         type: "text",
-        "class": "form-control block w-full lg:w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
-        id: "product-name",
+        name: "category",
+        label: "Custom category",
+        "inner-class": "flex",
+        suffixIcon: "close",
+        "suffixIcon-class": "ml-2.5 self-center h-4 w-4 cursor-pointer",
+        onSuffixIconClick: $options.closeCustomCategory,
         placeholder: "Lifestyle",
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+        validation: "required",
+        "validation-label": "Custom category",
+        modelValue: $data.product.category,
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
           return $data.product.category = $event;
-        }),
-        required: ""
-      }, null, 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.category]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XCircleIcon, {
-        onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-          $data.isCustomCategory = false;
-          $data.product.category = '';
-        }, ["prevent"])),
-        "class": "h-5 w-5 cursor-pointer self-center text-indigo-500"
-      })]), $data.product.errors.category ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.category), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        })
+      }, null, 8
+      /* PROPS */
+      , ["onSuffixIconClick", "modelValue"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         type: "number",
         name: "stock",
-        label: "Product stock",
+        label: "Stock",
         "outer-class": "flex-1",
         placeholder: "500",
         validation: "required|number",
@@ -669,8 +589,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         type: "number",
+        step: "any",
         name: "price",
-        label: "Product price",
+        label: "Price",
         placeholder: "100",
         "outer-class": "flex-1",
         validation: "required|number",
@@ -681,7 +602,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         multiple: "",
         type: "file",
         id: "product-media",
@@ -695,11 +616,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* HYDRATE_EVENTS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_UploadIcon, {
         "class": "h-6 self-center"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <svg\r\n                                        xmlns=\"http://www.w3.org/2000/svg\"\r\n                                        viewBox=\"0 0 448 512\"\r\n                                        class=\"h-6 self-center\"\r\n                                    >\r\n                                        <path\r\n                                            d=\"M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z\"\r\n                                        />\r\n                                    </svg> "), _hoisted_26]), $data.product.errors.media ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.errors.media), 1
-      /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
+      }), _hoisted_15]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" catch error for media "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        name: "media",
+        type: "text",
+        validation: "required",
+        "wrapper-class": "hidden",
+        modelValue: $data.product.media,
+        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+          return $data.product.media = $event;
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"])]), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-          "class": "flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300",
+          "class": "flex w-full justify-between mb-2 bg-gray-50 border rounded-md border-gray-300 py-2 space-x-2 divide-x divide-gray-300",
           key: index
         }, [media[1].includes('video') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", {
           key: 0,
@@ -708,14 +638,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "pl-6 object-contain w-full h-52"
         }, null, 8
         /* PROPS */
-        , _hoisted_29)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+        , _hoisted_17)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
           key: 1,
           src: media[0],
           alt: index,
           "class": "pl-6 object-contain w-full h-52"
         }, null, 8
         /* PROPS */
-        , _hoisted_30)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        , _hoisted_18)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           "class": "px-3 hover:text-red-500",
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
             return $options.handleProductMediaRemove(index);
@@ -724,45 +654,152 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "h-5 w-5"
         })], 8
         /* PROPS */
-        , _hoisted_31)]);
+        , _hoisted_19)]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+      ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         type: "checkbox",
         label: "This product has options, like size or color",
-        "outer-class": "mb-4",
+        "outer-class": "max-w-max",
         modelValue: $data.isHasOptions,
-        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+        "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
           return $data.isHasOptions = $event;
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['border-t', $data.isHasOptions ? 'block' : 'hidden'])
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "text",
-        "class": "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
-        id: "option-one",
-        placeholder: "Size",
-        required: $data.isHasOptions
+      , ["modelValue"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.product.optionsFtValues, function (optionFtValue, optionKey) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+          key: optionKey,
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['border-t mt-4', $data.isHasOptions ? 'block' : 'hidden'])
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [optionFtValue.isSaved ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(optionFtValue.name), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_26, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(optionFtValue.values, function (value) {
+          return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            key: value
+          }, [value !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(value), 1
+          /* TEXT */
+          )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+          /* STABLE_FRAGMENT */
+          );
+        }), 128
+        /* KEYED_FRAGMENT */
+        ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+          type: "button",
+          label: "Edit",
+          "input-class": "$reset ml-2.5 bg-white px-3 py-1.5 border border-gray-400 rounded-md text-sm hover:bg-gray-100",
+          "outer-class": "self-center",
+          onClick: function onClick($event) {
+            return $options.editOption(optionKey);
+          }
+        }, null, 8
+        /* PROPS */
+        , ["onClick"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
+          key: 1,
+          type: "form",
+          onSubmit: function onSubmit($event) {
+            return $options.saveOption(optionKey);
+          },
+          "submit-attrs": {
+            inputClass: '$reset mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100'
+          },
+          "submit-label": "Done"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+              label: "Option name",
+              type: "text",
+              validation: "required",
+              placeholder: "Enter option name",
+              suffixIcon: "trash",
+              "wrapper-class": "mt-4",
+              "inner-class": "flex",
+              "suffixIcon-class": "self-center pl-2 cursor-pointer w-7",
+              onSuffixIconClick: function onSuffixIconClick($event) {
+                return $options.removeOption(optionKey);
+              },
+              modelValue: optionFtValue.name,
+              "onUpdate:modelValue": function onUpdateModelValue($event) {
+                return optionFtValue.name = $event;
+              }
+            }, null, 8
+            /* PROPS */
+            , ["onSuffixIconClick", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option values "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(optionFtValue.values, function (value, key) {
+              return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                key: key
+              }, [key == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
+                key: 0,
+                label: "Option values",
+                type: "text",
+                validation: "required",
+                "validation-label": "Option value",
+                placeholder: "Enter option value",
+                suffixIcon: optionFtValue.values.length !== 1 ? 'trash' : '',
+                "wrapper-class": "mt-4",
+                "inner-class": "flex",
+                "suffixIcon-class": "self-center pl-2 cursor-pointer w-7",
+                modelValue: optionFtValue.values[key],
+                "onUpdate:modelValue": function onUpdateModelValue($event) {
+                  return optionFtValue.values[key] = $event;
+                },
+                onKeyup: function onKeyup($event) {
+                  return $options.addOptionValueInput(optionKey, key);
+                },
+                onSuffixIconClick: function onSuffixIconClick($event) {
+                  return $options.removeOptionValueInput(optionKey, key);
+                }
+              }, null, 8
+              /* PROPS */
+              , ["suffixIcon", "modelValue", "onUpdate:modelValue", "onKeyup", "onSuffixIconClick"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
+                key: 1,
+                type: "text",
+                validation: optionFtValue.values.length - 1 !== key ? 'required' : '',
+                "validation-label": "Option value",
+                placeholder: "Add another value",
+                suffixIcon: "trash",
+                "wrapper-class": "mt-1",
+                "inner-class": "flex",
+                "suffixIcon-class": "self-center pl-2 cursor-pointer w-7",
+                modelValue: optionFtValue.values[key],
+                "onUpdate:modelValue": function onUpdateModelValue($event) {
+                  return optionFtValue.values[key] = $event;
+                },
+                onKeyup: function onKeyup($event) {
+                  return $options.addOptionValueInput(optionKey, key);
+                },
+                onSuffixIconClick: function onSuffixIconClick($event) {
+                  return $options.removeOptionValueInput(optionKey, key);
+                }
+              }, null, 8
+              /* PROPS */
+              , ["validation", "modelValue", "onUpdate:modelValue", "onKeyup", "onSuffixIconClick"]))], 64
+              /* STABLE_FRAGMENT */
+              );
+            }), 128
+            /* KEYED_FRAGMENT */
+            ))];
+          }),
+          _: 2
+          /* DYNAMIC */
+
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["onSubmit", "submit-attrs"]))])], 2
+        /* CLASS */
+        );
+      }), 128
+      /* KEYED_FRAGMENT */
+      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" add another option button "), $data.isHasOptions && $data.product.optionsFtValues.length < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
+        key: 0,
+        type: "button",
+        "outer-class": "mt-6 border-t border-gray-300",
+        "input-class": "$reset flex py-2 border-transparent text-sm font-medium text-blue-500 bg-white",
+        prefixIcon: "add",
+        "prefixIcon-class": "self-center mr-2.5 w-4 h-4",
+        label: "add another option",
+        onClick: $options.addNewOption
       }, null, 8
       /* PROPS */
-      , _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TrashIcon, {
-        onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-          return $data.isHasOptions = false;
-        }, ["prevent"])),
-        "class": "self-center pl-2 cursor-pointer w-7 h-7"
-      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "text",
-        "class": "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
-        id: "option-one-values",
-        placeholder: "Big",
-        required: $data.isHasOptions
-      }, null, 8
-      /* PROPS */
-      , _hoisted_39)]), _hoisted_40])], 2
-      /* CLASS */
-      )])])];
+      , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])];
     }),
     _: 1
     /* STABLE */
