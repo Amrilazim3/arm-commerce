@@ -397,41 +397,18 @@
 <script>
 import SideNav from "../../../Shared/SideNav.vue";
 import Tiptap from "../../../Shared/Tiptap.vue";
-import {
-    Listbox,
-    ListboxLabel,
-    ListboxButton,
-    ListboxOptions,
-    ListboxOption,
-} from "@headlessui/vue";
-import {
-    CheckIcon,
-    SelectorIcon,
-    PlusSmIcon,
-    XCircleIcon,
-} from "@heroicons/vue/solid";
 import { TrashIcon, UploadIcon } from "@heroicons/vue/outline";
 
 export default {
     components: {
         SideNav,
         Tiptap,
-        Listbox,
-        ListboxLabel,
-        ListboxButton,
-        ListboxOptions,
-        ListboxOption,
-        CheckIcon,
-        SelectorIcon,
-        PlusSmIcon,
-        XCircleIcon,
         TrashIcon,
         UploadIcon,
     },
 
     props: {
         categories: Object,
-        variants: Object,
     },
 
     data() {
