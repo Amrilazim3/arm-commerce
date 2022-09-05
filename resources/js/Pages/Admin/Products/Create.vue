@@ -19,187 +19,91 @@
                     :disabled="product.processing"
                     @submit="createProduct"
                     :input-errors="{
-                        name: product.errors.name ? product.errors.name : '',
+                        product_name: product.errors.name
+                            ? product.errors.name
+                            : '',
+                        description: product.errors.description
+                            ? product.errors.description
+                            : '',
+                        category: product.errors.category
+                            ? product.errors.category
+                            : '',
                         stock: product.errors.stock ? product.errors.stock : '',
                         price: product.errors.price ? product.errors.price : '',
+                        media: product.errors.media ? product.errors.media : '',
                     }"
                 >
                     <div class="space-y-8 sm:space-y-5">
                         <FormKit
                             type="text"
-                            name="name"
-                            label="Product name"
+                            name="product_name"
+                            label="Name"
                             placeholder="Heavy skipping rope"
                             validation="required"
-                            validation-label="Product name"
+                            validation-label="Name"
                             v-model="product.name"
                         />
                         <div class="w-full">
                             <label
-                                for="product-description"
                                 class="font-semibold text-sm inline-block mb-1 text-gray-700"
-                                >Product Description</label
+                                >Description</label
                             >
                             <Tiptap v-model="product.description" />
-                            <div
-                                v-if="product.errors.description"
-                                class="text-red-500 text-sm mt-1"
-                            >
-                                {{ product.errors.description }}
-                            </div>
+                            <!-- just to use the validation for the description -->
+                            <FormKit
+                                name="description"
+                                type="text"
+                                validation="required|length:100"
+                                wrapper-class="hidden"
+                                v-model="product.description"
+                            />
                         </div>
-                        <div class="w-full">
-                            <label
-                                for="product-category"
-                                class="font-semibold text-sm inline-block mb-1 text-gray-700"
-                                >Product Category</label
-                            >
-                            <Listbox
+                        <div class="w-1/2">
+                            <FormKit
+                                label="Category"
+                                type="select"
+                                validation="required"
                                 v-model="product.category"
-                                :disabled="isCustomCategory"
                             >
-                                <div class="relative">
-                                    <ListboxButton
-                                        class="relative w-full lg:w-1/2 border rounded-md py-2 pl-3 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-300 sm:text-sm focus:text-gray-700 focus:bg-white focus:border-indigo-600"
-                                        :class="
-                                            isCustomCategory
-                                                ? 'cursor-not-allowed bg-gray-200'
-                                                : 'cursor-pointer bg-white'
-                                        "
-                                    >
-                                        <span class="block truncate">{{
-                                            product.category == ""
-                                                ? "Select category"
-                                                : product.category
-                                        }}</span>
-                                        <span
-                                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
-                                        >
-                                            <SelectorIcon
-                                                class="h-5 w-5 text-gray-400"
-                                                aria-hidden="true"
-                                            />
-                                        </span>
-                                    </ListboxButton>
-
-                                    <transition
-                                        leave-active-class="transition duration-100 ease-in"
-                                        leave-from-class="opacity-100"
-                                        leave-to-class="opacity-0"
-                                    >
-                                        <ListboxOptions
-                                            class="mt-1 max-h-60 w-1/2 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-                                            :class="
-                                                isCustomCategory
-                                                    ? 'hidden'
-                                                    : 'absolute'
-                                            "
-                                        >
-                                            <ListboxOption
-                                                v-slot="{ active, selected }"
-                                                v-for="category in categories"
-                                                :key="category.id"
-                                                :value="category.name"
-                                                as="template"
-                                            >
-                                                <li
-                                                    :class="[
-                                                        active
-                                                            ? 'bg-indigo-100 text-gray-900'
-                                                            : 'text-gray-900',
-                                                        'relative cursor-pointer select-none py-2 pl-10 pr-4',
-                                                    ]"
-                                                >
-                                                    <span
-                                                        :class="[
-                                                            selected
-                                                                ? 'font-medium'
-                                                                : 'font-normal',
-                                                            'block truncate',
-                                                        ]"
-                                                    >
-                                                        {{ category.name }}
-                                                    </span>
-                                                    <span
-                                                        v-if="selected"
-                                                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
-                                                    >
-                                                        <CheckIcon
-                                                            class="h-5 w-5"
-                                                            aria-hidden="true"
-                                                        />
-                                                    </span>
-                                                </li>
-                                            </ListboxOption>
-                                            <ListboxOption>
-                                                <li
-                                                    @click.prevent="
-                                                        isCustomCategory = true
-                                                    "
-                                                    class="relative cursor-pointer select-none py-2 w-full pl-10 pr-4 hover:bg-indigo-100"
-                                                >
-                                                    <span
-                                                        class="relative cursor-pointer select-none py-2 pr-4"
-                                                        >Custom category</span
-                                                    >
-                                                    <span
-                                                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
-                                                        ><PlusSmIcon
-                                                            class="h-5 w-5"
-                                                    /></span>
-                                                </li>
-                                            </ListboxOption>
-                                        </ListboxOptions>
-                                    </transition>
-                                </div>
-                            </Listbox>
-                            <div
-                                v-if="
-                                    product.errors.category &&
-                                    isCustomCategory == false
-                                "
-                                class="text-red-500 text-sm mt-1"
-                            >
-                                {{ product.errors.category }}
-                            </div>
+                                <option value="" selected>
+                                    Select category
+                                </option>
+                                <template
+                                    v-for="category in categories"
+                                    :key="category.id"
+                                >
+                                    <option>{{ category.name }}</option>
+                                </template>
+                            </FormKit>
+                            <FormKit
+                                type="button"
+                                input-class="$reset border-transparent text-sm font-medium text-blue-500 bg-white hover:underline"
+                                label="custom category"
+                                @click="isCustomCategory = true"
+                            />
                         </div>
                         <template v-if="isCustomCategory">
-                            <div class="w-full">
-                                <label
-                                    for="custom-category"
-                                    class="font-semibold text-sm inline-block mb-1 text-gray-700"
-                                    >Custom category</label
-                                >
-                                <div class="flex space-x-3">
-                                    <input
-                                        type="text"
-                                        class="form-control block w-full lg:w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                        id="product-name"
-                                        placeholder="Lifestyle"
-                                        v-model="product.category"
-                                        required
-                                    />
-                                    <XCircleIcon
-                                        @click.prevent="
-                                            isCustomCategory = false;
-                                            product.category = '';
-                                        "
-                                        class="h-5 w-5 cursor-pointer self-center text-indigo-500"
-                                    />
-                                </div>
-                                <div
-                                    v-if="product.errors.category"
-                                    class="text-red-500 text-sm mt-1"
-                                >
-                                    {{ product.errors.category }}
-                                </div>
+                            <div class="w-1/2">
+                                <FormKit
+                                    type="text"
+                                    name="category"
+                                    label="Custom category"
+                                    inner-class="flex"
+                                    suffixIcon="close"
+                                    suffixIcon-class="ml-2.5 self-center h-4 w-4 cursor-pointer"
+                                    @suffix-icon-click="closeCustomCategory"
+                                    placeholder="Lifestyle"
+                                    validation="required"
+                                    validation-label="Custom category"
+                                    v-model="product.category"
+                                />
                             </div>
                         </template>
                         <div class="w-full flex space-x-3">
                             <FormKit
                                 type="number"
                                 name="stock"
-                                label="Product stock"
+                                label="Stock"
                                 outer-class="flex-1"
                                 placeholder="500"
                                 validation="required|number"
@@ -208,8 +112,9 @@
                             />
                             <FormKit
                                 type="number"
+                                step="any"
                                 name="price"
-                                label="Product price"
+                                label="Price"
                                 placeholder="100"
                                 outer-class="flex-1"
                                 validation="required|number"
@@ -240,32 +145,25 @@
                                         "
                                     />
                                     <UploadIcon class="h-6 self-center" />
-                                    <!-- <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 448 512"
-                                        class="h-6 self-center"
-                                    >
-                                        <path
-                                            d="M384 352v64c0 17.67-14.33 32-32 32H96c-17.67 0-32-14.33-32-32v-64c0-17.67-14.33-32-32-32s-32 14.33-32 32v64c0 53.02 42.98 96 96 96h256c53.02 0 96-42.98 96-96v-64c0-17.67-14.33-32-32-32S384 334.3 384 352zM201.4 9.375l-128 128c-12.51 12.51-12.49 32.76 0 45.25c12.5 12.5 32.75 12.5 45.25 0L192 109.3V320c0 17.69 14.31 32 32 32s32-14.31 32-32V109.3l73.38 73.38c12.5 12.5 32.75 12.5 45.25 0s12.5-32.75 0-45.25l-128-128C234.1-3.125 213.9-3.125 201.4 9.375z"
-                                        />
-                                    </svg> -->
                                     <p class="text-center">
                                         Upload product images / videos
                                     </p>
                                 </label>
-                                <div
-                                    v-if="product.errors.media"
-                                    class="text-red-500 text-sm mt-1"
-                                >
-                                    {{ product.errors.media }}
-                                </div>
+                                <!-- catch error for media -->
+                                <FormKit
+                                    name="media"
+                                    type="text"
+                                    validation="required"
+                                    wrapper-class="hidden"
+                                    v-model="product.media"
+                                />
                             </div>
                             <div
                                 class="mt-4 bg-white py-4 px-2 max-h-64 border rounded-md overflow-y-scroll"
                                 v-if="previewMediaUploaded.length !== 0"
                             >
                                 <div
-                                    class="flex w-full justify-between mb-2 bg-gray-50 border rounded-sm border-gray-300 rounded-md-md py-2 space-x-2 divide-x divide-gray-300"
+                                    class="flex w-full justify-between mb-2 bg-gray-50 border rounded-md border-gray-300 py-2 space-x-2 divide-x divide-gray-300"
                                     v-for="(
                                         media, index
                                     ) in previewMediaUploaded"
@@ -305,60 +203,189 @@
                             <FormKit
                                 type="checkbox"
                                 label="This product has options, like size or color"
-                                outer-class="mb-4"
+                                outer-class="max-w-max"
                                 v-model="isHasOptions"
                             />
-                            <div
-                                :class="[
-                                    'border-t',
-                                    isHasOptions ? 'block' : 'hidden',
-                                ]"
+                            <template
+                                v-for="(
+                                    optionFtValue, optionKey
+                                ) in product.optionsFtValues"
+                                :key="optionKey"
                             >
-                                <div class="px-6">
-                                    <div>
-                                        <label
-                                            for="option-one"
-                                            class="font-medium inline-block my-2 text-gray-700"
-                                            >Option name</label
-                                        >
-                                        <div class="flex">
-                                            <input
-                                                type="text"
-                                                class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                                id="option-one"
-                                                placeholder="Size"
-                                                :required="isHasOptions"
-                                            />
-                                            <TrashIcon
-                                                @click.prevent="
-                                                    isHasOptions = false
-                                                "
-                                                class="self-center pl-2 cursor-pointer w-7 h-7"
-                                            />
-                                        </div>
+                                <div
+                                    :class="[
+                                        'border-t mt-4',
+                                        isHasOptions ? 'block' : 'hidden',
+                                    ]"
+                                >
+                                    <div class="px-6">
+                                        <template v-if="optionFtValue.isSaved">
+                                            <div class="flex justify-between">
+                                                <div class="mt-2.5">
+                                                    <h3
+                                                        class="text-base font-semibold"
+                                                    >
+                                                        {{ optionFtValue.name }}
+                                                    </h3>
+                                                    <ul
+                                                        class="flex flex-wrap text-gray-600 text-sm"
+                                                    >
+                                                        <template
+                                                            v-for="value in optionFtValue.values"
+                                                            :key="value"
+                                                        >
+                                                            <template
+                                                                v-if="
+                                                                    value !== ''
+                                                                "
+                                                            >
+                                                                <li
+                                                                    class="border border-gray-300 rounded-md mb-1 mr-1.5 px-3 py-1 bg-indigo-200"
+                                                                >
+                                                                    {{ value }}
+                                                                </li>
+                                                            </template>
+                                                        </template>
+                                                    </ul>
+                                                </div>
+                                                <FormKit
+                                                    type="button"
+                                                    label="Edit"
+                                                    input-class="$reset ml-2.5 bg-white px-3 py-1.5 border border-gray-400 rounded-md text-sm hover:bg-gray-100"
+                                                    outer-class="self-center"
+                                                    @click="
+                                                        editOption(optionKey)
+                                                    "
+                                                />
+                                            </div>
+                                        </template>
+                                        <template v-else>
+                                            <FormKit
+                                                type="form"
+                                                @submit="saveOption(optionKey)"
+                                                :submit-attrs="{
+                                                    inputClass:
+                                                        '$reset mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100',
+                                                }"
+                                                submit-label="Done"
+                                            >
+                                                <!-- option name -->
+                                                <FormKit
+                                                    label="Option name"
+                                                    type="text"
+                                                    validation="required"
+                                                    placeholder="Enter option name"
+                                                    suffixIcon="trash"
+                                                    wrapper-class="mt-4"
+                                                    inner-class="flex"
+                                                    suffixIcon-class="self-center pl-2 cursor-pointer w-7"
+                                                    @suffix-icon-click="
+                                                        removeOption(optionKey)
+                                                    "
+                                                    v-model="optionFtValue.name"
+                                                />
+                                                <!-- option values -->
+                                                <template
+                                                    v-for="(
+                                                        value, key
+                                                    ) in optionFtValue.values"
+                                                    :key="key"
+                                                >
+                                                    <template v-if="key == 0">
+                                                        <FormKit
+                                                            label="Option values"
+                                                            type="text"
+                                                            validation="required"
+                                                            validation-label="Option value"
+                                                            placeholder="Enter option value"
+                                                            :suffixIcon="
+                                                                optionFtValue
+                                                                    .values
+                                                                    .length !==
+                                                                1
+                                                                    ? 'trash'
+                                                                    : ''
+                                                            "
+                                                            wrapper-class="mt-4"
+                                                            inner-class="flex"
+                                                            suffixIcon-class="self-center pl-2 cursor-pointer w-7"
+                                                            v-model="
+                                                                optionFtValue
+                                                                    .values[key]
+                                                            "
+                                                            @keyup="
+                                                                addOptionValueInput(
+                                                                    optionKey,
+                                                                    key
+                                                                )
+                                                            "
+                                                            @suffix-icon-click="
+                                                                removeOptionValueInput(
+                                                                    optionKey,
+                                                                    key
+                                                                )
+                                                            "
+                                                        />
+                                                    </template>
+                                                    <template v-else>
+                                                        <FormKit
+                                                            type="text"
+                                                            :validation="
+                                                                optionFtValue
+                                                                    .values
+                                                                    .length -
+                                                                    1 !==
+                                                                key
+                                                                    ? 'required'
+                                                                    : ''
+                                                            "
+                                                            validation-label="Option value"
+                                                            placeholder="Add another value"
+                                                            suffixIcon="trash"
+                                                            wrapper-class="mt-1"
+                                                            inner-class="flex"
+                                                            suffixIcon-class="self-center pl-2 cursor-pointer w-7"
+                                                            v-model="
+                                                                optionFtValue
+                                                                    .values[key]
+                                                            "
+                                                            @keyup="
+                                                                addOptionValueInput(
+                                                                    optionKey,
+                                                                    key
+                                                                )
+                                                            "
+                                                            @suffix-icon-click="
+                                                                removeOptionValueInput(
+                                                                    optionKey,
+                                                                    key
+                                                                )
+                                                            "
+                                                        />
+                                                    </template>
+                                                </template>
+                                            </FormKit>
+                                        </template>
                                     </div>
-                                    <div>
-                                        <label
-                                            for="option-one-values"
-                                            class="font-medium inline-block my-2 text-gray-700"
-                                            >Option values</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-md transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
-                                            id="option-one-values"
-                                            placeholder="Big"
-                                            :required="isHasOptions"
-                                        />
-                                    </div>
-                                    <button
-                                        type="button"
-                                        class="mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100"
-                                    >
-                                        Done
-                                    </button>
                                 </div>
-                            </div>
+                            </template>
+                            <!-- add another option button -->
+                            <template
+                                v-if="
+                                    isHasOptions &&
+                                    product.optionsFtValues.length < 3
+                                "
+                            >
+                                <FormKit
+                                    type="button"
+                                    outer-class="mt-6 border-t border-gray-300"
+                                    input-class="$reset flex py-2 border-transparent text-sm font-medium text-blue-500 bg-white"
+                                    prefixIcon="add"
+                                    prefixIcon-class="self-center mr-2.5 w-4 h-4"
+                                    label="add another option"
+                                    @click="addNewOption"
+                                />
+                            </template>
                         </div>
                     </div>
                 </FormKit>
@@ -418,14 +445,38 @@ export default {
                 stock: null,
                 price: null,
                 media: [],
+                optionsFtValues: [],
+                // variants: [
+                //     { name: "big-red", stock: 0, price: 0, imageUrl: null },
+                // ],
             }),
             previewMediaUploaded: [],
-
-            // variant: '',
-            // variants: [],
-            // variantValue: '',
-            // variantValues: {},
         };
+    },
+
+    watch: {
+        isHasOptions(newCondition) {
+            if (!newCondition) {
+                this.product.optionsFtValues = [];
+                return;
+            }
+            this.product.optionsFtValues = [
+                { name: "", values: [""], isSaved: false },
+            ];
+        },
+
+        product: {
+            handler(newObject) {
+                if (newObject.description == "<p></p>") {
+                    this.product.description = "";
+                }
+
+                if (newObject.optionsFtValues.length == 0) {
+                    this.isHasOptions = false;
+                }
+            },
+            deep: true,
+        },
     },
 
     methods: {
@@ -541,6 +592,50 @@ export default {
                     );
                 },
             });
+        },
+
+        addOptionValueInput(objectKey, currentArrayKey) {
+            if (
+                currentArrayKey + 1 in
+                    this.product.optionsFtValues[objectKey].values ==
+                false
+            ) {
+                this.product.optionsFtValues[objectKey].values.push("");
+            }
+        },
+
+        removeOptionValueInput(objectKey, currentArrayKey) {
+            this.product.optionsFtValues[objectKey].values.splice(
+                currentArrayKey,
+                1
+            );
+        },
+
+        addNewOption() {
+            if (this.product.optionsFtValues.length <= 3) {
+                this.product.optionsFtValues.push({
+                    name: "",
+                    values: [""],
+                    isSaved: false,
+                });
+            }
+        },
+
+        removeOption(objectKey) {
+            this.product.optionsFtValues.splice(objectKey, 1);
+        },
+
+        saveOption(objectKey) {
+            this.product.optionsFtValues[objectKey].isSaved = true;
+        },
+
+        editOption(objectKey) {
+            this.product.optionsFtValues[objectKey].isSaved = false;
+        },
+
+        closeCustomCategory() {
+            this.isCustomCategory = false;
+            this.product.category = "";
         },
 
         /**
