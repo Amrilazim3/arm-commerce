@@ -39,10 +39,7 @@ __webpack_require__.r(__webpack_exports__);
         stock: null,
         price: null,
         media: [],
-        optionsFtValues: [] // variants: [
-        //     { name: "big-red", stock: 0, price: 0, imageUrl: null },
-        // ],
-
+        optionsFtValues: []
       }),
       previewMediaUploaded: []
     };
@@ -74,6 +71,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    closeCustomCategory: function closeCustomCategory() {
+      this.isCustomCategory = false;
+      this.product.category = "";
+    },
     handleProductMediaUpload: function handleProductMediaUpload(event) {
       var _this = this;
 
@@ -188,9 +189,36 @@ __webpack_require__.r(__webpack_exports__);
     editOption: function editOption(objectKey) {
       this.product.optionsFtValues[objectKey].isSaved = false;
     },
-    closeCustomCategory: function closeCustomCategory() {
-      this.isCustomCategory = false;
-      this.product.category = "";
+    uniqueOptionName: function uniqueOptionName(node) {
+      var counter = 0;
+
+      for (var i = 0; i < 3; i++) {
+        if (this.product.optionsFtValues[i] !== undefined) {
+          if (this.product.optionsFtValues[i].name.toLowerCase() == node.value.toLowerCase()) {
+            counter++;
+          }
+        }
+      }
+
+      if (counter >= 2) {
+        counter = 0;
+        return false;
+      }
+    },
+    uniqueOptionValues: function uniqueOptionValues(node, key) {
+      var counter = 0;
+      var values = this.product.optionsFtValues[key].values;
+      console.log(node.value);
+      values.forEach(function (el) {
+        if (el.toLowerCase() === node.value.toLowerCase()) {
+          counter++;
+        }
+      });
+
+      if (counter >= 2) {
+        counter = 0;
+        return false;
+      }
     }
     /**
      *
@@ -691,7 +719,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option name "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
               label: "Option name",
               type: "text",
-              validation: "required",
+              validation: [['required'], ['uniqueOptionName']],
+              "validation-rules": {
+                uniqueOptionName: $options.uniqueOptionName
+              },
+              "validation-messages": {
+                uniqueOptionName: function uniqueOptionName(node) {
+                  return "".concat(node.node.value, " has already been taken.");
+                }
+              },
+              delay: 500,
               placeholder: "Enter option name",
               suffixIcon: "trash",
               "wrapper-class": "mt-4",
@@ -706,15 +743,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }
             }, null, 8
             /* PROPS */
-            , ["onSuffixIconClick", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option values "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(optionFtValue.values, function (value, key) {
+            , ["validation-rules", "validation-messages", "onSuffixIconClick", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option values "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(optionFtValue.values, function (value, key) {
               return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 key: key
               }, [key == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
                 key: 0,
                 label: "Option values",
                 type: "text",
-                validation: "required",
                 "validation-label": "Option value",
+                validation: [['required'], ['uniqueOptionValues', optionKey]],
+                "validation-rules": {
+                  uniqueOptionValues: $options.uniqueOptionValues
+                },
+                "validation-messages": {
+                  uniqueOptionValues: function uniqueOptionValues(node) {
+                    return "".concat(node.node.value, " has already been taken.");
+                  }
+                },
+                delay: 500,
                 placeholder: "Enter option value",
                 suffixIcon: optionFtValue.values.length !== 1 ? 'trash' : '',
                 "wrapper-class": "mt-4",
@@ -732,11 +778,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 }
               }, null, 8
               /* PROPS */
-              , ["suffixIcon", "modelValue", "onUpdate:modelValue", "onKeyup", "onSuffixIconClick"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
+              , ["validation", "validation-rules", "validation-messages", "suffixIcon", "modelValue", "onUpdate:modelValue", "onKeyup", "onSuffixIconClick"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
                 key: 1,
                 type: "text",
-                validation: optionFtValue.values.length - 1 !== key ? 'required' : '',
                 "validation-label": "Option value",
+                validation: [[optionFtValue.values.length - 1 !== key ? 'required' : ''], ['uniqueOptionValues', optionKey]],
+                "validation-rules": {
+                  uniqueOptionValues: $options.uniqueOptionValues
+                },
+                "validation-messages": {
+                  uniqueOptionValues: function uniqueOptionValues(node) {
+                    return "".concat(node.node.value, " has already been taken.");
+                  }
+                },
+                delay: 500,
                 placeholder: "Add another value",
                 suffixIcon: "trash",
                 "wrapper-class": "mt-1",
@@ -754,7 +809,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 }
               }, null, 8
               /* PROPS */
-              , ["validation", "modelValue", "onUpdate:modelValue", "onKeyup", "onSuffixIconClick"]))], 64
+              , ["validation", "validation-rules", "validation-messages", "modelValue", "onUpdate:modelValue", "onKeyup", "onSuffixIconClick"]))], 64
               /* STABLE_FRAGMENT */
               );
             }), 128
