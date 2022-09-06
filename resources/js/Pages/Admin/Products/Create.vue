@@ -273,7 +273,22 @@
                                                 <FormKit
                                                     label="Option name"
                                                     type="text"
-                                                    validation="required"
+                                                    :validation="[
+                                                        ['required'],
+                                                        [
+                                                            'uniqueOptionName'
+                                                        ],
+                                                    ]"
+                                                    :validation-rules="{
+                                                        uniqueOptionName,
+                                                    }"
+                                                    :validation-messages="{
+                                                        uniqueOptionName: (
+                                                            node
+                                                        ) =>
+                                                            `${node.node.value} has already been taken.`,
+                                                    }"
+                                                    :delay="500"
                                                     placeholder="Enter option name"
                                                     suffixIcon="trash"
                                                     wrapper-class="mt-4"
@@ -295,8 +310,23 @@
                                                         <FormKit
                                                             label="Option values"
                                                             type="text"
-                                                            validation="required"
                                                             validation-label="Option value"
+                                                            :validation="[
+                                                                ['required'],
+                                                                [
+                                                                    'uniqueOptionValues',
+                                                                    optionKey,
+                                                                ],
+                                                            ]"
+                                                            :validation-rules="{
+                                                                uniqueOptionValues,
+                                                            }"
+                                                            :validation-messages="{
+                                                                uniqueOptionValues:
+                                                                    (node) =>
+                                                                        `${node.node.value} has already been taken.`,
+                                                            }"
+                                                            :delay="500"
                                                             placeholder="Enter option value"
                                                             :suffixIcon="
                                                                 optionFtValue
@@ -330,16 +360,31 @@
                                                     <template v-else>
                                                         <FormKit
                                                             type="text"
-                                                            :validation="
-                                                                optionFtValue
-                                                                    .values
-                                                                    .length -
-                                                                    1 !==
-                                                                key
-                                                                    ? 'required'
-                                                                    : ''
-                                                            "
                                                             validation-label="Option value"
+                                                            :validation="[
+                                                                [
+                                                                    optionFtValue
+                                                                        .values
+                                                                        .length -
+                                                                        1 !==
+                                                                    key
+                                                                        ? 'required'
+                                                                        : '',
+                                                                ],
+                                                                [
+                                                                    'uniqueOptionValues',
+                                                                    optionKey,
+                                                                ],
+                                                            ]"
+                                                            :validation-rules="{
+                                                                uniqueOptionValues,
+                                                            }"
+                                                            :validation-messages="{
+                                                                uniqueOptionValues:
+                                                                    (node) =>
+                                                                        `${node.node.value} has already been taken.`,
+                                                            }"
+                                                            :delay="500"
                                                             placeholder="Add another value"
                                                             suffixIcon="trash"
                                                             wrapper-class="mt-1"
@@ -423,9 +468,6 @@ export default {
                 price: null,
                 media: [],
                 optionsFtValues: [],
-                // variants: [
-                //     { name: "big-red", stock: 0, price: 0, imageUrl: null },
-                // ],
             }),
             previewMediaUploaded: [],
         };
@@ -457,6 +499,11 @@ export default {
     },
 
     methods: {
+        closeCustomCategory() {
+            this.isCustomCategory = false;
+            this.product.category = "";
+        },
+
         handleProductMediaUpload(event) {
             var uploadedMedia = event.target.files;
 
@@ -610,9 +657,40 @@ export default {
             this.product.optionsFtValues[objectKey].isSaved = false;
         },
 
-        closeCustomCategory() {
-            this.isCustomCategory = false;
-            this.product.category = "";
+        uniqueOptionName(node) {
+            let counter = 0;
+            for (let i = 0; i < 3; i++) {
+                if (this.product.optionsFtValues[i] !== undefined) {
+                    if (
+                        this.product.optionsFtValues[i].name.toLowerCase() ==
+                        node.value.toLowerCase()
+                    ) {
+                        counter++;
+                    }
+                }
+            }
+
+            if (counter >= 2) {
+                counter = 0;
+                return false;
+            }
+        },
+
+        uniqueOptionValues(node, key) {
+            let counter = 0;
+            let values = this.product.optionsFtValues[key].values;
+
+            console.log(node.value);
+            values.forEach((el) => {
+                if (el.toLowerCase() === node.value.toLowerCase()) {
+                    counter++;
+                }
+            });
+
+            if (counter >= 2) {
+                counter = 0;
+                return false;
+            }
         },
 
         /**
