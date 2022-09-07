@@ -288,7 +288,7 @@
                                                         ) =>
                                                             `${node.node.value} has already been taken.`,
                                                     }"
-                                                    :delay="500"
+                                                    :delay="150"
                                                     placeholder="Enter option name"
                                                     suffixIcon="trash"
                                                     wrapper-class="mt-4"
@@ -326,7 +326,7 @@
                                                                     (node) =>
                                                                         `${node.node.value} has already been taken.`,
                                                             }"
-                                                            :delay="500"
+                                                            :delay="150"
                                                             placeholder="Enter option value"
                                                             :suffixIcon="
                                                                 optionFtValue
@@ -384,7 +384,7 @@
                                                                     (node) =>
                                                                         `${node.node.value} has already been taken.`,
                                                             }"
-                                                            :delay="500"
+                                                            :delay="150"
                                                             placeholder="Add another value"
                                                             suffixIcon="trash"
                                                             wrapper-class="mt-1"
@@ -679,8 +679,7 @@ export default {
         uniqueOptionValues(node, key) {
             let counter = 0;
             let values = this.product.optionsFtValues[key].values;
-
-            console.log(node.value);
+            
             values.forEach((el) => {
                 if (el.toLowerCase() === node.value.toLowerCase()) {
                     counter++;
