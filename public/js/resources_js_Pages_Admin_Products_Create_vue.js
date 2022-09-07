@@ -208,7 +208,6 @@ __webpack_require__.r(__webpack_exports__);
     uniqueOptionValues: function uniqueOptionValues(node, key) {
       var counter = 0;
       var values = this.product.optionsFtValues[key].values;
-      console.log(node.value);
       values.forEach(function (el) {
         if (el.toLowerCase() === node.value.toLowerCase()) {
           counter++;
@@ -728,7 +727,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   return "".concat(node.node.value, " has already been taken.");
                 }
               },
-              delay: 500,
+              delay: 150,
               placeholder: "Enter option name",
               suffixIcon: "trash",
               "wrapper-class": "mt-4",
@@ -760,7 +759,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     return "".concat(node.node.value, " has already been taken.");
                   }
                 },
-                delay: 500,
+                delay: 150,
                 placeholder: "Enter option value",
                 suffixIcon: optionFtValue.values.length !== 1 ? 'trash' : '',
                 "wrapper-class": "mt-4",
@@ -791,7 +790,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     return "".concat(node.node.value, " has already been taken.");
                   }
                 },
-                delay: 500,
+                delay: 150,
                 placeholder: "Add another value",
                 suffixIcon: "trash",
                 "wrapper-class": "mt-1",
