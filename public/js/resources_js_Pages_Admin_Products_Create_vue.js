@@ -39,7 +39,8 @@ __webpack_require__.r(__webpack_exports__);
         stock: null,
         price: null,
         media: [],
-        optionsFtValues: []
+        options: [],
+        variants: []
       }),
       previewMediaUploaded: []
     };
@@ -47,11 +48,11 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     isHasOptions: function isHasOptions(newCondition) {
       if (!newCondition) {
-        this.product.optionsFtValues = [];
+        this.product.options = [];
         return;
       }
 
-      this.product.optionsFtValues = [{
+      this.product.options = [{
         name: "",
         values: [""],
         isSaved: false
@@ -63,7 +64,7 @@ __webpack_require__.r(__webpack_exports__);
           this.product.description = "";
         }
 
-        if (newObject.optionsFtValues.length == 0) {
+        if (newObject.options.length == 0) {
           this.isHasOptions = false;
         }
       },
@@ -164,16 +165,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addOptionValueInput: function addOptionValueInput(objectKey, currentArrayKey) {
-      if (currentArrayKey + 1 in this.product.optionsFtValues[objectKey].values == false) {
-        this.product.optionsFtValues[objectKey].values.push("");
+      if (currentArrayKey + 1 in this.product.options[objectKey].values == false) {
+        this.product.options[objectKey].values.push("");
       }
     },
     removeOptionValueInput: function removeOptionValueInput(objectKey, currentArrayKey) {
-      this.product.optionsFtValues[objectKey].values.splice(currentArrayKey, 1);
+      this.product.options[objectKey].values.splice(currentArrayKey, 1);
     },
     addNewOption: function addNewOption() {
-      if (this.product.optionsFtValues.length <= 3) {
-        this.product.optionsFtValues.push({
+      if (this.product.options.length <= 3) {
+        this.product.options.push({
           name: "",
           values: [""],
           isSaved: false
@@ -181,20 +182,40 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     removeOption: function removeOption(objectKey) {
-      this.product.optionsFtValues.splice(objectKey, 1);
+      this.product.options.splice(objectKey, 1);
     },
     saveOption: function saveOption(objectKey) {
-      this.product.optionsFtValues[objectKey].isSaved = true;
+      this.product.options[objectKey].isSaved = true;
+      var values = this.product.options[objectKey].values;
+      var name = this.product.options[objectKey].name;
+      var variants = this.product.variants; // ['red', 'green', 'blue'] // first entry
+      // ['red', 'green', 'blue', 'yellow'] // second entry (same opiton)
+
+      if (variants.length == 0) {
+        values.map(function (value) {
+          if (value !== "") {
+            variants.push({
+              name: value,
+              option: name,
+              imageUrl: null,
+              stock: 0,
+              price: 0
+            });
+          }
+        });
+        return;
+      }
     },
     editOption: function editOption(objectKey) {
-      this.product.optionsFtValues[objectKey].isSaved = false;
+      this.product.options[objectKey].isSaved = false;
     },
     uniqueOptionName: function uniqueOptionName(node) {
       var counter = 0;
+      var options = this.product.options;
 
       for (var i = 0; i < 3; i++) {
-        if (this.product.optionsFtValues[i] !== undefined) {
-          if (this.product.optionsFtValues[i].name.toLowerCase() == node.value.toLowerCase()) {
+        if (options[i] !== undefined) {
+          if (options[i].name.toLowerCase() == node.value.toLowerCase()) {
             counter++;
           }
         }
@@ -207,7 +228,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     uniqueOptionValues: function uniqueOptionValues(node, key) {
       var counter = 0;
-      var values = this.product.optionsFtValues[key].values;
+      var values = this.product.options[key].values;
       values.forEach(function (el) {
         if (el.toLowerCase() === node.value.toLowerCase()) {
           counter++;
@@ -219,21 +240,6 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
     }
-    /**
-     *
-     *
-    addVariant(variant) {
-        // var colour = ["A", "B"];
-        // var size = ["Big", "Small", "Large"];
-        // console.log(colour.flatMap(d => size.map(v => d + '-' + v))); guna untuk combine more than 1 variation values
-    },
-      addToList() {
-        console.log('adding variant value');
-        this.variantValues[this.variant].push(this.variantValue);
-        console.log(this.variantValues);
-    },
-     */
-
   }
 });
 
@@ -677,13 +683,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.product.optionsFtValues, function (optionFtValue, optionKey) {
+      , ["modelValue"]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.product.options, function (element, elementKey) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-          key: optionKey,
+          key: elementKey,
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['border-t mt-4', $data.isHasOptions ? 'block' : 'hidden'])
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [optionFtValue.isSaved ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(optionFtValue.name), 1
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [element.isSaved ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(element.name), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_26, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(optionFtValue.values, function (value) {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_26, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(element.values, function (value) {
           return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
             key: value
           }, [value !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(value), 1
@@ -699,7 +705,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "input-class": "$reset ml-2.5 bg-white px-3 py-1.5 border border-gray-400 rounded-md text-sm hover:bg-gray-100",
           "outer-class": "self-center",
           onClick: function onClick($event) {
-            return $options.editOption(optionKey);
+            return $options.editOption(elementKey);
           }
         }, null, 8
         /* PROPS */
@@ -707,7 +713,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: 1,
           type: "form",
           onSubmit: function onSubmit($event) {
-            return $options.saveOption(optionKey);
+            return $options.saveOption(elementKey);
           },
           "submit-attrs": {
             inputClass: '$reset mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100'
@@ -734,15 +740,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               "inner-class": "flex",
               "suffixIcon-class": "self-center pl-2 cursor-pointer w-7",
               onSuffixIconClick: function onSuffixIconClick($event) {
-                return $options.removeOption(optionKey);
+                return $options.removeOption(elementKey);
               },
-              modelValue: optionFtValue.name,
+              modelValue: element.name,
               "onUpdate:modelValue": function onUpdateModelValue($event) {
-                return optionFtValue.name = $event;
+                return element.name = $event;
               }
             }, null, 8
             /* PROPS */
-            , ["validation-rules", "validation-messages", "onSuffixIconClick", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option values "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(optionFtValue.values, function (value, key) {
+            , ["validation-rules", "validation-messages", "onSuffixIconClick", "modelValue", "onUpdate:modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" option values "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(element.values, function (value, key) {
               return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                 key: key
               }, [key == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
@@ -750,7 +756,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 label: "Option values",
                 type: "text",
                 "validation-label": "Option value",
-                validation: [['required'], ['uniqueOptionValues', optionKey]],
+                validation: [['required'], ['uniqueOptionValues', elementKey]],
                 "validation-rules": {
                   uniqueOptionValues: $options.uniqueOptionValues
                 },
@@ -761,19 +767,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 },
                 delay: 150,
                 placeholder: "Enter option value",
-                suffixIcon: optionFtValue.values.length !== 1 ? 'trash' : '',
+                suffixIcon: element.values.length !== 1 ? 'trash' : '',
                 "wrapper-class": "mt-4",
                 "inner-class": "flex",
                 "suffixIcon-class": "self-center pl-2 cursor-pointer w-7",
-                modelValue: optionFtValue.values[key],
+                modelValue: element.values[key],
                 "onUpdate:modelValue": function onUpdateModelValue($event) {
-                  return optionFtValue.values[key] = $event;
+                  return element.values[key] = $event;
                 },
                 onKeyup: function onKeyup($event) {
-                  return $options.addOptionValueInput(optionKey, key);
+                  return $options.addOptionValueInput(elementKey, key);
                 },
                 onSuffixIconClick: function onSuffixIconClick($event) {
-                  return $options.removeOptionValueInput(optionKey, key);
+                  return $options.removeOptionValueInput(elementKey, key);
                 }
               }, null, 8
               /* PROPS */
@@ -781,7 +787,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 1,
                 type: "text",
                 "validation-label": "Option value",
-                validation: [[optionFtValue.values.length - 1 !== key ? 'required' : ''], ['uniqueOptionValues', optionKey]],
+                validation: [[element.values.length - 1 !== key ? 'required' : ''], ['uniqueOptionValues', elementKey]],
                 "validation-rules": {
                   uniqueOptionValues: $options.uniqueOptionValues
                 },
@@ -796,15 +802,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "wrapper-class": "mt-1",
                 "inner-class": "flex",
                 "suffixIcon-class": "self-center pl-2 cursor-pointer w-7",
-                modelValue: optionFtValue.values[key],
+                modelValue: element.values[key],
                 "onUpdate:modelValue": function onUpdateModelValue($event) {
-                  return optionFtValue.values[key] = $event;
+                  return element.values[key] = $event;
                 },
                 onKeyup: function onKeyup($event) {
-                  return $options.addOptionValueInput(optionKey, key);
+                  return $options.addOptionValueInput(elementKey, key);
                 },
                 onSuffixIconClick: function onSuffixIconClick($event) {
-                  return $options.removeOptionValueInput(optionKey, key);
+                  return $options.removeOptionValueInput(elementKey, key);
                 }
               }, null, 8
               /* PROPS */
@@ -825,7 +831,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         );
       }), 128
       /* KEYED_FRAGMENT */
-      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" add another option button "), $data.isHasOptions && $data.product.optionsFtValues.length < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
+      )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" add another option button "), $data.isHasOptions && $data.product.options.length < 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_FormKit, {
         key: 0,
         type: "button",
         "outer-class": "mt-6 border-t border-gray-300",
