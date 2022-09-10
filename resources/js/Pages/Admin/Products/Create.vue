@@ -641,30 +641,38 @@ export default {
         },
 
         saveOption(objectKey) {
-            this.product.options[objectKey].isSaved = true;
+            let options = this.product.options;
+            let option = this.product.options[objectKey];
+            option.isSaved = true;
 
-            let values = this.product.options[objectKey].values;
-            let name = this.product.options[objectKey].name;
-            let variants = this.product.variants;
-
-            // ['red', 'green', 'blue'] // first entry
-            // ['red', 'green', 'blue', 'yellow'] // second entry (same opiton)
-
-            if (variants.length == 0) {
-                values.map((value) => {
-                    if (value !== "") {
-                        variants.push({
-                            name: value,
-                            option: name,
-                            imageUrl: null,
-                            stock: 0,
-                            price: 0,
-                        });
-                    }
+            let generatedOptionsValues = [];
+            for (let i = 0; i < options.length; i++) {
+                generatedOptionsValues.push([]);
+                options[i].values.map((value) => {
+                    value !== "" ? generatedOptionsValues[i].push(value) : null;
                 });
-                return;
             }
 
+            let variantsCombined = [];
+            let temp = [];
+            for (let i = 0; i < generatedOptionsValues.length; i++) {
+                if (variantsCombined.length == 0 && i == 0) {
+                    generatedOptionsValues[i].map(d => variantsCombined.push(d));
+                }
+
+                if (i !== 0) {
+                    variantsCombined.flatMap((d) => {
+                        generatedOptionsValues[i].map((v) => {
+                            temp.push(d + ' - ' + v);
+                        });
+                    });
+
+                    variantsCombined = temp;
+                    temp = [];
+                }
+            }
+
+            console.log(variantsCombined);
         },
 
         editOption(objectKey) {
