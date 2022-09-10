@@ -207,10 +207,8 @@
                                 v-model="isHasOptions"
                             />
                             <template
-                                v-for="(
-                                    optionFtValue, optionKey
-                                ) in product.optionsFtValues"
-                                :key="optionKey"
+                                v-for="(element, elementKey) in product.options"
+                                :key="elementKey"
                             >
                                 <div
                                     :class="[
@@ -219,19 +217,19 @@
                                     ]"
                                 >
                                     <div class="px-6">
-                                        <template v-if="optionFtValue.isSaved">
+                                        <template v-if="element.isSaved">
                                             <div class="flex justify-between">
                                                 <div class="mt-2.5">
                                                     <h3
                                                         class="text-base font-semibold"
                                                     >
-                                                        {{ optionFtValue.name }}
+                                                        {{ element.name }}
                                                     </h3>
                                                     <ul
                                                         class="flex flex-wrap text-gray-600 text-sm"
                                                     >
                                                         <template
-                                                            v-for="value in optionFtValue.values"
+                                                            v-for="value in element.values"
                                                             :key="value"
                                                         >
                                                             <template
@@ -254,7 +252,7 @@
                                                     input-class="$reset ml-2.5 bg-white px-3 py-1.5 border border-gray-400 rounded-md text-sm hover:bg-gray-100"
                                                     outer-class="self-center"
                                                     @click="
-                                                        editOption(optionKey)
+                                                        editOption(elementKey)
                                                     "
                                                 />
                                             </div>
@@ -262,7 +260,7 @@
                                         <template v-else>
                                             <FormKit
                                                 type="form"
-                                                @submit="saveOption(optionKey)"
+                                                @submit="saveOption(elementKey)"
                                                 :submit-attrs="{
                                                     inputClass:
                                                         '$reset mt-4 bg-white px-3 py-1.5 border border-gray-400 rounded-md font-semibold hover:bg-gray-100',
@@ -275,9 +273,7 @@
                                                     type="text"
                                                     :validation="[
                                                         ['required'],
-                                                        [
-                                                            'uniqueOptionName'
-                                                        ],
+                                                        ['uniqueOptionName'],
                                                     ]"
                                                     :validation-rules="{
                                                         uniqueOptionName,
@@ -295,15 +291,15 @@
                                                     inner-class="flex"
                                                     suffixIcon-class="self-center pl-2 cursor-pointer w-7"
                                                     @suffix-icon-click="
-                                                        removeOption(optionKey)
+                                                        removeOption(elementKey)
                                                     "
-                                                    v-model="optionFtValue.name"
+                                                    v-model="element.name"
                                                 />
                                                 <!-- option values -->
                                                 <template
                                                     v-for="(
                                                         value, key
-                                                    ) in optionFtValue.values"
+                                                    ) in element.values"
                                                     :key="key"
                                                 >
                                                     <template v-if="key == 0">
@@ -315,7 +311,7 @@
                                                                 ['required'],
                                                                 [
                                                                     'uniqueOptionValues',
-                                                                    optionKey,
+                                                                    elementKey,
                                                                 ],
                                                             ]"
                                                             :validation-rules="{
@@ -329,8 +325,7 @@
                                                             :delay="150"
                                                             placeholder="Enter option value"
                                                             :suffixIcon="
-                                                                optionFtValue
-                                                                    .values
+                                                                element.values
                                                                     .length !==
                                                                 1
                                                                     ? 'trash'
@@ -340,18 +335,19 @@
                                                             inner-class="flex"
                                                             suffixIcon-class="self-center pl-2 cursor-pointer w-7"
                                                             v-model="
-                                                                optionFtValue
-                                                                    .values[key]
+                                                                element.values[
+                                                                    key
+                                                                ]
                                                             "
                                                             @keyup="
                                                                 addOptionValueInput(
-                                                                    optionKey,
+                                                                    elementKey,
                                                                     key
                                                                 )
                                                             "
                                                             @suffix-icon-click="
                                                                 removeOptionValueInput(
-                                                                    optionKey,
+                                                                    elementKey,
                                                                     key
                                                                 )
                                                             "
@@ -363,7 +359,7 @@
                                                             validation-label="Option value"
                                                             :validation="[
                                                                 [
-                                                                    optionFtValue
+                                                                    element
                                                                         .values
                                                                         .length -
                                                                         1 !==
@@ -373,7 +369,7 @@
                                                                 ],
                                                                 [
                                                                     'uniqueOptionValues',
-                                                                    optionKey,
+                                                                    elementKey,
                                                                 ],
                                                             ]"
                                                             :validation-rules="{
@@ -391,18 +387,19 @@
                                                             inner-class="flex"
                                                             suffixIcon-class="self-center pl-2 cursor-pointer w-7"
                                                             v-model="
-                                                                optionFtValue
-                                                                    .values[key]
+                                                                element.values[
+                                                                    key
+                                                                ]
                                                             "
                                                             @keyup="
                                                                 addOptionValueInput(
-                                                                    optionKey,
+                                                                    elementKey,
                                                                     key
                                                                 )
                                                             "
                                                             @suffix-icon-click="
                                                                 removeOptionValueInput(
-                                                                    optionKey,
+                                                                    elementKey,
                                                                     key
                                                                 )
                                                             "
@@ -417,8 +414,7 @@
                             <!-- add another option button -->
                             <template
                                 v-if="
-                                    isHasOptions &&
-                                    product.optionsFtValues.length < 3
+                                    isHasOptions && product.options.length < 3
                                 "
                             >
                                 <FormKit
@@ -467,7 +463,8 @@ export default {
                 stock: null,
                 price: null,
                 media: [],
-                optionsFtValues: [],
+                options: [],
+                variants: [],
             }),
             previewMediaUploaded: [],
         };
@@ -476,12 +473,10 @@ export default {
     watch: {
         isHasOptions(newCondition) {
             if (!newCondition) {
-                this.product.optionsFtValues = [];
+                this.product.options = [];
                 return;
             }
-            this.product.optionsFtValues = [
-                { name: "", values: [""], isSaved: false },
-            ];
+            this.product.options = [{ name: "", values: [""], isSaved: false }];
         },
 
         product: {
@@ -490,7 +485,7 @@ export default {
                     this.product.description = "";
                 }
 
-                if (newObject.optionsFtValues.length == 0) {
+                if (newObject.options.length == 0) {
                     this.isHasOptions = false;
                 }
             },
@@ -620,24 +615,20 @@ export default {
 
         addOptionValueInput(objectKey, currentArrayKey) {
             if (
-                currentArrayKey + 1 in
-                    this.product.optionsFtValues[objectKey].values ==
+                currentArrayKey + 1 in this.product.options[objectKey].values ==
                 false
             ) {
-                this.product.optionsFtValues[objectKey].values.push("");
+                this.product.options[objectKey].values.push("");
             }
         },
 
         removeOptionValueInput(objectKey, currentArrayKey) {
-            this.product.optionsFtValues[objectKey].values.splice(
-                currentArrayKey,
-                1
-            );
+            this.product.options[objectKey].values.splice(currentArrayKey, 1);
         },
 
         addNewOption() {
-            if (this.product.optionsFtValues.length <= 3) {
-                this.product.optionsFtValues.push({
+            if (this.product.options.length <= 3) {
+                this.product.options.push({
                     name: "",
                     values: [""],
                     isSaved: false,
@@ -646,23 +637,48 @@ export default {
         },
 
         removeOption(objectKey) {
-            this.product.optionsFtValues.splice(objectKey, 1);
+            this.product.options.splice(objectKey, 1);
         },
 
         saveOption(objectKey) {
-            this.product.optionsFtValues[objectKey].isSaved = true;
+            this.product.options[objectKey].isSaved = true;
+
+            let values = this.product.options[objectKey].values;
+            let name = this.product.options[objectKey].name;
+            let variants = this.product.variants;
+
+            // ['red', 'green', 'blue'] // first entry
+            // ['red', 'green', 'blue', 'yellow'] // second entry (same opiton)
+
+            if (variants.length == 0) {
+                values.map((value) => {
+                    if (value !== "") {
+                        variants.push({
+                            name: value,
+                            option: name,
+                            imageUrl: null,
+                            stock: 0,
+                            price: 0,
+                        });
+                    }
+                });
+                return;
+            }
+
         },
 
         editOption(objectKey) {
-            this.product.optionsFtValues[objectKey].isSaved = false;
+            this.product.options[objectKey].isSaved = false;
         },
 
         uniqueOptionName(node) {
             let counter = 0;
+            let options = this.product.options;
+
             for (let i = 0; i < 3; i++) {
-                if (this.product.optionsFtValues[i] !== undefined) {
+                if (options[i] !== undefined) {
                     if (
-                        this.product.optionsFtValues[i].name.toLowerCase() ==
+                        options[i].name.toLowerCase() ==
                         node.value.toLowerCase()
                     ) {
                         counter++;
@@ -678,8 +694,8 @@ export default {
 
         uniqueOptionValues(node, key) {
             let counter = 0;
-            let values = this.product.optionsFtValues[key].values;
-            
+            let values = this.product.options[key].values;
+
             values.forEach((el) => {
                 if (el.toLowerCase() === node.value.toLowerCase()) {
                     counter++;
@@ -691,22 +707,6 @@ export default {
                 return false;
             }
         },
-
-        /**
-         *
-         *
-        addVariant(variant) {
-            // var colour = ["A", "B"];
-            // var size = ["Big", "Small", "Large"];
-            // console.log(colour.flatMap(d => size.map(v => d + '-' + v))); guna untuk combine more than 1 variation values
-        },
-
-        addToList() {
-            console.log('adding variant value');
-            this.variantValues[this.variant].push(this.variantValue);
-            console.log(this.variantValues);
-        },
-         */
     },
 };
 </script>
