@@ -185,26 +185,48 @@ __webpack_require__.r(__webpack_exports__);
       this.product.options.splice(objectKey, 1);
     },
     saveOption: function saveOption(objectKey) {
-      this.product.options[objectKey].isSaved = true;
-      var values = this.product.options[objectKey].values;
-      var name = this.product.options[objectKey].name;
-      var variants = this.product.variants; // ['red', 'green', 'blue'] // first entry
-      // ['red', 'green', 'blue', 'yellow'] // second entry (same opiton)
+      var options = this.product.options;
+      var option = this.product.options[objectKey];
+      option.isSaved = true;
+      var generatedOptionsValues = [];
 
-      if (variants.length == 0) {
-        values.map(function (value) {
-          if (value !== "") {
-            variants.push({
-              name: value,
-              option: name,
-              imageUrl: null,
-              stock: 0,
-              price: 0
-            });
-          }
+      var _loop = function _loop(i) {
+        generatedOptionsValues.push([]);
+        options[i].values.map(function (value) {
+          value !== "" ? generatedOptionsValues[i].push(value) : null;
         });
-        return;
+      };
+
+      for (var i = 0; i < options.length; i++) {
+        _loop(i);
       }
+
+      var variantsCombined = [];
+      var temp = [];
+
+      var _loop2 = function _loop2(_i) {
+        if (variantsCombined.length == 0 && _i == 0) {
+          generatedOptionsValues[_i].map(function (d) {
+            return variantsCombined.push(d);
+          });
+        }
+
+        if (_i !== 0) {
+          variantsCombined.flatMap(function (d) {
+            generatedOptionsValues[_i].map(function (v) {
+              temp.push(d + ' - ' + v);
+            });
+          });
+          variantsCombined = temp;
+          temp = [];
+        }
+      };
+
+      for (var _i = 0; _i < generatedOptionsValues.length; _i++) {
+        _loop2(_i);
+      }
+
+      console.log(variantsCombined);
     },
     editOption: function editOption(objectKey) {
       this.product.options[objectKey].isSaved = false;
