@@ -49,6 +49,11 @@ __webpack_require__.r(__webpack_exports__);
     isHasOptions: function isHasOptions(newCondition) {
       if (!newCondition) {
         this.product.options = [];
+
+        if (this.product.variants.length > 0) {
+          this.product.variants = [];
+        }
+
         return;
       }
 
@@ -183,11 +188,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeOption: function removeOption(objectKey) {
       this.product.options.splice(objectKey, 1);
+      this.generateVariants();
     },
     saveOption: function saveOption(objectKey) {
+      this.product.options[objectKey].isSaved = true;
+      this.generateVariants();
+    },
+    generateVariants: function generateVariants() {
       var options = this.product.options;
-      var option = this.product.options[objectKey];
-      option.isSaved = true;
       var generatedOptionsValues = [];
 
       var _loop = function _loop(i) {
@@ -214,7 +222,7 @@ __webpack_require__.r(__webpack_exports__);
         if (_i !== 0) {
           variantsCombined.flatMap(function (d) {
             generatedOptionsValues[_i].map(function (v) {
-              temp.push(d + ' - ' + v);
+              temp.push(d + " - " + v);
             });
           });
           variantsCombined = temp;
@@ -226,7 +234,49 @@ __webpack_require__.r(__webpack_exports__);
         _loop2(_i);
       }
 
-      console.log(variantsCombined);
+      var variants = this.product.variants;
+
+      if (variants.length == 0) {
+        variantsCombined.map(function (v) {
+          variants.push({
+            name: v,
+            imageUrl: null,
+            stock: null,
+            price: null
+          });
+        });
+      }
+
+      if (variants.length !== 0) {
+        for (var _i2 = 0; _i2 < variantsCombined.length; _i2++) {
+          if (variants[_i2] !== undefined) {
+            if (variants[_i2].name !== variantsCombined[_i2]) {
+              variants[_i2] = {
+                name: variantsCombined[_i2],
+                imageUrl: null,
+                stock: null,
+                price: null
+              };
+            }
+          } else {
+            variants.push({
+              name: variantsCombined[_i2],
+              imageUrl: null,
+              stock: null,
+              price: null
+            });
+          }
+        }
+
+        if (variants.length > variantsCombined.length) {
+          var gap = variants.length - variantsCombined.length;
+
+          while (gap !== 0) {
+            variants.pop();
+            gap--;
+          }
+        }
+      }
     },
     editOption: function editOption(objectKey) {
       this.product.options[objectKey].isSaved = false;
