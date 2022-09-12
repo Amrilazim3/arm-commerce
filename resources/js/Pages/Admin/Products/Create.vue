@@ -641,10 +641,12 @@ export default {
         },
 
         saveOption(objectKey) {
-            let options = this.product.options;
-            let option = this.product.options[objectKey];
-            option.isSaved = true;
+            this.product.options[objectKey].isSaved = true;
+            this.generateVariants();
+        },
 
+        generateVariants() {
+            let options = this.product.options;
             let generatedOptionsValues = [];
             for (let i = 0; i < options.length; i++) {
                 generatedOptionsValues.push([]);
@@ -657,13 +659,15 @@ export default {
             let temp = [];
             for (let i = 0; i < generatedOptionsValues.length; i++) {
                 if (variantsCombined.length == 0 && i == 0) {
-                    generatedOptionsValues[i].map(d => variantsCombined.push(d));
+                    generatedOptionsValues[i].map((d) =>
+                        variantsCombined.push(d)
+                    );
                 }
 
                 if (i !== 0) {
                     variantsCombined.flatMap((d) => {
                         generatedOptionsValues[i].map((v) => {
-                            temp.push(d + ' - ' + v);
+                            temp.push(d + " - " + v);
                         });
                     });
 
@@ -672,7 +676,48 @@ export default {
                 }
             }
 
-            console.log(variantsCombined);
+            let variants = this.product.variants;
+            if (variants.length == 0) {
+                variantsCombined.map((v) => {
+                    variants.push({
+                        name: v,
+                        imageUrl: null,
+                        stock: null,
+                        price: null,
+                    });
+                });
+            }
+
+            if (variants.length !== 0) {
+                for (let i = 0; i < variantsCombined.length; i++) {
+                    if (variants[i] !== undefined) {
+                        if (variants[i].name !== variantsCombined[i]) {
+                            variants[i] = {
+                                name: variantsCombined[i],
+                                imageUrl: null,
+                                stock: null,
+                                price: null
+                            } 
+                        }               
+                    } else {
+                        variants.push({
+                            name: variantsCombined[i],
+                            imageUrl: null,
+                            stock: null,
+                            price: null
+                        });
+                    }
+                }
+
+                if (variants.length > variantsCombined.length) {
+                    let gap = variants.length - variantsCombined.length;
+
+                    while (gap !== 0) {
+                        variants.pop();
+                        gap--;
+                    }
+                }
+            }
         },
 
         editOption(objectKey) {
