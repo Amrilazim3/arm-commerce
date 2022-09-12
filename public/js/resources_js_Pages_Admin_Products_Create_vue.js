@@ -749,6 +749,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "checkbox",
         label: "This product has options, like size or color",
         "outer-class": "max-w-max",
+        "input-class": "$reset border-gray-300 focus:ring-indigo-500 formkit-input rounded text-indigo-600",
         modelValue: $data.isHasOptions,
         "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
           return $data.isHasOptions = $event;
