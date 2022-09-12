@@ -204,6 +204,7 @@
                                 type="checkbox"
                                 label="This product has options, like size or color"
                                 outer-class="max-w-max"
+                                input-class="$reset border-gray-300 focus:ring-indigo-500 formkit-input rounded text-indigo-600"
                                 v-model="isHasOptions"
                             />
                             <template
