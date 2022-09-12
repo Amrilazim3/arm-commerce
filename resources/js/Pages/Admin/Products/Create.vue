@@ -474,6 +474,9 @@ export default {
         isHasOptions(newCondition) {
             if (!newCondition) {
                 this.product.options = [];
+                if (this.product.variants.length > 0) {
+                    this.product.variants = [];
+                }
                 return;
             }
             this.product.options = [{ name: "", values: [""], isSaved: false }];
@@ -638,6 +641,7 @@ export default {
 
         removeOption(objectKey) {
             this.product.options.splice(objectKey, 1);
+            this.generateVariants();
         },
 
         saveOption(objectKey) {
