@@ -545,6 +545,68 @@ var _hoisted_27 = {
   key: 0,
   "class": "border border-gray-300 rounded-md mb-1 mr-1.5 px-3 py-1 bg-indigo-200"
 };
+var _hoisted_28 = {
+  key: 1,
+  "class": "flex flex-col border rounded border-gray-300"
+};
+var _hoisted_29 = {
+  "class": "overflow-x-scroll"
+};
+var _hoisted_30 = {
+  "class": "inline-block min-w-full"
+};
+var _hoisted_31 = {
+  "class": "overflow-hidden"
+};
+var _hoisted_32 = {
+  "class": "min-w-full"
+};
+
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "bg-white border-b"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+  "class": "whitespace-nowrap"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " # "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " highlight image "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " name "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " stock "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "text-sm font-medium text-gray-900 px-6 py-4 text-left"
+}, " price ")])], -1
+/* HOISTED */
+);
+
+var _hoisted_34 = {
+  "class": "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+};
+
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+}, " upload file here ", -1
+/* HOISTED */
+);
+
+var _hoisted_36 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_37 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_38 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_39 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -915,7 +977,53 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: $options.addNewOption
       }, null, 8
       /* PROPS */
-      , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])];
+      , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" display all variants data here "), $data.product.variants.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.product.variants, function (variant, key) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+          key: variant,
+          "class": "bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(key + 1), 1
+        /* TEXT */
+        ), _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variant.name), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" use formkit input and bind the stock here "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+          type: "number",
+          validation: "required|number",
+          "validation-label": function validationLabel() {
+            var position = key + 1;
+            return 'Stock variant ' + position;
+          },
+          "input-class": "$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32",
+          placeholder: "0",
+          modelValue: variant.stock,
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return variant.stock = $event;
+          }
+        }, null, 8
+        /* PROPS */
+        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" use formkit input and bind the price here "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+          type: "number",
+          step: "any",
+          validation: "required|number",
+          "validation-label": function validationLabel() {
+            var position = key + 1;
+            return 'Price variant ' + position;
+          },
+          "input-class": "$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32",
+          placeholder: "0.00",
+          modelValue: variant.price,
+          "onUpdate:modelValue": function onUpdateModelValue($event) {
+            return variant.price = $event;
+          }
+        }, null, 8
+        /* PROPS */
+        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+          type: "button",
+          "input-class": "$reset bg-gray-200 border-transparent flex font-medium hover:text-red-500 px-2 py-2 rounded text-gray-500 text-sm",
+          label: "delete"
+        })])]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])];
     }),
     _: 1
     /* STABLE */
