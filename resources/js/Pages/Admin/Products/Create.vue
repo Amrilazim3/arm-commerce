@@ -429,6 +429,136 @@
                                 />
                             </template>
                         </div>
+
+                        <!-- display all variants data here -->
+                        <template v-if="product.variants.length > 0">
+                            <div
+                                class="flex flex-col border rounded border-gray-300"
+                            >
+                                <div class="overflow-x-scroll">
+                                    <div class="inline-block min-w-full">
+                                        <div class="overflow-hidden">
+                                            <table class="min-w-full">
+                                                <thead
+                                                    class="bg-white border-b"
+                                                >
+                                                    <tr
+                                                        class="whitespace-nowrap"
+                                                    >
+                                                        <th
+                                                            scope="col"
+                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                                        >
+                                                            #
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                                        >
+                                                            highlight image
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                                        >
+                                                            name
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                                        >
+                                                            stock
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                                                        >
+                                                            price
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <template
+                                                        v-for="(
+                                                            variant, key
+                                                        ) in product.variants"
+                                                        :key="variant"
+                                                    >
+                                                        <tr
+                                                            class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                                                        >
+                                                            <td
+                                                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                                                            >
+                                                                {{ key + 1 }}
+                                                            </td>
+                                                            <td
+                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                            >
+                                                                upload file here
+                                                            </td>
+                                                            <td
+                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                            >
+                                                                {{
+                                                                    variant.name
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                            >
+                                                                <!-- use formkit input and bind the stock here -->
+                                                                <FormKit
+                                                                    type="number"
+                                                                    validation="required|number"
+                                                                    :validation-label="() => {
+                                                                        let position = key + 1;
+                                                                        return 'Stock variant ' + position; 
+                                                                    }"
+                                                                    input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
+                                                                    placeholder="0"
+                                                                    v-model="
+                                                                        variant.stock
+                                                                    "
+                                                                />
+                                                            </td>
+                                                            <td
+                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                            >
+                                                                <!-- use formkit input and bind the price here -->
+                                                                <FormKit
+                                                                    type="number"
+                                                                    step="any"
+                                                                    validation="required|number"
+                                                                    :validation-label="() => {
+                                                                        let position = key + 1;
+                                                                        return 'Price variant ' + position; 
+                                                                    }"
+                                                                    input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
+                                                                    placeholder="0.00"
+                                                                    v-model="
+                                                                        variant.price
+                                                                    "
+                                                                />
+                                                            </td>
+                                                            <td
+                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                            >
+                                                                <FormKit
+                                                                    type="button"
+                                                                    input-class="$reset bg-gray-200 border-transparent flex font-medium hover:text-red-500 px-2 py-2 rounded text-gray-500 text-sm"
+                                                                    label="delete"
+                                                                />
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </FormKit>
             </div>
@@ -701,15 +831,15 @@ export default {
                                 name: variantsCombined[i],
                                 imageUrl: null,
                                 stock: null,
-                                price: null
-                            } 
-                        }               
+                                price: null,
+                            };
+                        }
                     } else {
                         variants.push({
                             name: variantsCombined[i],
                             imageUrl: null,
                             stock: null,
-                            price: null
+                            price: null,
                         });
                     }
                 }
