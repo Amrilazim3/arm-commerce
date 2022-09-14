@@ -899,11 +899,18 @@ export default {
                 for (let i = 0; i < variantsCombined.length; i++) {
                     if (variants[i] !== undefined) {
                         if (variants[i].name !== variantsCombined[i]) {
-                            // remove the previewVariantsMediaUploaded
-                            if (this.previewVariantsUploaded.length > 0) {
-                                this.previewVariantsUploaded.splice(i, 1);
+                            if (variants[i].filePath) {
+                                this.$inertia.patch(
+                                    "temp/media",
+                                    {
+                                        filePath: variants[i].filePath
+                                    },
+                                    {
+                                        preserveScroll: true,
+                                    }
+                                );
+                                this.previewVariantsUploaded[i] = undefined;
                             }
-                            // remove the file in the temp storage
 
                             variants[i] = {
                                 name: variantsCombined[i],
@@ -936,20 +943,71 @@ export default {
         handleVariantMediaUpload(event, key) {
             var uploadedVariantMedia = event.target.files[0];
 
-            // send to temp storage
-
-            // update the imageUrl property in that object
-
-            this.previewVariantsUploaded[key] =
-                URL.createObjectURL(uploadedVariantMedia);
+            this.$inertia.post(
+                "temp/media",
+                {
+                    variant: uploadedVariantMedia,
+                },
+                {
+                    preserveScroll: true,
+                    onSuccess: (response) => {
+                        this.previewVariantsUploaded[key] =
+                            URL.createObjectURL(uploadedVariantMedia);
+                        this.product.variants[key].filePath =
+                            response.props.flash.success;
+                        this.$notify(
+                            {
+                                group: "success",
+                                title: "Success",
+                                text: "Highlight image uploaded",
+                            },
+                            3500
+                        );
+                    },
+                    onError: () => {
+                        this.$notify(
+                            {
+                                group: "error",
+                                title: "Error",
+                                text: "Something went wrong, Please try again",
+                            },
+                            3500
+                        );
+                    },
+                }
+            );
         },
 
         removeVariantMediaPreview(key) {
-            this.previewVariantsUploaded.splice(key, 1);
-
-            // remove file from temp storage
-
-            // update the imageUrl property in that object
+            this.$inertia.patch(
+                "temp/media",
+                { filePath: this.product.variants[key].filePath },
+                {
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.previewVariantsUploaded[key] = undefined;
+                        this.product.variants[key].filePath = null;
+                        this.$notify(
+                            {
+                                group: "success",
+                                title: "Success",
+                                text: "Highlight image removed",
+                            },
+                            3500
+                        );
+                    },
+                    onError: () => {
+                        this.$notify(
+                            {
+                                group: "error",
+                                title: "Error",
+                                text: "Something went wrong, please try again",
+                            },
+                            3500
+                        );
+                    },
+                }
+            );
         },
 
         editOption(objectKey) {
