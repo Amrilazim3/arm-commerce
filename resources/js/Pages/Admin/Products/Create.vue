@@ -516,11 +516,17 @@
                                                                         />
                                                                         <XIcon
                                                                             class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
-                                                                            @click="removeVariantMediaPreview(key)"
+                                                                            @click="
+                                                                                removeVariantMediaPreview(
+                                                                                    key
+                                                                                )
+                                                                            "
                                                                         />
                                                                     </div>
                                                                 </template>
-                                                                <template v-else>
+                                                                <template
+                                                                    v-else
+                                                                >
                                                                     <label
                                                                         class="cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                                                     >
@@ -882,7 +888,7 @@ export default {
                 variantsCombined.map((v) => {
                     variants.push({
                         name: v,
-                        imageUrl: null,
+                        filePath: null,
                         stock: null,
                         price: null,
                     });
@@ -893,22 +899,23 @@ export default {
                 for (let i = 0; i < variantsCombined.length; i++) {
                     if (variants[i] !== undefined) {
                         if (variants[i].name !== variantsCombined[i]) {
+                            // remove the previewVariantsMediaUploaded
+                            if (this.previewVariantsUploaded.length > 0) {
+                                this.previewVariantsUploaded.splice(i, 1);
+                            }
+                            // remove the file in the temp storage
+
                             variants[i] = {
                                 name: variantsCombined[i],
-                                imageUrl: null,
+                                filePath: null,
                                 stock: null,
                                 price: null,
                             };
-                            // remove the previewVariantsMediaUploaded
-                            if (this.previewVariantsUploaded.length > 0) {
-                                this.previewVariantsUploaded.splice(i, 1)
-                            }
-                            // remove the file in the temp storage
                         }
                     } else {
                         variants.push({
                             name: variantsCombined[i],
-                            imageUrl: null,
+                            filePath: null,
                             stock: null,
                             price: null,
                         });
@@ -931,6 +938,8 @@ export default {
 
             // send to temp storage
 
+            // update the imageUrl property in that object
+
             this.previewVariantsUploaded[key] =
                 URL.createObjectURL(uploadedVariantMedia);
         },
@@ -939,6 +948,8 @@ export default {
             this.previewVariantsUploaded.splice(key, 1);
 
             // remove file from temp storage
+
+            // update the imageUrl property in that object
         },
 
         editOption(objectKey) {
