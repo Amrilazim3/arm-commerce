@@ -14,6 +14,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 
+use function GuzzleHttp\Promise\all;
+
 class ProductController extends Controller
 {
     public function index()
@@ -135,6 +137,11 @@ class ProductController extends Controller
             }
 
             return redirect()->back()->with('success', $mediaResponse);
+        }
+
+        if ($request->hasFile('variant')) {
+            $path = $request->file('variant')->store('temp', 'public');
+            return redirect()->back()->with('success', $path);
         }
 
         return redirect()->back()->withErrors('something went wrong');
