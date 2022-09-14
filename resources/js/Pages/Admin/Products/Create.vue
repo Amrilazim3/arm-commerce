@@ -495,7 +495,51 @@
                                                             <td
                                                                 class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
                                                             >
-                                                                upload file here
+                                                                <template
+                                                                    v-if="
+                                                                        previewVariantsUploaded[
+                                                                            key
+                                                                        ]
+                                                                    "
+                                                                >
+                                                                    <div
+                                                                        class="relative"
+                                                                    >
+                                                                        <img
+                                                                            :src="
+                                                                                previewVariantsUploaded[
+                                                                                    key
+                                                                                ]
+                                                                            "
+                                                                            alt="preview highlight image"
+                                                                            class="h-10 w-10 rounded object-cover mx-auto"
+                                                                        />
+                                                                        <XIcon
+                                                                            class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
+                                                                            @click="removeVariantMediaPreview(key)"
+                                                                        />
+                                                                    </div>
+                                                                </template>
+                                                                <template v-else>
+                                                                    <label
+                                                                        class="cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                                    >
+                                                                        <input
+                                                                            type="file"
+                                                                            accept="image/*"
+                                                                            class="hidden"
+                                                                            @change="
+                                                                                handleVariantMediaUpload(
+                                                                                    $event,
+                                                                                    key
+                                                                                )
+                                                                            "
+                                                                        />
+                                                                        <PhotographIcon
+                                                                            class="h-8 self-center"
+                                                                        />
+                                                                    </label>
+                                                                </template>
                                                             </td>
                                                             <td
                                                                 class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
@@ -511,10 +555,17 @@
                                                                 <FormKit
                                                                     type="number"
                                                                     validation="required|number"
-                                                                    :validation-label="() => {
-                                                                        let position = key + 1;
-                                                                        return 'Stock variant ' + position; 
-                                                                    }"
+                                                                    :validation-label="
+                                                                        () => {
+                                                                            let position =
+                                                                                key +
+                                                                                1;
+                                                                            return (
+                                                                                'Stock variant ' +
+                                                                                position
+                                                                            );
+                                                                        }
+                                                                    "
                                                                     input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
                                                                     placeholder="0"
                                                                     v-model="
@@ -530,10 +581,17 @@
                                                                     type="number"
                                                                     step="any"
                                                                     validation="required|number"
-                                                                    :validation-label="() => {
-                                                                        let position = key + 1;
-                                                                        return 'Price variant ' + position; 
-                                                                    }"
+                                                                    :validation-label="
+                                                                        () => {
+                                                                            let position =
+                                                                                key +
+                                                                                1;
+                                                                            return (
+                                                                                'Price variant ' +
+                                                                                position
+                                                                            );
+                                                                        }
+                                                                    "
                                                                     input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
                                                                     placeholder="0.00"
                                                                     v-model="
@@ -569,7 +627,12 @@
 <script>
 import SideNav from "../../../Shared/SideNav.vue";
 import Tiptap from "../../../Shared/Tiptap.vue";
-import { TrashIcon, UploadIcon } from "@heroicons/vue/outline";
+import {
+    TrashIcon,
+    UploadIcon,
+    PhotographIcon,
+    XIcon,
+} from "@heroicons/vue/outline";
 
 export default {
     components: {
@@ -577,6 +640,8 @@ export default {
         Tiptap,
         TrashIcon,
         UploadIcon,
+        PhotographIcon,
+        XIcon,
     },
 
     props: {
@@ -598,6 +663,7 @@ export default {
                 variants: [],
             }),
             previewMediaUploaded: [],
+            previewVariantsUploaded: [],
         };
     },
 
@@ -833,6 +899,11 @@ export default {
                                 stock: null,
                                 price: null,
                             };
+                            // remove the previewVariantsMediaUploaded
+                            if (this.previewVariantsUploaded.length > 0) {
+                                this.previewVariantsUploaded.splice(i, 1)
+                            }
+                            // remove the file in the temp storage
                         }
                     } else {
                         variants.push({
@@ -853,6 +924,21 @@ export default {
                     }
                 }
             }
+        },
+
+        handleVariantMediaUpload(event, key) {
+            var uploadedVariantMedia = event.target.files[0];
+
+            // send to temp storage
+
+            this.previewVariantsUploaded[key] =
+                URL.createObjectURL(uploadedVariantMedia);
+        },
+
+        removeVariantMediaPreview(key) {
+            this.previewVariantsUploaded.splice(key, 1);
+
+            // remove file from temp storage
         },
 
         editOption(objectKey) {
