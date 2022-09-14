@@ -429,195 +429,199 @@
                                 />
                             </template>
                         </div>
-
                         <!-- display all variants data here -->
                         <template v-if="product.variants.length > 0">
-                            <div
-                                class="flex flex-col border rounded border-gray-300"
-                            >
-                                <div class="overflow-x-scroll">
-                                    <div class="inline-block min-w-full">
-                                        <div class="overflow-hidden">
-                                            <table class="min-w-full">
-                                                <thead
-                                                    class="bg-white border-b"
-                                                >
-                                                    <tr
-                                                        class="whitespace-nowrap"
-                                                    >
-                                                        <th
-                                                            scope="col"
-                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                                        >
-                                                            #
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                                        >
-                                                            highlight image
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                                        >
-                                                            name
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                                        >
-                                                            stock
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                                                        >
-                                                            price
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <template
-                                                        v-for="(
-                                                            variant, key
-                                                        ) in product.variants"
-                                                        :key="variant"
+                            <div>
+                                <label
+                                    class="font-semibold text-sm inline-block mb-1 text-gray-700"
+                                    >Variants</label
+                                >
+                                <div
+                                    class="flex flex-col border rounded border-gray-300"
+                                >
+                                    <div class="overflow-x-scroll">
+                                        <div class="inline-block min-w-full">
+                                            <div class="overflow-hidden">
+                                                <table class="min-w-full">
+                                                    <thead
+                                                        class="bg-white border-b"
                                                     >
                                                         <tr
-                                                            class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                                                            class="whitespace-nowrap"
                                                         >
-                                                            <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                                                            <th
+                                                                scope="col"
+                                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                                                             >
-                                                                {{ key + 1 }}
-                                                            </td>
-                                                            <td
-                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                #
+                                                            </th>
+                                                            <th
+                                                                scope="col"
+                                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                                                             >
-                                                                <template
-                                                                    v-if="
-                                                                        previewVariantsUploaded[
-                                                                            key
-                                                                        ]
-                                                                    "
-                                                                >
-                                                                    <div
-                                                                        class="relative"
-                                                                    >
-                                                                        <img
-                                                                            :src="
-                                                                                previewVariantsUploaded[
-                                                                                    key
-                                                                                ]
-                                                                            "
-                                                                            alt="preview highlight image"
-                                                                            class="h-10 w-10 rounded object-cover mx-auto"
-                                                                        />
-                                                                        <XIcon
-                                                                            class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
-                                                                            @click="
-                                                                                removeVariantMediaPreview(
-                                                                                    key
-                                                                                )
-                                                                            "
-                                                                        />
-                                                                    </div>
-                                                                </template>
-                                                                <template
-                                                                    v-else
-                                                                >
-                                                                    <label
-                                                                        class="cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                                                    >
-                                                                        <input
-                                                                            type="file"
-                                                                            accept="image/*"
-                                                                            class="hidden"
-                                                                            @change="
-                                                                                handleVariantMediaUpload(
-                                                                                    $event,
-                                                                                    key
-                                                                                )
-                                                                            "
-                                                                        />
-                                                                        <PhotographIcon
-                                                                            class="h-8 self-center"
-                                                                        />
-                                                                    </label>
-                                                                </template>
-                                                            </td>
-                                                            <td
-                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                highlight image
+                                                            </th>
+                                                            <th
+                                                                scope="col"
+                                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                                                             >
-                                                                {{
-                                                                    variant.name
-                                                                }}
-                                                            </td>
-                                                            <td
-                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                name
+                                                            </th>
+                                                            <th
+                                                                scope="col"
+                                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                                                             >
-                                                                <!-- use formkit input and bind the stock here -->
-                                                                <FormKit
-                                                                    type="number"
-                                                                    validation="required|number"
-                                                                    :validation-label="
-                                                                        () => {
-                                                                            let position =
-                                                                                key +
-                                                                                1;
-                                                                            return (
-                                                                                'Stock variant ' +
-                                                                                position
-                                                                            );
-                                                                        }
-                                                                    "
-                                                                    input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
-                                                                    placeholder="0"
-                                                                    v-model="
-                                                                        variant.stock
-                                                                    "
-                                                                />
-                                                            </td>
-                                                            <td
-                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                stock
+                                                            </th>
+                                                            <th
+                                                                scope="col"
+                                                                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                                                             >
-                                                                <!-- use formkit input and bind the price here -->
-                                                                <FormKit
-                                                                    type="number"
-                                                                    step="any"
-                                                                    validation="required|number"
-                                                                    :validation-label="
-                                                                        () => {
-                                                                            let position =
-                                                                                key +
-                                                                                1;
-                                                                            return (
-                                                                                'Price variant ' +
-                                                                                position
-                                                                            );
-                                                                        }
-                                                                    "
-                                                                    input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
-                                                                    placeholder="0.00"
-                                                                    v-model="
-                                                                        variant.price
-                                                                    "
-                                                                />
-                                                            </td>
-                                                            <td
-                                                                class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
-                                                            >
-                                                                <FormKit
-                                                                    type="button"
-                                                                    input-class="$reset bg-gray-200 border-transparent flex font-medium hover:text-red-500 px-2 py-2 rounded text-gray-500 text-sm"
-                                                                    label="delete"
-                                                                />
-                                                            </td>
+                                                                price
+                                                            </th>
                                                         </tr>
-                                                    </template>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <template
+                                                            v-for="(
+                                                                variant, key
+                                                            ) in product.variants"
+                                                            :key="variant"
+                                                        >
+                                                            <tr
+                                                                class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                                                            >
+                                                                <td
+                                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                                                                >
+                                                                    {{
+                                                                        key + 1
+                                                                    }}
+                                                                </td>
+                                                                <td
+                                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                >
+                                                                    <template
+                                                                        v-if="
+                                                                            previewVariantsUploaded[
+                                                                                key
+                                                                            ]
+                                                                        "
+                                                                    >
+                                                                        <div
+                                                                            class="relative"
+                                                                        >
+                                                                            <img
+                                                                                :src="
+                                                                                    previewVariantsUploaded[
+                                                                                        key
+                                                                                    ]
+                                                                                "
+                                                                                alt="preview highlight image"
+                                                                                class="h-10 w-10 rounded object-cover mx-auto"
+                                                                            />
+                                                                            <XIcon
+                                                                                class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
+                                                                                @click="
+                                                                                    removeVariantMediaPreview(
+                                                                                        key
+                                                                                    )
+                                                                                "
+                                                                            />
+                                                                        </div>
+                                                                    </template>
+                                                                    <template
+                                                                        v-else
+                                                                    >
+                                                                        <label
+                                                                            class="cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                                        >
+                                                                            <input
+                                                                                type="file"
+                                                                                accept="image/*"
+                                                                                class="hidden"
+                                                                                @change="
+                                                                                    handleVariantMediaUpload(
+                                                                                        $event,
+                                                                                        key
+                                                                                    )
+                                                                                "
+                                                                            />
+                                                                            <PhotographIcon
+                                                                                class="h-8 self-center"
+                                                                            />
+                                                                        </label>
+                                                                    </template>
+                                                                </td>
+                                                                <td
+                                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                >
+                                                                    {{
+                                                                        variant.name
+                                                                    }}
+                                                                </td>
+                                                                <td
+                                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                >
+                                                                    <FormKit
+                                                                        type="number"
+                                                                        validation="required|number"
+                                                                        :validation-label="
+                                                                            () => {
+                                                                                let position =
+                                                                                    key +
+                                                                                    1;
+                                                                                return (
+                                                                                    'Stock variant ' +
+                                                                                    position
+                                                                                );
+                                                                            }
+                                                                        "
+                                                                        input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
+                                                                        placeholder="0"
+                                                                        v-model="
+                                                                            variant.stock
+                                                                        "
+                                                                    />
+                                                                </td>
+                                                                <td
+                                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                >
+                                                                    <FormKit
+                                                                        type="number"
+                                                                        step="any"
+                                                                        validation="required|number"
+                                                                        :validation-label="
+                                                                            () => {
+                                                                                let position =
+                                                                                    key +
+                                                                                    1;
+                                                                                return (
+                                                                                    'Price variant ' +
+                                                                                    position
+                                                                                );
+                                                                            }
+                                                                        "
+                                                                        input-class="$reset appearance-none block border border-gray-300 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 formkit-input placeholder-gray-400 px-3 py-2 rounded-md shadow-sm sm:text-sm w-32"
+                                                                        placeholder="0.00"
+                                                                        v-model="
+                                                                            variant.price
+                                                                        "
+                                                                    />
+                                                                </td>
+                                                                <td
+                                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                >
+                                                                    <TrashIcon
+                                                                        class="h-5 w-5 cursor-pointer"
+                                                                        @click="deleteVariant(key)"
+                                                                    />
+                                                                </td>
+                                                            </tr>
+                                                        </template>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -891,6 +895,7 @@ export default {
                         filePath: null,
                         stock: null,
                         price: null,
+                        isDelete: false
                     });
                 });
             }
@@ -903,7 +908,7 @@ export default {
                                 this.$inertia.patch(
                                     "temp/media",
                                     {
-                                        filePath: variants[i].filePath
+                                        filePath: variants[i].filePath,
                                     },
                                     {
                                         preserveScroll: true,
@@ -917,6 +922,7 @@ export default {
                                 filePath: null,
                                 stock: null,
                                 price: null,
+                                isDelete: false
                             };
                         }
                     } else {
@@ -925,6 +931,7 @@ export default {
                             filePath: null,
                             stock: null,
                             price: null,
+                            isDelete: false
                         });
                     }
                 }
@@ -938,6 +945,10 @@ export default {
                     }
                 }
             }
+        },
+
+        deleteVariant(element) {
+            console.log("delete this " + element);
         },
 
         handleVariantMediaUpload(event, key) {
