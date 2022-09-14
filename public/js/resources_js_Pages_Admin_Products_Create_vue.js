@@ -15,6 +15,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_Tiptap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Shared/Tiptap.vue */ "./resources/js/Shared/Tiptap.vue");
 /* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/TrashIcon.js");
 /* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/UploadIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/PhotographIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/XIcon.js");
 
 
 
@@ -23,7 +25,9 @@ __webpack_require__.r(__webpack_exports__);
     SideNav: _Shared_SideNav_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Tiptap: _Shared_Tiptap_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     TrashIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
-    UploadIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__["default"]
+    UploadIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
+    PhotographIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
+    XIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: {
     categories: Object
@@ -42,7 +46,8 @@ __webpack_require__.r(__webpack_exports__);
         options: [],
         variants: []
       }),
-      previewMediaUploaded: []
+      previewMediaUploaded: [],
+      previewVariantsUploaded: []
     };
   },
   watch: {
@@ -256,7 +261,12 @@ __webpack_require__.r(__webpack_exports__);
                 imageUrl: null,
                 stock: null,
                 price: null
-              };
+              }; // remove the previewVariantsMediaUploaded
+
+              if (this.previewVariantsUploaded.length > 0) {
+                this.previewVariantsUploaded.splice(_i2, 1);
+              } // remove the file in the temp storage
+
             }
           } else {
             variants.push({
@@ -277,6 +287,14 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       }
+    },
+    handleVariantMediaUpload: function handleVariantMediaUpload(event, key) {
+      var uploadedVariantMedia = event.target.files[0]; // send to temp storage
+
+      this.previewVariantsUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
+    },
+    removeVariantMediaPreview: function removeVariantMediaPreview(key) {
+      this.previewVariantsUploaded.splice(key, 1); // remove file from temp storage
     },
     editOption: function editOption(objectKey) {
       this.product.options[objectKey].isSaved = false;
@@ -588,23 +606,29 @@ var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_34 = {
   "class": "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
 };
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_35 = {
   "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
-}, " upload file here ", -1
-/* HOISTED */
-);
-
+};
 var _hoisted_36 = {
-  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+  key: 0,
+  "class": "relative"
 };
-var _hoisted_37 = {
-  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
-};
+var _hoisted_37 = ["src"];
 var _hoisted_38 = {
+  key: 1,
+  "class": "cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+};
+var _hoisted_39 = ["onChange"];
+var _hoisted_40 = {
   "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
 };
-var _hoisted_39 = {
+var _hoisted_41 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_42 = {
+  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+};
+var _hoisted_43 = {
   "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -619,6 +643,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_UploadIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("UploadIcon");
 
   var _component_TrashIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TrashIcon");
+
+  var _component_XIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("XIcon");
+
+  var _component_PhotographIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PhotographIcon");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Create Product"
@@ -983,9 +1011,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(key + 1), 1
         /* TEXT */
-        ), _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variant.name), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_35, [$data.previewVariantsUploaded[key] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: $data.previewVariantsUploaded[key],
+          alt: "preview highlight image",
+          "class": "h-10 w-10 rounded object-cover mx-auto"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XIcon, {
+          "class": "absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full",
+          onClick: function onClick($event) {
+            return $options.removeVariantMediaPreview(key);
+          }
+        }, null, 8
+        /* PROPS */
+        , ["onClick"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+          type: "file",
+          accept: "image/*",
+          "class": "hidden",
+          onChange: function onChange($event) {
+            return $options.handleVariantMediaUpload($event, key);
+          }
+        }, null, 40
+        /* PROPS, HYDRATE_EVENTS */
+        , _hoisted_39), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PhotographIcon, {
+          "class": "h-8 self-center"
+        })]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variant.name), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" use formkit input and bind the stock here "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" use formkit input and bind the stock here "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
           type: "number",
           validation: "required|number",
           "validation-label": function validationLabel() {
@@ -1000,7 +1052,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }
         }, null, 8
         /* PROPS */
-        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" use formkit input and bind the price here "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" use formkit input and bind the price here "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
           type: "number",
           step: "any",
           validation: "required|number",
@@ -1016,7 +1068,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }
         }, null, 8
         /* PROPS */
-        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
           type: "button",
           "input-class": "$reset bg-gray-200 border-transparent flex font-medium hover:text-red-500 px-2 py-2 rounded text-gray-500 text-sm",
           label: "delete"
