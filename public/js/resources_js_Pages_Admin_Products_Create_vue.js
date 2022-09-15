@@ -227,7 +227,7 @@ __webpack_require__.r(__webpack_exports__);
         if (_i !== 0) {
           variantsCombined.flatMap(function (d) {
             generatedOptionsValues[_i].map(function (v) {
-              temp.push(d + " - " + v);
+              temp.push(d + " / " + v);
             });
           });
           variantsCombined = temp;
