@@ -17,6 +17,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/UploadIcon.js");
 /* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/PhotographIcon.js");
 /* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/XIcon.js");
+/* harmony import */ var _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @heroicons/vue/outline */ "./node_modules/@heroicons/vue/outline/esm/ReplyIcon.js");
 
 
 
@@ -27,7 +28,8 @@ __webpack_require__.r(__webpack_exports__);
     TrashIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_2__["default"],
     UploadIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_3__["default"],
     PhotographIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_4__["default"],
-    XIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__["default"]
+    XIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_5__["default"],
+    ReplyIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   props: {
     categories: Object
@@ -296,10 +298,43 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     deleteVariant: function deleteVariant(element) {
-      console.log("delete this " + element);
+      var _this4 = this;
+
+      var variant = this.product.variants[element];
+      var options = variant.name.split(" / ");
+      variant.isDelete = true;
+      options.map(function (v, k) {
+        var hasOtherVariant = false;
+
+        _this4.product.variants.forEach(function (el) {
+          if (!el.isDelete) {
+            if (el.name.includes(v)) {
+              hasOtherVariant = true;
+            }
+          }
+        });
+
+        if (!hasOtherVariant) {
+          var optionValues = _this4.product.options[k].values;
+          optionValues.map(function (optV, optVK) {
+            if (optV === v) {
+              optionValues.splice(optVK, 1);
+
+              _this4.generateVariants();
+            }
+
+            if (optionValues.length === 1 && optionValues.includes("")) {
+              _this4.removeOption(k);
+            }
+          });
+        }
+      });
+    },
+    unDeleteVariant: function unDeleteVariant(element) {
+      this.product.variants[element].isDelete = false;
     },
     handleVariantMediaUpload: function handleVariantMediaUpload(event, key) {
-      var _this4 = this;
+      var _this5 = this;
 
       var uploadedVariantMedia = event.target.files[0];
       this.$inertia.post("temp/media", {
@@ -307,17 +342,17 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess(response) {
-          _this4.previewVariantsUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
-          _this4.product.variants[key].filePath = response.props.flash.success;
+          _this5.previewVariantsUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
+          _this5.product.variants[key].filePath = response.props.flash.success;
 
-          _this4.$notify({
+          _this5.$notify({
             group: "success",
             title: "Success",
             text: "Highlight image uploaded"
           }, 3500);
         },
         onError: function onError() {
-          _this4.$notify({
+          _this5.$notify({
             group: "error",
             title: "Error",
             text: "Something went wrong, Please try again"
@@ -326,24 +361,24 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     removeVariantMediaPreview: function removeVariantMediaPreview(key) {
-      var _this5 = this;
+      var _this6 = this;
 
       this.$inertia.patch("temp/media", {
         filePath: this.product.variants[key].filePath
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this5.previewVariantsUploaded[key] = undefined;
-          _this5.product.variants[key].filePath = null;
+          _this6.previewVariantsUploaded[key] = undefined;
+          _this6.product.variants[key].filePath = null;
 
-          _this5.$notify({
+          _this6.$notify({
             group: "success",
             title: "Success",
             text: "Highlight image removed"
           }, 3500);
         },
         onError: function onError() {
-          _this5.$notify({
+          _this6.$notify({
             group: "error",
             title: "Error",
             text: "Something went wrong, please try again"
@@ -675,17 +710,18 @@ var _hoisted_37 = {
 };
 var _hoisted_38 = {
   key: 0,
+  "class": "flex flex-col"
+};
+var _hoisted_39 = {
+  key: 0,
   "class": "relative"
 };
-var _hoisted_39 = ["src"];
-var _hoisted_40 = {
+var _hoisted_40 = ["src"];
+var _hoisted_41 = {
   key: 1,
   "class": "cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 };
-var _hoisted_41 = ["onChange"];
-var _hoisted_42 = {
-  "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
-};
+var _hoisted_42 = ["onChange"];
 var _hoisted_43 = {
   "class": "text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
 };
@@ -708,9 +744,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_TrashIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TrashIcon");
 
+  var _component_PhotographIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PhotographIcon");
+
   var _component_XIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("XIcon");
 
-  var _component_PhotographIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PhotographIcon");
+  var _component_ReplyIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ReplyIcon");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Create Product"
@@ -1075,20 +1113,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(key + 1), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_37, [$data.previewVariantsUploaded[key] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_37, [variant.isDelete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PhotographIcon, {
+          "class": "h-8 self-center"
+        })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+          key: 1
+        }, [$data.previewVariantsUploaded[key] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
           src: $data.previewVariantsUploaded[key],
           alt: "preview highlight image",
           "class": "h-10 w-10 rounded object-cover mx-auto"
         }, null, 8
         /* PROPS */
-        , _hoisted_39), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XIcon, {
+        , _hoisted_40), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XIcon, {
           "class": "absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full",
           onClick: function onClick($event) {
             return $options.removeVariantMediaPreview(key);
           }
         }, null, 8
         /* PROPS */
-        , ["onClick"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        , ["onClick"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
           type: "file",
           accept: "image/*",
           "class": "hidden",
@@ -1097,13 +1139,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }
         }, null, 40
         /* PROPS, HYDRATE_EVENTS */
-        , _hoisted_41), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PhotographIcon, {
+        , _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PhotographIcon, {
           "class": "h-8 self-center"
-        })]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variant.name), 1
-        /* TEXT */
+        })]))], 2112
+        /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+        ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['text-sm  px-6 py-4 whitespace-nowrap', variant.isDelete ? 'line-through text-gray-700' : 'text-gray-900'])
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variant.name), 3
+        /* TEXT, CLASS */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
           type: "number",
-          validation: "required|number",
+          validation: variant.isDelete ? '' : 'required|number',
+          disabled: variant.isDelete,
           "validation-label": function validationLabel() {
             var position = key + 1;
             return 'Stock variant ' + position;
@@ -1116,10 +1163,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }
         }, null, 8
         /* PROPS */
-        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        , ["validation", "disabled", "validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
           type: "number",
           step: "any",
-          validation: "required|number",
+          validation: variant.isDelete ? '' : 'required|number',
+          disabled: variant.isDelete,
           "validation-label": function validationLabel() {
             var position = key + 1;
             return 'Price variant ' + position;
@@ -1132,14 +1180,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }
         }, null, 8
         /* PROPS */
-        , ["validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TrashIcon, {
+        , ["validation", "disabled", "validation-label", "modelValue", "onUpdate:modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_45, [variant.isDelete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ReplyIcon, {
+          key: 0,
+          "class": "h-5 w-5 cursor-pointer",
+          onClick: function onClick($event) {
+            return $options.unDeleteVariant(key);
+          }
+        }, null, 8
+        /* PROPS */
+        , ["onClick"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_TrashIcon, {
+          key: 1,
           "class": "h-5 w-5 cursor-pointer",
           onClick: function onClick($event) {
             return $options.deleteVariant(key);
           }
         }, null, 8
         /* PROPS */
-        , ["onClick"])])]);
+        , ["onClick"]))])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])];
