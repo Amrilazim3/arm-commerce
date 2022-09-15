@@ -503,58 +503,80 @@
                                                                 >
                                                                     <template
                                                                         v-if="
-                                                                            previewVariantsUploaded[
-                                                                                key
-                                                                            ]
+                                                                            variant.isDelete
                                                                         "
                                                                     >
-                                                                        <div
-                                                                            class="relative"
-                                                                        >
-                                                                            <img
-                                                                                :src="
-                                                                                    previewVariantsUploaded[
-                                                                                        key
-                                                                                    ]
-                                                                                "
-                                                                                alt="preview highlight image"
-                                                                                class="h-10 w-10 rounded object-cover mx-auto"
-                                                                            />
-                                                                            <XIcon
-                                                                                class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
-                                                                                @click="
-                                                                                    removeVariantMediaPreview(
-                                                                                        key
-                                                                                    )
-                                                                                "
-                                                                            />
-                                                                        </div>
-                                                                    </template>
-                                                                    <template
-                                                                        v-else
-                                                                    >
                                                                         <label
-                                                                            class="cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                                            class="flex flex-col"
                                                                         >
-                                                                            <input
-                                                                                type="file"
-                                                                                accept="image/*"
-                                                                                class="hidden"
-                                                                                @change="
-                                                                                    handleVariantMediaUpload(
-                                                                                        $event,
-                                                                                        key
-                                                                                    )
-                                                                                "
-                                                                            />
                                                                             <PhotographIcon
                                                                                 class="h-8 self-center"
                                                                             />
                                                                         </label>
                                                                     </template>
+                                                                    <template
+                                                                        v-else
+                                                                    >
+                                                                        <template
+                                                                            v-if="
+                                                                                previewVariantsUploaded[
+                                                                                    key
+                                                                                ]
+                                                                            "
+                                                                        >
+                                                                            <div
+                                                                                class="relative"
+                                                                            >
+                                                                                <img
+                                                                                    :src="
+                                                                                        previewVariantsUploaded[
+                                                                                            key
+                                                                                        ]
+                                                                                    "
+                                                                                    alt="preview highlight image"
+                                                                                    class="h-10 w-10 rounded object-cover mx-auto"
+                                                                                />
+                                                                                <XIcon
+                                                                                    class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
+                                                                                    @click="
+                                                                                        removeVariantMediaPreview(
+                                                                                            key
+                                                                                        )
+                                                                                    "
+                                                                                />
+                                                                            </div>
+                                                                        </template>
+                                                                        <template
+                                                                            v-else
+                                                                        >
+                                                                            <label
+                                                                                class="cursor-pointer flex flex-col focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                                                            >
+                                                                                <input
+                                                                                    type="file"
+                                                                                    accept="image/*"
+                                                                                    class="hidden"
+                                                                                    @change="
+                                                                                        handleVariantMediaUpload(
+                                                                                            $event,
+                                                                                            key
+                                                                                        )
+                                                                                    "
+                                                                                />
+                                                                                <PhotographIcon
+                                                                                    class="h-8 self-center"
+                                                                                />
+                                                                            </label>
+                                                                        </template>
+                                                                    </template>
                                                                 </td>
                                                                 <td
-                                                                    class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
+                                                                    :class="[
+                                                                        'text-sm  px-6 py-4 whitespace-nowrap',
+                                                                        variant.isDelete
+                                                                            ? 'line-through text-gray-700'
+                                                                            : 'text-gray-900',
+                                                                    ]"
                                                                 >
                                                                     {{
                                                                         variant.name
@@ -565,7 +587,14 @@
                                                                 >
                                                                     <FormKit
                                                                         type="number"
-                                                                        validation="required|number"
+                                                                        :validation="
+                                                                            variant.isDelete
+                                                                                ? ''
+                                                                                : 'required|number'
+                                                                        "
+                                                                        :disabled="
+                                                                            variant.isDelete
+                                                                        "
                                                                         :validation-label="
                                                                             () => {
                                                                                 let position =
@@ -590,7 +619,14 @@
                                                                     <FormKit
                                                                         type="number"
                                                                         step="any"
-                                                                        validation="required|number"
+                                                                        :validation="
+                                                                            variant.isDelete
+                                                                                ? ''
+                                                                                : 'required|number'
+                                                                        "
+                                                                        :disabled="
+                                                                            variant.isDelete
+                                                                        "
                                                                         :validation-label="
                                                                             () => {
                                                                                 let position =
@@ -612,10 +648,32 @@
                                                                 <td
                                                                     class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap"
                                                                 >
-                                                                    <TrashIcon
-                                                                        class="h-5 w-5 cursor-pointer"
-                                                                        @click="deleteVariant(key)"
-                                                                    />
+                                                                    <template
+                                                                        v-if="
+                                                                            variant.isDelete
+                                                                        "
+                                                                    >
+                                                                        <ReplyIcon
+                                                                            class="h-5 w-5 cursor-pointer"
+                                                                            @click="
+                                                                                unDeleteVariant(
+                                                                                    key
+                                                                                )
+                                                                            "
+                                                                        />
+                                                                    </template>
+                                                                    <template
+                                                                        v-else
+                                                                    >
+                                                                        <TrashIcon
+                                                                            class="h-5 w-5 cursor-pointer"
+                                                                            @click="
+                                                                                deleteVariant(
+                                                                                    key
+                                                                                )
+                                                                            "
+                                                                        />
+                                                                    </template>
                                                                 </td>
                                                             </tr>
                                                         </template>
@@ -642,6 +700,7 @@ import {
     UploadIcon,
     PhotographIcon,
     XIcon,
+    ReplyIcon,
 } from "@heroicons/vue/outline";
 
 export default {
@@ -652,6 +711,7 @@ export default {
         UploadIcon,
         PhotographIcon,
         XIcon,
+        ReplyIcon,
     },
 
     props: {
@@ -895,7 +955,7 @@ export default {
                         filePath: null,
                         stock: null,
                         price: null,
-                        isDelete: false
+                        isDelete: false,
                     });
                 });
             }
@@ -922,7 +982,7 @@ export default {
                                 filePath: null,
                                 stock: null,
                                 price: null,
-                                isDelete: false
+                                isDelete: false,
                             };
                         }
                     } else {
@@ -931,7 +991,7 @@ export default {
                             filePath: null,
                             stock: null,
                             price: null,
-                            isDelete: false
+                            isDelete: false,
                         });
                     }
                 }
@@ -948,7 +1008,42 @@ export default {
         },
 
         deleteVariant(element) {
-            console.log("delete this " + element);
+            let variant = this.product.variants[element];
+            let options = variant.name.split(" / ");
+            variant.isDelete = true;
+
+            options.map((v, k) => {
+                let hasOtherVariant = false;
+
+                this.product.variants.forEach((el) => {
+                    if (!el.isDelete) {
+                        if (el.name.includes(v)) {
+                            hasOtherVariant = true;
+                        }
+                    }
+                });
+
+                if (!hasOtherVariant) {
+                    let optionValues = this.product.options[k].values;
+
+                    optionValues.map((optV, optVK) => {
+                        if (optV === v) {
+                            optionValues.splice(optVK, 1);
+                            this.generateVariants();
+                        }
+                        if (
+                            optionValues.length === 1 &&
+                            optionValues.includes("")
+                        ) {
+                            this.removeOption(k);
+                        }
+                    });
+                }
+            });
+        },
+
+        unDeleteVariant(element) {
+            this.product.variants[element].isDelete = false;
         },
 
         handleVariantMediaUpload(event, key) {
