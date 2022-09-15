@@ -1588,11 +1588,11 @@ select {
 .h-4 {
   height: 1rem;
 }
-.h-10 {
-  height: 2.5rem;
-}
 .h-8 {
   height: 2rem;
+}
+.h-10 {
+  height: 2.5rem;
 }
 .h-72 {
   height: 18rem;
