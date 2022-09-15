@@ -1017,7 +1017,7 @@ export default {
 
                 this.product.variants.forEach((el) => {
                     if (!el.isDelete) {
-                        if (el.name.includes(v)) {
+                        if (el.name.includes(v) && el.name.includes(" / ")) {
                             hasOtherVariant = true;
                         }
                     }
