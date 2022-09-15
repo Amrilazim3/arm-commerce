@@ -878,7 +878,7 @@ export default {
                 if (i !== 0) {
                     variantsCombined.flatMap((d) => {
                         generatedOptionsValues[i].map((v) => {
-                            temp.push(d + " - " + v);
+                            temp.push(d + " / " + v);
                         });
                     });
 
