@@ -308,7 +308,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this4.product.variants.forEach(function (el) {
           if (!el.isDelete) {
-            if (el.name.includes(v)) {
+            if (el.name.includes(v) && el.name.includes(" / ")) {
               hasOtherVariant = true;
             }
           }
