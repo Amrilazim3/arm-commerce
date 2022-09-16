@@ -67,22 +67,38 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sortByCreated: function sortByCreated(option) {
-      this.params.created_at = option;
-      var holder = this.params.stock;
-      this.params.stock = null;
+      if (option == this.params.created_at) {
+        this.params.created_at = null;
+      } else {
+        this.params.created_at = option;
+        this.params.stock = null;
+      }
+
+      if (this.$page.url.includes("page")) {
+        this.params.page = this.products.current_page;
+      }
+
       var params = this.params;
       params = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.pickBy)(params);
-      this.$inertia.get(this.$page.url.includes("stock") ? this.$page.url.replace("stock=" + holder, "") : this.$page.url, params, {
+      this.$inertia.get('/admin/products', params, {
         preserveState: true
       });
     },
     sortByStock: function sortByStock(option) {
-      var holder = this.params.created_at;
-      this.params.created_at = null;
-      this.params.stock = option;
+      if (option == this.params.stock) {
+        this.params.stock = null;
+      } else {
+        this.params.created_at = null;
+        this.params.stock = option;
+      }
+
+      if (this.$page.url.includes("page")) {
+        this.params.page = this.products.current_page;
+      }
+
       var params = this.params;
       params = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.pickBy)(params);
-      this.$inertia.get(this.$page.url.includes("created_at") ? this.$page.url.replace("created_at=" + holder, "") : this.$page.url, params, {
+      this.$inertia.get('/admin/products', params, {
         preserveState: true
       });
     },
@@ -344,7 +360,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Products"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1", $props.products.data.length == 0 ? 'mb-20' : ''])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1", $props.products.data.length <= 5 ? 'mb-20' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: "/admin/products/create",
     "class": "flex items-center"
