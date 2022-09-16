@@ -429,7 +429,6 @@
                                 />
                             </template>
                         </div>
-                        <!-- display all variants data here -->
                         <template v-if="product.variants.length > 0">
                             <div>
                                 <label
@@ -590,7 +589,7 @@
                                                                         :validation="
                                                                             variant.isDelete
                                                                                 ? ''
-                                                                                : 'required|number'
+                                                                                : 'required|number|min:0'
                                                                         "
                                                                         :disabled="
                                                                             variant.isDelete
@@ -622,7 +621,7 @@
                                                                         :validation="
                                                                             variant.isDelete
                                                                                 ? ''
-                                                                                : 'required|number'
+                                                                                : 'required|number|min:0'
                                                                         "
                                                                         :disabled="
                                                                             variant.isDelete
