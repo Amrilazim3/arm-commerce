@@ -4,7 +4,7 @@
         <SideNav />
         <div
             class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
-            :class="products.data.length == 0 ? 'mb-20' : ''"
+            :class="products.data.length <= 5 ? 'mb-20' : ''"
         >
             <div class="flex justify-between">
                 <h1 class="text-xl font-semibold text-gray-900">Store</h1>
@@ -372,17 +372,22 @@ export default {
 
     methods: {
         sortByCreated(option) {
-            this.params.created_at = option;
-            let holder = this.params.stock;
-            this.params.stock = null;
+            if (option == this.params.created_at) {
+                this.params.created_at = null;
+            } else {
+                this.params.created_at = option;
+                this.params.stock = null;
+            }
+
+            if (this.$page.url.includes("page")) {
+                this.params.page = this.products.current_page;
+            }
 
             let params = this.params;
             params = pickBy(params);
 
             this.$inertia.get(
-                this.$page.url.includes("stock")
-                    ? this.$page.url.replace("stock=" + holder, "")
-                    : this.$page.url,
+                '/admin/products',
                 params,
                 {
                     preserveState: true,
@@ -391,17 +396,22 @@ export default {
         },
 
         sortByStock(option) {
-            let holder = this.params.created_at;
-            this.params.created_at = null;
-            this.params.stock = option;
+            if (option == this.params.stock) {
+                this.params.stock = null;
+            } else {
+                this.params.created_at = null;
+                this.params.stock = option;
+            }
+
+            if (this.$page.url.includes("page")) {
+                this.params.page = this.products.current_page;
+            }
 
             let params = this.params;
             params = pickBy(params);
 
             this.$inertia.get(
-                this.$page.url.includes("created_at")
-                    ? this.$page.url.replace("created_at=" + holder, "")
-                    : this.$page.url,
+                '/admin/products',
                 params,
                 {
                     preserveState: true,
