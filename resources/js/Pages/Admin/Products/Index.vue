@@ -4,7 +4,7 @@
         <SideNav />
         <div
             class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
-            :class="products.data.length <= 5 ? 'mb-20' : ''"
+            :class="products.data.length <= 5 ? 'mb-36' : ''"
         >
             <div class="flex justify-between">
                 <h1 class="text-xl font-semibold text-gray-900">Store</h1>
@@ -284,14 +284,14 @@
                                                     class="flex justify-end space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                                 >
                                                     <button
+                                                        type="button"
                                                         class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
-                                                        @click.prevent="
-                                                            editProduct(
-                                                                product.slug
-                                                            )
-                                                        "
                                                     >
-                                                        Edit
+                                                        <Link
+                                                            :href="'/admin/products/' + product.slug + '/edit'"
+                                                        >
+                                                            Edit
+                                                        </Link>
                                                     </button>
                                                     <button
                                                         class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
