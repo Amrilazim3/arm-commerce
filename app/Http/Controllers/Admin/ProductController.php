@@ -5,16 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\ProductImage;
+use App\Models\ProductVariant;
 use App\Models\Variant;
+use App\Models\VariantValue;
 use App\Rules\MediaValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
-
-use function GuzzleHttp\Promise\all;
 
 class ProductController extends Controller
 {
@@ -48,7 +49,7 @@ class ProductController extends Controller
     {
         $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
             return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
-        });      
+        });
 
         return Inertia::render('Admin/Products/Create', [
             'categories' => $categories,
@@ -83,14 +84,73 @@ class ProductController extends Controller
         ]);
 
         foreach ($request->media as $tempPath) {
-            if (Storage::disk('public')->exists($tempPath)) {
-                $mediaAbsolutePath = str_replace('temp/', '', $tempPath);
-                Storage::disk('public')->move($tempPath, 'product/' . $mediaAbsolutePath);
+            $this->changeMediaFileLocation($tempPath, $product->id);
+        }
 
-                ProductImage::create([
-                    'product_id' => $product->id,
-                    'url' => asset('storage/product/' . $mediaAbsolutePath)
+        // insert data into table 'variants', 'variant_values', 'product_variants', 'product_details' 
+        if (count($request->variants) > 0) {
+            $variantIds = [];
+            for ($x = 0; $x < count($request->options); $x++) {
+                $option = $request->options[$x];
+                $optionName = ucwords(strtolower($option['name']));
+
+                
+                $variant = Variant::firstOrCreate([
+                    'name' => $optionName
                 ]);
+                $variantIds[] = $variant->id;
+
+                foreach ($option['values'] as $value) {
+                    if ($value !== null) {
+                        $VariantValuechecker = VariantValue::where('value', $value)
+                            ->where('variant_id', $variant->id)
+                            ->first();
+
+                        if ($VariantValuechecker == null) {
+                            VariantValue::create([
+                                'variant_id' => $variant->id,
+                                'value' => ucwords(strtolower($value))
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            for ($j = 0; $j < count($request->variants); $j++) {
+                $singleVariant = $request->variants[$j];
+
+                if ($singleVariant['filePath']) {
+                    $variantImage = $this->changeMediaFileLocation(
+                        $singleVariant['filePath'],
+                        $product->id
+                    );
+                }
+
+                $productVariant = ProductVariant::create([
+                    'product_id' => $product->id,
+                    'name' => strtolower($singleVariant['name']),
+                    'image_url' => $singleVariant['filePath'] == null ?
+                        null :
+                        $variantImage->url,
+                    'stock' => $singleVariant['stock'],
+                    'price' => $singleVariant['price']
+                ]);
+
+                $variantOptions = explode(
+                    ' / ',
+                    strtolower($singleVariant['name'])
+                );
+
+                foreach ($variantOptions as $key => $option) {
+                    $variantValueRes = VariantValue::where('value', $option)
+                        ->where('variant_id', $variantIds[$key])
+                        ->first();
+
+                    ProductDetail::create([
+                        'product_variant_id' => $productVariant->id,
+                        'variant_value_id' => $variantValueRes->id,
+                    ]);
+                }
             }
         }
 
@@ -155,5 +215,18 @@ class ProductController extends Controller
         }
 
         return redirect()->back()->withErrors('failed to removed.');
+    }
+
+    protected function changeMediaFileLocation($tempPath, $productId)
+    {
+        if (Storage::disk('public')->exists($tempPath)) {
+            $mediaAbsolutePath = str_replace('temp/', '', $tempPath);
+            Storage::disk('public')->move($tempPath, 'product/' . $mediaAbsolutePath);
+
+            return ProductImage::create([
+                'product_id' => $productId,
+                'url' => asset('storage/product/' . $mediaAbsolutePath)
+            ]);
+        }
     }
 }
