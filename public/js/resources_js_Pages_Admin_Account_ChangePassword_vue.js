@@ -744,7 +744,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* STABLE */
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" large screen "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hidden lg:flex pt-20 justify-end w-2/12", _ctx.$page.component.includes('Admin/Products/Create') ? 'absolute' : 'h-full'])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hidden lg:flex pt-20 justify-end w-2/12", _ctx.$page.component.includes('Admin/Products/Create') || _ctx.$page.component.includes('Admin/Products/Edit') ? 'absolute' : 'h-full'])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Disclosure, {
     key: 0,
     defaultOpen: _ctx.$page.component.includes('Admin/Account'),
