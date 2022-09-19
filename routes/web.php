@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
             Route::patch('/password/change', [AdminChangePasswordController::class, 'update'])->name('password.change.update');
         });
 
-        Route::resource('/products', AdminProductController::class);
+        Route::resource('/products', AdminProductController::class)->except('show');
         Route::post("/products/temp/media", [AdminProductController::class, 'handleMediaUpload'])->name('products.temp.media.store');
         Route::patch("/products/temp/media", [AdminProductController::class, 'handleMediaRemove'])->name('products.temp.media.update');
     });
