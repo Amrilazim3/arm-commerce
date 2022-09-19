@@ -10,4 +10,9 @@ class Variant extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function variantValues()
+    {
+        return $this->hasMany(VariantValue::class, 'variant_id');
+    }
 }
