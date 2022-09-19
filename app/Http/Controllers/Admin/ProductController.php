@@ -94,7 +94,7 @@ class ProductController extends Controller
                 $option = $request->options[$x];
                 $optionName = ucwords(strtolower($option['name']));
 
-                
+
                 $variant = Variant::firstOrCreate([
                     'name' => $optionName
                 ]);
@@ -157,18 +157,73 @@ class ProductController extends Controller
         return redirect('admin/products');
     }
 
-    public function show(Product $product)
-    {
-        return Inertia::render('Admin/Products/Show', [
-            'product' => $product->only(['name', 'description', 'slug', 'stock', 'price'])
-        ]);
-    }
-
     public function edit(Product $product)
     {
-        dd('edit product');
+        $optionsValues = [];
+        $variants = [];
+        $product->productVariants()->each(
+            function ($productVariantItem) use (&$variants, &$optionsValues) {
+                $variants[] = [
+                    'name' => $productVariantItem->name,
+                    'imageUrl' => $productVariantItem->image_url,
+                    'stock' => $productVariantItem->stock,
+                    'price' => $productVariantItem->price
+                ];
+                $optionsLimit = count($productVariantItem->productDetails);
 
-        return Inertia::render('Admin/Products/Edit');
+                $productVariantItem->productDetails()->each(
+                    function ($productDetailItem) use (&$optionsValues, $optionsLimit) {
+                        $productOptionValue = $productDetailItem->variantValue->value;
+                        $productOptionName = $productDetailItem->variantValue->variant->name;
+
+                        if (empty($optionsValues)) {
+                            $optionsValues[] = [
+                                'name' => $productOptionName,
+                                'values' => [$productOptionValue]
+                            ];
+                            return;
+                        }
+
+                        for ($i = 0; $i < $optionsLimit; $i++) {
+                            if ($optionsValues[$i]['name'] === $productOptionName) {
+                                if (!in_array($productOptionValue, $optionsValues[$i]['values'])) {
+                                    array_push($optionsValues[$i]['values'], $productOptionValue);
+                                    return;
+                                }
+                                return;
+                            }
+
+                            if ($optionsValues[$i]['name'] !== $productOptionName) {
+                                if (!array_key_exists($i + 1, $optionsValues) && $i + 1 < $optionsLimit) {
+                                    $optionsValues[] = [
+                                        'name' => $productOptionName,
+                                        'values' => [$productOptionValue]
+                                    ];
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                );
+            }
+        );
+
+        $media = [];
+        $product->images()->each(function ($imageItem) use (&$media) {
+            array_push($media, $imageItem->url);
+        });
+
+        return Inertia::render('Admin/Products/Edit', [
+            'product' => [
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'category' => $product->category->name,
+                'media' => $media,
+                'options' => $optionsValues,
+                'variants' => $variants
+            ]
+        ]);
     }
 
     public function update(Request $request, Product $product)
