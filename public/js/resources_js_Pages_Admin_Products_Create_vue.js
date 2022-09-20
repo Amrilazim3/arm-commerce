@@ -32,7 +32,7 @@ __webpack_require__.r(__webpack_exports__);
     ReplyIcon: _heroicons_vue_outline__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   props: {
-    categories: Object
+    categories: Array
   },
   data: function data() {
     return {
