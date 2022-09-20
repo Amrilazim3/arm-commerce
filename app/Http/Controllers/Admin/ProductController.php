@@ -179,7 +179,8 @@ class ProductController extends Controller
                         if (empty($optionsValues)) {
                             $optionsValues[] = [
                                 'name' => $productOptionName,
-                                'values' => [$productOptionValue]
+                                'values' => [$productOptionValue],
+                                'isSaved' => true,
                             ];
                             return;
                         }
@@ -197,7 +198,8 @@ class ProductController extends Controller
                                 if (!array_key_exists($i + 1, $optionsValues) && $i + 1 < $optionsLimit) {
                                     $optionsValues[] = [
                                         'name' => $productOptionName,
-                                        'values' => [$productOptionValue]
+                                        'values' => [$productOptionValue],
+                                        'isSaved' => true,
                                     ];
                                     return;
                                 }
@@ -213,16 +215,23 @@ class ProductController extends Controller
             array_push($media, $imageItem->url);
         });
 
+        $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
+            return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
+        });
+
         return Inertia::render('Admin/Products/Edit', [
-            'product' => [
+            'productData' => [
                 'id' => $product->id,
                 'name' => $product->name,
                 'description' => $product->description,
                 'category' => $product->category->name,
                 'media' => $media,
+                'stock' => $product->stock,
+                'price' => $product->price,
                 'options' => $optionsValues,
                 'variants' => $variants
-            ]
+            ],
+            'categories' => $categories,
         ]);
     }
 
