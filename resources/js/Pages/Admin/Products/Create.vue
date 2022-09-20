@@ -714,7 +714,7 @@ export default {
     },
 
     props: {
-        categories: Object,
+        categories: Array,
     },
 
     data() {
