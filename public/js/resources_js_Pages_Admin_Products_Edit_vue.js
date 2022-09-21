@@ -70,7 +70,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var uploadedMedia = event.target.files; // send data to the back end to be validate
 
-      this.$inertia.post("temp/media", {
+      this.$inertia.post("https://arm-commerce.com/admin/products/temp/media", {
         media: uploadedMedia
       }, {
         preserveScroll: true,
@@ -108,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
     handleProductMediaRemove: function handleProductMediaRemove(index) {
       var _this2 = this;
 
-      this.$inertia.patch("temp/media", {
+      this.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
         filePath: this.product.media[index]
       }, {
         preserveScroll: true,
@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
     editProduct: function editProduct() {
       var _this3 = this;
 
-      this.product.put("/admin/products/productIdAtauProductslug", {
+      this.product.put("/admin/products/".concat(this.product.slug), this.product, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
           _this3.$notify({
@@ -314,7 +314,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       var uploadedVariantMedia = event.target.files[0];
-      this.$inertia.post("temp/media", {
+      this.$inertia.post("https://arm-commerce.com/admin/products/temp/media", {
         variant: uploadedVariantMedia
       }, {
         preserveScroll: true,
@@ -340,7 +340,7 @@ __webpack_require__.r(__webpack_exports__);
     removeVariantMediaPreview: function removeVariantMediaPreview(key) {
       var _this6 = this;
 
-      this.$inertia.patch("temp/media", {
+      this.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
         filePath: this.product.variants[key].filePath
       }, {
         preserveScroll: true,
