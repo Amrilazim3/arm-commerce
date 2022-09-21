@@ -764,7 +764,7 @@ export default {
 
             // send data to the back end to be validate
             this.$inertia.post(
-                "temp/media",
+                "https://arm-commerce.com/admin/products/temp/media",
                 {
                     media: uploadedMedia,
                 },
@@ -817,7 +817,7 @@ export default {
 
         handleProductMediaRemove(index) {
             this.$inertia.patch(
-                "temp/media",
+                "https://arm-commerce.com/admin/products/temp/media",
                 { filePath: this.product.media[index] },
                 {
                     preserveScroll: true,
@@ -848,7 +848,9 @@ export default {
         },
 
         editProduct() {
-            this.product.put("/admin/products/productIdAtauProductslug", {
+            this.product.put(`/admin/products/${this.product.slug}`,
+            this.product,
+            {
                 preserveScroll: true,
                 onSuccess: () => {
                     this.$notify(
@@ -1040,7 +1042,7 @@ export default {
             var uploadedVariantMedia = event.target.files[0];
 
             this.$inertia.post(
-                "temp/media",
+                "https://arm-commerce.com/admin/products/temp/media",
                 {
                     variant: uploadedVariantMedia,
                 },
@@ -1076,7 +1078,7 @@ export default {
 
         removeVariantMediaPreview(key) {
             this.$inertia.patch(
-                "temp/media",
+                "https://arm-commerce.com/admin/products/temp/media",
                 { filePath: this.product.variants[key].filePath },
                 {
                     preserveScroll: true,
