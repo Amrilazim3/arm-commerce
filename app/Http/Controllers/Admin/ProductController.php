@@ -19,6 +19,36 @@ use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
+
+    const IMAGE_FORMAT = [
+        '.apng',
+        '.avif',
+        '.gif',
+        '.jpg',
+        '.jpeg',
+        '.jfif',
+        '.pjpeg',
+        '.pjp',
+        '.png',
+        '.svg',
+        '.webp',
+    ];
+    const VIDEO_FORMAT = [
+        '.mp4',
+        '.mov',
+        '.wmv',
+        '.avi',
+        '.avchd',
+        '.flv',
+        '.f4v',
+        '.swf',
+        '.mkv',
+        '.webm',
+        '.html5',
+        '.mepg-2',
+    ];
+
+
     public function index()
     {
         $products = Product::select([
@@ -161,16 +191,19 @@ class ProductController extends Controller
     {
         $optionsValues = [];
         $variants = [];
+        $previewVariantsUploadedData = [];
         $product->productVariants()->each(
-            function ($productVariantItem) use (&$variants, &$optionsValues) {
+            function ($productVariantItem) use (&$variants, &$optionsValues, &$previewVariantsUploadedData) {
                 $variants[] = [
                     'name' => $productVariantItem->name,
-                    'imageUrl' => $productVariantItem->image_url,
+                    'filePath' => str_replace(asset('storage') . '/', '', $productVariantItem->image_url),
                     'stock' => $productVariantItem->stock,
-                    'price' => $productVariantItem->price
+                    'price' => $productVariantItem->price,
+                    'isDelete' => false,
                 ];
-                $optionsLimit = count($productVariantItem->productDetails);
+                $previewVariantsUploadedData[] = $productVariantItem->image_url; 
 
+                $optionsLimit = count($productVariantItem->productDetails);
                 $productVariantItem->productDetails()->each(
                     function ($productDetailItem) use (&$optionsValues, $optionsLimit) {
                         $productOptionValue = $productDetailItem->variantValue->value;
@@ -211,8 +244,32 @@ class ProductController extends Controller
         );
 
         $media = [];
-        $product->images()->each(function ($imageItem) use (&$media) {
-            array_push($media, $imageItem->url);
+        $previewMediaUploadedData = [];
+        $product->images()->each(function ($imageItem) use (&$media, &$previewMediaUploadedData, &$previewVariantsUploadedData) {
+            if (in_array($imageItem->url, $previewVariantsUploadedData)) {
+                return;
+            }
+
+            foreach (self::IMAGE_FORMAT as $format) {
+                if (preg_match("/$format/i", $imageItem)) {
+                    $previewMediaUploadedData[] = [
+                        $imageItem->url,
+                        'image'
+                    ];
+                }
+            }
+        
+            foreach (self::VIDEO_FORMAT as $format) {
+                if (preg_match("/$format/i", $imageItem)) {
+                    $previewMediaUploadedData[] = [
+                        $imageItem->url,
+                        'video'
+                    ];
+                }
+            }
+
+            $imagePath = str_replace(asset('storage') . '/', '', $imageItem->url);
+            array_push($media, $imagePath);
         });
 
         $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
@@ -231,6 +288,8 @@ class ProductController extends Controller
                 'options' => $optionsValues,
                 'variants' => $variants
             ],
+            'previewMediaUploadedData' => $previewMediaUploadedData,
+            'previewVariantsUploadedData' => $previewVariantsUploadedData,
             'categories' => $categories,
         ]);
     }
