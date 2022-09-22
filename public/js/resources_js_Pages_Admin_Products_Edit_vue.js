@@ -34,16 +34,18 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     productData: Object,
     categories: Array,
-    previewMediaUploadedData: Array,
-    previewVariantsUploadedData: Array
+    previewProductMediaUploadedData: Array,
+    previewVariantsMediaUploadedData: Array
   },
   data: function data() {
     return {
       isCustomCategory: false,
       isHasOptions: false,
       product: this.$inertia.form(this.productData),
-      previewMediaUploaded: this.previewMediaUploadedData,
-      previewVariantsUploaded: this.previewVariantsUploadedData
+      previewProductMediaUploaded: this.previewProductMediaUploadedData,
+      previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
+      productMediaRemoved: [],
+      variantsMediaRemoved: []
     };
   },
   mounted: function mounted() {
@@ -82,12 +84,12 @@ __webpack_require__.r(__webpack_exports__);
               var reader = new FileReader();
               reader.readAsDataURL(item[1]);
               reader.addEventListener("load", function () {
-                this.previewMediaUploaded.push([reader.result, item[1].type]);
+                this.previewProductMediaUploaded.push([reader.result, item[1].type]);
               });
               return;
             }
 
-            _this.previewMediaUploaded.push([URL.createObjectURL(item[1]), item[1].type]);
+            _this.previewProductMediaUploaded.push([URL.createObjectURL(item[1]), item[1].type]);
           });
 
           _this.$notify({
@@ -108,6 +110,13 @@ __webpack_require__.r(__webpack_exports__);
     handleProductMediaRemove: function handleProductMediaRemove(index) {
       var _this2 = this;
 
+      if (this.product.media[index].includes('product')) {
+        this.productMediaRemoved.push(this.product.media[index]);
+        this.product.media.splice(index, 1);
+        this.previewProductMediaUploaded.splice(index, 1);
+        return;
+      }
+
       this.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
         filePath: this.product.media[index]
       }, {
@@ -115,7 +124,7 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess() {
           _this2.product.media.splice(index, 1);
 
-          _this2.previewMediaUploaded.splice(index, 1);
+          _this2.previewProductMediaUploaded.splice(index, 1);
 
           _this2.$notify({
             group: "success",
@@ -242,7 +251,7 @@ __webpack_require__.r(__webpack_exports__);
                 }, {
                   preserveScroll: true
                 });
-                this.previewVariantsUploaded[_i2] = undefined;
+                this.previewVariantsMediaUploaded[_i2] = undefined;
               }
 
               variants[_i2] = {
@@ -319,7 +328,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess(response) {
-          _this5.previewVariantsUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
+          _this5.previewVariantsMediaUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
           _this5.product.variants[key].filePath = response.props.flash.success;
 
           _this5.$notify({
@@ -340,12 +349,19 @@ __webpack_require__.r(__webpack_exports__);
     removeVariantMediaPreview: function removeVariantMediaPreview(key) {
       var _this6 = this;
 
+      if (this.product.variants[key].filePath.includes('product')) {
+        this.variantsRemoved.push(this.product.variants[key].filePath);
+        this.previewVariantsMediaUploaded[key] = undefined;
+        this.product.variants[key].filePath = null;
+        return;
+      }
+
       this.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
         filePath: this.product.variants[key].filePath
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this6.previewVariantsUploaded[key] = undefined;
+          _this6.previewVariantsMediaUploaded[key] = undefined;
           _this6.product.variants[key].filePath = null;
 
           _this6.$notify({
@@ -859,7 +875,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" handle image upload interaction method "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         multiple: "",
         type: "file",
         id: "product-media",
@@ -884,7 +900,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
+      , ["modelValue"])]), $data.previewProductMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewProductMediaUploaded, function (media, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           key: index,
           "class": "flex w-full justify-between mb-2 bg-gray-50 border rounded-md border-gray-300 py-2 space-x-2 divide-x divide-gray-300"
@@ -1094,8 +1110,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "h-8 self-center"
         })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
           key: 1
-        }, [$data.previewVariantsUploaded[key] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          src: $data.previewVariantsUploaded[key],
+        }, [$data.previewVariantsMediaUploaded[key] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: $data.previewVariantsMediaUploaded[key],
           alt: "preview highlight image",
           "class": "h-10 w-10 rounded object-cover mx-auto"
         }, null, 8
