@@ -88,20 +88,9 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'max:250'],
-            'description' => ['required', 'min:100'],
-            'category' => ['required'],
-            'stock' => ['required'],
-            'price' => ['required'],
-            'media' => ['array', new MediaValidation()],
-            'media.*' => ['string']
-        ]);
+        $this->validateProduct($request);
 
-        $category = Category::firstOrCreate([
-            'name' => ucwords($request->category),
-            'slug' => Str::slug($request->category)
-        ]);
+        $category = $this->createOrGetCategory($request->category);
 
         $product = Product::create([
             'user_id' => $request->user()->id,
@@ -191,9 +180,9 @@ class ProductController extends Controller
     {
         $optionsValues = [];
         $variants = [];
-        $previewVariantsUploadedData = [];
+        $previewVariantsMediaUploadedData = [];
         $product->productVariants()->each(
-            function ($productVariantItem) use (&$variants, &$optionsValues, &$previewVariantsUploadedData) {
+            function ($productVariantItem) use (&$variants, &$optionsValues, &$previewVariantsMediaUploadedData) {
                 $variants[] = [
                     'name' => $productVariantItem->name,
                     'filePath' => str_replace(asset('storage') . '/', '', $productVariantItem->image_url),
@@ -201,7 +190,7 @@ class ProductController extends Controller
                     'price' => $productVariantItem->price,
                     'isDelete' => false,
                 ];
-                $previewVariantsUploadedData[] = $productVariantItem->image_url; 
+                $previewVariantsMediaUploadedData[] = $productVariantItem->image_url; 
 
                 $optionsLimit = count($productVariantItem->productDetails);
                 $productVariantItem->productDetails()->each(
@@ -244,15 +233,15 @@ class ProductController extends Controller
         );
 
         $media = [];
-        $previewMediaUploadedData = [];
-        $product->images()->each(function ($imageItem) use (&$media, &$previewMediaUploadedData, &$previewVariantsUploadedData) {
-            if (in_array($imageItem->url, $previewVariantsUploadedData)) {
+        $previewProductMediaUploadedData = [];
+        $product->images()->each(function ($imageItem) use (&$media, &$previewProductMediaUploadedData, &$previewVariantsMediaUploadedData) {
+            if (in_array($imageItem->url, $previewVariantsMediaUploadedData)) {
                 return;
             }
 
             foreach (self::IMAGE_FORMAT as $format) {
                 if (preg_match("/$format/i", $imageItem)) {
-                    $previewMediaUploadedData[] = [
+                    $previewProductMediaUploadedData[] = [
                         $imageItem->url,
                         'image'
                     ];
@@ -261,7 +250,7 @@ class ProductController extends Controller
         
             foreach (self::VIDEO_FORMAT as $format) {
                 if (preg_match("/$format/i", $imageItem)) {
-                    $previewMediaUploadedData[] = [
+                    $previewProductMediaUploadedData[] = [
                         $imageItem->url,
                         'video'
                     ];
@@ -280,6 +269,7 @@ class ProductController extends Controller
             'productData' => [
                 'id' => $product->id,
                 'name' => $product->name,
+                'slug' => $product->slug,
                 'description' => $product->description,
                 'category' => $product->category->name,
                 'media' => $media,
@@ -288,20 +278,66 @@ class ProductController extends Controller
                 'options' => $optionsValues,
                 'variants' => $variants
             ],
-            'previewMediaUploadedData' => $previewMediaUploadedData,
-            'previewVariantsUploadedData' => $previewVariantsUploadedData,
+            'previewProductMediaUploadedData' => $previewProductMediaUploadedData,
+            'previewVariantsMediaUploadedData' => $previewVariantsMediaUploadedData,
             'categories' => $categories,
         ]);
     }
 
     public function update(Request $request, Product $product)
     {
-        dd('update method');
+        $this->validateProduct($request);
+
+        $category = $this->createOrGetCategory($request->category);
+    
+        // remove the existing product media
+        // remove the existing variant media
+
+        $product->update([
+            'category_id' => $category->id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'slug' => Str::slug($request->name) . '-' . Str::random(10),
+            'stock' => $request->stock,
+            'price' => $request->price,
+        ]);
+
+        foreach ($request->media as $tempPath) {
+            if (preg_match("/product/i", $tempPath)) {
+                return;
+            }
+            $this->changeMediaFileLocation($tempPath, $product->id);
+        }
+
+        // handle logic request 'options' and 'variants'
+
+        return redirect('admin/products');
     }
 
     public function destroy(Product $product)
     {
         dd('destroy method');
+    }
+
+    protected function validateProduct($request)
+    {
+        $request->validate([
+            'name' => ['required', 'max:250'],
+            'description' => ['required', 'min:100'],
+            'category' => ['required'],
+            'stock' => ['required'],
+            'price' => ['required'],
+            'media' => ['array', new MediaValidation()],
+            'media.*' => ['string']
+        ]);
+    }
+
+    protected function createOrGetCategory($category)
+    {
+        return Category::firstOrCreate([
+            'name' => ucwords($category),
+            'slug' => Str::slug($category)
+        ]);
     }
 
     protected function handleMediaUpload(Request $request)
