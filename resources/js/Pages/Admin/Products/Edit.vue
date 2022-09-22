@@ -122,8 +122,6 @@
                                 v-model="product.price"
                             />
                         </div>
-
-                        <!-- handle image upload interaction method -->
                         <div class="pt-8">
                             <div>
                                 <label
@@ -162,12 +160,12 @@
                             </div>
                             <div
                                 class="mt-4 bg-white py-4 px-2 max-h-64 border rounded-md overflow-y-scroll"
-                                v-if="previewMediaUploaded.length !== 0"
+                                v-if="previewProductMediaUploaded.length !== 0"
                             >
                                 <template
                                     v-for="(
                                         media, index
-                                    ) in previewMediaUploaded"
+                                    ) in previewProductMediaUploaded"
                                     :key="index"
                                 >
                                     <div
@@ -201,7 +199,6 @@
                                 </template>
                             </div>
                         </div>
-
                         <div class="pt-8">
                             <label
                                 for="product-options"
@@ -526,7 +523,7 @@
                                                                     >
                                                                         <template
                                                                             v-if="
-                                                                                previewVariantsUploaded[
+                                                                                previewVariantsMediaUploaded[
                                                                                     key
                                                                                 ]
                                                                             "
@@ -536,7 +533,7 @@
                                                                             >
                                                                                 <img
                                                                                     :src="
-                                                                                        previewVariantsUploaded[
+                                                                                        previewVariantsMediaUploaded[
                                                                                             key
                                                                                         ]
                                                                                     "
@@ -724,8 +721,8 @@ export default {
     props: {
         productData: Object,
         categories: Array,
-        previewMediaUploadedData: Array,
-        previewVariantsUploadedData: Array,
+        previewProductMediaUploadedData: Array,
+        previewVariantsMediaUploadedData: Array,
     },
 
     data() {
@@ -733,8 +730,10 @@ export default {
             isCustomCategory: false,
             isHasOptions: false,
             product: this.$inertia.form(this.productData),
-            previewMediaUploaded: this.previewMediaUploadedData,
-            previewVariantsUploaded: this.previewVariantsUploadedData,
+            previewProductMediaUploaded: this.previewProductMediaUploadedData,
+            previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
+            productMediaRemoved: [],
+            variantsMediaRemoved: [],
         };
     },
 
@@ -780,14 +779,14 @@ export default {
                                 let reader = new FileReader();
                                 reader.readAsDataURL(item[1]);
                                 reader.addEventListener("load", function () {
-                                    this.previewMediaUploaded.push([
+                                    this.previewProductMediaUploaded.push([
                                         reader.result,
                                         item[1].type,
                                     ]);
                                 });
                                 return;
                             }
-                            this.previewMediaUploaded.push([
+                            this.previewProductMediaUploaded.push([
                                 URL.createObjectURL(item[1]),
                                 item[1].type,
                             ]);
@@ -816,6 +815,13 @@ export default {
         },
 
         handleProductMediaRemove(index) {
+            if (this.product.media[index].includes('product')) {
+                this.productMediaRemoved.push(this.product.media[index]);
+                this.product.media.splice(index, 1);
+                this.previewProductMediaUploaded.splice(index, 1);
+                return;
+            }
+
             this.$inertia.patch(
                 "https://arm-commerce.com/admin/products/temp/media",
                 { filePath: this.product.media[index] },
@@ -823,7 +829,7 @@ export default {
                     preserveScroll: true,
                     onSuccess: () => {
                         this.product.media.splice(index, 1);
-                        this.previewMediaUploaded.splice(index, 1);
+                        this.previewProductMediaUploaded.splice(index, 1);
                         this.$notify(
                             {
                                 group: "success",
@@ -966,7 +972,7 @@ export default {
                                         preserveScroll: true,
                                     }
                                 );
-                                this.previewVariantsUploaded[i] = undefined;
+                                this.previewVariantsMediaUploaded[i] = undefined;
                             }
 
                             variants[i] = {
@@ -1049,7 +1055,7 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: (response) => {
-                        this.previewVariantsUploaded[key] =
+                        this.previewVariantsMediaUploaded[key] =
                             URL.createObjectURL(uploadedVariantMedia);
                         this.product.variants[key].filePath =
                             response.props.flash.success;
@@ -1077,13 +1083,20 @@ export default {
         },
 
         removeVariantMediaPreview(key) {
+            if (this.product.variants[key].filePath.includes('product')) {
+                this.variantsRemoved.push(this.product.variants[key].filePath);
+                this.previewVariantsMediaUploaded[key] = undefined;
+                this.product.variants[key].filePath = null;
+                return;
+            }
+
             this.$inertia.patch(
                 "https://arm-commerce.com/admin/products/temp/media",
                 { filePath: this.product.variants[key].filePath },
                 {
                     preserveScroll: true,
                     onSuccess: () => {
-                        this.previewVariantsUploaded[key] = undefined;
+                        this.previewVariantsMediaUploaded[key] = undefined;
                         this.product.variants[key].filePath = null;
                         this.$notify(
                             {
