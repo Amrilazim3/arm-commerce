@@ -46,6 +46,39 @@ __webpack_require__.r(__webpack_exports__);
       previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData
     };
   },
+  watch: {
+    isHasOptions: function isHasOptions(newCondition) {
+      if (newCondition == false) {
+        this.product.options = [];
+
+        if (this.product.variants.length > 0) {
+          this.product.variants = [];
+        }
+
+        return;
+      }
+
+      if (this.product.options.length == 0) {
+        this.product.options = [{
+          name: "",
+          values: [""],
+          isSaved: false
+        }];
+      }
+    },
+    product: {
+      handler: function handler(newObject) {
+        if (newObject.description == "<p></p>") {
+          this.product.description = "";
+        }
+
+        if (newObject.options.length == 0) {
+          this.isHasOptions = false;
+        }
+      },
+      deep: true
+    }
+  },
   mounted: function mounted() {
     var categoriesName = [];
     this.categories.forEach(function (el) {
@@ -108,8 +141,8 @@ __webpack_require__.r(__webpack_exports__);
     handleProductMediaRemove: function handleProductMediaRemove(index) {
       var _this2 = this;
 
-      if (this.product.media[index].includes('product')) {
-        this.product.productMediaRemoved.push(this.product.media[index]);
+      if (this.product.media[index].includes("product")) {
+        this.product.productMediaRemoved.push(this.previewProductMediaUploaded[index][0]);
         this.product.media.splice(index, 1);
         this.previewProductMediaUploaded.splice(index, 1);
         return;
@@ -344,11 +377,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    removeVariantMediaUploaded: function removeVariantMediaUploaded(key) {
+    handleVariantMediaRemove: function handleVariantMediaRemove(key) {
       var _this6 = this;
 
-      if (this.product.variants[key].filePath.includes('product')) {
-        this.product.variantsMediaRemoved.push(this.product.variants[key].filePath);
+      if (this.product.variants[key].filePath.includes("product")) {
+        this.product.variantsMediaRemoved.push(this.previewVariantsMediaUploaded[key]);
         this.previewVariantsMediaUploaded[key] = undefined;
         this.product.variants[key].filePath = null;
         return;
@@ -741,7 +774,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $data.product.name + ' Edit'
   }, null, 8
   /* PROPS */
-  , ["title"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.name) + " Edit ", 1
+  , ["title"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.name) + " edit ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
     type: "form",
@@ -1117,7 +1150,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_40), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XIcon, {
           "class": "absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full",
           onClick: function onClick($event) {
-            return $options.removeVariantMediaUploaded(key);
+            return $options.handleVariantMediaRemove(key);
           }
         }, null, 8
         /* PROPS */
