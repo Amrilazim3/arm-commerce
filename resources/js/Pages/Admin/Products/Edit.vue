@@ -543,7 +543,7 @@
                                                                                 <XIcon
                                                                                     class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
                                                                                     @click="
-                                                                                        removeVariantMediaPreview(
+                                                                                        removeVariantMediaUploaded(
                                                                                             key
                                                                                         )
                                                                                     "
@@ -732,8 +732,6 @@ export default {
             product: this.$inertia.form(this.productData),
             previewProductMediaUploaded: this.previewProductMediaUploadedData,
             previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
-            productMediaRemoved: [],
-            variantsMediaRemoved: [],
         };
     },
 
@@ -816,7 +814,7 @@ export default {
 
         handleProductMediaRemove(index) {
             if (this.product.media[index].includes('product')) {
-                this.productMediaRemoved.push(this.product.media[index]);
+                this.product.productMediaRemoved.push(this.product.media[index]);
                 this.product.media.splice(index, 1);
                 this.previewProductMediaUploaded.splice(index, 1);
                 return;
@@ -1082,9 +1080,9 @@ export default {
             );
         },
 
-        removeVariantMediaPreview(key) {
+        removeVariantMediaUploaded(key) {
             if (this.product.variants[key].filePath.includes('product')) {
-                this.variantsRemoved.push(this.product.variants[key].filePath);
+                this.product.variantsMediaRemoved.push(this.product.variants[key].filePath);
                 this.previewVariantsMediaUploaded[key] = undefined;
                 this.product.variants[key].filePath = null;
                 return;
