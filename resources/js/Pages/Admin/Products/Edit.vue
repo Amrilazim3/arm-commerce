@@ -543,7 +543,7 @@
                                                                                 <XIcon
                                                                                     class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
                                                                                     @click="
-                                                                                        removeVariantMediaUploaded(
+                                                                                        handleVariantMediaRemove(
                                                                                             key
                                                                                         )
                                                                                     "
@@ -814,7 +814,7 @@ export default {
 
         handleProductMediaRemove(index) {
             if (this.product.media[index].includes('product')) {
-                this.product.productMediaRemoved.push(this.product.media[index]);
+                this.product.productMediaRemoved.push(this.previewProductMediaUploaded[0][0]);
                 this.product.media.splice(index, 1);
                 this.previewProductMediaUploaded.splice(index, 1);
                 return;
@@ -1080,9 +1080,9 @@ export default {
             );
         },
 
-        removeVariantMediaUploaded(key) {
+        handleVariantMediaRemove(key) {
             if (this.product.variants[key].filePath.includes('product')) {
-                this.product.variantsMediaRemoved.push(this.product.variants[key].filePath);
+                this.product.variantsMediaRemoved.push(this.previewVariantsMediaUploaded[key]);
                 this.previewVariantsMediaUploaded[key] = undefined;
                 this.product.variants[key].filePath = null;
                 return;
