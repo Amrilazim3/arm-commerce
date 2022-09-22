@@ -5,7 +5,7 @@
         <div class="flex-1">
             <div class="container max-w-xl mx-auto my-10">
                 <h1 class="text-xl font-semibold mb-6 text-gray-900">
-                    {{ product.name }} Edit
+                    {{ product.name }} edit
                 </h1>
                 <FormKit
                     type="form"
@@ -735,6 +735,35 @@ export default {
         };
     },
 
+    watch: {
+        isHasOptions(newCondition) {
+            if (newCondition == false) {
+                this.product.options = [];
+                if (this.product.variants.length > 0) {
+                    this.product.variants = [];
+                }
+                return;
+            }
+
+            if (this.product.options.length == 0) {
+                this.product.options = [{ name: "", values: [""], isSaved: false }];
+            }
+        },
+
+        product: {
+            handler(newObject) {
+                if (newObject.description == "<p></p>") {
+                    this.product.description = "";
+                }
+
+                if (newObject.options.length == 0) {
+                    this.isHasOptions = false;
+                }
+            },
+            deep: true,
+        },
+    },
+
     mounted() {
         let categoriesName = [];
         this.categories.forEach((el) => {
@@ -813,8 +842,10 @@ export default {
         },
 
         handleProductMediaRemove(index) {
-            if (this.product.media[index].includes('product')) {
-                this.product.productMediaRemoved.push(this.previewProductMediaUploaded[0][0]);
+            if (this.product.media[index].includes("product")) {
+                this.product.productMediaRemoved.push(
+                    this.previewProductMediaUploaded[index][0]
+                );
                 this.product.media.splice(index, 1);
                 this.previewProductMediaUploaded.splice(index, 1);
                 return;
@@ -852,31 +883,33 @@ export default {
         },
 
         editProduct() {
-            this.product.put(`/admin/products/${this.product.slug}`,
-            this.product,
-            {
-                preserveScroll: true,
-                onSuccess: () => {
-                    this.$notify(
-                        {
-                            group: "success",
-                            title: "Success",
-                            text: "Product successfully edited.",
-                        },
-                        3500
-                    );
-                },
-                onError: () => {
-                    this.$notify(
-                        {
-                            group: "error",
-                            title: "Error",
-                            text: "Product failed to be edited.",
-                        },
-                        3500
-                    );
-                },
-            });
+            this.product.put(
+                `/admin/products/${this.product.slug}`,
+                this.product,
+                {
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.$notify(
+                            {
+                                group: "success",
+                                title: "Success",
+                                text: "Product successfully edited.",
+                            },
+                            3500
+                        );
+                    },
+                    onError: () => {
+                        this.$notify(
+                            {
+                                group: "error",
+                                title: "Error",
+                                text: "Product failed to be edited.",
+                            },
+                            3500
+                        );
+                    },
+                }
+            );
         },
 
         addOptionValueInput(objectKey, currentArrayKey) {
@@ -970,7 +1003,8 @@ export default {
                                         preserveScroll: true,
                                     }
                                 );
-                                this.previewVariantsMediaUploaded[i] = undefined;
+                                this.previewVariantsMediaUploaded[i] =
+                                    undefined;
                             }
 
                             variants[i] = {
@@ -1081,8 +1115,10 @@ export default {
         },
 
         handleVariantMediaRemove(key) {
-            if (this.product.variants[key].filePath.includes('product')) {
-                this.product.variantsMediaRemoved.push(this.previewVariantsMediaUploaded[key]);
+            if (this.product.variants[key].filePath.includes("product")) {
+                this.product.variantsMediaRemoved.push(
+                    this.previewVariantsMediaUploaded[key]
+                );
                 this.previewVariantsMediaUploaded[key] = undefined;
                 this.product.variants[key].filePath = null;
                 return;
