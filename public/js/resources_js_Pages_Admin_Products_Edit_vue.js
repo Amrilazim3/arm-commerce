@@ -43,9 +43,7 @@ __webpack_require__.r(__webpack_exports__);
       isHasOptions: false,
       product: this.$inertia.form(this.productData),
       previewProductMediaUploaded: this.previewProductMediaUploadedData,
-      previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
-      productMediaRemoved: [],
-      variantsMediaRemoved: []
+      previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData
     };
   },
   mounted: function mounted() {
@@ -111,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (this.product.media[index].includes('product')) {
-        this.productMediaRemoved.push(this.product.media[index]);
+        this.product.productMediaRemoved.push(this.product.media[index]);
         this.product.media.splice(index, 1);
         this.previewProductMediaUploaded.splice(index, 1);
         return;
@@ -346,11 +344,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    removeVariantMediaPreview: function removeVariantMediaPreview(key) {
+    removeVariantMediaUploaded: function removeVariantMediaUploaded(key) {
       var _this6 = this;
 
       if (this.product.variants[key].filePath.includes('product')) {
-        this.variantsRemoved.push(this.product.variants[key].filePath);
+        this.product.variantsMediaRemoved.push(this.product.variants[key].filePath);
         this.previewVariantsMediaUploaded[key] = undefined;
         this.product.variants[key].filePath = null;
         return;
@@ -1119,7 +1117,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_40), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XIcon, {
           "class": "absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full",
           onClick: function onClick($event) {
-            return $options.removeVariantMediaPreview(key);
+            return $options.removeVariantMediaUploaded(key);
           }
         }, null, 8
         /* PROPS */
