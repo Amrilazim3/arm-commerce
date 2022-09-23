@@ -223,10 +223,12 @@ __webpack_require__.r(__webpack_exports__);
       var generatedOptionsValues = [];
 
       var _loop = function _loop(i) {
-        generatedOptionsValues.push([]);
-        options[i].values.map(function (value) {
-          value !== "" ? generatedOptionsValues[i].push(value) : null;
-        });
+        if (options[i].isSaved) {
+          generatedOptionsValues.push([]);
+          options[i].values.map(function (value) {
+            value !== "" ? generatedOptionsValues[i].push(value) : null;
+          });
+        }
       };
 
       for (var i = 0; i < options.length; i++) {
@@ -258,6 +260,8 @@ __webpack_require__.r(__webpack_exports__);
         _loop2(_i);
       }
 
+      console.log(generatedOptionsValues);
+      console.log(variantsCombined);
       var variants = this.product.variants;
 
       if (variants.length == 0) {
@@ -275,14 +279,22 @@ __webpack_require__.r(__webpack_exports__);
       if (variants.length !== 0) {
         for (var _i2 = 0; _i2 < variantsCombined.length; _i2++) {
           if (variants[_i2] !== undefined) {
-            if (variants[_i2].name !== variantsCombined[_i2]) {
+            if (variants[_i2].name.toUpperCase() !== variantsCombined[_i2].toUpperCase()) {
               if (variants[_i2].filePath) {
-                this.$inertia.patch("temp/media", {
-                  filePath: variants[_i2].filePath
-                }, {
-                  preserveScroll: true
-                });
+                if (variants[_i2].filePath.includes("product")) {
+                  this.product.variantsMediaRemoved.push(this.previewVariantsMediaUploaded[_i2]);
+                }
+
+                if (variants[_i2].filePath.includes("temp")) {
+                  this.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
+                    filePath: variants[_i2].filePath
+                  }, {
+                    preserveScroll: true
+                  });
+                }
+
                 this.previewVariantsMediaUploaded[_i2] = undefined;
+                this.product.variants[_i2].filePath = null;
               }
 
               variants[_i2] = {
@@ -580,7 +592,7 @@ var _hoisted_3 = {
   "class": "container max-w-xl mx-auto my-10"
 };
 var _hoisted_4 = {
-  "class": "text-xl font-semibold mb-6 text-gray-900"
+  "class": "px-4 sm:px-0 text-xl font-semibold mb-6 text-gray-900"
 };
 var _hoisted_5 = {
   "class": "space-y-8 sm:space-y-5"
