@@ -255,7 +255,6 @@ class ProductController extends Controller
             'price' => $request->price,
         ]);
 
-
         if (count($request->productMediaRemoved) > 0) {
             foreach ($request->productMediaRemoved as $singleMediaRemoved) {
                 ProductImage::where('url', $singleMediaRemoved)->delete();
