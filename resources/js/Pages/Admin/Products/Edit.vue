@@ -4,7 +4,7 @@
         <SideNav />
         <div class="flex-1">
             <div class="container max-w-xl mx-auto my-10">
-                <h1 class="text-xl font-semibold mb-6 text-gray-900">
+                <h1 class="px-4 sm:px-0 text-xl font-semibold mb-6 text-gray-900">
                     {{ product.name }} edit
                 </h1>
                 <FormKit
@@ -746,7 +746,9 @@ export default {
             }
 
             if (this.product.options.length == 0) {
-                this.product.options = [{ name: "", values: [""], isSaved: false }];
+                this.product.options = [
+                    { name: "", values: [""], isSaved: false },
+                ];
             }
         },
 
@@ -949,10 +951,12 @@ export default {
             let options = this.product.options;
             let generatedOptionsValues = [];
             for (let i = 0; i < options.length; i++) {
-                generatedOptionsValues.push([]);
-                options[i].values.map((value) => {
-                    value !== "" ? generatedOptionsValues[i].push(value) : null;
-                });
+                if (options[i].isSaved) {
+                    generatedOptionsValues.push([]);
+                    options[i].values.map((value) => {
+                        value !== "" ? generatedOptionsValues[i].push(value) : null;
+                    });
+                }
             }
 
             let variantsCombined = [];
@@ -976,6 +980,9 @@ export default {
                 }
             }
 
+            console.log(generatedOptionsValues);
+            console.log(variantsCombined);
+
             let variants = this.product.variants;
             if (variants.length == 0) {
                 variantsCombined.map((v) => {
@@ -992,19 +999,28 @@ export default {
             if (variants.length !== 0) {
                 for (let i = 0; i < variantsCombined.length; i++) {
                     if (variants[i] !== undefined) {
-                        if (variants[i].name !== variantsCombined[i]) {
+                        if (variants[i].name.toUpperCase() !== variantsCombined[i].toUpperCase()) {
                             if (variants[i].filePath) {
-                                this.$inertia.patch(
-                                    "temp/media",
-                                    {
-                                        filePath: variants[i].filePath,
-                                    },
-                                    {
-                                        preserveScroll: true,
-                                    }
-                                );
-                                this.previewVariantsMediaUploaded[i] =
-                                    undefined;
+                                if (variants[i].filePath.includes("product")) {
+                                    this.product.variantsMediaRemoved.push(
+                                        this.previewVariantsMediaUploaded[i]
+                                    );
+                                }
+
+                                if (variants[i].filePath.includes("temp")) {
+                                    this.$inertia.patch(
+                                        "https://arm-commerce.com/admin/products/temp/media",
+                                        {
+                                            filePath: variants[i].filePath,
+                                        },
+                                        {
+                                            preserveScroll: true,
+                                        }
+                                    );
+                                }
+
+                                this.previewVariantsMediaUploaded[i] = undefined;
+                                this.product.variants[i].filePath = null;
                             }
 
                             variants[i] = {
