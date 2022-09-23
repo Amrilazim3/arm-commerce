@@ -160,13 +160,13 @@
                             </div>
                             <div
                                 class="mt-4 bg-white py-4 px-2 max-h-64 border rounded-md overflow-y-scroll"
-                                v-if="previewMediaUploaded.length !== 0"
+                                v-if="previewProductMediaUploaded.length !== 0"
                             >
                                 <div
                                     class="flex w-full justify-between mb-2 bg-gray-50 border rounded-md border-gray-300 py-2 space-x-2 divide-x divide-gray-300"
                                     v-for="(
                                         media, index
-                                    ) in previewMediaUploaded"
+                                    ) in previewProductMediaUploaded"
                                     :key="index"
                                 >
                                     <template v-if="media[1].includes('video')">
@@ -518,7 +518,7 @@
                                                                     >
                                                                         <template
                                                                             v-if="
-                                                                                previewVariantsUploaded[
+                                                                                previewVariantsMediaUploaded[
                                                                                     key
                                                                                 ]
                                                                             "
@@ -528,7 +528,7 @@
                                                                             >
                                                                                 <img
                                                                                     :src="
-                                                                                        previewVariantsUploaded[
+                                                                                        previewVariantsMediaUploaded[
                                                                                             key
                                                                                         ]
                                                                                     "
@@ -731,8 +731,9 @@ export default {
                 options: [],
                 variants: [],
             }),
-            previewMediaUploaded: [],
-            previewVariantsUploaded: [],
+            // change this variable name
+            previewProductMediaUploaded: [],
+            previewVariantsMediaUploaded: [],
         };
     },
 
@@ -789,14 +790,14 @@ export default {
                                 let reader = new FileReader();
                                 reader.readAsDataURL(item[1]);
                                 reader.addEventListener("load", function () {
-                                    this.previewMediaUploaded.push([
+                                    this.previewProductMediaUploaded.push([
                                         reader.result,
                                         item[1].type,
                                     ]);
                                 });
                                 return;
                             }
-                            this.previewMediaUploaded.push([
+                            this.previewProductMediaUploaded.push([
                                 URL.createObjectURL(item[1]),
                                 item[1].type,
                             ]);
@@ -832,7 +833,7 @@ export default {
                     preserveScroll: true,
                     onSuccess: () => {
                         this.product.media.splice(index, 1);
-                        this.previewMediaUploaded.splice(index, 1);
+                        this.previewProductMediaUploaded.splice(index, 1);
                         this.$notify(
                             {
                                 group: "success",
@@ -973,7 +974,7 @@ export default {
                                         preserveScroll: true,
                                     }
                                 );
-                                this.previewVariantsUploaded[i] = undefined;
+                                this.previewVariantsMediaUploaded[i] = undefined;
                             }
 
                             variants[i] = {
@@ -1056,7 +1057,7 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: (response) => {
-                        this.previewVariantsUploaded[key] =
+                        this.previewVariantsMediaUploaded[key] =
                             URL.createObjectURL(uploadedVariantMedia);
                         this.product.variants[key].filePath =
                             response.props.flash.success;
@@ -1090,7 +1091,7 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: () => {
-                        this.previewVariantsUploaded[key] = undefined;
+                        this.previewVariantsMediaUploaded[key] = undefined;
                         this.product.variants[key].filePath = null;
                         this.$notify(
                             {
