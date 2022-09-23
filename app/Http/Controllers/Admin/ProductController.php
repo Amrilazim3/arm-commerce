@@ -147,7 +147,7 @@ class ProductController extends Controller
 
                 $productVariant = ProductVariant::create([
                     'product_id' => $product->id,
-                    'name' => strtolower($singleVariant['name']),
+                    'name' => ucwords($singleVariant['name']),
                     'image_url' => $singleVariant['filePath'] == null ?
                         null :
                         $variantImage->url,
@@ -178,63 +178,15 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $optionsValues = [];
-        $variants = [];
-        $previewVariantsMediaUploadedData = [];
-        $product->productVariants()->each(
-            function ($productVariantItem) use (&$variants, &$optionsValues, &$previewVariantsMediaUploadedData) {
-                $variants[] = [
-                    'name' => $productVariantItem->name,
-                    'filePath' => str_replace(asset('storage') . '/', '', $productVariantItem->image_url),
-                    'stock' => $productVariantItem->stock,
-                    'price' => $productVariantItem->price,
-                    'isDelete' => false,
-                ];
-                $previewVariantsMediaUploadedData[] = $productVariantItem->image_url; 
-
-                $optionsLimit = count($productVariantItem->productDetails);
-                $productVariantItem->productDetails()->each(
-                    function ($productDetailItem) use (&$optionsValues, $optionsLimit) {
-                        $productOptionValue = $productDetailItem->variantValue->value;
-                        $productOptionName = $productDetailItem->variantValue->variant->name;
-
-                        if (empty($optionsValues)) {
-                            $optionsValues[] = [
-                                'name' => $productOptionName,
-                                'values' => [$productOptionValue],
-                                'isSaved' => true,
-                            ];
-                            return;
-                        }
-
-                        for ($i = 0; $i < $optionsLimit; $i++) {
-                            if ($optionsValues[$i]['name'] === $productOptionName) {
-                                if (!in_array($productOptionValue, $optionsValues[$i]['values'])) {
-                                    array_push($optionsValues[$i]['values'], $productOptionValue);
-                                    return;
-                                }
-                                return;
-                            }
-
-                            if ($optionsValues[$i]['name'] !== $productOptionName) {
-                                if (!array_key_exists($i + 1, $optionsValues) && $i + 1 < $optionsLimit) {
-                                    $optionsValues[] = [
-                                        'name' => $productOptionName,
-                                        'values' => [$productOptionValue],
-                                        'isSaved' => true,
-                                    ];
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                );
-            }
-        );
+        $ProductOptionsVariants = $this->getProductOptionsVariants($product);
+        $optionsValues = $ProductOptionsVariants["optionsValues"];
+        $variants = $ProductOptionsVariants["variants"];
+        $previewVariantsMediaUploadedData = $ProductOptionsVariants["previewVariantsMediaUploadedData"];
 
         $media = [];
         $previewProductMediaUploadedData = [];
-        $product->images()->each(function ($imageItem) use (&$media, &$previewProductMediaUploadedData, &$previewVariantsMediaUploadedData) {
+        $product->images()->each(function ($imageItem)
+        use (&$media, &$previewProductMediaUploadedData, &$previewVariantsMediaUploadedData) {
             if (in_array($imageItem->url, $previewVariantsMediaUploadedData)) {
                 return;
             }
@@ -247,7 +199,7 @@ class ProductController extends Controller
                     ];
                 }
             }
-        
+
             foreach (self::VIDEO_FORMAT as $format) {
                 if (preg_match("/$format/i", $imageItem)) {
                     $previewProductMediaUploadedData[] = [
@@ -276,7 +228,9 @@ class ProductController extends Controller
                 'stock' => $product->stock,
                 'price' => $product->price,
                 'options' => $optionsValues,
-                'variants' => $variants
+                'variants' => $variants,
+                'productMediaRemoved' => [],
+                'variantsMediaRemoved' => [],
             ],
             'previewProductMediaUploadedData' => $previewProductMediaUploadedData,
             'previewVariantsMediaUploadedData' => $previewVariantsMediaUploadedData,
@@ -286,12 +240,11 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        dd($request->options);
+
         $this->validateProduct($request);
 
         $category = $this->createOrGetCategory($request->category);
-    
-        // remove the existing product media
-        // remove the existing variant media
 
         $product->update([
             'category_id' => $category->id,
@@ -302,6 +255,16 @@ class ProductController extends Controller
             'price' => $request->price,
         ]);
 
+
+        if (count($request->productMediaRemoved) > 0) {
+            foreach ($request->productMediaRemoved as $singleMediaRemoved) {
+                ProductImage::where('url', $singleMediaRemoved)->delete();
+
+                $filePath = str_replace(asset('storage') . '/', '', $singleMediaRemoved);
+                Storage::disk('public')->delete($filePath);
+            }
+        }
+
         foreach ($request->media as $tempPath) {
             if (preg_match("/product/i", $tempPath)) {
                 return;
@@ -309,7 +272,19 @@ class ProductController extends Controller
             $this->changeMediaFileLocation($tempPath, $product->id);
         }
 
-        // handle logic request 'options' and 'variants'
+        // handle logic request 'options' and 'variants' (study back how we did in store method)
+        // retrieve options and variants using logic in edit method and compare with request's options and variants
+        // what if we add certain option
+        // what if we remove certain option
+
+        if (count($request->variantsMediaRemoved) > 0) {
+            foreach ($request->variantsMediaRemoved as $singleMediaRemoved) {
+                ProductImage::where('url', $singleMediaRemoved)->delete();
+
+                $filePath = str_replace(asset('storage') . '/', '', $singleMediaRemoved);
+                Storage::disk('public')->delete($filePath);
+            }
+        }
 
         return redirect('admin/products');
     }
@@ -387,5 +362,72 @@ class ProductController extends Controller
                 'url' => asset('storage/product/' . $mediaAbsolutePath)
             ]);
         }
+    }
+
+    protected function getProductOptionsVariants($product)
+    {
+        $optionsValues = [];
+        $variants = [];
+        $previewVariantsMediaUploadedData = [];
+        $product->productVariants()->each(
+            function ($productVariantItem) use (&$variants, &$optionsValues, &$previewVariantsMediaUploadedData) {
+                $variants[] = [
+                    'name' => $productVariantItem->name,
+                    'filePath' => str_replace(asset('storage') . '/', '', $productVariantItem->image_url),
+                    'stock' => $productVariantItem->stock,
+                    'price' => $productVariantItem->price,
+                    'isDelete' => false,
+                ];
+                $previewVariantsMediaUploadedData[] = $productVariantItem->image_url;
+
+                $optionsLimit = count($productVariantItem->productDetails);
+                $productVariantItem->productDetails()->each(
+                    function ($productDetailItem) use (&$optionsValues, $optionsLimit) {
+                        $productOptionValue = $productDetailItem->variantValue->value;
+                        $productOptionName = $productDetailItem->variantValue->variant->name;
+
+                        if (empty($optionsValues)) {
+                            $optionsValues[] = [
+                                'name' => $productOptionName,
+                                'values' => [$productOptionValue],
+                                'isSaved' => true,
+                            ];
+                            return;
+                        }
+
+                        for ($i = 0; $i < $optionsLimit; $i++) {
+                            if ($optionsValues[$i]['name'] === $productOptionName) {
+                                if (!in_array($productOptionValue, $optionsValues[$i]['values'])) {
+                                    array_push($optionsValues[$i]['values'], $productOptionValue);
+                                    return;
+                                }
+                                return;
+                            }
+
+                            if ($optionsValues[$i]['name'] !== $productOptionName) {
+                                if (!array_key_exists($i + 1, $optionsValues) && $i + 1 < $optionsLimit) {
+                                    $optionsValues[] = [
+                                        'name' => $productOptionName,
+                                        'values' => [$productOptionValue],
+                                        'isSaved' => true,
+                                    ];
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                );
+            }
+        );
+
+        for ($i = 0; $i < count($optionsValues); $i++) {
+            array_push($optionsValues[$i]["values"], "");
+        }
+
+        return [
+            'optionsValues' => $optionsValues,
+            'variants' => $variants,
+            'previewVariantsMediaUploadedData' => $previewVariantsMediaUploadedData
+        ];
     }
 }
