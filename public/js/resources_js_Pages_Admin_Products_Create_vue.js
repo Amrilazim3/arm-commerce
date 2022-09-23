@@ -48,8 +48,9 @@ __webpack_require__.r(__webpack_exports__);
         options: [],
         variants: []
       }),
-      previewMediaUploaded: [],
-      previewVariantsUploaded: []
+      // change this variable name
+      previewProductMediaUploaded: [],
+      previewVariantsMediaUploaded: []
     };
   },
   watch: {
@@ -105,12 +106,12 @@ __webpack_require__.r(__webpack_exports__);
               var reader = new FileReader();
               reader.readAsDataURL(item[1]);
               reader.addEventListener("load", function () {
-                this.previewMediaUploaded.push([reader.result, item[1].type]);
+                this.previewProductMediaUploaded.push([reader.result, item[1].type]);
               });
               return;
             }
 
-            _this.previewMediaUploaded.push([URL.createObjectURL(item[1]), item[1].type]);
+            _this.previewProductMediaUploaded.push([URL.createObjectURL(item[1]), item[1].type]);
           });
 
           _this.$notify({
@@ -138,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess() {
           _this2.product.media.splice(index, 1);
 
-          _this2.previewMediaUploaded.splice(index, 1);
+          _this2.previewProductMediaUploaded.splice(index, 1);
 
           _this2.$notify({
             group: "success",
@@ -265,7 +266,7 @@ __webpack_require__.r(__webpack_exports__);
                 }, {
                   preserveScroll: true
                 });
-                this.previewVariantsUploaded[_i2] = undefined;
+                this.previewVariantsMediaUploaded[_i2] = undefined;
               }
 
               variants[_i2] = {
@@ -342,7 +343,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess(response) {
-          _this5.previewVariantsUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
+          _this5.previewVariantsMediaUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
           _this5.product.variants[key].filePath = response.props.flash.success;
 
           _this5.$notify({
@@ -368,7 +369,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this6.previewVariantsUploaded[key] = undefined;
+          _this6.previewVariantsMediaUploaded[key] = undefined;
           _this6.product.variants[key].filePath = null;
 
           _this6.$notify({
@@ -907,7 +908,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), $data.previewMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewMediaUploaded, function (media, index) {
+      , ["modelValue"])]), $data.previewProductMediaUploaded.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.previewProductMediaUploaded, function (media, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
           "class": "flex w-full justify-between mb-2 bg-gray-50 border rounded-md border-gray-300 py-2 space-x-2 divide-x divide-gray-300",
           key: index
@@ -1117,8 +1118,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "h-8 self-center"
         })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
           key: 1
-        }, [$data.previewVariantsUploaded[key] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          src: $data.previewVariantsUploaded[key],
+        }, [$data.previewVariantsMediaUploaded[key] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: $data.previewVariantsMediaUploaded[key],
           alt: "preview highlight image",
           "class": "h-10 w-10 rounded object-cover mx-auto"
         }, null, 8
