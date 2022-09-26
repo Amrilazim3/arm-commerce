@@ -949,7 +949,6 @@ export default {
             this.generateVariants();
         },
 
-        // check bug
         generateVariants() {
             let options = this.product.options;
 
