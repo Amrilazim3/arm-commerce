@@ -48,7 +48,6 @@ __webpack_require__.r(__webpack_exports__);
         options: [],
         variants: []
       }),
-      // change this variable name
       previewProductMediaUploaded: [],
       previewVariantsMediaUploaded: []
     };
@@ -59,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
         this.product.options = [];
 
         if (this.product.variants.length > 0) {
-          this.product.variants = [];
+          this.generateVariants();
         }
 
         return;
@@ -203,6 +202,8 @@ __webpack_require__.r(__webpack_exports__);
       this.generateVariants();
     },
     generateVariants: function generateVariants() {
+      var _this4 = this;
+
       var options = this.product.options;
       var generatedOptionsValues = [];
 
@@ -245,7 +246,7 @@ __webpack_require__.r(__webpack_exports__);
       var variants = this.product.variants;
 
       if (variants.length == 0) {
-        variantsCombined.map(function (v) {
+        variantsCombined.map(function (v, k) {
           variants.push({
             name: v,
             filePath: null,
@@ -253,31 +254,56 @@ __webpack_require__.r(__webpack_exports__);
             price: null,
             isDelete: false
           });
+          _this4.previewVariantsMediaUploaded[k] = undefined;
         });
       }
 
       if (variants.length !== 0) {
-        for (var _i2 = 0; _i2 < variantsCombined.length; _i2++) {
+        var _loop3 = function _loop3(_i2) {
           if (variants[_i2] !== undefined) {
             if (variants[_i2].name !== variantsCombined[_i2]) {
               if (variants[_i2].filePath) {
-                this.$inertia.patch("temp/media", {
+                _this4.$inertia.patch("temp/media", {
                   filePath: variants[_i2].filePath
                 }, {
                   preserveScroll: true
                 });
-                this.previewVariantsMediaUploaded[_i2] = undefined;
+
+                _this4.previewVariantsMediaUploaded[_i2] = undefined;
               }
 
-              variants[_i2] = {
-                name: variantsCombined[_i2],
-                filePath: null,
-                stock: null,
-                price: null,
-                isDelete: false
-              };
+              var existsInVariants = false;
+              variants.forEach(function (el, elKey) {
+                if (el.name == variantsCombined[_i2]) {
+                  existsInVariants = true;
+
+                  if (_this4.previewVariantsMediaUploaded[elKey] !== undefined) {
+                    _this4.previewVariantsMediaUploaded[_i2] = _this4.previewVariantsMediaUploaded[elKey];
+                  }
+
+                  variants[_i2] = {
+                    name: el.name,
+                    filePath: el.filePath,
+                    stock: el.stock,
+                    price: el.price,
+                    isDelete: el.isDelete
+                  };
+                }
+              });
+
+              if (!existsInVariants) {
+                variants[_i2] = {
+                  name: variantsCombined[_i2],
+                  filePath: null,
+                  stock: null,
+                  price: null,
+                  isDelete: false
+                };
+              }
             }
-          } else {
+          }
+
+          if (variants[_i2] === undefined) {
             variants.push({
               name: variantsCombined[_i2],
               filePath: null,
@@ -285,21 +311,44 @@ __webpack_require__.r(__webpack_exports__);
               price: null,
               isDelete: false
             });
+
+            _this4.previewVariantsMediaUploaded.push(undefined);
           }
+        };
+
+        for (var _i2 = 0; _i2 < variantsCombined.length; _i2++) {
+          _loop3(_i2);
         }
 
         if (variants.length > variantsCombined.length) {
+          var previewVariantsMediaUploaded = this.previewVariantsMediaUploaded;
+
+          if (variantsCombined.length == 0) {
+            variants.forEach(function (el, key) {
+              if (el.filePath) {
+                _this4.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
+                  filePath: el.filePath
+                }, {
+                  preserveScroll: true
+                });
+
+                previewVariantsMediaUploaded[key] = undefined;
+              }
+            });
+          }
+
           var gap = variants.length - variantsCombined.length;
 
           while (gap !== 0) {
             variants.pop();
+            previewVariantsMediaUploaded.pop();
             gap--;
           }
         }
       }
     },
     deleteVariant: function deleteVariant(element) {
-      var _this4 = this;
+      var _this5 = this;
 
       var variant = this.product.variants[element];
       var options = variant.name.split(" / ");
@@ -307,7 +356,7 @@ __webpack_require__.r(__webpack_exports__);
       options.map(function (v, k) {
         var hasOtherVariant = false;
 
-        _this4.product.variants.forEach(function (el) {
+        _this5.product.variants.forEach(function (el) {
           if (!el.isDelete) {
             if (el.name.includes(v) && el.name.includes(" / ")) {
               hasOtherVariant = true;
@@ -316,26 +365,25 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         if (!hasOtherVariant) {
-          var optionValues = _this4.product.options[k].values;
+          var optionValues = _this5.product.options[k].values;
           optionValues.map(function (optV, optVK) {
             if (optV === v) {
               optionValues.splice(optVK, 1);
-
-              _this4.generateVariants();
             }
 
             if (optionValues.length === 1 && optionValues.includes("")) {
-              _this4.removeOption(k);
+              _this5.removeOption(k);
             }
           });
         }
       });
+      this.generateVariants();
     },
     unDeleteVariant: function unDeleteVariant(element) {
       this.product.variants[element].isDelete = false;
     },
     handleVariantMediaUpload: function handleVariantMediaUpload(event, key) {
-      var _this5 = this;
+      var _this6 = this;
 
       var uploadedVariantMedia = event.target.files[0];
       this.$inertia.post("temp/media", {
@@ -343,17 +391,17 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess(response) {
-          _this5.previewVariantsMediaUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
-          _this5.product.variants[key].filePath = response.props.flash.success;
+          _this6.previewVariantsMediaUploaded[key] = URL.createObjectURL(uploadedVariantMedia);
+          _this6.product.variants[key].filePath = response.props.flash.success;
 
-          _this5.$notify({
+          _this6.$notify({
             group: "success",
             title: "Success",
             text: "Highlight image uploaded"
           }, 3500);
         },
         onError: function onError() {
-          _this5.$notify({
+          _this6.$notify({
             group: "error",
             title: "Error",
             text: "Something went wrong, Please try again"
@@ -362,24 +410,24 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     removeVariantMediaPreview: function removeVariantMediaPreview(key) {
-      var _this6 = this;
+      var _this7 = this;
 
       this.$inertia.patch("temp/media", {
         filePath: this.product.variants[key].filePath
       }, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this6.previewVariantsMediaUploaded[key] = undefined;
-          _this6.product.variants[key].filePath = null;
+          _this7.previewVariantsMediaUploaded[key] = undefined;
+          _this7.product.variants[key].filePath = null;
 
-          _this6.$notify({
+          _this7.$notify({
             group: "success",
             title: "Success",
             text: "Highlight image removed"
           }, 3500);
         },
         onError: function onError() {
-          _this6.$notify({
+          _this7.$notify({
             group: "error",
             title: "Error",
             text: "Something went wrong, please try again"
