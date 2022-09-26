@@ -218,7 +218,6 @@ __webpack_require__.r(__webpack_exports__);
       this.product.options[objectKey].isSaved = true;
       this.generateVariants();
     },
-    // check bug
     generateVariants: function generateVariants() {
       var _this4 = this;
 
