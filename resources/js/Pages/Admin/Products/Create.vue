@@ -731,7 +731,6 @@ export default {
                 options: [],
                 variants: [],
             }),
-            // change this variable name
             previewProductMediaUploaded: [],
             previewVariantsMediaUploaded: [],
         };
@@ -742,10 +741,11 @@ export default {
             if (!newCondition) {
                 this.product.options = [];
                 if (this.product.variants.length > 0) {
-                    this.product.variants = [];
+                    this.generateVariants();
                 }
                 return;
             }
+
             this.product.options = [{ name: "", values: [""], isSaved: false }];
         },
 
@@ -918,6 +918,7 @@ export default {
 
         generateVariants() {
             let options = this.product.options;
+
             let generatedOptionsValues = [];
             for (let i = 0; i < options.length; i++) {
                 generatedOptionsValues.push([]);
@@ -949,7 +950,7 @@ export default {
 
             let variants = this.product.variants;
             if (variants.length == 0) {
-                variantsCombined.map((v) => {
+                variantsCombined.map((v, k) => {
                     variants.push({
                         name: v,
                         filePath: null,
@@ -957,6 +958,8 @@ export default {
                         price: null,
                         isDelete: false,
                     });
+
+                    this.previewVariantsMediaUploaded[k] = undefined;
                 });
             }
 
@@ -974,18 +977,50 @@ export default {
                                         preserveScroll: true,
                                     }
                                 );
-                                this.previewVariantsMediaUploaded[i] = undefined;
+
+                                this.previewVariantsMediaUploaded[i] =
+                                    undefined;
                             }
 
-                            variants[i] = {
-                                name: variantsCombined[i],
-                                filePath: null,
-                                stock: null,
-                                price: null,
-                                isDelete: false,
-                            };
+                            let existsInVariants = false;
+                            variants.forEach((el, elKey) => {
+                                if (el.name == variantsCombined[i]) {
+                                    existsInVariants = true;
+
+                                    if (
+                                        this.previewVariantsMediaUploaded[
+                                            elKey
+                                        ] !== undefined
+                                    ) {
+                                        this.previewVariantsMediaUploaded[i] =
+                                            this.previewVariantsMediaUploaded[
+                                                elKey
+                                            ];
+                                    }
+
+                                    variants[i] = {
+                                        name: el.name,
+                                        filePath: el.filePath,
+                                        stock: el.stock,
+                                        price: el.price,
+                                        isDelete: el.isDelete,
+                                    };
+                                }
+                            });
+
+                            if (!existsInVariants) {
+                                variants[i] = {
+                                    name: variantsCombined[i],
+                                    filePath: null,
+                                    stock: null,
+                                    price: null,
+                                    isDelete: false,
+                                };
+                            }
                         }
-                    } else {
+                    }
+
+                    if (variants[i] === undefined) {
                         variants.push({
                             name: variantsCombined[i],
                             filePath: null,
@@ -993,14 +1028,37 @@ export default {
                             price: null,
                             isDelete: false,
                         });
+
+                        this.previewVariantsMediaUploaded.push(undefined);
                     }
                 }
 
                 if (variants.length > variantsCombined.length) {
-                    let gap = variants.length - variantsCombined.length;
+                    let previewVariantsMediaUploaded =
+                        this.previewVariantsMediaUploaded;
 
+                    if (variantsCombined.length == 0) {
+                        variants.forEach((el, key) => {
+                            if (el.filePath) {
+                                this.$inertia.patch(
+                                    "https://arm-commerce.com/admin/products/temp/media",
+                                    {
+                                        filePath: el.filePath,
+                                    },
+                                    {
+                                        preserveScroll: true,
+                                    }
+                                );
+
+                                previewVariantsMediaUploaded[key] = undefined;
+                            }
+                        });
+                    }
+
+                    let gap = variants.length - variantsCombined.length;
                     while (gap !== 0) {
                         variants.pop();
+                        previewVariantsMediaUploaded.pop();
                         gap--;
                     }
                 }
@@ -1029,7 +1087,6 @@ export default {
                     optionValues.map((optV, optVK) => {
                         if (optV === v) {
                             optionValues.splice(optVK, 1);
-                            this.generateVariants();
                         }
                         if (
                             optionValues.length === 1 &&
@@ -1040,6 +1097,8 @@ export default {
                     });
                 }
             });
+
+            this.generateVariants();
         },
 
         unDeleteVariant(element) {
