@@ -4,7 +4,9 @@
         <SideNav />
         <div class="flex-1">
             <div class="container max-w-xl mx-auto my-10">
-                <h1 class="px-4 sm:px-0 text-xl font-semibold mb-6 text-gray-900">
+                <h1
+                    class="px-4 sm:px-0 text-xl font-semibold mb-6 text-gray-900"
+                >
                     {{ product.name }} edit
                 </h1>
                 <FormKit
@@ -740,7 +742,7 @@ export default {
             if (newCondition == false) {
                 this.product.options = [];
                 if (this.product.variants.length > 0) {
-                    this.product.variants = [];
+                    this.generateVariants();
                 }
                 return;
             }
@@ -947,14 +949,18 @@ export default {
             this.generateVariants();
         },
 
+        // check bug
         generateVariants() {
             let options = this.product.options;
+
             let generatedOptionsValues = [];
             for (let i = 0; i < options.length; i++) {
                 if (options[i].isSaved) {
                     generatedOptionsValues.push([]);
                     options[i].values.map((value) => {
-                        value !== "" ? generatedOptionsValues[i].push(value) : null;
+                        value !== ""
+                            ? generatedOptionsValues[i].push(value)
+                            : null;
                     });
                 }
             }
@@ -980,12 +986,9 @@ export default {
                 }
             }
 
-            console.log(generatedOptionsValues);
-            console.log(variantsCombined);
-
             let variants = this.product.variants;
             if (variants.length == 0) {
-                variantsCombined.map((v) => {
+                variantsCombined.map((v, k) => {
                     variants.push({
                         name: v,
                         filePath: null,
@@ -993,13 +996,15 @@ export default {
                         price: null,
                         isDelete: false,
                     });
+                    
+                    this.previewVariantsMediaUploaded[k] = undefined;
                 });
             }
 
             if (variants.length !== 0) {
                 for (let i = 0; i < variantsCombined.length; i++) {
                     if (variants[i] !== undefined) {
-                        if (variants[i].name.toUpperCase() !== variantsCombined[i].toUpperCase()) {
+                        if (variants[i].name !== variantsCombined[i]) {
                             if (variants[i].filePath) {
                                 if (variants[i].filePath.includes("product")) {
                                     this.product.variantsMediaRemoved.push(
@@ -1019,19 +1024,49 @@ export default {
                                     );
                                 }
 
-                                this.previewVariantsMediaUploaded[i] = undefined;
-                                this.product.variants[i].filePath = null;
+                                this.previewVariantsMediaUploaded[i] =
+                                    undefined;
                             }
 
-                            variants[i] = {
-                                name: variantsCombined[i],
-                                filePath: null,
-                                stock: null,
-                                price: null,
-                                isDelete: false,
-                            };
+                            let existsInVariants = false;
+                            variants.forEach((el, elKey) => {
+                                if (el.name == variantsCombined[i]) {
+                                    existsInVariants = true;
+
+                                    if (
+                                        this.previewVariantsMediaUploaded[
+                                            elKey
+                                        ] !== undefined
+                                    ) {
+                                        this.previewVariantsMediaUploaded[i] =
+                                            this.previewVariantsMediaUploaded[
+                                                elKey
+                                            ];
+                                    }
+
+                                    variants[i] = {
+                                        name: el.name,
+                                        filePath: el.filePath,
+                                        stock: el.stock,
+                                        price: el.price,
+                                        isDelete: el.isDelete,
+                                    };
+                                }
+                            });
+
+                            if (!existsInVariants) {
+                                variants[i] = {
+                                    name: variantsCombined[i],
+                                    filePath: null,
+                                    stock: null,
+                                    price: null,
+                                    isDelete: false,
+                                };
+                            }
                         }
-                    } else {
+                    }
+
+                    if (variants[i] === undefined) {
                         variants.push({
                             name: variantsCombined[i],
                             filePath: null,
@@ -1039,14 +1074,45 @@ export default {
                             price: null,
                             isDelete: false,
                         });
+
+                        this.previewVariantsMediaUploaded.push(undefined);
                     }
                 }
 
                 if (variants.length > variantsCombined.length) {
-                    let gap = variants.length - variantsCombined.length;
+                    let previewVariantsMediaUploaded =
+                        this.previewVariantsMediaUploaded;
 
+                    if (variantsCombined.length == 0) {
+                        variants.forEach((el, key) => {
+                            if (el.filePath) {
+                                if (el.filePath.includes("product")) {
+                                    this.product.variantsMediaRemoved.push(
+                                        previewVariantsMediaUploaded[key]
+                                    );
+                                }
+
+                                if (el.filePath.includes("temp")) {
+                                    this.$inertia.patch(
+                                        "https://arm-commerce.com/admin/products/temp/media",
+                                        {
+                                            filePath: el.filePath,
+                                        },
+                                        {
+                                            preserveScroll: true,
+                                        }
+                                    );
+                                }
+
+                                previewVariantsMediaUploaded[el] = undefined;
+                            }
+                        });
+                    }
+
+                    let gap = variants.length - variantsCombined.length;
                     while (gap !== 0) {
                         variants.pop();
+                        previewVariantsMediaUploaded.pop();
                         gap--;
                     }
                 }
@@ -1071,11 +1137,9 @@ export default {
 
                 if (!hasOtherVariant) {
                     let optionValues = this.product.options[k].values;
-
                     optionValues.map((optV, optVK) => {
                         if (optV === v) {
                             optionValues.splice(optVK, 1);
-                            this.generateVariants();
                         }
                         if (
                             optionValues.length === 1 &&
@@ -1086,6 +1150,8 @@ export default {
                     });
                 }
             });
+
+            this.generateVariants();
         },
 
         unDeleteVariant(element) {
