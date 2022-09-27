@@ -409,7 +409,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    removeVariantMediaPreview: function removeVariantMediaPreview(key) {
+    handleVariantMediaRemove: function handleVariantMediaRemove(key) {
       var _this7 = this;
 
       this.$inertia.patch("temp/media", {
@@ -1175,7 +1175,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_40), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_XIcon, {
           "class": "absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full",
           onClick: function onClick($event) {
-            return $options.removeVariantMediaPreview(key);
+            return $options.handleVariantMediaRemove(key);
           }
         }, null, 8
         /* PROPS */
