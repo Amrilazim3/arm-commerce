@@ -43,7 +43,8 @@ __webpack_require__.r(__webpack_exports__);
       isHasOptions: false,
       product: this.$inertia.form(this.productData),
       previewProductMediaUploaded: this.previewProductMediaUploadedData,
-      previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData
+      previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
+      productTitle: ""
     };
   },
   watch: {
@@ -80,6 +81,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    this.productTitle = this.productData.name;
     var categoriesName = [];
     this.categories.forEach(function (el) {
       categoriesName.push(el.name);
@@ -175,7 +177,7 @@ __webpack_require__.r(__webpack_exports__);
     editProduct: function editProduct() {
       var _this3 = this;
 
-      this.product.put("/admin/products/".concat(this.product.slug), this.product, {
+      this.product.put("/admin/products/".concat(this.product.slug), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
           _this3.$notify({
@@ -837,7 +839,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: $data.product.name + ' Edit'
   }, null, 8
   /* PROPS */
-  , ["title"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.name) + " edit ", 1
+  , ["title"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideNav), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.productTitle) + " edit ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
     type: "form",
