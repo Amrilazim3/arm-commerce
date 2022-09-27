@@ -7,7 +7,7 @@
                 <h1
                     class="px-4 sm:px-0 text-xl font-semibold mb-6 text-gray-900"
                 >
-                    {{ product.name }} edit
+                    {{ productTitle }} edit
                 </h1>
                 <FormKit
                     type="form"
@@ -734,6 +734,7 @@ export default {
             product: this.$inertia.form(this.productData),
             previewProductMediaUploaded: this.previewProductMediaUploadedData,
             previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
+            productTitle: "",
         };
     },
 
@@ -769,6 +770,8 @@ export default {
     },
 
     mounted() {
+        this.productTitle = this.productData.name;
+
         let categoriesName = [];
         this.categories.forEach((el) => {
             categoriesName.push(el.name);
@@ -889,7 +892,6 @@ export default {
         editProduct() {
             this.product.put(
                 `/admin/products/${this.product.slug}`,
-                this.product,
                 {
                     preserveScroll: true,
                     onSuccess: () => {
