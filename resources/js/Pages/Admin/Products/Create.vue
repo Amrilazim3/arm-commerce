@@ -538,7 +538,7 @@
                                                                                 <XIcon
                                                                                     class="absolute top-0 right-5 h-4 w-4 cursor-pointer text-gray-800 p-0.5 bg-gray-300 rounded-full"
                                                                                     @click="
-                                                                                        removeVariantMediaPreview(
+                                                                                        handleVariantMediaRemove(
                                                                                             key
                                                                                         )
                                                                                     "
@@ -1143,7 +1143,7 @@ export default {
             );
         },
 
-        removeVariantMediaPreview(key) {
+        handleVariantMediaRemove(key) {
             this.$inertia.patch(
                 "temp/media",
                 { filePath: this.product.variants[key].filePath },
