@@ -106,7 +106,6 @@ class ProductController extends Controller
             $this->changeMediaFileLocation($tempPath, $product->id);
         }
 
-        // insert data into table 'variants', 'variant_values', 'product_variants', 'product_details' 
         if (count($request->variants) > 0) {
             $variantIds = [];
             for ($x = 0; $x < count($request->options); $x++) {
@@ -240,7 +239,6 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        dd($request->options);
 
         $this->validateProduct($request);
 
@@ -264,23 +262,157 @@ class ProductController extends Controller
             }
         }
 
-        foreach ($request->media as $tempPath) {
-            if (preg_match("/product/i", $tempPath)) {
-                return;
+        if (count($request->media) > 0) {
+            foreach ($request->media as $tempPath) {
+                if (!preg_match("/product/i", $tempPath)) {
+                    $this->changeMediaFileLocation($tempPath, $product->id);
+                }
             }
-            $this->changeMediaFileLocation($tempPath, $product->id);
         }
 
-        // handle logic request 'options' and 'variants' (study back how we did in store method)
-        // retrieve options and variants using logic in edit method and compare with request's options and variants
-        // what if we add certain option
-        // what if we remove certain option
+        $ProductOptionsVariants = $this->getProductOptionsVariants($product);
+        $variants = $ProductOptionsVariants['variants'];
+
+        if (count($request->variants) > 0) {
+            $variantIds = [];
+            for ($x = 0; $x < count($request->options); $x++) {
+                $option = $request->options[$x];
+                $optionName = ucwords(strtolower($option['name']));
+
+                $variant = Variant::firstOrCreate([
+                    'name' => $optionName
+                ]);
+                $variantIds[] = $variant->id;
+
+                foreach ($option['values'] as $value) {
+                    if ($value !== null) {
+                        $VariantValuechecker = VariantValue::where('value', $value)
+                            ->where('variant_id', $variant->id)
+                            ->first();
+
+                        if ($VariantValuechecker == null) {
+                            VariantValue::create([
+                                'variant_id' => $variant->id,
+                                'value' => ucwords(strtolower($value))
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            $currentProductvariantsName = [];
+            for ($i = 0; $i < count($variants); $i++) {
+                $currentProductvariantsName[] = $variants[$i]['name'];
+            }
+
+            for ($j = 0; $j < count($request->variants); $j++) {
+                $singleVariant = $request->variants[$j];
+
+                if (in_array($singleVariant['name'], $currentProductvariantsName)) {
+                    $productVariant = ProductVariant::where('product_id', $product->id)
+                        ->where('name', $singleVariant['name'])->first();
+
+                    if ($productVariant) {
+                        if ($singleVariant['filePath']) {
+                            if (preg_match("/temp/i", $singleVariant['filePath'])) {
+                                $variantImage = $this->changeMediaFileLocation(
+                                    $singleVariant['filePath'],
+                                    $product->id
+                                );
+                            }
+                        }
+
+                        // update the model
+                        $productVariant->update([
+                            'product_id' => $product->id,
+                            'name' => ucwords($singleVariant['name']),
+                            'image_url' => $singleVariant['filePath'] == null ?
+                                null : (preg_match("/product/", $singleVariant['filePath']) == true ?
+                                    $productVariant->image_url :
+                                    $variantImage->url
+                                ),
+                            'stock' => $singleVariant['stock'],
+                            'price' => $singleVariant['price']
+                        ]);
+                    }
+
+                    array_shift($currentProductvariantsName);
+                } else {
+                    // create new product variant
+                    if ($singleVariant['filePath']) {
+                        $variantImage = $this->changeMediaFileLocation(
+                            $singleVariant['filePath'],
+                            $product->id
+                        );
+                    }
+
+                    $productVariant = ProductVariant::create([
+                        'product_id' => $product->id,
+                        'name' => ucwords($singleVariant['name']),
+                        'image_url' => $singleVariant['filePath'] == null ?
+                            null :
+                            $variantImage->url,
+                        'stock' => $singleVariant['stock'],
+                        'price' => $singleVariant['price']
+                    ]);
+
+                    $variantOptions = explode(
+                        ' / ',
+                        strtolower($singleVariant['name'])
+                    );
+
+                    foreach ($variantOptions as $key => $option) {
+                        $variantValueRes = VariantValue::where('value', $option)
+                            ->where('variant_id', $variantIds[$key])
+                            ->first();
+
+                        ProductDetail::create([
+                            'product_variant_id' => $productVariant->id,
+                            'variant_value_id' => $variantValueRes->id,
+                        ]);
+                    }
+                }
+            }
+
+            if (count($currentProductvariantsName) > 0) {
+                foreach ($currentProductvariantsName as $variantName) {
+                    $productVariant = ProductVariant::where('product_id', $product->id)
+                        ->where('name', $variantName)->first();
+
+                    $variantNames = explode(' / ', $variantName);
+                    for ($i = 0; $i < count($variantNames); $i++) {
+                        ProductDetail::where('product_variant_id', $productVariant->id)
+                            ->first()
+                            ->delete();
+                    }
+
+                    $productVariant->delete();
+                }
+            }
+        }
+
+        if (count($request->variants) < 0) {
+            foreach ($variants as $variant) {
+                $productVariant = ProductVariant::where('product_id', $product->id)
+                    ->where('name', $variantName)->first();
+
+                $variantNames = explode(' / ', $variantName);
+                for ($i = 0; $i < count($variantNames); $i++) {
+                    ProductDetail::where('product_variant_id', $productVariant->id)
+                        ->first()
+                        ->delete();
+                }
+
+                $productVariant->delete();
+            }
+        }
 
         if (count($request->variantsMediaRemoved) > 0) {
-            foreach ($request->variantsMediaRemoved as $singleMediaRemoved) {
-                ProductImage::where('url', $singleMediaRemoved)->delete();
+            foreach ($request->variantsMediaRemoved as $variantMediaRemoved) {
+                ProductImage::where('product_id', $product->id)
+                    ->where('url', $variantMediaRemoved)->delete();
 
-                $filePath = str_replace(asset('storage') . '/', '', $singleMediaRemoved);
+                $filePath = str_replace(asset('storage') . '/', '', $variantMediaRemoved);
                 Storage::disk('public')->delete($filePath);
             }
         }
