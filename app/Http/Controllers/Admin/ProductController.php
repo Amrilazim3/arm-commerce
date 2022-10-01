@@ -239,7 +239,6 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-
         $this->validateProduct($request);
 
         $category = $this->createOrGetCategory($request->category);
@@ -308,70 +307,72 @@ class ProductController extends Controller
             for ($j = 0; $j < count($request->variants); $j++) {
                 $singleVariant = $request->variants[$j];
 
-                if (in_array($singleVariant['name'], $currentProductvariantsName)) {
-                    $productVariant = ProductVariant::where('product_id', $product->id)
-                        ->where('name', $singleVariant['name'])->first();
-
-                    if ($productVariant) {
-                        if ($singleVariant['filePath']) {
-                            if (preg_match("/temp/i", $singleVariant['filePath'])) {
-                                $variantImage = $this->changeMediaFileLocation(
-                                    $singleVariant['filePath'],
-                                    $product->id
-                                );
+                if (!$singleVariant['isDelete']) {
+                    if (in_array($singleVariant['name'], $currentProductvariantsName)) {
+                        $productVariant = ProductVariant::where('product_id', $product->id)
+                            ->where('name', $singleVariant['name'])->first();
+    
+                        if ($productVariant) {
+                            if ($singleVariant['filePath']) {
+                                if (preg_match("/temp/i", $singleVariant['filePath'])) {
+                                    $variantImage = $this->changeMediaFileLocation(
+                                        $singleVariant['filePath'],
+                                        $product->id
+                                    );
+                                }
                             }
+    
+                            // update the model
+                            $productVariant->update([
+                                'product_id' => $product->id,
+                                'name' => ucwords($singleVariant['name']),
+                                'image_url' => $singleVariant['filePath'] == null ?
+                                    null : (preg_match("/product/", $singleVariant['filePath']) == true ?
+                                        $productVariant->image_url :
+                                        $variantImage->url
+                                    ),
+                                'stock' => $singleVariant['stock'],
+                                'price' => $singleVariant['price']
+                            ]);
                         }
-
-                        // update the model
-                        $productVariant->update([
+    
+                        unset($currentProductvariantsName[$j]);
+                    } else {
+                        // create new product variant
+                        if ($singleVariant['filePath']) {
+                            $variantImage = $this->changeMediaFileLocation(
+                                $singleVariant['filePath'],
+                                $product->id
+                            );
+                        }
+    
+                        $productVariant = ProductVariant::create([
                             'product_id' => $product->id,
                             'name' => ucwords($singleVariant['name']),
                             'image_url' => $singleVariant['filePath'] == null ?
-                                null : (preg_match("/product/", $singleVariant['filePath']) == true ?
-                                    $productVariant->image_url :
-                                    $variantImage->url
-                                ),
+                                null :
+                                $variantImage->url,
                             'stock' => $singleVariant['stock'],
                             'price' => $singleVariant['price']
                         ]);
-                    }
-
-                    array_shift($currentProductvariantsName);
-                } else {
-                    // create new product variant
-                    if ($singleVariant['filePath']) {
-                        $variantImage = $this->changeMediaFileLocation(
-                            $singleVariant['filePath'],
-                            $product->id
+    
+                        $variantOptions = explode(
+                            ' / ',
+                            strtolower($singleVariant['name'])
                         );
+    
+                        foreach ($variantOptions as $key => $option) {
+                            $variantValueRes = VariantValue::where('value', $option)
+                                ->where('variant_id', $variantIds[$key])
+                                ->first();
+    
+                            ProductDetail::create([
+                                'product_variant_id' => $productVariant->id,
+                                'variant_value_id' => $variantValueRes->id,
+                            ]);
+                        }
                     }
-
-                    $productVariant = ProductVariant::create([
-                        'product_id' => $product->id,
-                        'name' => ucwords($singleVariant['name']),
-                        'image_url' => $singleVariant['filePath'] == null ?
-                            null :
-                            $variantImage->url,
-                        'stock' => $singleVariant['stock'],
-                        'price' => $singleVariant['price']
-                    ]);
-
-                    $variantOptions = explode(
-                        ' / ',
-                        strtolower($singleVariant['name'])
-                    );
-
-                    foreach ($variantOptions as $key => $option) {
-                        $variantValueRes = VariantValue::where('value', $option)
-                            ->where('variant_id', $variantIds[$key])
-                            ->first();
-
-                        ProductDetail::create([
-                            'product_variant_id' => $productVariant->id,
-                            'variant_value_id' => $variantValueRes->id,
-                        ]);
-                    }
-                }
+                } 
             }
 
             if (count($currentProductvariantsName) > 0) {
