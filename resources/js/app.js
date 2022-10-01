@@ -11,6 +11,8 @@ import { plugin as FormKitPlugin, defaultConfig } from '@formkit/vue';
 import TailwindFormKitConfig from '../../formkit.config';
 import VueTippy from 'vue-tippy';
 import 'tippy.js/dist/tippy.css';
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 createInertiaApp({
     resolve: async name => {
@@ -45,6 +47,7 @@ createInertiaApp({
                     allowHTML: true,
                 },
             })
+            .use(VueSweetalert2)
             .component("Link", Link)
             .component("Head", Head)
             .component("Datepicker", Datepicker)
