@@ -265,6 +265,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       var variants = this.product.variants;
+      var tempVariants = [];
 
       if (variants.length == 0) {
         variantsCombined.map(function (v, k) {
@@ -301,7 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 
               var existsInVariants = false;
               variants.forEach(function (el, elKey) {
-                if (el.name == variantsCombined[_i2]) {
+                if (el.name === variantsCombined[_i2]) {
                   existsInVariants = true;
 
                   if (_this4.previewVariantsMediaUploaded[elKey] !== undefined) {
@@ -319,6 +320,13 @@ __webpack_require__.r(__webpack_exports__);
               });
 
               if (!existsInVariants) {
+                tempVariants.push({
+                  name: variants[_i2].name,
+                  filePath: variants[_i2].filePath,
+                  stock: variants[_i2].stock,
+                  price: variants[_i2].price,
+                  isDelete: variants[_i2].isDelete
+                });
                 variants[_i2] = {
                   name: variantsCombined[_i2],
                   filePath: null,
@@ -345,6 +353,19 @@ __webpack_require__.r(__webpack_exports__);
 
         for (var _i2 = 0; _i2 < variantsCombined.length; _i2++) {
           _loop3(_i2);
+        }
+
+        if (tempVariants.length > 0) {
+          variants.forEach(function (el) {
+            tempVariants.forEach(function (tempVariantEl) {
+              if (el.name === tempVariantEl.name) {
+                el.filePath = tempVariantEl.filePath;
+                el.stock = tempVariantEl.stock;
+                el.price = tempVariantEl.price;
+                el.isDelete = tempVariantEl.isDelete;
+              }
+            });
+          });
         }
 
         if (variants.length > variantsCombined.length) {
