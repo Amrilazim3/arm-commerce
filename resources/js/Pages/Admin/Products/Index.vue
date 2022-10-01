@@ -432,6 +432,8 @@ export default {
             this.$swal
                 .fire({
                     title: "<p class='text-2xl'>Do you want to delete this product?</p>",
+                    text: "All the product data cannot be recovered!",
+                    icon: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Yes",
                     cancelButtonColor: "rgb(99, 102, 241)",
@@ -459,7 +461,7 @@ export default {
                                     },
                                     3500
                                 );
-                            }
+                            },
                         });
                     }
                 });
