@@ -392,7 +392,7 @@ class ProductController extends Controller
             }
         }
 
-        if (count($request->variants) < 0) {
+        if (count($request->variants) < 0 && count($variants) > 0) {
             foreach ($variants as $variant) {
                 $productVariant = ProductVariant::where('product_id', $product->id)
                     ->where('name', $variantName)->first();
