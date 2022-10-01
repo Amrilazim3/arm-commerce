@@ -890,32 +890,29 @@ export default {
         },
 
         editProduct() {
-            this.product.put(
-                `/admin/products/${this.product.slug}`,
-                {
-                    preserveScroll: true,
-                    onSuccess: () => {
-                        this.$notify(
-                            {
-                                group: "success",
-                                title: "Success",
-                                text: "Product successfully edited.",
-                            },
-                            3500
-                        );
-                    },
-                    onError: () => {
-                        this.$notify(
-                            {
-                                group: "error",
-                                title: "Error",
-                                text: "Product failed to be edited.",
-                            },
-                            3500
-                        );
-                    },
-                }
-            );
+            this.product.put(`/admin/products/${this.product.slug}`, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.$notify(
+                        {
+                            group: "success",
+                            title: "Success",
+                            text: "Product successfully edited.",
+                        },
+                        3500
+                    );
+                },
+                onError: () => {
+                    this.$notify(
+                        {
+                            group: "error",
+                            title: "Error",
+                            text: "Product failed to be edited.",
+                        },
+                        3500
+                    );
+                },
+            });
         },
 
         addOptionValueInput(objectKey, currentArrayKey) {
@@ -988,6 +985,7 @@ export default {
             }
 
             let variants = this.product.variants;
+            let tempVariants = [];
             if (variants.length == 0) {
                 variantsCombined.map((v, k) => {
                     variants.push({
@@ -997,7 +995,7 @@ export default {
                         price: null,
                         isDelete: false,
                     });
-                    
+
                     this.previewVariantsMediaUploaded[k] = undefined;
                 });
             }
@@ -1031,7 +1029,7 @@ export default {
 
                             let existsInVariants = false;
                             variants.forEach((el, elKey) => {
-                                if (el.name == variantsCombined[i]) {
+                                if (el.name === variantsCombined[i]) {
                                     existsInVariants = true;
 
                                     if (
@@ -1056,6 +1054,14 @@ export default {
                             });
 
                             if (!existsInVariants) {
+                                tempVariants.push({
+                                    name: variants[i].name,
+                                    filePath: variants[i].filePath,
+                                    stock: variants[i].stock,
+                                    price: variants[i].price,
+                                    isDelete: variants[i].isDelete,
+                                });
+                                
                                 variants[i] = {
                                     name: variantsCombined[i],
                                     filePath: null,
@@ -1078,6 +1084,19 @@ export default {
 
                         this.previewVariantsMediaUploaded.push(undefined);
                     }
+                }
+
+                if (tempVariants.length > 0) {
+                    variants.forEach((el) => {
+                        tempVariants.forEach((tempVariantEl) => {
+                            if (el.name === tempVariantEl.name) {
+                                el.filePath = tempVariantEl.filePath;
+                                el.stock = tempVariantEl.stock;
+                                el.price = tempVariantEl.price;
+                                el.isDelete = tempVariantEl.isDelete;
+                            }
+                        });
+                    });
                 }
 
                 if (variants.length > variantsCombined.length) {
