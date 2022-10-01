@@ -423,7 +423,14 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        dd('destroy method');
+        $product->images()->each(function ($image) {
+            $imagePath = str_replace(asset('storage') . '/', '', $image->url);
+            Storage::disk('public')->delete($imagePath);
+        });
+
+        $product->delete();
+
+        return redirect()->back();
     }
 
     protected function validateProduct($request)
