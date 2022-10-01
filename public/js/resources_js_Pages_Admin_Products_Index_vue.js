@@ -80,7 +80,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var params = this.params;
       params = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.pickBy)(params);
-      this.$inertia.get('/admin/products', params, {
+      this.$inertia.get("/admin/products", params, {
         preserveState: true
       });
     },
@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var params = this.params;
       params = (0,lodash__WEBPACK_IMPORTED_MODULE_2__.pickBy)(params);
-      this.$inertia.get('/admin/products', params, {
+      this.$inertia.get("/admin/products", params, {
         preserveState: true
       });
     },
@@ -109,11 +109,35 @@ __webpack_require__.r(__webpack_exports__);
         preserveScroll: true
       });
     }, 500),
-    editProduct: function editProduct(slug) {
-      this.$inertia.patch("/admin/products/" + slug);
-    },
     deleteProduct: function deleteProduct(slug) {
-      this.$inertia["delete"]("/admin/products/" + slug);
+      var _this2 = this;
+
+      this.$swal.fire({
+        title: "<p class='text-2xl'>Do you want to delete this product?</p>",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonColor: "rgb(99, 102, 241)",
+        confirmButtonColor: "rgb(156, 163, 175)"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this2.$inertia["delete"]("/admin/products/" + slug, {
+            onSuccess: function onSuccess() {
+              _this2.$notify({
+                group: "success",
+                title: "Success",
+                text: "Product successfully deleted."
+              }, 3500);
+            },
+            onError: function onError() {
+              _this2.$notify({
+                group: "error",
+                title: "Error",
+                text: "Product failed to be delete. Plase try again."
+              }, 3500);
+            }
+          });
+        }
+      });
     }
   }
 });
