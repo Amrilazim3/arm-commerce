@@ -159,7 +159,8 @@
                                                                         "
                                                                     >
                                                                         Created
-                                                                        (oldest first)
+                                                                        (oldest
+                                                                        first)
                                                                     </button>
                                                                 </MenuItem>
                                                                 <MenuItem
@@ -184,7 +185,8 @@
                                                                         "
                                                                     >
                                                                         Created
-                                                                        (newest first)
+                                                                        (newest
+                                                                        first)
                                                                     </button>
                                                                 </MenuItem>
                                                             </div>
@@ -264,7 +266,10 @@
                                                     class="text-sm text-gray-900 px-6 py-4 whitespace-normal"
                                                 >
                                                     <Link
-                                                        :href="'/admin/products/' + product.slug"
+                                                        :href="
+                                                            '/admin/products/' +
+                                                            product.slug
+                                                        "
                                                         class="hover:font-semibold hover:text-indigo-600"
                                                     >
                                                         {{ product.name }}
@@ -288,7 +293,11 @@
                                                         class="text-indigo-600 hover:text-indigo-900 text-right text-sm font-medium"
                                                     >
                                                         <Link
-                                                            :href="'/admin/products/' + product.slug + '/edit'"
+                                                            :href="
+                                                                '/admin/products/' +
+                                                                product.slug +
+                                                                '/edit'
+                                                            "
                                                         >
                                                             Edit
                                                         </Link>
@@ -344,7 +353,7 @@ export default {
         MenuItems,
         MenuItem,
         SearchIcon,
-        PlusCircleIcon
+        PlusCircleIcon,
     },
 
     data() {
@@ -386,13 +395,9 @@ export default {
             let params = this.params;
             params = pickBy(params);
 
-            this.$inertia.get(
-                '/admin/products',
-                params,
-                {
-                    preserveState: true,
-                }
-            );
+            this.$inertia.get("/admin/products", params, {
+                preserveState: true,
+            });
         },
 
         sortByStock(option) {
@@ -410,13 +415,9 @@ export default {
             let params = this.params;
             params = pickBy(params);
 
-            this.$inertia.get(
-                '/admin/products',
-                params,
-                {
-                    preserveState: true,
-                }
-            );
+            this.$inertia.get("/admin/products", params, {
+                preserveState: true,
+            });
         },
 
         searchInput: debounce(function () {
@@ -427,12 +428,41 @@ export default {
             });
         }, 500),
 
-        editProduct(slug) {
-            this.$inertia.patch("/admin/products/" + slug);
-        },
-
         deleteProduct(slug) {
-            this.$inertia.delete("/admin/products/" + slug);
+            this.$swal
+                .fire({
+                    title: "<p class='text-2xl'>Do you want to delete this product?</p>",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    cancelButtonColor: "rgb(99, 102, 241)",
+                    confirmButtonColor: "rgb(156, 163, 175)",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        this.$inertia.delete("/admin/products/" + slug, {
+                            onSuccess: () => {
+                                this.$notify(
+                                    {
+                                        group: "success",
+                                        title: "Success",
+                                        text: "Product successfully deleted.",
+                                    },
+                                    3500
+                                );
+                            },
+                            onError: () => {
+                                this.$notify(
+                                    {
+                                        group: "error",
+                                        title: "Error",
+                                        text: "Product failed to be delete. Plase try again.",
+                                    },
+                                    3500
+                                );
+                            }
+                        });
+                    }
+                });
         },
     },
 };
