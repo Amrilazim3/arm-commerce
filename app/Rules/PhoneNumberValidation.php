@@ -42,6 +42,6 @@ class PhoneNumberValidation implements Rule
      */
     public function message()
     {
-        return 'Phone number is not valid. Check if it follow the malaysian format or not.';
+        return 'Phone number not valid. Check if it follow your country format or not.';
     }
 }
