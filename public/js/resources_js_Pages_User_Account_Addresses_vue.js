@@ -45,8 +45,7 @@ __webpack_require__.r(__webpack_exports__);
         isDefault: false
       }),
       cities: [],
-      addressIdToEdit: null,
-      addressIdToDelete: null
+      addressIdToEdit: null
     };
   },
   watch: {
@@ -130,30 +129,38 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    openDeleteAddressModal: function openDeleteAddressModal(addressId) {
-      this.addressIdToDelete = addressId;
-      this.isOpenDeleteModal = true;
-    },
     deleteAddress: function deleteAddress(addressId) {
       var _this4 = this;
 
-      this.$inertia["delete"]("/user/account/addresses/".concat(addressId), {
-        preserveScroll: true,
-        onSuccess: function onSuccess() {
-          _this4.isOpenDeleteModal = false;
+      this.$swal.fire({
+        title: "<p class='text-2xl'>Do you want to delete this address?</p>",
+        text: "this action cannot be revert!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonColor: "rgb(99, 102, 241)",
+        confirmButtonColor: "rgb(156, 163, 175)"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this4.$inertia["delete"]("/user/account/addresses/".concat(addressId), {
+            preserveScroll: true,
+            onSuccess: function onSuccess() {
+              _this4.isOpenDeleteModal = false;
 
-          _this4.$notify({
-            group: "success",
-            title: "Success",
-            text: "Address successfully deleted"
-          }, 3500);
-        },
-        onError: function onError() {
-          _this4.$notify({
-            group: "error",
-            title: "Error",
-            text: "Something wrong happen when perfoming this action. Please try again"
-          }, 3500);
+              _this4.$notify({
+                group: "success",
+                title: "Success",
+                text: "Address successfully deleted"
+              }, 3500);
+            },
+            onError: function onError() {
+              _this4.$notify({
+                group: "error",
+                title: "Error",
+                text: "Something wrong happen when perfoming this action. Please try again"
+              }, 3500);
+            }
+          });
         }
       });
     },
@@ -345,33 +352,6 @@ var _hoisted_32 = ["value"];
 var _hoisted_33 = {
   "class": "flex flex-row-reverse"
 };
-
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "fixed inset-0 bg-gray-500 bg-opacity-90 transition-opacity"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_35 = {
-  "class": "fixed inset-0 overflow-y-auto"
-};
-var _hoisted_36 = {
-  "class": "flex min-h-full items-center justify-center p-4 text-center"
-};
-
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Delete this address? ");
-
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-sm text-gray-500"
-}, " are you sure want to delete this address? ")], -1
-/* HOISTED */
-);
-
-var _hoisted_39 = {
-  "class": "mt-4 flex justify-end space-x-2"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -386,10 +366,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Dialog = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Dialog");
 
   var _component_TransitionRoot = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TransitionRoot");
-
-  var _component_DialogTitle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DialogTitle");
-
-  var _component_DialogPanel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DialogPanel");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Addresses"
@@ -442,7 +418,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "text-red-500 hover:text-red-600 text-right text-sm font-medium",
       onClick: function onClick($event) {
-        return $options.openDeleteAddressModal(address.id);
+        return $options.deleteAddress(address.id);
       }
     }, " Delete ", 8
     /* PROPS */
@@ -636,89 +612,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, 8
       /* PROPS */
       , ["onClose"])];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["show"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionRoot, {
-    as: "template",
-    show: $data.isOpenDeleteModal
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dialog, {
-        as: "div",
-        "class": "fixed z-10 inset-0 overflow-y-auto",
-        onClose: _cache[8] || (_cache[8] = function ($event) {
-          return $data.isOpenDeleteModal = false;
-        })
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
-            as: "template",
-            enter: "ease-out duration-300",
-            "enter-from": "opacity-0",
-            "enter-to": "opacity-100",
-            leave: "ease-in duration-200",
-            "leave-from": "opacity-100",
-            "leave-to": "opacity-0"
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [_hoisted_34];
-            }),
-            _: 1
-            /* STABLE */
-
-          }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TransitionChild, {
-            enter: "duration-300 ease-out",
-            "enter-from": "opacity-0 scale-95",
-            "enter-to": "opacity-100 scale-100",
-            leave: "duration-200 ease-in",
-            "leave-from": "opacity-100 scale-100",
-            "leave-to": "opacity-0 scale-95"
-          }, {
-            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" DialogPanel component make it clickable outside of modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DialogPanel, {
-                "class": "w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all"
-              }, {
-                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DialogTitle, {
-                    as: "h3",
-                    "class": "text-lg font-medium leading-6 text-red-600"
-                  }, {
-                    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_37];
-                    }),
-                    _: 1
-                    /* STABLE */
-
-                  }), _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                    "class": "inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-500",
-                    onClick: _cache[6] || (_cache[6] = function ($event) {
-                      return $data.isOpenDeleteModal = false;
-                    })
-                  }, " no "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-                    "class": "inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 focus:outline-none",
-                    onClick: _cache[7] || (_cache[7] = function ($event) {
-                      return $options.deleteAddress($data.addressIdToDelete);
-                    })
-                  }, " yes ")])];
-                }),
-                _: 1
-                /* STABLE */
-
-              })];
-            }),
-            _: 1
-            /* STABLE */
-
-          })])])];
-        }),
-        _: 1
-        /* STABLE */
-
-      })];
     }),
     _: 1
     /* STABLE */
