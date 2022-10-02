@@ -276,7 +276,7 @@
                                         name="phone_number"
                                         label="Phone number"
                                         type="number"
-                                        validation="required|number|length:11,12"
+                                        validation="required|number"
                                         placeholder="60178891233"
                                         v-model="addressForm.phoneNumber"
                                     />
@@ -331,6 +331,13 @@
                                         placeholder="Enter your street name"
                                         v-model="addressForm.streetName"
                                     />
+                                    <FormKit
+                                        name="is_default"
+                                        label="set as default address"
+                                        type="checkbox"
+                                        help="this will be your default address when you make a payment"
+                                        v-model="addressForm.isDefault"
+                                    />
                                     <div class="flex flex-row-reverse">
                                         <FormKit type="submit" label="Save" />
                                         <FormKit
@@ -361,6 +368,7 @@ import {
     TransitionChild,
     TransitionRoot,
 } from "@headlessui/vue";
+import { name } from "lodash.merge";
 
 export default {
     components: {
