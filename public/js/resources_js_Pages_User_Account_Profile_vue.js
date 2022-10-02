@@ -47,14 +47,22 @@ __webpack_require__.r(__webpack_exports__);
       this.user.newProfileImageFile = selectedImage;
     },
     removeProfileImage: function removeProfileImage() {
-      if (this.user.profileImageUrl && this.user.newProfileImageUrl == "") {
-        var question = confirm("Remove this profile image?");
+      var _this = this;
 
-        if (question) {
-          this.user.profileImageUrl = null;
-          this.user.newProfileImageFile = "";
-          return;
-        }
+      if (this.user.profileImageUrl && this.user.newProfileImageUrl == "") {
+        this.$swal.fire({
+          text: "Remove current profile picture?",
+          showCancelButton: true,
+          confirmButtonText: "Yes",
+          cancelButtonColor: "rgb(99, 102, 241)",
+          confirmButtonColor: "rgb(156, 163, 175)"
+        }).then(function (result) {
+          if (result.isConfirmed) {
+            _this.user.profileImageUrl = "";
+            _this.user.newProfileImageFile = "";
+            return;
+          }
+        });
       }
 
       this.user.newProfileImageFile = "";
@@ -62,25 +70,25 @@ __webpack_require__.r(__webpack_exports__);
       return;
     },
     updateProfile: function updateProfile() {
-      var _this = this;
+      var _this2 = this;
 
       this.user.post("/user/account/profile", {
         preserveScroll: true,
         forceFormData: true,
         onSuccess: function onSuccess() {
-          if (_this.user.newProfileImageUrl) {
-            _this.user.profileImageUrl = _this.user.newProfileImageUrl;
-            _this.user.newProfileImageUrl = "";
+          if (_this2.user.newProfileImageUrl) {
+            _this2.user.profileImageUrl = _this2.user.newProfileImageUrl;
+            _this2.user.newProfileImageUrl = "";
           }
 
-          _this.$notify({
+          _this2.$notify({
             group: "success",
             title: "Success",
             text: "Your profile was updated"
           }, 3500);
         },
         onError: function onError() {
-          _this.$notify({
+          _this2.$notify({
             group: "error",
             title: "Error",
             text: "Your profile failed to update. Please try again"
@@ -89,15 +97,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     requestResendLink: function requestResendLink() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.emailVerification.resendButton.post("/email/verify/send", {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this2.emailVerification.isSuccessResent = true;
+          _this3.emailVerification.isSuccessResent = true;
         },
         onError: function onError() {
-          _this2.emailVerification.isFailResent = true;
+          _this3.emailVerification.isFailResent = true;
         }
       });
     }
@@ -180,7 +188,7 @@ var _hoisted_5 = {
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "name",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-}, " name ", -1
+}, " Name ", -1
 /* HOISTED */
 );
 
@@ -225,7 +233,7 @@ var _hoisted_17 = {
   "class": "inline-block cursor-pointer ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change ");
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" select ");
 
 var _hoisted_19 = {
   key: 0,
@@ -261,7 +269,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_26 = ["disabled"];
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change ");
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" change ");
 
 var _hoisted_28 = {
   key: 0,
@@ -278,7 +286,7 @@ var _hoisted_30 = {
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "phone-number",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-}, " Phone Number ", -1
+}, " Phone number ", -1
 /* HOISTED */
 );
 
@@ -300,7 +308,7 @@ var _hoisted_34 = {
 var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "date_of_birth",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-}, " Date Of Birth ", -1
+}, " Date of birth ", -1
 /* HOISTED */
 );
 
@@ -339,7 +347,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" H1 tag and P tag with words "), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         name: "name",
         type: "text",
         "outer-class": "$reset mt-1 sm:mt-0 sm:col-span-2",
@@ -352,7 +360,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, [$data.user.profileImageUrl !== null && $data.user.newProfileImageUrl == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, [$data.user.profileImageUrl !== '' && $data.user.newProfileImageUrl == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
         key: 0,
         src: $data.user.profileImageUrl,
         alt: "profile-image",
@@ -383,7 +391,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.removeProfileImage && $options.removeProfileImage.apply($options, arguments);
         }, ["prevent"]))
-      }, " Remove ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.user.errors.newProfileImageFile ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.errors.newProfileImageFile), 1
+      }, " remove ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.user.errors.newProfileImageFile ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.errors.newProfileImageFile), 1
       /* TEXT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.email), 1
       /* TEXT */
