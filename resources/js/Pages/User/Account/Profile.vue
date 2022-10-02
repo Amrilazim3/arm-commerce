@@ -24,7 +24,6 @@
             }"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                <!-- H1 tag and P tag with words -->
                 <div>
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Profile Information
@@ -43,7 +42,7 @@
                             for="name"
                             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                         >
-                            name
+                            Name
                         </label>
                         <FormKit
                             name="name"
@@ -72,7 +71,7 @@
                                 >
                                     <template
                                         v-if="
-                                            user.profileImageUrl !== null &&
+                                            user.profileImageUrl !== '' &&
                                             user.newProfileImageUrl == ''
                                         "
                                     >
@@ -119,7 +118,7 @@
                                             handleProfileImageUpload($event)
                                         "
                                     />
-                                    Change
+                                    select
                                 </label>
                                 <button
                                     class="text-red-500 text-sm font-medium ml-4 hover:underline"
@@ -129,7 +128,7 @@
                                     "
                                     @click.prevent="removeProfileImage"
                                 >
-                                    Remove
+                                    remove
                                 </button>
                             </div>
                             <div
@@ -188,7 +187,7 @@
                                     class="font-medium text-sm ml-2.5 text-red-500 hover:underline"
                                     href="/user/account/email/change"
                                 >
-                                    Change
+                                    change
                                 </Link>
                             </div>
                             <template v-if="emailVerification.isSuccessResent">
@@ -212,7 +211,7 @@
                             for="phone-number"
                             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                         >
-                            Phone Number
+                            Phone number
                         </label>
                         <FormKit
                             name="phone_number"
@@ -253,7 +252,7 @@
                             for="date_of_birth"
                             class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                         >
-                            Date Of Birth
+                            Date of birth
                         </label>
                         <div class="mt-1 sm:mt-0 sm:pt-2 sm:col-span-2">
                             <Datepicker
@@ -317,13 +316,21 @@ export default {
                 this.user.profileImageUrl &&
                 this.user.newProfileImageUrl == ""
             ) {
-                let question = confirm("Remove this profile image?");
-
-                if (question) {
-                    this.user.profileImageUrl = null;
-                    this.user.newProfileImageFile = "";
-                    return;
-                }
+                this.$swal
+                    .fire({
+                        text: "Remove current profile picture?",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes",
+                        cancelButtonColor: "rgb(99, 102, 241)",
+                        confirmButtonColor: "rgb(156, 163, 175)",
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            this.user.profileImageUrl = "";
+                            this.user.newProfileImageFile = "";
+                            return;
+                        }
+                    });
             }
 
             this.user.newProfileImageFile = "";
