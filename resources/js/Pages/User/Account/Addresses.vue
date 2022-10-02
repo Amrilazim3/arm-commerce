@@ -7,7 +7,9 @@
             :class="addresses.length == 0 ? 'mb-32' : 'mb-10'"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                <div class="inline-block items-center md:flex md:justify-between">
+                <div
+                    class="inline-block items-center md:flex md:justify-between"
+                >
                     <div>
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
                             My addresses
@@ -151,7 +153,7 @@
                                                     <button
                                                         class="text-red-500 hover:text-red-600 text-right text-sm font-medium"
                                                         @click="
-                                                            openDeleteAddressModal(
+                                                            deleteAddress(
                                                                 address.id
                                                             )
                                                         "
@@ -346,76 +348,6 @@
             </div>
         </Dialog>
     </TransitionRoot>
-
-    <TransitionRoot as="template" :show="isOpenDeleteModal">
-        <Dialog
-            as="div"
-            class="fixed z-10 inset-0 overflow-y-auto"
-            @close="isOpenDeleteModal = false"
-        >
-            <TransitionChild
-                as="template"
-                enter="ease-out duration-300"
-                enter-from="opacity-0"
-                enter-to="opacity-100"
-                leave="ease-in duration-200"
-                leave-from="opacity-100"
-                leave-to="opacity-0"
-            >
-                <span
-                    class="fixed inset-0 bg-gray-500 bg-opacity-90 transition-opacity"
-                />
-            </TransitionChild>
-
-            <div class="fixed inset-0 overflow-y-auto">
-                <div
-                    class="flex min-h-full items-center justify-center p-4 text-center"
-                >
-                    <TransitionChild
-                        enter="duration-300 ease-out"
-                        enter-from="opacity-0 scale-95"
-                        enter-to="opacity-100 scale-100"
-                        leave="duration-200 ease-in"
-                        leave-from="opacity-100 scale-100"
-                        leave-to="opacity-0 scale-95"
-                    >
-                        <!-- DialogPanel component make it clickable outside of modal -->
-                        <DialogPanel
-                            class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all"
-                        >
-                            <DialogTitle
-                                as="h3"
-                                class="text-lg font-medium leading-6 text-red-600"
-                            >
-                                Delete this address?
-                            </DialogTitle>
-
-                            <div class="mt-2">
-                                <p class="text-sm text-gray-500">
-                                    are you sure want to delete this address?
-                                </p>
-                            </div>
-
-                            <div class="mt-4 flex justify-end space-x-2">
-                                <button
-                                    class="inline-flex justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-500"
-                                    @click="isOpenDeleteModal = false"
-                                >
-                                    no
-                                </button>
-                                <button
-                                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 focus:outline-none"
-                                    @click="deleteAddress(addressIdToDelete)"
-                                >
-                                    yes
-                                </button>
-                            </div>
-                        </DialogPanel>
-                    </TransitionChild>
-                </div>
-            </div>
-        </Dialog>
-    </TransitionRoot>
 </template>
 
 <script>
@@ -462,7 +394,6 @@ export default {
             }),
             cities: [],
             addressIdToEdit: null,
-            addressIdToDelete: null,
         };
     },
 
@@ -550,36 +481,48 @@ export default {
             });
         },
 
-        openDeleteAddressModal(addressId) {
-            this.addressIdToDelete = addressId;
-            this.isOpenDeleteModal = true;
-        },
-
         deleteAddress(addressId) {
-            this.$inertia.delete(`/user/account/addresses/${addressId}`, {
-                preserveScroll: true,
-                onSuccess: () => {
-                    this.isOpenDeleteModal = false;
-                    this.$notify(
-                        {
-                            group: "success",
-                            title: "Success",
-                            text: "Address successfully deleted",
-                        },
-                        3500
-                    );
-                },
-                onError: () => {
-                    this.$notify(
-                        {
-                            group: "error",
-                            title: "Error",
-                            text: "Something wrong happen when perfoming this action. Please try again",
-                        },
-                        3500
-                    );
-                },
-            });
+            this.$swal
+                .fire({
+                    title: "<p class='text-2xl'>Do you want to delete this address?</p>",
+                    text: "this action cannot be revert!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    cancelButtonColor: "rgb(99, 102, 241)",
+                    confirmButtonColor: "rgb(156, 163, 175)",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        this.$inertia.delete(
+                            `/user/account/addresses/${addressId}`,
+                            {
+                                preserveScroll: true,
+                                onSuccess: () => {
+                                    this.isOpenDeleteModal = false;
+                                    this.$notify(
+                                        {
+                                            group: "success",
+                                            title: "Success",
+                                            text: "Address successfully deleted",
+                                        },
+                                        3500
+                                    );
+                                },
+                                onError: () => {
+                                    this.$notify(
+                                        {
+                                            group: "error",
+                                            title: "Error",
+                                            text: "Something wrong happen when perfoming this action. Please try again",
+                                        },
+                                        3500
+                                    );
+                                },
+                            }
+                        );
+                    }
+                });
         },
 
         closeAddressForm() {
