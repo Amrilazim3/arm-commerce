@@ -42,6 +42,6 @@ class PhoneNumberValidation implements Rule
      */
     public function message()
     {
-        return 'Phone number not valid. Check if it follow your country format or not.';
+        return 'Phone number not valid. Your country code e.g (60) malaysia, (62) indonesia is essential';
     }
 }
