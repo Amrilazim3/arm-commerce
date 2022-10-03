@@ -10,7 +10,7 @@
             submit-label="Save"
             :submit-attrs="{
                 outerClass: '$reset',
-                wrapperClass: '$reset mt-6 flex justify-end'
+                wrapperClass: '$reset mt-6 flex justify-end',
             }"
             :disabled="user.processing"
             @submit="updateProfile"
@@ -20,7 +20,9 @@
                     ? user.errors.phoneNumber
                     : '',
                 gender: user.errors.gender ? user.errors.gender : '',
-                date_of_birth: user.errors.dateOfBirth ? user.errors.dateOfBirth : ''
+                date_of_birth: user.errors.dateOfBirth
+                    ? user.errors.dateOfBirth
+                    : '',
             }"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
@@ -300,10 +302,60 @@ export default {
                 isSuccessResent: false,
                 isFailResent: false,
             },
+
+            safeToLeave: true,
         };
     },
 
+    watch: {
+        user: {
+            handler(newObj) {
+                if (!newObj.isDirty) {
+                    this.safeToLeave = true;
+                }
+
+                if (newObj.isDirty) {
+                    this.safeToLeave = false;
+                }
+            },
+            deep: true,
+        },
+    },
+
+    mounted() {
+        window.addEventListener('beforeunload', this.handleExit);
+
+        var linkTags = document.querySelectorAll("a");
+        linkTags.forEach((el) => {
+            el.addEventListener("click", this.handleRouteChange);
+        });
+    },
+
+    beforeUnmount() {
+        window.removeEventListener('beforeunload', this.handleExit);
+
+        var linkTags = document.querySelectorAll("a");
+        linkTags.forEach((el) => {
+            el.removeEventListener("click", this.handleRouteChange);
+        });
+    },
+
     methods: {
+        // bug (cannot prevent page from changing)
+        handleRouteChange() {
+            if (!confirm('The changes you made will not be saved!')) {
+                return false;
+            }
+
+            return true;
+        },
+
+        handleExit() {
+            if (!this.safeToLeave) {
+                return "The changes you made will not be saved!";
+            }
+        },
+
         handleProfileImageUpload(event) {
             let selectedImage = event.target.files[0];
 
@@ -343,11 +395,14 @@ export default {
                 preserveScroll: true,
                 forceFormData: true,
                 onSuccess: () => {
+                    this.user.isDirty = false;
+
                     if (this.user.newProfileImageUrl) {
                         this.user.profileImageUrl =
                             this.user.newProfileImageUrl;
                         this.user.newProfileImageUrl = "";
                     }
+
                     this.$notify(
                         {
                             group: "success",
