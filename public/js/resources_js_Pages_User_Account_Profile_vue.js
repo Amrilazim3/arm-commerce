@@ -37,17 +37,63 @@ __webpack_require__.r(__webpack_exports__);
         resendButton: this.$inertia.form({}),
         isSuccessResent: false,
         isFailResent: false
-      }
+      },
+      safeToLeave: true
     };
   },
+  watch: {
+    user: {
+      handler: function handler(newObj) {
+        if (!newObj.isDirty) {
+          this.safeToLeave = true;
+        }
+
+        if (newObj.isDirty) {
+          this.safeToLeave = false;
+        }
+      },
+      deep: true
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    window.addEventListener('beforeunload', this.handleExit);
+    var linkTags = document.querySelectorAll("a");
+    linkTags.forEach(function (el) {
+      el.addEventListener("click", _this.handleRouteChange);
+    });
+  },
+  beforeUnmount: function beforeUnmount() {
+    var _this2 = this;
+
+    window.removeEventListener('beforeunload', this.handleExit);
+    var linkTags = document.querySelectorAll("a");
+    linkTags.forEach(function (el) {
+      el.removeEventListener("click", _this2.handleRouteChange);
+    });
+  },
   methods: {
+    // bug (cannot prevent page from changing)
+    handleRouteChange: function handleRouteChange() {
+      if (!confirm('The changes you made will not be saved!')) {
+        return false;
+      }
+
+      return true;
+    },
+    handleExit: function handleExit() {
+      if (!this.safeToLeave) {
+        return "The changes you made will not be saved!";
+      }
+    },
     handleProfileImageUpload: function handleProfileImageUpload(event) {
       var selectedImage = event.target.files[0];
       this.user.newProfileImageUrl = URL.createObjectURL(selectedImage);
       this.user.newProfileImageFile = selectedImage;
     },
     removeProfileImage: function removeProfileImage() {
-      var _this = this;
+      var _this3 = this;
 
       if (this.user.profileImageUrl && this.user.newProfileImageUrl == "") {
         this.$swal.fire({
@@ -58,8 +104,8 @@ __webpack_require__.r(__webpack_exports__);
           confirmButtonColor: "rgb(156, 163, 175)"
         }).then(function (result) {
           if (result.isConfirmed) {
-            _this.user.profileImageUrl = "";
-            _this.user.newProfileImageFile = "";
+            _this3.user.profileImageUrl = "";
+            _this3.user.newProfileImageFile = "";
             return;
           }
         });
@@ -70,25 +116,27 @@ __webpack_require__.r(__webpack_exports__);
       return;
     },
     updateProfile: function updateProfile() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.user.post("/user/account/profile", {
         preserveScroll: true,
         forceFormData: true,
         onSuccess: function onSuccess() {
-          if (_this2.user.newProfileImageUrl) {
-            _this2.user.profileImageUrl = _this2.user.newProfileImageUrl;
-            _this2.user.newProfileImageUrl = "";
+          _this4.user.isDirty = false;
+
+          if (_this4.user.newProfileImageUrl) {
+            _this4.user.profileImageUrl = _this4.user.newProfileImageUrl;
+            _this4.user.newProfileImageUrl = "";
           }
 
-          _this2.$notify({
+          _this4.$notify({
             group: "success",
             title: "Success",
             text: "Your profile was updated"
           }, 3500);
         },
         onError: function onError() {
-          _this2.$notify({
+          _this4.$notify({
             group: "error",
             title: "Error",
             text: "Your profile failed to update. Please try again"
@@ -97,15 +145,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     requestResendLink: function requestResendLink() {
-      var _this3 = this;
+      var _this5 = this;
 
       this.emailVerification.resendButton.post("/email/verify/send", {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this3.emailVerification.isSuccessResent = true;
+          _this5.emailVerification.isSuccessResent = true;
         },
         onError: function onError() {
-          _this3.emailVerification.isFailResent = true;
+          _this5.emailVerification.isFailResent = true;
         }
       });
     }
