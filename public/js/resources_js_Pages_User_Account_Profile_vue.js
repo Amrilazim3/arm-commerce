@@ -56,31 +56,24 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
-    window.addEventListener('beforeunload', this.handleExit);
-    var linkTags = document.querySelectorAll("a");
-    linkTags.forEach(function (el) {
-      el.addEventListener("click", _this.handleRouteChange);
-    });
+    // need to set safeToLeave variable to true again,
+    // because when phone number / date of birth input is empty 
+    // the user.isDirty will become true and safeToLeave will become false.
+    this.safeToLeave = true;
+    window.onbeforeunload = this.handleExit;
+    document.addEventListener('inertia:before', this.handleRouteChange);
   },
   beforeUnmount: function beforeUnmount() {
-    var _this2 = this;
-
-    window.removeEventListener('beforeunload', this.handleExit);
-    var linkTags = document.querySelectorAll("a");
-    linkTags.forEach(function (el) {
-      el.removeEventListener("click", _this2.handleRouteChange);
-    });
+    window.onbeforeunload = false;
+    document.removeEventListener('inertia:before', this.handleRouteChange);
   },
   methods: {
-    // bug (cannot prevent page from changing)
-    handleRouteChange: function handleRouteChange() {
-      if (!confirm('The changes you made will not be saved!')) {
-        return false;
+    handleRouteChange: function handleRouteChange(event) {
+      if (!this.safeToLeave) {
+        if (!confirm('Are you sure you want to navigate away? the changes you made will not be saved!')) {
+          event.preventDefault();
+        }
       }
-
-      return true;
     },
     handleExit: function handleExit() {
       if (!this.safeToLeave) {
@@ -93,7 +86,7 @@ __webpack_require__.r(__webpack_exports__);
       this.user.newProfileImageFile = selectedImage;
     },
     removeProfileImage: function removeProfileImage() {
-      var _this3 = this;
+      var _this = this;
 
       if (this.user.profileImageUrl && this.user.newProfileImageUrl == "") {
         this.$swal.fire({
@@ -104,8 +97,8 @@ __webpack_require__.r(__webpack_exports__);
           confirmButtonColor: "rgb(156, 163, 175)"
         }).then(function (result) {
           if (result.isConfirmed) {
-            _this3.user.profileImageUrl = "";
-            _this3.user.newProfileImageFile = "";
+            _this.user.profileImageUrl = "";
+            _this.user.newProfileImageFile = "";
             return;
           }
         });
@@ -116,27 +109,28 @@ __webpack_require__.r(__webpack_exports__);
       return;
     },
     updateProfile: function updateProfile() {
-      var _this4 = this;
+      var _this2 = this;
 
+      this.safeToLeave = true;
       this.user.post("/user/account/profile", {
         preserveScroll: true,
         forceFormData: true,
         onSuccess: function onSuccess() {
-          _this4.user.isDirty = false;
+          _this2.user.isDirty = false;
 
-          if (_this4.user.newProfileImageUrl) {
-            _this4.user.profileImageUrl = _this4.user.newProfileImageUrl;
-            _this4.user.newProfileImageUrl = "";
+          if (_this2.user.newProfileImageUrl) {
+            _this2.user.profileImageUrl = _this2.user.newProfileImageUrl;
+            _this2.user.newProfileImageUrl = "";
           }
 
-          _this4.$notify({
+          _this2.$notify({
             group: "success",
             title: "Success",
             text: "Your profile was updated"
           }, 3500);
         },
         onError: function onError() {
-          _this4.$notify({
+          _this2.$notify({
             group: "error",
             title: "Error",
             text: "Your profile failed to update. Please try again"
@@ -145,15 +139,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     requestResendLink: function requestResendLink() {
-      var _this5 = this;
+      var _this3 = this;
 
+      this.safeToLeave = true;
       this.emailVerification.resendButton.post("/email/verify/send", {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this5.emailVerification.isSuccessResent = true;
+          _this3.emailVerification.isSuccessResent = true;
         },
         onError: function onError() {
-          _this5.emailVerification.isFailResent = true;
+          _this3.emailVerification.isFailResent = true;
         }
       });
     }
@@ -408,7 +403,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, [$data.user.profileImageUrl !== '' && $data.user.newProfileImageUrl == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, [$data.user.profileImageUrl !== null && $data.user.newProfileImageUrl == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
         key: 0,
         src: $data.user.profileImageUrl,
         alt: "profile-image",
