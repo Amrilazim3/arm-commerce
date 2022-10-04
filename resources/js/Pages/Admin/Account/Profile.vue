@@ -74,7 +74,7 @@
                                 >
                                     <template
                                         v-if="
-                                            admin.profileImageUrl !== '' &&
+                                            admin.profileImageUrl !== null &&
                                             admin.newProfileImageUrl == ''
                                         "
                                     >
@@ -329,7 +329,7 @@ export default {
                     })
                     .then((result) => {
                         if (result.isConfirmed) {
-                            this.admin.profileImageUrl = "";
+                            this.admin.profileImageUrl = null;
                             this.admin.newProfileImageFile = "";
                             return;
                         }
