@@ -73,7 +73,7 @@
                                 >
                                     <template
                                         v-if="
-                                            user.profileImageUrl !== '' &&
+                                            user.profileImageUrl !== null &&
                                             user.newProfileImageUrl == ''
                                         "
                                     >
@@ -323,31 +323,29 @@ export default {
     },
 
     mounted() {
-        window.addEventListener('beforeunload', this.handleExit);
+        // need to set safeToLeave variable to true again,
+        // because when phone number / date of birth input is empty 
+        // the user.isDirty will become true and safeToLeave will become false.
+        this.safeToLeave = true; 
 
-        var linkTags = document.querySelectorAll("a");
-        linkTags.forEach((el) => {
-            el.addEventListener("click", this.handleRouteChange);
-        });
+        window.onbeforeunload = this.handleExit;
+
+        document.addEventListener('inertia:before', this.handleRouteChange)
     },
 
     beforeUnmount() {
-        window.removeEventListener('beforeunload', this.handleExit);
+        window.onbeforeunload = false;
 
-        var linkTags = document.querySelectorAll("a");
-        linkTags.forEach((el) => {
-            el.removeEventListener("click", this.handleRouteChange);
-        });
+        document.removeEventListener('inertia:before', this.handleRouteChange);
     },
 
     methods: {
-        // bug (cannot prevent page from changing)
-        handleRouteChange() {
-            if (!confirm('The changes you made will not be saved!')) {
-                return false;
+        handleRouteChange(event) {
+            if (!this.safeToLeave) {
+                if (!confirm('Are you sure you want to navigate away? the changes you made will not be saved!')) {
+                    event.preventDefault();
+                }
             }
-
-            return true;
         },
 
         handleExit() {
@@ -391,6 +389,8 @@ export default {
         },
 
         updateProfile() {
+            this.safeToLeave = true;
+
             this.user.post("/user/account/profile", {
                 preserveScroll: true,
                 forceFormData: true,
@@ -426,6 +426,8 @@ export default {
         },
 
         requestResendLink() {
+            this.safeToLeave = true;
+
             this.emailVerification.resendButton.post("/email/verify/send", {
                 preserveScroll: true,
                 onSuccess: () => {
