@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
           confirmButtonColor: "rgb(156, 163, 175)"
         }).then(function (result) {
           if (result.isConfirmed) {
-            _this.user.profileImageUrl = "";
+            _this.user.profileImageUrl = null;
             _this.user.newProfileImageFile = "";
             return;
           }
