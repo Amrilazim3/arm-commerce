@@ -376,7 +376,7 @@ export default {
                     })
                     .then((result) => {
                         if (result.isConfirmed) {
-                            this.user.profileImageUrl = "";
+                            this.user.profileImageUrl = null;
                             this.user.newProfileImageFile = "";
                             return;
                         }
