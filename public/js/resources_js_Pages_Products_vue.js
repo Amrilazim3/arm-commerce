@@ -12,7 +12,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  layout: undefined
+  props: {
+    productsData: Object
+  },
+  data: function data() {
+    return {
+      products: []
+    };
+  },
+  mounted: function mounted() {
+    this.products = this.productsData.data;
+  }
 });
 
 /***/ }),
@@ -48,10 +58,51 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"bg-white\"><div class=\"max-w-2xl mx-auto py-14 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8\"><h2 class=\"text-2xl font-extrabold tracking-tight text-gray-900\"> Our Products </h2><div class=\"mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8\"><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><div class=\"group relative\"><div class=\"w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none\"><img src=\"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg\" alt=\"Front of men&#39;s Basic Tee in black.\" class=\"w-full h-full object-center object-cover lg:w-full lg:h-full\"></div><div class=\"mt-4 flex justify-between\"><div><h3 class=\"text-sm text-gray-700\"><a href=\"#\"><span aria-hidden=\"true\" class=\"absolute inset-0\"></span> Basic Tee </a></h3><p class=\"mt-1 text-sm text-gray-500\">Black</p></div><p class=\"text-sm font-medium text-gray-900\">$35</p></div></div><!-- More products... --></div></div></div>", 1);
+var _hoisted_4 = {
+  "class": "bg-white"
+};
+var _hoisted_5 = {
+  "class": "max-w-2xl mx-auto py-14 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
+};
 
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "text-2xl font-extrabold tracking-tight text-gray-900"
+}, " Our Products ", -1
+/* HOISTED */
+);
+
+var _hoisted_7 = {
+  "class": "mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+};
+var _hoisted_8 = {
+  "class": "w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none"
+};
+var _hoisted_9 = ["src"];
+var _hoisted_10 = ["src"];
+var _hoisted_11 = {
+  "class": "mt-4 flex justify-between"
+};
+var _hoisted_12 = {
+  "class": "text-sm text-gray-700"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "aria-hidden": "true",
+  "class": "absolute inset-0"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  "class": "mt-1 text-sm text-indigo-500"
+};
+var _hoisted_15 = {
+  "class": "text-sm font-medium text-gray-900"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
+
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -60,7 +111,45 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), _hoisted_4], 64
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.products, function (product) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: product.id,
+      "class": "group relative"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [product.images.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+      key: 0,
+      src: 'https://picsum.photos/200/300?random=' + product.id,
+      alt: "",
+      "class": "w-full h-full object-center object-cover lg:w-full lg:h-full"
+    }, null, 8
+    /* PROPS */
+    , _hoisted_9)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+      key: 1,
+      src: product.images[0].url,
+      alt: "",
+      "class": "w-full h-full object-center object-cover lg:w-full lg:h-full"
+    }, null, 8
+    /* PROPS */
+    , _hoisted_10))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+      href: 'products/' + product.slug
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.stock) + " unit in stock", 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.price) + " MYR", 1
+    /* TEXT */
+    )])]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
