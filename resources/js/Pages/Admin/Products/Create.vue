@@ -725,14 +725,15 @@ export default {
                 name: "",
                 description: "",
                 category: "",
-                stock: null,
-                price: null,
+                stock: "",
+                price: "",
                 media: [],
                 options: [],
                 variants: [],
             }),
             previewProductMediaUploaded: [],
             previewVariantsMediaUploaded: [],
+            safeToLeave: true,
         };
     },
 
@@ -751,6 +752,14 @@ export default {
 
         product: {
             handler(newObject) {
+                if (!newObject.isDirty) {
+                    this.safeToLeave = true;
+                }
+
+                if (newObject.isDirty) {
+                    this.safeToLeave = false;
+                }
+
                 if (newObject.description == "<p></p>") {
                     this.product.description = "";
                 }
@@ -763,13 +772,41 @@ export default {
         },
     },
 
+    mounted() {
+        window.onbeforeunload = this.handleExit;
+
+        document.addEventListener('inertia:before', this.handleRouteChange)
+    },
+
+    beforeUnmount() {
+        window.onbeforeunload = false;
+
+        document.removeEventListener('inertia:before', this.handleRouteChange);
+    },
+
     methods: {
+        handleRouteChange(event) {
+            if (!this.safeToLeave) {
+                if (!confirm('Are you sure you want to navigate away? the changes you made will not be saved!')) {
+                    event.preventDefault();
+                }
+            }
+        },
+
+        handleExit() {
+            if (!this.safeToLeave) {
+                return "The changes you made will not be saved!";
+            }
+        },
+
         closeCustomCategory() {
             this.isCustomCategory = false;
             this.product.category = "";
         },
 
         handleProductMediaUpload(event) {
+            this.safeToLeave = true;
+
             var uploadedMedia = event.target.files;
 
             // send data to the back end to be validate
@@ -826,6 +863,8 @@ export default {
         },
 
         handleProductMediaRemove(index) {
+            this.safeToLeave = true;
+
             this.$inertia.patch(
                 "temp/media",
                 { filePath: this.product.media[index] },
@@ -858,6 +897,8 @@ export default {
         },
 
         createProduct() {
+            this.safeToLeave = true;
+
             this.product.post("/admin/products", {
                 preserveScroll: true,
                 onSuccess: () => {
@@ -917,6 +958,8 @@ export default {
         },
 
         generateVariants() {
+            this.safeToLeave = true;
+
             let options = this.product.options;
 
             let generatedOptionsValues = [];
@@ -1106,6 +1149,8 @@ export default {
         },
 
         handleVariantMediaUpload(event, key) {
+            this.safeToLeave = true;
+
             var uploadedVariantMedia = event.target.files[0];
 
             this.$inertia.post(
@@ -1144,6 +1189,8 @@ export default {
         },
 
         handleVariantMediaRemove(key) {
+            this.safeToLeave = true;
+
             this.$inertia.patch(
                 "temp/media",
                 { filePath: this.product.variants[key].filePath },
