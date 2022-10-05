@@ -291,10 +291,10 @@ export default {
                 newProfileImageFile: "",
                 email: user.email,
                 emailIsVerfied: user.emailIsVerfied,
-                phoneNumber: user.phoneNumber ? user.phoneNumber : null,
+                phoneNumber: user.phoneNumber ? user.phoneNumber : "",
                 phoneResults: "",
                 dateOfBirth:
-                    user.dateOfBirth !== null ? user.dateOfBirth : null,
+                    user.dateOfBirth !== null ? user.dateOfBirth : "",
                 gender: user.gender,
             }),
 
@@ -324,11 +324,6 @@ export default {
     },
 
     mounted() {
-        // need to set safeToLeave variable to true again,
-        // because when phone number / date of birth input is empty 
-        // the user.isDirty will become true and safeToLeave will become false.
-        this.safeToLeave = true; 
-
         window.onbeforeunload = this.handleExit;
 
         document.addEventListener('inertia:before', this.handleRouteChange)
