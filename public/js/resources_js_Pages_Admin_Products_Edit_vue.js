@@ -44,7 +44,8 @@ __webpack_require__.r(__webpack_exports__);
       product: this.$inertia.form(this.productData),
       previewProductMediaUploaded: this.previewProductMediaUploadedData,
       previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
-      productTitle: ""
+      productTitle: "",
+      safeToLeave: true
     };
   },
   watch: {
@@ -69,6 +70,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     product: {
       handler: function handler(newObject) {
+        if (!newObject.isDirty) {
+          this.safeToLeave = true;
+        }
+
+        if (newObject.isDirty) {
+          this.safeToLeave = false;
+        }
+
         if (newObject.description == "<p></p>") {
           this.product.description = "";
         }
@@ -81,6 +90,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    window.onbeforeunload = this.handleExit;
+    document.addEventListener('inertia:before', this.handleRouteChange);
     this.productTitle = this.productData.name;
     var categoriesName = [];
     this.categories.forEach(function (el) {
@@ -95,7 +106,23 @@ __webpack_require__.r(__webpack_exports__);
       this.isHasOptions = true;
     }
   },
+  beforeUnmount: function beforeUnmount() {
+    window.onbeforeunload = false;
+    document.removeEventListener('inertia:before', this.handleRouteChange);
+  },
   methods: {
+    handleRouteChange: function handleRouteChange(event) {
+      if (!this.safeToLeave) {
+        if (!confirm('Are you sure you want to navigate away? the changes you made will not be saved!')) {
+          event.preventDefault();
+        }
+      }
+    },
+    handleExit: function handleExit() {
+      if (!this.safeToLeave) {
+        return "The changes you made will not be saved!";
+      }
+    },
     closeCustomCategory: function closeCustomCategory() {
       this.isCustomCategory = false;
       this.product.category = "";
@@ -103,6 +130,7 @@ __webpack_require__.r(__webpack_exports__);
     handleProductMediaUpload: function handleProductMediaUpload(event) {
       var _this = this;
 
+      this.safeToLeave = true;
       var uploadedMedia = event.target.files; // send data to the back end to be validate
 
       this.$inertia.post("https://arm-commerce.com/admin/products/temp/media", {
@@ -143,6 +171,8 @@ __webpack_require__.r(__webpack_exports__);
     handleProductMediaRemove: function handleProductMediaRemove(index) {
       var _this2 = this;
 
+      this.safeToLeave = true;
+
       if (this.product.media[index].includes("product")) {
         this.product.productMediaRemoved.push(this.previewProductMediaUploaded[index][0]);
         this.product.media.splice(index, 1);
@@ -177,6 +207,7 @@ __webpack_require__.r(__webpack_exports__);
     editProduct: function editProduct() {
       var _this3 = this;
 
+      this.safeToLeave = true;
       this.product.put("/admin/products/".concat(this.product.slug), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
@@ -223,6 +254,7 @@ __webpack_require__.r(__webpack_exports__);
     generateVariants: function generateVariants() {
       var _this4 = this;
 
+      this.safeToLeave = true;
       var options = this.product.options;
       var generatedOptionsValues = [];
 
@@ -439,6 +471,7 @@ __webpack_require__.r(__webpack_exports__);
     handleVariantMediaUpload: function handleVariantMediaUpload(event, key) {
       var _this6 = this;
 
+      this.safeToLeave = true;
       var uploadedVariantMedia = event.target.files[0];
       this.$inertia.post("https://arm-commerce.com/admin/products/temp/media", {
         variant: uploadedVariantMedia
@@ -465,6 +498,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleVariantMediaRemove: function handleVariantMediaRemove(key) {
       var _this7 = this;
+
+      this.safeToLeave = true;
 
       if (this.product.variants[key].filePath.includes("product")) {
         this.product.variantsMediaRemoved.push(this.previewVariantsMediaUploaded[key]);
