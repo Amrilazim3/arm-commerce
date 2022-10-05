@@ -735,6 +735,7 @@ export default {
             previewProductMediaUploaded: this.previewProductMediaUploadedData,
             previewVariantsMediaUploaded: this.previewVariantsMediaUploadedData,
             productTitle: "",
+            safeToLeave: true,
         };
     },
 
@@ -757,6 +758,14 @@ export default {
 
         product: {
             handler(newObject) {
+                if (!newObject.isDirty) {
+                    this.safeToLeave = true;
+                }
+
+                if (newObject.isDirty) {
+                    this.safeToLeave = false;
+                }
+
                 if (newObject.description == "<p></p>") {
                     this.product.description = "";
                 }
@@ -770,6 +779,10 @@ export default {
     },
 
     mounted() {
+        window.onbeforeunload = this.handleExit;
+
+        document.addEventListener('inertia:before', this.handleRouteChange)
+
         this.productTitle = this.productData.name;
 
         let categoriesName = [];
@@ -786,13 +799,35 @@ export default {
         }
     },
 
+    beforeUnmount() {
+        window.onbeforeunload = false;
+
+        document.removeEventListener('inertia:before', this.handleRouteChange);
+    },
+
     methods: {
+        handleRouteChange(event) {
+            if (!this.safeToLeave) {
+                if (!confirm('Are you sure you want to navigate away? the changes you made will not be saved!')) {
+                    event.preventDefault();
+                }
+            }
+        },
+
+        handleExit() {
+            if (!this.safeToLeave) {
+                return "The changes you made will not be saved!";
+            }
+        },
+
         closeCustomCategory() {
             this.isCustomCategory = false;
             this.product.category = "";
         },
 
         handleProductMediaUpload(event) {
+            this.safeToLeave = true;
+
             var uploadedMedia = event.target.files;
 
             // send data to the back end to be validate
@@ -849,6 +884,8 @@ export default {
         },
 
         handleProductMediaRemove(index) {
+            this.safeToLeave = true;
+
             if (this.product.media[index].includes("product")) {
                 this.product.productMediaRemoved.push(
                     this.previewProductMediaUploaded[index][0]
@@ -890,6 +927,8 @@ export default {
         },
 
         editProduct() {
+            this.safeToLeave = true;
+
             this.product.put(`/admin/products/${this.product.slug}`, {
                 preserveScroll: true,
                 onSuccess: () => {
@@ -949,6 +988,8 @@ export default {
         },
 
         generateVariants() {
+            this.safeToLeave = true;
+
             let options = this.product.options;
 
             let generatedOptionsValues = [];
@@ -1179,6 +1220,8 @@ export default {
         },
 
         handleVariantMediaUpload(event, key) {
+            this.safeToLeave = true;
+
             var uploadedVariantMedia = event.target.files[0];
 
             this.$inertia.post(
@@ -1217,6 +1260,8 @@ export default {
         },
 
         handleVariantMediaRemove(key) {
+            this.safeToLeave = true;
+
             if (this.product.variants[key].filePath.includes("product")) {
                 this.product.variantsMediaRemoved.push(
                     this.previewVariantsMediaUploaded[key]
