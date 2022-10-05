@@ -303,10 +303,58 @@ export default {
                 isSuccessResent: false,
                 isFailResent: false,
             },
+
+            safeToLeave: true,
         };
     },
 
+    watch: {
+        admin: {
+            handler(newObj) {
+                if (!newObj.isDirty) {
+                    this.safeToLeave = true;
+                }
+
+                if (newObj.isDirty) {
+                    this.safeToLeave = false;
+                }
+            },
+            deep: true,
+        },
+    },
+
+    mounted() {
+        // need to set safeToLeave variable to true again,
+        // because when phone number / date of birth input is empty 
+        // the user.isDirty will become true and safeToLeave will become false.
+        this.safeToLeave = true; 
+
+        window.onbeforeunload = this.handleExit;
+
+        document.addEventListener('inertia:before', this.handleRouteChange)
+    },
+
+    beforeUnmount() {
+        window.onbeforeunload = false;
+
+        document.removeEventListener('inertia:before', this.handleRouteChange);
+    },
+
     methods: {
+        handleRouteChange(event) {
+            if (!this.safeToLeave) {
+                if (!confirm('Are you sure you want to navigate away? the changes you made will not be saved!')) {
+                    event.preventDefault();
+                }
+            }
+        },
+
+        handleExit() {
+            if (!this.safeToLeave) {
+                return "The changes you made will not be saved!";
+            }
+        },
+
         handleProfileImageUpload(event) {
             let selectedImage = event.target.files[0];
 
@@ -342,15 +390,20 @@ export default {
         },
 
         updateProfile() {
+            this.safeToLeave = true;
+
             this.admin.post("/admin/account/profile", {
                 preserveScroll: true,
                 forceFormData: true,
                 onSuccess: () => {
+                    this.admin.isDirty = false;
+
                     if (this.admin.newProfileImageUrl) {
                         this.admin.profileImageUrl =
                             this.admin.newProfileImageUrl;
                         this.admin.newProfileImageUrl = "";
                     }
+
                     this.$notify(
                         {
                             group: "success",
@@ -374,6 +427,8 @@ export default {
         },
 
         requestResendLink() {
+            this.safeToLeave = true;
+
             this.emailVerification.resendButton.post("/email/verify/send", {
                 preserveScroll: true,
                 onSuccess: () => {
