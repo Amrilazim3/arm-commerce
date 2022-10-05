@@ -37,10 +37,49 @@ __webpack_require__.r(__webpack_exports__);
         resendButton: this.$inertia.form({}),
         isSuccessResent: false,
         isFailResent: false
-      }
+      },
+      safeToLeave: true
     };
   },
+  watch: {
+    admin: {
+      handler: function handler(newObj) {
+        if (!newObj.isDirty) {
+          this.safeToLeave = true;
+        }
+
+        if (newObj.isDirty) {
+          this.safeToLeave = false;
+        }
+      },
+      deep: true
+    }
+  },
+  mounted: function mounted() {
+    // need to set safeToLeave variable to true again,
+    // because when phone number / date of birth input is empty 
+    // the user.isDirty will become true and safeToLeave will become false.
+    this.safeToLeave = true;
+    window.onbeforeunload = this.handleExit;
+    document.addEventListener('inertia:before', this.handleRouteChange);
+  },
+  beforeUnmount: function beforeUnmount() {
+    window.onbeforeunload = false;
+    document.removeEventListener('inertia:before', this.handleRouteChange);
+  },
   methods: {
+    handleRouteChange: function handleRouteChange(event) {
+      if (!this.safeToLeave) {
+        if (!confirm('Are you sure you want to navigate away? the changes you made will not be saved!')) {
+          event.preventDefault();
+        }
+      }
+    },
+    handleExit: function handleExit() {
+      if (!this.safeToLeave) {
+        return "The changes you made will not be saved!";
+      }
+    },
     handleProfileImageUpload: function handleProfileImageUpload(event) {
       var selectedImage = event.target.files[0];
       this.admin.newProfileImageUrl = URL.createObjectURL(selectedImage);
@@ -72,10 +111,13 @@ __webpack_require__.r(__webpack_exports__);
     updateProfile: function updateProfile() {
       var _this2 = this;
 
+      this.safeToLeave = true;
       this.admin.post("/admin/account/profile", {
         preserveScroll: true,
         forceFormData: true,
         onSuccess: function onSuccess() {
+          _this2.admin.isDirty = false;
+
           if (_this2.admin.newProfileImageUrl) {
             _this2.admin.profileImageUrl = _this2.admin.newProfileImageUrl;
             _this2.admin.newProfileImageUrl = "";
@@ -99,6 +141,7 @@ __webpack_require__.r(__webpack_exports__);
     requestResendLink: function requestResendLink() {
       var _this3 = this;
 
+      this.safeToLeave = true;
       this.emailVerification.resendButton.post("/email/verify/send", {
         preserveScroll: true,
         onSuccess: function onSuccess() {
