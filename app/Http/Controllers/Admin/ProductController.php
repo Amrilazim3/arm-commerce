@@ -77,9 +77,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
-            return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
-        });
+        $categories = $this->getDefaultCategories();
 
         return Inertia::render('Admin/Products/Create', [
             'categories' => $categories,
@@ -212,9 +210,7 @@ class ProductController extends Controller
             array_push($media, $imagePath);
         });
 
-        $categories = Cache::remember('categories', now()->addMinutes(7200), function () {
-            return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
-        });
+        $categories = $this->getDefaultCategories();
 
         return Inertia::render('Admin/Products/Edit', [
             'productData' => [
@@ -431,6 +427,13 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->back();
+    }
+
+    protected function getDefaultCategories()
+    {
+        return Cache::remember('categories', now()->addMinutes(7200), function () {
+            return Category::select('id', 'name')->take(5)->orderBy('id', 'asc')->get();
+        });
     }
 
     protected function validateProduct($request)
