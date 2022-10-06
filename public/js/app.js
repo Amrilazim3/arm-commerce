@@ -2891,13 +2891,13 @@ var map = {
 		"./resources/js/Pages/Home.vue",
 		"resources_js_Pages_Home_vue"
 	],
-	"./Products": [
-		"./resources/js/Pages/Products.vue",
-		"resources_js_Pages_Products_vue"
+	"./Products/Index": [
+		"./resources/js/Pages/Products/Index.vue",
+		"resources_js_Pages_Products_Index_vue"
 	],
-	"./Products.vue": [
-		"./resources/js/Pages/Products.vue",
-		"resources_js_Pages_Products_vue"
+	"./Products/Index.vue": [
+		"./resources/js/Pages/Products/Index.vue",
+		"resources_js_Pages_Products_Index_vue"
 	],
 	"./User/Account/Addresses": [
 		"./resources/js/Pages/User/Account/Addresses.vue",
