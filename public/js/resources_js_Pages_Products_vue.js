@@ -66,8 +66,8 @@ var _hoisted_5 = {
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-2xl font-extrabold tracking-tight text-gray-900"
-}, " Our Products ", -1
+  "class": "text-2xl font-bold tracking-tight text-gray-900"
+}, " New Arrivals ", -1
 /* HOISTED */
 );
 
