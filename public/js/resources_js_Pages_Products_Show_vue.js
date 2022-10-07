@@ -32,11 +32,9 @@ __webpack_require__.r(__webpack_exports__);
         href: "#",
         average: 5,
         totalCount: 117
-      }
+      },
+      selectedOptions: []
     };
-  },
-  mounted: function mounted() {
-    console.log(this.product.images[2]);
   }
 });
 
@@ -94,110 +92,102 @@ var _hoisted_8 = {
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Edit ");
 
-var _hoisted_10 = {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8"
-};
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                    class=\"aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block\"\r\n                >\r\n                    <img\r\n                        :src=\"\r\n                            product.images[0] == undefined\r\n                                ? 'https://picsum.photos/250/250?random=' +\r\n                                  Math.random(10)\r\n                                : product.images[0].url\r\n                        \"\r\n                        class=\"h-full w-full object-cover object-center\"\r\n                    />\r\n                </div> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"hidden lg:grid lg:grid-cols-1 lg:gap-y-8\">\r\n                    <div\r\n                        class=\"aspect-w-3 aspect-h-2 overflow-hidden rounded-lg\"\r\n                    >\r\n                        <img\r\n                            :src=\"\r\n                                product.images[1] == undefined\r\n                                    ? 'https://picsum.photos/200/300?random=' +\r\n                                      Math.random(10)\r\n                                    : product.images[1].url\r\n                            \"\r\n                            class=\"h-full w-full object-cover object-center\"\r\n                        />\r\n                    </div>\r\n                    <div\r\n                        class=\"aspect-w-3 aspect-h-2 overflow-hidden rounded-lg\"\r\n                    >\r\n                        <img\r\n                            :src=\"\r\n                                product.images[2] == undefined\r\n                                    ? 'https://picsum.photos/200/300?random=' +\r\n                                      Math.random(10)\r\n                                    : product.images[2].url\r\n                            \"\r\n                            class=\"h-full w-full object-cover object-center\"\r\n                        />\r\n                    </div>\r\n                </div> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n                    class=\"aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4\"\r\n                >\r\n                    <img\r\n                        :src=\"\r\n                            product.images[3] == undefined\r\n                                ? 'https://picsum.photos/200/300?random=' +\r\n                                  Math.random(10)\r\n                                : product.images[3].url\r\n                        \"\r\n                        class=\"h-full w-full object-cover object-center\"\r\n                    />\r\n                </div> ")], -1
+/* HOISTED */
+);
+
 var _hoisted_11 = {
-  "class": "aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block"
-};
-var _hoisted_12 = ["src"];
-var _hoisted_13 = {
-  "class": "hidden lg:grid lg:grid-cols-1 lg:gap-y-8"
-};
-var _hoisted_14 = {
-  "class": "aspect-w-3 aspect-h-2 overflow-hidden rounded-lg"
-};
-var _hoisted_15 = ["src"];
-var _hoisted_16 = {
-  "class": "aspect-w-3 aspect-h-2 overflow-hidden rounded-lg"
-};
-var _hoisted_17 = ["src"];
-var _hoisted_18 = {
-  "class": "aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4"
-};
-var _hoisted_19 = ["src"];
-var _hoisted_20 = {
   "class": "mx-auto max-w-2xl px-4 pt-10 pb-16 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16 lg:pb-24"
 };
-var _hoisted_21 = {
+var _hoisted_12 = {
   "class": "lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8"
 };
-var _hoisted_22 = {
+var _hoisted_13 = {
   "class": "text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl"
 };
-var _hoisted_23 = {
+var _hoisted_14 = {
   "class": "mt-4 lg:row-span-3 lg:mt-0"
 };
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "sr-only"
 }, "Product information", -1
 /* HOISTED */
 );
 
-var _hoisted_25 = {
+var _hoisted_16 = {
   "class": "text-3xl tracking-tight text-gray-900"
 };
-var _hoisted_26 = {
+var _hoisted_17 = {
   "class": "mt-6"
 };
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "sr-only"
 }, "Reviews", -1
 /* HOISTED */
 );
 
-var _hoisted_28 = {
+var _hoisted_19 = {
   "class": "flex items-center"
 };
-var _hoisted_29 = {
+var _hoisted_20 = {
   "class": "flex items-center"
 };
-var _hoisted_30 = {
+var _hoisted_21 = {
   "class": "sr-only"
 };
-var _hoisted_31 = ["href"];
-var _hoisted_32 = {
-  "class": "mt-3"
-};
-
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "sr-only"
-}, "Available stock", -1
-/* HOISTED */
-);
-
-var _hoisted_34 = {
-  "class": "font-medium text-md text-indigo-500"
-};
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+var _hoisted_22 = ["href"];
+var _hoisted_23 = {
   "class": "mt-10"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" available options "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>\r\n                            <h3 class=\"text-sm font-medium text-gray-900\">\r\n                                Color\r\n                            </h3>\r\n\r\n                            <RadioGroup v-model=\"selectedColor\" class=\"mt-4\">\r\n                                <RadioGroupLabel class=\"sr-only\">\r\n                                    Choose a color\r\n                                </RadioGroupLabel>\r\n                                <div class=\"flex items-center space-x-3\">\r\n                                    <RadioGroupOption\r\n                                        as=\"template\"\r\n                                        v-for=\"color in product.colors\"\r\n                                        :key=\"color.name\"\r\n                                        :value=\"color\"\r\n                                        v-slot=\"{ active, checked }\"\r\n                                    >\r\n                                        <div\r\n                                            :class=\"[\r\n                                                color.selectedClass,\r\n                                                active && checked\r\n                                                    ? 'ring ring-offset-1'\r\n                                                    : '',\r\n                                                !active && checked\r\n                                                    ? 'ring-2'\r\n                                                    : '',\r\n                                                '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none',\r\n                                            ]\"\r\n                                        >\r\n                                            <RadioGroupLabel\r\n                                                as=\"span\"\r\n                                                class=\"sr-only\"\r\n                                            >\r\n                                                {{ color.name }}\r\n                                            </RadioGroupLabel>\r\n                                            <span\r\n                                                aria-hidden=\"true\"\r\n                                                :class=\"[\r\n                                                    color.class,\r\n                                                    'h-8 w-8 border border-black border-opacity-10 rounded-full',\r\n                                                ]\"\r\n                                            />\r\n                                        </div>\r\n                                    </RadioGroupOption>\r\n                                </div>\r\n                            </RadioGroup>\r\n                        </div> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"mt-10\">\r\n                            <div class=\"flex items-center justify-between\">\r\n                                <h3 class=\"text-sm font-medium text-gray-900\">\r\n                                    Size\r\n                                </h3>\r\n                                <a\r\n                                    href=\"#\"\r\n                                    class=\"text-sm font-medium text-indigo-600 hover:text-indigo-500\"\r\n                                    >Size guide</a\r\n                                >\r\n                            </div>\r\n\r\n                            <RadioGroup v-model=\"selectedSize\" class=\"mt-4\">\r\n                                <RadioGroupLabel class=\"sr-only\">\r\n                                    Choose a size\r\n                                </RadioGroupLabel>\r\n                                <div\r\n                                    class=\"grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4\"\r\n                                >\r\n                                    <RadioGroupOption\r\n                                        as=\"template\"\r\n                                        v-for=\"size in product.sizes\"\r\n                                        :key=\"size.name\"\r\n                                        :value=\"size\"\r\n                                        :disabled=\"!size.inStock\"\r\n                                        v-slot=\"{ active, checked }\"\r\n                                    >\r\n                                        <div\r\n                                            :class=\"[\r\n                                                size.inStock\r\n                                                    ? 'bg-white shadow-sm text-gray-900 cursor-pointer'\r\n                                                    : 'bg-gray-50 text-gray-200 cursor-not-allowed',\r\n                                                active\r\n                                                    ? 'ring-2 ring-indigo-500'\r\n                                                    : '',\r\n                                                'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6',\r\n                                            ]\"\r\n                                        >\r\n                                            <RadioGroupLabel as=\"span\">{{\r\n                                                size.name\r\n                                            }}</RadioGroupLabel>\r\n                                            <span\r\n                                                v-if=\"size.inStock\"\r\n                                                :class=\"[\r\n                                                    active\r\n                                                        ? 'border'\r\n                                                        : 'border-2',\r\n                                                    checked\r\n                                                        ? 'border-indigo-500'\r\n                                                        : 'border-transparent',\r\n                                                    'pointer-events-none absolute -inset-px rounded-md',\r\n                                                ]\"\r\n                                                aria-hidden=\"true\"\r\n                                            />\r\n                                            <span\r\n                                                v-else\r\n                                                aria-hidden=\"true\"\r\n                                                class=\"pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200\"\r\n                                            >\r\n                                                <svg\r\n                                                    class=\"absolute inset-0 h-full w-full stroke-2 text-gray-200\"\r\n                                                    viewBox=\"0 0 100 100\"\r\n                                                    preserveAspectRatio=\"none\"\r\n                                                    stroke=\"currentColor\"\r\n                                                >\r\n                                                    <line\r\n                                                        x1=\"0\"\r\n                                                        y1=\"100\"\r\n                                                        x2=\"100\"\r\n                                                        y2=\"0\"\r\n                                                        vector-effect=\"non-scaling-stroke\"\r\n                                                    />\r\n                                                </svg>\r\n                                            </span>\r\n                                        </div>\r\n                                    </RadioGroupOption>\r\n                                </div>\r\n                            </RadioGroup>\r\n                        </div> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+};
+var _hoisted_24 = {
+  "class": "flex items-center justify-between"
+};
+var _hoisted_25 = {
+  "class": "text-sm font-medium text-gray-900"
+};
+var _hoisted_26 = {
+  "class": "grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
+};
+
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex space-x-3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "submit",
+  "class": "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-200 py-3 px-8 text-base font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+}, " Add to bag "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-}, " Add to bag ")], -1
+}, " Buy now ")], -1
 /* HOISTED */
 );
 
-var _hoisted_36 = {
+var _hoisted_28 = {
   "class": "py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8"
 };
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "sr-only"
 }, "Description", -1
 /* HOISTED */
 );
 
-var _hoisted_38 = ["innerHTML"];
+var _hoisted_30 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   var _component_StarIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("StarIcon");
+
+  var _component_RadioGroupLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RadioGroupLabel");
+
+  var _component_RadioGroupOption = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RadioGroupOption");
+
+  var _component_RadioGroup = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("RadioGroup");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: $data.product.name
@@ -232,7 +222,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])])]), _ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+  , ["href"])])]), _ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 0
+  }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
     key: 0,
     href: 'https://arm-commerce.com/admin/products/' + $data.product.slug + '/edit',
     "class": "text-indigo-500 text-md font-semibold"
@@ -245,31 +237,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" media "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $data.product.images[0] == undefined ? 'https://picsum.photos/250/250?random=' + Math.random(10) : $data.product.images[0].url,
-    "class": "h-full w-full object-cover object-center"
-  }, null, 8
-  /* PROPS */
-  , _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $data.product.images[1] == undefined ? 'https://picsum.photos/200/300?random=' + Math.random(10) : $data.product.images[1].url,
-    "class": "h-full w-full object-cover object-center"
-  }, null, 8
-  /* PROPS */
-  , _hoisted_15)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $data.product.images[2] == undefined ? 'https://picsum.photos/200/300?random=' + Math.random(10) : $data.product.images[2].url,
-    "class": "h-full w-full object-cover object-center"
-  }, null, 8
-  /* PROPS */
-  , _hoisted_17)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $data.product.images[3] == undefined ? 'https://picsum.photos/200/300?random=' + Math.random(10) : $data.product.images[3].url,
-    "class": "h-full w-full object-cover object-center"
-  }, null, 8
-  /* PROPS */
-  , _hoisted_19)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.name), 1
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2112
+  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" media "), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.name), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Options "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.price) + " MYR ", 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Options "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.price) + " MYR ", 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Reviews "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)([0, 1, 2, 3, 4], function (rating) {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Reviews "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)([0, 1, 2, 3, 4], function (rating) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_StarIcon, {
       key: rating,
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$data.reviews.average > rating ? 'text-gray-900' : 'text-gray-200', 'h-5 w-5 flex-shrink-0']),
@@ -279,21 +253,97 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["class"]);
   }), 64
   /* STABLE_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.reviews.average) + " out of 5 stars ", 1
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.reviews.average) + " out of 5 stars ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $data.reviews.href,
     "class": "ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.reviews.totalCount) + " reviews", 9
   /* TEXT, PROPS */
-  , _hoisted_31)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Available stock "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.product.stock) + " available stock ", 1
-  /* TEXT */
-  )]), _hoisted_35]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description and details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , _hoisted_22)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" available options "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.product.options, function (option, key) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: option,
+      "class": "mt-10"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RadioGroup, {
+      modelValue: $data.selectedOptions[key],
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $data.selectedOptions[key] = $event;
+      },
+      "class": "mt-4"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RadioGroupLabel, {
+          "class": "sr-only"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Choose a " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(option.name), 1
+            /* TEXT */
+            )];
+          }),
+          _: 2
+          /* DYNAMIC */
+
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(option.values, function (value) {
+          return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_RadioGroupOption, {
+            as: "template",
+            key: value,
+            value: value
+          }, {
+            "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
+              var active = _ref.active,
+                  checked = _ref.checked;
+              return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([active ? 'ring-2 ring-indigo-500' : '', 'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6'])
+              }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RadioGroupLabel, {
+                as: "span"
+              }, {
+                "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(value), 1
+                  /* TEXT */
+                  )];
+                }),
+                _: 2
+                /* DYNAMIC */
+
+              }, 1024
+              /* DYNAMIC_SLOTS */
+              ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+                "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([active ? 'border' : 'border-2', checked ? 'border-indigo-500' : 'border-transparent', 'pointer-events-none absolute -inset-px rounded-md']),
+                "aria-hidden": "true"
+              }, null, 2
+              /* CLASS */
+              )], 2
+              /* CLASS */
+              )];
+            }),
+            _: 2
+            /* DYNAMIC */
+
+          }, 1032
+          /* PROPS, DYNAMIC_SLOTS */
+          , ["value"]);
+        }), 128
+        /* KEYED_FRAGMENT */
+        ))])];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["modelValue", "onUpdate:modelValue"])]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), _hoisted_27])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description and details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     innerHTML: $data.product.description,
-    "class": "space-y-6"
+    "class": "space-y-6 prose max-w-max"
   }, null, 8
   /* PROPS */
-  , _hoisted_38)])])])])])], 64
+  , _hoisted_30)])])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
