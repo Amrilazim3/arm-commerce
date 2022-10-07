@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // can be visit by guest, user, admin but with different permission.
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
