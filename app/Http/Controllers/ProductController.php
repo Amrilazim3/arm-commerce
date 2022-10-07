@@ -90,10 +90,6 @@ class ProductController extends Controller
             }
         );
 
-        for ($i = 0; $i < count($optionsValues); $i++) {
-            array_push($optionsValues[$i]["values"], "");
-        }
-
         return Inertia::render('Products/Show', [
             'productData' => [
                 'name' => $product->name,
