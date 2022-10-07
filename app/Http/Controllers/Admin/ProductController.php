@@ -414,7 +414,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect('admin/products');
+        return redirect()->back();;
     }
 
     public function destroy(Product $product)
