@@ -2899,6 +2899,16 @@ var map = {
 		"./resources/js/Pages/Products/Index.vue",
 		"resources_js_Pages_Products_Index_vue"
 	],
+	"./Products/Show": [
+		"./resources/js/Pages/Products/Show.vue",
+		"/js/vendor",
+		"resources_js_Pages_Products_Show_vue"
+	],
+	"./Products/Show.vue": [
+		"./resources/js/Pages/Products/Show.vue",
+		"/js/vendor",
+		"resources_js_Pages_Products_Show_vue"
+	],
 	"./User/Account/Addresses": [
 		"./resources/js/Pages/User/Account/Addresses.vue",
 		"/js/vendor",
