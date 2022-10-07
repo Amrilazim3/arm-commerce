@@ -10,7 +10,10 @@
                     <div class="flex items-center space-x-2">
                         <div class="flex items-center">
                             <Link
-                                :href="'https://arm-commerce.com/category/' + product.category.slug"
+                                :href="
+                                    'https://arm-commerce.com/category/' +
+                                    product.category.slug
+                                "
                                 class="mr-2 text-sm font-medium text-gray-900"
                                 >{{ product.category.name }}</Link
                             >
@@ -41,13 +44,19 @@
                         </li>
                     </div>
 
-                    <template v-if="$page.props.auth.user.isAdmin">
-                        <Link 
-                            :href="'https://arm-commerce.com/admin/products/' + product.slug + '/edit'"
-                            class="text-indigo-500 text-md font-semibold"
-                        >
-                            Edit
-                        </Link>
+                    <template v-if="$page.props.auth.isLoggedIn">
+                        <template v-if="$page.props.auth.user.isAdmin">
+                            <Link
+                                :href="
+                                    'https://arm-commerce.com/admin/products/' +
+                                    product.slug +
+                                    '/edit'
+                                "
+                                class="text-indigo-500 text-md font-semibold"
+                            >
+                                Edit
+                            </Link>
+                        </template>
                     </template>
                 </ol>
             </nav>
@@ -56,7 +65,7 @@
             <div
                 class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8"
             >
-                <div
+                <!-- <div
                     class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block"
                 >
                     <img
@@ -68,8 +77,8 @@
                         "
                         class="h-full w-full object-cover object-center"
                     />
-                </div>
-                <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                </div> -->
+                <!-- <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
                     <div
                         class="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg"
                     >
@@ -96,8 +105,8 @@
                             class="h-full w-full object-cover object-center"
                         />
                     </div>
-                </div>
-                <div
+                </div> -->
+                <!-- <div
                     class="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4"
                 >
                     <img
@@ -109,7 +118,7 @@
                         "
                         class="h-full w-full object-cover object-center"
                     />
-                </div>
+                </div> -->
             </div>
 
             <div
@@ -160,150 +169,79 @@
                         </div>
                     </div>
 
-                    <!-- Available stock -->
-                    <div class="mt-3">
-                        <h3 class="sr-only">Available stock</h3>
-                        <p class="font-medium text-md text-indigo-500">
-                            {{ product.stock }} available stock
-                        </p>
-                    </div>
-
                     <form class="mt-10">
                         <!-- available options -->
-                        <!-- <div>
-                            <h3 class="text-sm font-medium text-gray-900">
-                                Color
-                            </h3>
-
-                            <RadioGroup v-model="selectedColor" class="mt-4">
-                                <RadioGroupLabel class="sr-only">
-                                    Choose a color
-                                </RadioGroupLabel>
-                                <div class="flex items-center space-x-3">
-                                    <RadioGroupOption
-                                        as="template"
-                                        v-for="color in product.colors"
-                                        :key="color.name"
-                                        :value="color"
-                                        v-slot="{ active, checked }"
+                        <template
+                            v-for="(option, key) in product.options"
+                            :key="option"
+                        >
+                            <div class="mt-10">
+                                <div class="flex items-center justify-between">
+                                    <h3
+                                        class="text-sm font-medium text-gray-900"
                                     >
-                                        <div
-                                            :class="[
-                                                color.selectedClass,
-                                                active && checked
-                                                    ? 'ring ring-offset-1'
-                                                    : '',
-                                                !active && checked
-                                                    ? 'ring-2'
-                                                    : '',
-                                                '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none',
-                                            ]"
-                                        >
-                                            <RadioGroupLabel
-                                                as="span"
-                                                class="sr-only"
-                                            >
-                                                {{ color.name }}
-                                            </RadioGroupLabel>
-                                            <span
-                                                aria-hidden="true"
-                                                :class="[
-                                                    color.class,
-                                                    'h-8 w-8 border border-black border-opacity-10 rounded-full',
-                                                ]"
-                                            />
-                                        </div>
-                                    </RadioGroupOption>
+                                        {{ option.name }}
+                                    </h3>
                                 </div>
-                            </RadioGroup>
-                        </div> -->
 
-                        <!-- <div class="mt-10">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-gray-900">
-                                    Size
-                                </h3>
-                                <a
-                                    href="#"
-                                    class="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                                    >Size guide</a
-                                >
-                            </div>
-
-                            <RadioGroup v-model="selectedSize" class="mt-4">
-                                <RadioGroupLabel class="sr-only">
-                                    Choose a size
-                                </RadioGroupLabel>
-                                <div
-                                    class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
-                                >
-                                    <RadioGroupOption
-                                        as="template"
-                                        v-for="size in product.sizes"
-                                        :key="size.name"
-                                        :value="size"
-                                        :disabled="!size.inStock"
-                                        v-slot="{ active, checked }"
+                                <RadioGroup v-model="selectedOptions[key]" class="mt-4">
+                                    <RadioGroupLabel class="sr-only">
+                                        Choose a {{ option.name }}
+                                    </RadioGroupLabel>
+                                    <div
+                                        class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                                     >
-                                        <div
-                                            :class="[
-                                                size.inStock
-                                                    ? 'bg-white shadow-sm text-gray-900 cursor-pointer'
-                                                    : 'bg-gray-50 text-gray-200 cursor-not-allowed',
-                                                active
-                                                    ? 'ring-2 ring-indigo-500'
-                                                    : '',
-                                                'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6',
-                                            ]"
+                                        <RadioGroupOption
+                                            as="template"
+                                            v-for="value in option.values"
+                                            :key="value"
+                                            :value="value"
+                                            v-slot="{ active, checked }"
                                         >
-                                            <RadioGroupLabel as="span">{{
-                                                size.name
-                                            }}</RadioGroupLabel>
-                                            <span
-                                                v-if="size.inStock"
+                                            <div
                                                 :class="[
                                                     active
-                                                        ? 'border'
-                                                        : 'border-2',
-                                                    checked
-                                                        ? 'border-indigo-500'
-                                                        : 'border-transparent',
-                                                    'pointer-events-none absolute -inset-px rounded-md',
+                                                        ? 'ring-2 ring-indigo-500'
+                                                        : '',
+                                                    'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6',
                                                 ]"
-                                                aria-hidden="true"
-                                            />
-                                            <span
-                                                v-else
-                                                aria-hidden="true"
-                                                class="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200"
                                             >
-                                                <svg
-                                                    class="absolute inset-0 h-full w-full stroke-2 text-gray-200"
-                                                    viewBox="0 0 100 100"
-                                                    preserveAspectRatio="none"
-                                                    stroke="currentColor"
-                                                >
-                                                    <line
-                                                        x1="0"
-                                                        y1="100"
-                                                        x2="100"
-                                                        y2="0"
-                                                        vector-effect="non-scaling-stroke"
-                                                    />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </RadioGroupOption>
-                                </div>
-                            </RadioGroup>
-                        </div> -->
+                                                <RadioGroupLabel as="span">{{
+                                                    value
+                                                }}</RadioGroupLabel>
+                                                <span
+                                                    :class="[
+                                                        active
+                                                            ? 'border'
+                                                            : 'border-2',
+                                                        checked
+                                                            ? 'border-indigo-500'
+                                                            : 'border-transparent',
+                                                        'pointer-events-none absolute -inset-px rounded-md',
+                                                    ]"
+                                                    aria-hidden="true"
+                                                />
+                                            </div>
+                                        </RadioGroupOption>
+                                    </div>
+                                </RadioGroup>
+                            </div>
+                        </template>
 
-                        <button
-                            type="submit"
-                            class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                            Add to bag
-                        </button>
+                        <div class="flex space-x-3">
+                            <button
+                                type="submit"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-200 py-3 px-8 text-base font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                            >
+                                Add to bag
+                            </button>
+                            <button
+                                type="submit"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            >
+                                Buy now
+                            </button>
+                        </div>
                     </form>
                 </div>
 
@@ -314,8 +252,10 @@
                     <div>
                         <h3 class="sr-only">Description</h3>
 
-                        <div v-html="product.description" class="space-y-6">
-                        </div>
+                        <div
+                            v-html="product.description"
+                            class="space-y-6 prose max-w-max"
+                        ></div>
                     </div>
                 </div>
             </div>
@@ -347,11 +287,8 @@ export default {
                 average: 5,
                 totalCount: 117,
             },
+            selectedOptions: []
         };
     },
-
-    mounted() {
-        console.log(this.product.images[2]);
-    }
 };
 </script>
