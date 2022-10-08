@@ -63,62 +63,37 @@
 
             <!-- media -->
             <div
-                class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8"
+                class="mx-auto mt-6 max-w-2xl bg-gray-100 p-6 rounded-sm sm:px-6 lg:max-w-7xl lg:px-8 space-y-3"
             >
-                <!-- <div
-                    class="aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block"
+                <Carousel
+                    id="gallery"
+                    :items-to-show="1"
+                    :wrap-around="false"
+                    v-model="currentSlide"
                 >
-                    <img
-                        :src="
-                            product.images[0] == undefined
-                                ? 'https://picsum.photos/250/250?random=' +
-                                  Math.random(10)
-                                : product.images[0].url
-                        "
-                        class="h-full w-full object-cover object-center"
-                    />
-                </div> -->
-                <!-- <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                    <div
-                        class="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg"
-                    >
-                        <img
-                            :src="
-                                product.images[1] == undefined
-                                    ? 'https://picsum.photos/200/300?random=' +
-                                      Math.random(10)
-                                    : product.images[1].url
-                            "
-                            class="h-full w-full object-cover object-center"
-                        />
-                    </div>
-                    <div
-                        class="aspect-w-3 aspect-h-2 overflow-hidden rounded-lg"
-                    >
-                        <img
-                            :src="
-                                product.images[2] == undefined
-                                    ? 'https://picsum.photos/200/300?random=' +
-                                      Math.random(10)
-                                    : product.images[2].url
-                            "
-                            class="h-full w-full object-cover object-center"
-                        />
-                    </div>
-                </div> -->
-                <!-- <div
-                    class="aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4"
+                    <Slide v-for="slide in product.images" :key="slide">
+                        <div class="carousel__item">
+                            <img :src="slide" alt="" class="w-72 h-72 object-contain" />
+                        </div>
+                    </Slide>
+                    <template #addons>
+                        <Navigation />
+                    </template>
+                </Carousel>
+
+                <Carousel
+                    id="thumbnails"
+                    :items-to-show="4"
+                    :wrap-around="true"
+                    v-model="currentSlide"
+                    ref="carousel"
                 >
-                    <img
-                        :src="
-                            product.images[3] == undefined
-                                ? 'https://picsum.photos/200/300?random=' +
-                                  Math.random(10)
-                                : product.images[3].url
-                        "
-                        class="h-full w-full object-cover object-center"
-                    />
-                </div> -->
+                    <Slide v-for="(slide, key) in product.images" :key="slide">
+                        <div class="carousel__item" @click="slideTo(key)">
+                            <img :src="slide" alt="" class="w-48 h-48 object-cover" />
+                        </div>
+                    </Slide>
+                </Carousel>
             </div>
 
             <div
@@ -184,7 +159,10 @@
                                     </h3>
                                 </div>
 
-                                <RadioGroup v-model="selectedOptions[key]" class="mt-4">
+                                <RadioGroup
+                                    v-model="selectedOptions[key]"
+                                    class="mt-4"
+                                >
                                     <RadioGroupLabel class="sr-only">
                                         Choose a {{ option.name }}
                                     </RadioGroupLabel>
@@ -266,6 +244,8 @@
 <script>
 import { StarIcon } from "@heroicons/vue/solid";
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from "@headlessui/vue";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
 
 export default {
     components: {
@@ -273,6 +253,9 @@ export default {
         RadioGroup,
         RadioGroupLabel,
         RadioGroupOption,
+        Carousel,
+        Slide,
+        Navigation,
     },
 
     props: {
@@ -287,8 +270,23 @@ export default {
                 average: 5,
                 totalCount: 117,
             },
-            selectedOptions: []
+            selectedOptions: [],
+            currentSlide: 0,
         };
+    },
+
+    mounted() {
+        if(this.product.images.length == 0) {
+            for (let i = 0; i < 5; i++) {
+                this.product.images.push('https://picsum.photos/250/250?random=' + Math.random());
+            }
+        }
+    },
+
+    methods: {
+        slideTo(val) {
+            this.currentSlide = val;
+        },
     },
 };
 </script>
