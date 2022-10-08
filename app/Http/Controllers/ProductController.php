@@ -33,11 +33,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $imagesObj = [];
-        $i = 1;
-        foreach ($product->images as $key => &$image) {
-            $imagesObj[$key]['id'] =  $i;
-            $imagesObj[$key]['url'] = $image->url;
-            $i++;
+        foreach ($product->images as &$image) {
+            $imagesObj[] = $image->url;
         }
 
         $optionsValues = [];
