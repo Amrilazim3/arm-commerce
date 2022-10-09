@@ -182,10 +182,7 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "flex items-center justify-between"
 };
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Forgot your password? ");
-
-var _hoisted_7 = {
+var _hoisted_6 = {
   key: 0,
   "class": "text-sm font-medium text-green-500"
 };
@@ -254,12 +251,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "font-medium text-sm text-indigo-600 hover:text-indigo-500"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_6];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Forgot your password? ")];
         }),
         _: 1
         /* STABLE */
 
-      })]), _ctx.$page.props.flash.success == 'Your password has been reset!' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.flash.success), 1
+      })]), _ctx.$page.props.flash.success == 'Your password has been reset!' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.flash.success), 1
       /* TEXT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
