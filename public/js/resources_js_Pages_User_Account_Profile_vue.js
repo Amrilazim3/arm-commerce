@@ -271,61 +271,66 @@ var _hoisted_17 = {
   "for": "profile-image",
   "class": "inline-block cursor-pointer ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 };
-
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" select ");
-
-var _hoisted_19 = {
+var _hoisted_18 = {
   key: 0,
   "class": "text-red-500 text-sm mt-1"
 };
-var _hoisted_20 = {
+var _hoisted_19 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "email",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
 }, " Email address ", -1
 /* HOISTED */
 );
 
-var _hoisted_22 = {
+var _hoisted_21 = {
   "class": "self-center mt-1 sm:mt-0 sm:col-span-2"
 };
-var _hoisted_23 = {
+var _hoisted_22 = {
   "class": "max-w-lg sm:text-sm"
 };
-var _hoisted_24 = {
+var _hoisted_23 = {
   key: 0,
   "class": "text-sm ml-1.5 text-blue-500"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-sm ml-1.5 text-gray-500"
 }, " (unverified) ", -1
 /* HOISTED */
 );
 
-var _hoisted_26 = ["disabled"];
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" change ");
-
-var _hoisted_28 = {
+var _hoisted_25 = ["disabled"];
+var _hoisted_26 = {
   key: 0,
   "class": "text-sm text-green-600"
 };
-var _hoisted_29 = {
+var _hoisted_27 = {
   key: 1,
   "class": "text-sm text-red-600"
 };
+var _hoisted_28 = {
+  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
+};
+
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "phone-number",
+  "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+}, " Phone number ", -1
+/* HOISTED */
+);
+
 var _hoisted_30 = {
   "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
 };
 
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "phone-number",
+  "for": "gender",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-}, " Phone number ", -1
+}, " Gender ", -1
 /* HOISTED */
 );
 
@@ -334,24 +339,13 @@ var _hoisted_32 = {
 };
 
 var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "gender",
-  "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-}, " Gender ", -1
-/* HOISTED */
-);
-
-var _hoisted_34 = {
-  "class": "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5"
-};
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "date_of_birth",
   "class": "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
 }, " Date of birth ", -1
 /* HOISTED */
 );
 
-var _hoisted_36 = {
+var _hoisted_34 = {
   "class": "mt-1 sm:mt-0 sm:pt-2 sm:col-span-2"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -424,19 +418,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 32
       /* HYDRATE_EVENTS */
-      ), _hoisted_18]), $data.user.profileImageUrl || $data.user.newProfileImageUrl !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" select ")]), $data.user.profileImageUrl || $data.user.newProfileImageUrl !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
         key: 0,
         "class": "text-red-500 text-sm font-medium ml-4 hover:underline",
         onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.removeProfileImage && $options.removeProfileImage.apply($options, arguments);
         }, ["prevent"]))
-      }, " remove ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.user.errors.newProfileImageFile ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.errors.newProfileImageFile), 1
+      }, " remove ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $data.user.errors.newProfileImageFile ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.errors.newProfileImageFile), 1
       /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.email), 1
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.email), 1
       /* TEXT */
-      ), $data.user.emailIsVerfied ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_24, "(verified) ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+      ), $data.user.emailIsVerfied ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_23, "(verified) ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: 1
-      }, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      }, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-sm font-medium ml-1.5", $data.emailVerification.resendButton.processing ? 'text-blue-300 cursor-not-allowed' : 'text-blue-500 hover:underline']),
         disabled: $data.emailVerification.resendButton.processing,
@@ -445,19 +439,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, ["prevent"]))
       }, " resend link ", 10
       /* CLASS, PROPS */
-      , _hoisted_26)])], 64
+      , _hoisted_25)])], 64
       /* STABLE_FRAGMENT */
       )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         "class": "font-medium text-sm ml-2.5 text-red-500 hover:underline",
         href: "/user/account/email/change"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_27];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" change ")];
         }),
         _: 1
         /* STABLE */
 
-      })]), $data.emailVerification.isSuccessResent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_28, " Email verification successfully sent. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.emailVerification.isFailResent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_29, " Email verification failed to sent. Please try again. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+      })]), $data.emailVerification.isSuccessResent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_26, " Email verification successfully sent. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.emailVerification.isFailResent ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, " Email verification failed to sent. Please try again. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         name: "phone_number",
         type: "number",
         "outer-class": "$reset mt-1 sm:mt-0 sm:col-span-2",
@@ -470,7 +464,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         name: "gender",
         type: "radio",
         "outer-class": "$reset mt-1 sm:mt-0 sm:col-span-2",
@@ -484,7 +478,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Datepicker, {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Datepicker, {
         modelValue: $data.user.dateOfBirth,
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $data.user.dateOfBirth = $event;
@@ -523,86 +517,25 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "lg:hidden px-10 py-6 flex space-x-3"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Admin Account ");
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" My Account ");
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Addresses ");
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Products ");
-
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" My Purchase ");
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ");
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ");
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All ");
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Pay ");
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Ship ");
-
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Receive ");
-
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Completed ");
-
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cancelled ");
-
-var _hoisted_19 = {
+var _hoisted_2 = {
   "class": "inline-grid w-32"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Admin Account", -1
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Admin Account", -1
 /* HOISTED */
 );
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
-
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
-
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My Account", -1
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My Account", -1
 /* HOISTED */
 );
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ");
-
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Addresses ");
-
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ");
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Products", -1
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Products", -1
 /* HOISTED */
 );
 
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ");
-
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ");
-
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My purchase", -1
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "My purchase", -1
 /* HOISTED */
 );
-
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All ");
-
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Pay ");
-
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Ship ");
-
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Receive ");
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Completed ");
-
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cancelled ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_MenuButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("MenuButton");
@@ -630,7 +563,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('Admin/Account') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_2];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Admin Account ")];
         }),
         _: 1
         /* STABLE */
@@ -642,7 +575,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('User/Account') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_3];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" My Account ")];
         }),
         _: 1
         /* STABLE */
@@ -671,7 +604,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'Admin/Account/Profile' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_4];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -690,7 +623,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'Admin/Account/ChangePassword' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_5];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -713,7 +646,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Account/Profile' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_6];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -732,7 +665,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Account/Addresses' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_7];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Addresses ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -751,7 +684,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Account/ChangePassword' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_8];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -789,7 +722,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('Admin/Products') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Products ")];
         }),
         _: 1
         /* STABLE */
@@ -801,7 +734,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["inline-block px-6 py-2 border-2 border-indigo-600 text-indigo-600 font-medium text-xs leading-tight uppercase rounded hover:bg-indigo-300 focus:outline-none focus:ring-0 transition duration-150 ease-in-out", _ctx.$page.component.includes('User/Purchase') ? 'bg-indigo-300' : ''])
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_10];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" My Purchase ")];
         }),
         _: 1
         /* STABLE */
@@ -830,7 +763,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'Admin/Products/Index' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_11];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -849,7 +782,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'Admin/Products/Create' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_12];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -872,7 +805,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Purchase/Index' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_13];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -891,7 +824,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Purchase/ToPay' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_14];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Pay ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -910,7 +843,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Purchase/ToShip' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_15];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Ship ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -929,7 +862,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Purchase/ToReceive' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_16];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Receive ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -948,7 +881,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Purchase/Completed' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_17];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Completed ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -967,7 +900,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900', _ctx.$page.component == 'User/Purchase/Cancelled' ? 'bg-violet-500 text-gray-100' : ''])
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_18];
+                      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cancelled ")];
                     }),
                     _: 1
                     /* STABLE */
@@ -998,7 +931,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" large screen "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["hidden lg:flex pt-20 justify-end w-2/12", _ctx.$page.component.includes('Admin/Products/Create') || _ctx.$page.component.includes('Admin/Products/Edit') ? 'absolute' : 'h-full'])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Disclosure, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Disclosure, {
     key: 0,
     defaultOpen: _ctx.$page.component.includes('Admin/Account'),
     as: "div"
@@ -1013,7 +946,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_20];
+          return [_hoisted_3];
         }),
         _: 2
         /* DYNAMIC */
@@ -1039,7 +972,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Account/Profile' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_21];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1051,7 +984,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Account/ChangePassword' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_22];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1090,7 +1023,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_23];
+          return [_hoisted_4];
         }),
         _: 2
         /* DYNAMIC */
@@ -1116,7 +1049,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Account/Profile' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_24];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Profile ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1128,7 +1061,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Account/Addresses' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_25];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Addresses ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1140,7 +1073,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Account/ChangePassword' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_26];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Change Password ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1179,7 +1112,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_27];
+          return [_hoisted_5];
         }),
         _: 2
         /* DYNAMIC */
@@ -1205,7 +1138,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Products/Index' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_28];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Store ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1217,7 +1150,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'Admin/Products/Create' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_29];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Create Product ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1256,7 +1189,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_30];
+          return [_hoisted_6];
         }),
         _: 2
         /* DYNAMIC */
@@ -1282,7 +1215,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/Index' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_31];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" All ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1294,7 +1227,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/ToPay' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_32];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Pay ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1306,7 +1239,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/ToShip' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_33];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Ship ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1318,7 +1251,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/ToReceive' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_34];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" To Receive ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1330,7 +1263,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/Completed' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_35];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Completed ")];
                 }),
                 _: 1
                 /* STABLE */
@@ -1342,7 +1275,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(_ctx.$page.component == 'User/Purchase/Cancelled' ? 'font-bold' : '')
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                  return [_hoisted_36];
+                  return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cancelled ")];
                 }),
                 _: 1
                 /* STABLE */

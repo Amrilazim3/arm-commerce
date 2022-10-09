@@ -13,6 +13,8 @@ import VueTippy from 'vue-tippy';
 import 'tippy.js/dist/tippy.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import VueNumberInput from '@chenfengyuan/vue-number-input';
+
 
 createInertiaApp({
     resolve: async name => {
@@ -51,6 +53,7 @@ createInertiaApp({
             .component("Link", Link)
             .component("Head", Head)
             .component("Datepicker", Datepicker)
+            .component(VueNumberInput.name, VueNumberInput)
             .mount(el)
     },
     title: title => `Arm-commerce | ${title}`
