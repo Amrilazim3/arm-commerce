@@ -73,7 +73,7 @@
                 >
                     <Slide v-for="slide in product.images" :key="slide">
                         <div class="carousel__item">
-                            <img :src="slide" alt="" class="w-72 h-72 object-contain" />
+                            <img :src="slide" alt="" class="w-80 h-80 object-contain" />
                         </div>
                     </Slide>
                     <template #addons>
@@ -90,7 +90,7 @@
                 >
                     <Slide v-for="(slide, key) in product.images" :key="slide">
                         <div class="carousel__item" @click="slideTo(key)">
-                            <img :src="slide" alt="" class="w-48 h-48 object-cover" />
+                            <img :src="slide" alt="" class="w-44 h-44 object-cover" />
                         </div>
                     </Slide>
                 </Carousel>
