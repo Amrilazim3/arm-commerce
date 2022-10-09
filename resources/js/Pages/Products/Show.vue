@@ -73,7 +73,11 @@
                 >
                     <Slide v-for="slide in product.images" :key="slide">
                         <div class="carousel__item">
-                            <img :src="slide" alt="" class="w-80 h-80 object-contain" />
+                            <img
+                                :src="slide"
+                                alt=""
+                                class="w-80 h-80 object-contain"
+                            />
                         </div>
                     </Slide>
                     <template #addons>
@@ -90,7 +94,11 @@
                 >
                     <Slide v-for="(slide, key) in product.images" :key="slide">
                         <div class="carousel__item" @click="slideTo(key)">
-                            <img :src="slide" alt="" class="w-44 h-44 object-cover" />
+                            <img
+                                :src="slide"
+                                alt=""
+                                class="w-44 h-44 object-cover"
+                            />
                         </div>
                     </Slide>
                 </Carousel>
@@ -206,16 +214,39 @@
                             </div>
                         </template>
 
+                        <!-- quantities -->
+                        <div class="mt-10">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-medium text-gray-900">
+                                    Quantity
+                                </h3>
+                            </div>
+                            <vue-number-input
+                                v-model="quantity"
+                                :min="1"
+                                :max="10"
+                                inline
+                                center
+                                controls
+                                rounded
+                                class="mt-4"
+                            ></vue-number-input>
+                        </div>
+
                         <div class="flex space-x-3">
                             <button
                                 type="submit"
+                                @click.prevent="addToCart"
                                 class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-200 py-3 px-8 text-base font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                             >
                                 Add to bag
                             </button>
                             <button
                                 type="submit"
-                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                @click.prevent="buyProduct"
+                                :disabled="isDisableBuyButton"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2  focus:ring-offset-2"
+                                :class="isDisableBuyButton ? 'cursor-not-allowed bg-gray-500' : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'"
                             >
                                 Buy now
                             </button>
@@ -271,15 +302,44 @@ export default {
                 totalCount: 117,
             },
             selectedOptions: [],
+            isDisableBuyButton: false,
+            quantity: 1,
             currentSlide: 0,
         };
     },
 
+    watch: {
+        selectedOptions: {
+            handler(newArr) {
+                if (newArr.length == this.product.options.length) {
+                    var allOptionHasValue = true;
+
+                    for (let i = 0; i < newArr.length; i++) {
+                        if (newArr[i] == undefined) {
+                            allOptionHasValue = false;
+                        }
+                    }
+
+                    if (allOptionHasValue) {
+                        this.isDisableBuyButton = false;
+                    }
+                }
+            },
+            deep: true
+        }
+    },
+
     mounted() {
-        if(this.product.images.length == 0) {
+        if (this.product.images.length == 0) {
             for (let i = 0; i < 5; i++) {
-                this.product.images.push('https://picsum.photos/250/250?random=' + Math.random());
+                this.product.images.push(
+                    "https://picsum.photos/250/250?random=" + Math.random()
+                );
             }
+        }
+
+        if (this.product.options.length > 0) {
+            this.isDisableBuyButton = true;
         }
     },
 
@@ -287,6 +347,14 @@ export default {
         slideTo(val) {
             this.currentSlide = val;
         },
+
+        addToCart() {
+            console.log('add to cart');
+        },
+
+        buyProduct() {
+            console.log('buy product');
+        }
     },
 };
 </script>
