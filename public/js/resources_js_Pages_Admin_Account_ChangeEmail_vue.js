@@ -66,10 +66,7 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "flex items-center text-sm"
 };
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Forgot your password? ");
-
-var _hoisted_7 = {
+var _hoisted_6 = {
   key: 0,
   "class": "text-red-500 text-sm"
 };
@@ -144,12 +141,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "font-medium text-indigo-600 hover:text-indigo-500"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_6];
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Forgot your password? ")];
         }),
         _: 1
         /* STABLE */
 
-      })]), $data.form.isDirty ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_7, " Note! we will send a new email verification link to your new email inbox. Make sure your new email is correct. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+      })]), $data.form.isDirty ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_6, " Note! we will send a new email verification link to your new email inbox. Make sure your new email is correct. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     _: 1
     /* STABLE */
