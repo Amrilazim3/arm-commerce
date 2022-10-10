@@ -231,7 +231,9 @@
                                 rounded
                                 class="mt-4"
                             ></vue-number-input>
-                            <p class="text-sm">{{ this.maxQuantity }} stock available</p>
+                            <p class="text-sm">
+                                {{ this.maxQuantity }} stock available
+                            </p>
                         </div>
 
                         <div class="flex space-x-3">
@@ -246,8 +248,12 @@
                                 type="submit"
                                 @click.prevent="buyProduct"
                                 :disabled="isDisableBuyButton"
-                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2  focus:ring-offset-2"
-                                :class="isDisableBuyButton ? 'cursor-not-allowed bg-gray-500' : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                :class="
+                                    isDisableBuyButton
+                                        ? 'cursor-not-allowed bg-gray-500'
+                                        : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'
+                                "
                             >
                                 Buy now
                             </button>
@@ -316,8 +322,8 @@ export default {
             handler(newArr) {
                 this.validateVariantion();
             },
-            deep: true
-        }
+            deep: true,
+        },
     },
 
     mounted() {
@@ -340,15 +346,15 @@ export default {
         },
 
         addToCart() {
-            console.log('add to cart');
+            console.log("add to cart");
         },
 
         buyProduct() {
-            console.log('buy product');
+            console.log("buy product");
         },
 
         validateVariantion() {
-            var joinedOption = this.selectedOptions.join(' / ');
+            var joinedOption = this.selectedOptions.join(" / ");
 
             var variantExists = false;
             this.product.variants.forEach((variant) => {
@@ -366,15 +372,15 @@ export default {
                         });
                     }
                 }
+            });
 
-                if (variantExists) {
-                    this.isDisableBuyButton = false;
-                }
-                
-                if (!variantExists) {
-                    this.isDisableBuyButton = true;
-                }
-            })
+            if (variantExists) {
+                this.isDisableBuyButton = false;
+            }
+
+            if (!variantExists) {
+                this.isDisableBuyButton = true;
+            }
         },
     },
 };
