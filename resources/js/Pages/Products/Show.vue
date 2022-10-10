@@ -121,7 +121,7 @@
                 <div class="mt-4 lg:row-span-3 lg:mt-0">
                     <h2 class="sr-only">Product information</h2>
                     <p class="text-3xl tracking-tight text-gray-900">
-                        {{ product.price }} MYR
+                        {{ displayedPrice }} MYR
                     </p>
 
                     <!-- Reviews -->
@@ -224,13 +224,14 @@
                             <vue-number-input
                                 v-model="quantity"
                                 :min="1"
-                                :max="10"
+                                :max="maxQuantity"
                                 inline
                                 center
                                 controls
                                 rounded
                                 class="mt-4"
                             ></vue-number-input>
+                            <p class="text-sm">{{ this.maxQuantity }} stock available</p>
                         </div>
 
                         <div class="flex space-x-3">
@@ -296,6 +297,7 @@ export default {
     data() {
         return {
             product: this.productData,
+            displayedPrice: this.productData.price,
             reviews: {
                 href: "#",
                 average: 5,
@@ -304,6 +306,7 @@ export default {
             selectedOptions: [],
             isDisableBuyButton: false,
             quantity: 1,
+            maxQuantity: this.productData.stock,
             currentSlide: 0,
         };
     },
@@ -311,6 +314,8 @@ export default {
     watch: {
         selectedOptions: {
             handler(newArr) {
+                this.validateVariantion();
+
                 if (newArr.length == this.product.options.length) {
                     var allOptionHasValue = true;
 
@@ -354,7 +359,34 @@ export default {
 
         buyProduct() {
             console.log('buy product');
-        }
+        },
+
+        validateVariantion() {
+            var joinedOption = this.selectedOptions.join(' / ');
+
+            this.product.variants.forEach((variant) => {
+                let variantExists = false;
+
+                if (variant.name == joinedOption) {
+                    variantExists = true;
+
+                    this.maxQuantity = variant.stock;
+                    this.displayedPrice = variant.price;
+
+                    if (variant.image_url) {
+                        this.product.images.map((image, key) => {
+                            if (image == variant.image_url) {
+                                this.currentSlide = key;
+                            }
+                        });
+                    }
+                }
+
+                if (!variantExists) {
+                    this.isDisableBuyButton = true;
+                }
+            })
+        },
     },
 };
 </script>
