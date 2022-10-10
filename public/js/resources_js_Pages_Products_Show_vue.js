@@ -52,20 +52,6 @@ __webpack_require__.r(__webpack_exports__);
     selectedOptions: {
       handler: function handler(newArr) {
         this.validateVariantion();
-
-        if (newArr.length == this.product.options.length) {
-          var allOptionHasValue = true;
-
-          for (var i = 0; i < newArr.length; i++) {
-            if (newArr[i] == undefined) {
-              allOptionHasValue = false;
-            }
-          }
-
-          if (allOptionHasValue) {
-            this.isDisableBuyButton = false;
-          }
-        }
       },
       deep: true
     }
@@ -95,9 +81,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var joinedOption = this.selectedOptions.join(' / ');
+      var variantExists = false;
       this.product.variants.forEach(function (variant) {
-        var variantExists = false;
-
         if (variant.name == joinedOption) {
           variantExists = true;
           _this.maxQuantity = variant.stock;
@@ -110,6 +95,10 @@ __webpack_require__.r(__webpack_exports__);
               }
             });
           }
+        }
+
+        if (variantExists) {
+          _this.isDisableBuyButton = false;
         }
 
         if (!variantExists) {
