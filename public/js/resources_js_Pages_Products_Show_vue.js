@@ -72,15 +72,15 @@ __webpack_require__.r(__webpack_exports__);
       this.currentSlide = val;
     },
     addToCart: function addToCart() {
-      console.log('add to cart');
+      console.log("add to cart");
     },
     buyProduct: function buyProduct() {
-      console.log('buy product');
+      console.log("buy product");
     },
     validateVariantion: function validateVariantion() {
       var _this = this;
 
-      var joinedOption = this.selectedOptions.join(' / ');
+      var joinedOption = this.selectedOptions.join(" / ");
       var variantExists = false;
       this.product.variants.forEach(function (variant) {
         if (variant.name == joinedOption) {
@@ -96,15 +96,15 @@ __webpack_require__.r(__webpack_exports__);
             });
           }
         }
-
-        if (variantExists) {
-          _this.isDisableBuyButton = false;
-        }
-
-        if (!variantExists) {
-          _this.isDisableBuyButton = true;
-        }
       });
+
+      if (variantExists) {
+        this.isDisableBuyButton = false;
+      }
+
+      if (!variantExists) {
+        this.isDisableBuyButton = true;
+      }
     }
   }
 });
@@ -524,7 +524,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-4"
   }, null, 8
   /* PROPS */
-  , ["modelValue", "max"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.maxQuantity) + " stock available", 1
+  , ["modelValue", "max"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.maxQuantity) + " stock available ", 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
