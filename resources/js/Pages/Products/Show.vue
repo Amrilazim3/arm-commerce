@@ -315,20 +315,6 @@ export default {
         selectedOptions: {
             handler(newArr) {
                 this.validateVariantion();
-
-                if (newArr.length == this.product.options.length) {
-                    var allOptionHasValue = true;
-
-                    for (let i = 0; i < newArr.length; i++) {
-                        if (newArr[i] == undefined) {
-                            allOptionHasValue = false;
-                        }
-                    }
-
-                    if (allOptionHasValue) {
-                        this.isDisableBuyButton = false;
-                    }
-                }
             },
             deep: true
         }
@@ -364,9 +350,8 @@ export default {
         validateVariantion() {
             var joinedOption = this.selectedOptions.join(' / ');
 
+            var variantExists = false;
             this.product.variants.forEach((variant) => {
-                let variantExists = false;
-
                 if (variant.name == joinedOption) {
                     variantExists = true;
 
@@ -382,6 +367,10 @@ export default {
                     }
                 }
 
+                if (variantExists) {
+                    this.isDisableBuyButton = false;
+                }
+                
                 if (!variantExists) {
                     this.isDisableBuyButton = true;
                 }
