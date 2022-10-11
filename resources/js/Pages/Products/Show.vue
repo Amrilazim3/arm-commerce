@@ -240,17 +240,23 @@
                             <button
                                 type="submit"
                                 @click.prevent="addToCart"
-                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-200 py-3 px-8 text-base font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                                :disabled="isDisableButton"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                :class="
+                                    isDisableButton
+                                        ? 'cursor-not-allowed bg-gray-500 text-white'
+                                        : 'hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black'
+                                "
                             >
                                 Add to bag
                             </button>
                             <button
                                 type="submit"
                                 @click.prevent="buyProduct"
-                                :disabled="isDisableBuyButton"
+                                :disabled="isDisableButton"
                                 class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2"
                                 :class="
-                                    isDisableBuyButton
+                                    isDisableButton
                                         ? 'cursor-not-allowed bg-gray-500'
                                         : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'
                                 "
@@ -310,7 +316,8 @@ export default {
                 totalCount: 117,
             },
             selectedOptions: [],
-            isDisableBuyButton: false,
+            isDisableButton: false,
+            isEmptyOption: false,
             quantity: 1,
             maxQuantity: this.productData.stock,
             currentSlide: 0,
@@ -336,7 +343,7 @@ export default {
         }
 
         if (this.product.options.length > 0) {
-            this.isDisableBuyButton = true;
+            this.isDisableButton = true;
         }
     },
 
@@ -375,11 +382,11 @@ export default {
             });
 
             if (variantExists) {
-                this.isDisableBuyButton = false;
+                this.isDisableButton = false;
             }
 
             if (!variantExists) {
-                this.isDisableBuyButton = true;
+                this.isDisableButton = true;
             }
         },
     },
