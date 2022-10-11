@@ -2364,9 +2364,6 @@ select {
 .font-thin {
   font-weight: 100;
 }
-.font-light {
-  font-weight: 300;
-}
 .uppercase {
   text-transform: uppercase;
 }

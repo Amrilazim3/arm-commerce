@@ -42,7 +42,8 @@ __webpack_require__.r(__webpack_exports__);
         totalCount: 117
       },
       selectedOptions: [],
-      isDisableBuyButton: false,
+      isDisableButton: false,
+      isEmptyOption: false,
       quantity: 1,
       maxQuantity: this.productData.stock,
       currentSlide: 0
@@ -64,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     if (this.product.options.length > 0) {
-      this.isDisableBuyButton = true;
+      this.isDisableButton = true;
     }
   },
   methods: {
@@ -99,11 +100,11 @@ __webpack_require__.r(__webpack_exports__);
       });
 
       if (variantExists) {
-        this.isDisableBuyButton = false;
+        this.isDisableButton = false;
       }
 
       if (!variantExists) {
-        this.isDisableBuyButton = true;
+        this.isDisableButton = true;
       }
     }
   }
@@ -242,17 +243,18 @@ var _hoisted_33 = {
   "class": "flex space-x-3"
 };
 var _hoisted_34 = ["disabled"];
-var _hoisted_35 = {
+var _hoisted_35 = ["disabled"];
+var _hoisted_36 = {
   "class": "py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8"
 };
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "sr-only"
 }, "Description", -1
 /* HOISTED */
 );
 
-var _hoisted_37 = ["innerHTML"];
+var _hoisted_38 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -531,22 +533,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.addToCart && $options.addToCart.apply($options, arguments);
     }, ["prevent"])),
-    "class": "mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-200 py-3 px-8 text-base font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-  }, " Add to bag "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    disabled: $data.isDisableButton,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2", $data.isDisableButton ? 'cursor-not-allowed bg-gray-500 text-white' : 'hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black'])
+  }, " Add to bag ", 10
+  /* CLASS, PROPS */
+  , _hoisted_34), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.buyProduct && $options.buyProduct.apply($options, arguments);
     }, ["prevent"])),
-    disabled: $data.isDisableBuyButton,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2", $data.isDisableBuyButton ? 'cursor-not-allowed bg-gray-500' : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'])
+    disabled: $data.isDisableButton,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2", $data.isDisableButton ? 'cursor-not-allowed bg-gray-500' : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'])
   }, " Buy now ", 10
   /* CLASS, PROPS */
-  , _hoisted_34)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description and details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , _hoisted_35)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description and details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     innerHTML: $data.product.description,
     "class": "space-y-6 prose max-w-max"
   }, null, 8
   /* PROPS */
-  , _hoisted_37)])])])])])], 64
+  , _hoisted_38)])])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
