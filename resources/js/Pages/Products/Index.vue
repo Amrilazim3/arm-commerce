@@ -26,7 +26,10 @@
                         >
                             <template v-if="product.images.length == 0">
                                 <img
-                                    :src="'https://picsum.photos/200/300?random=' + product.id"
+                                    :src="
+                                        'https://picsum.photos/200/300?random=' +
+                                        product.id
+                                    "
                                     alt=""
                                     class="w-full h-full object-center object-cover lg:w-full lg:h-full"
                                 />
@@ -50,19 +53,30 @@
                                         {{ product.name }}
                                     </Link>
                                 </h3>
-                                <p class="mt-1 text-sm text-indigo-500">{{ product.stock }} unit in stock</p>
+                                <p class="mt-1 text-sm text-indigo-500">
+                                    {{ product.stock }} unit in stock
+                                </p>
                             </div>
-                            <p class="text-sm font-medium text-gray-900">{{ product.price }} MYR</p>
+                            <p class="text-sm font-medium text-gray-900">
+                                {{ product.price }} MYR
+                            </p>
                         </div>
                     </div>
                 </template>
             </div>
+            <Pagination class="flex justify-end" :links="productsData.links" />
         </div>
     </div>
 </template>
 
 <script>
+import Pagination from "../../Shared/Pagination.vue";
+
 export default {
+    components: {
+        Pagination
+    },
+
     props: {
         productsData: Object,
     },
