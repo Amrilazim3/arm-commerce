@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
@@ -32,6 +33,10 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $product = Cache::remember($product->slug, now()->addMinutes(7200), function () use ($product) {
+            return $product;
+        });
+
         $imagesObj = [];
         foreach ($product->images as &$image) {
             $imagesObj[] = $image->url;
