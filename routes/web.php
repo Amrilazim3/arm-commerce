@@ -70,6 +70,9 @@ Route::middleware('auth')->group(function () {
             Route::patch('/password/change', [ChangePasswordController::class, 'update'])->name('password.change.update');
         });
 
+        Route::post('/products/{product}/cart', [ProductController::class, 'addToCart'])->name('products.addToCart.cart');
+        Route::post('/products/{product}/buy', [ProductController::class, 'addToCart'])->name('products.buyProduct.buy');
+
         // purchase routes.
         Route::prefix('/purchase')->name('purchase.')->group(function () {
             // 
