@@ -43,7 +43,6 @@ __webpack_require__.r(__webpack_exports__);
       },
       selectedOptions: [],
       isDisableButton: false,
-      isEmptyOption: false,
       quantity: 1,
       maxQuantity: this.productData.stock,
       currentSlide: 0
@@ -73,26 +72,49 @@ __webpack_require__.r(__webpack_exports__);
       this.currentSlide = val;
     },
     addToCart: function addToCart() {
-      console.log("add to cart");
+      var _this = this;
+
+      if (this.$page.props.auth.isAdmin) {
+        return;
+      }
+
+      var data = {};
+      data.quantity = this.quantity;
+      var variant = this.selectedOptions.join(" / ");
+      data.variant = variant;
+      data.price = this.displayedPrice;
+      this.$inertia.post("/user/products/".concat(this.product.slug, "/cart"), data, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this.$swal.fire("Success", "Product has been added to the cart", "success");
+        },
+        onError: function onError() {
+          _this.$swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong! Please try again"
+          });
+        }
+      });
     },
     buyProduct: function buyProduct() {
       console.log("buy product");
     },
     validateVariantion: function validateVariantion() {
-      var _this = this;
+      var _this2 = this;
 
       var joinedOption = this.selectedOptions.join(" / ");
       var variantExists = false;
       this.product.variants.forEach(function (variant) {
         if (variant.name == joinedOption) {
           variantExists = true;
-          _this.maxQuantity = variant.stock;
-          _this.displayedPrice = variant.price;
+          _this2.maxQuantity = variant.stock;
+          _this2.displayedPrice = variant.price;
 
           if (variant.image_url) {
-            _this.product.images.map(function (image, key) {
+            _this2.product.images.map(function (image, key) {
               if (image == variant.image_url) {
-                _this.currentSlide = key;
+                _this2.currentSlide = key;
               }
             });
           }
@@ -535,7 +557,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     disabled: $data.isDisableButton,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2", $data.isDisableButton ? 'cursor-not-allowed bg-gray-500 text-white' : 'hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black'])
-  }, " Add to bag ", 10
+  }, " Add to cart ", 10
   /* CLASS, PROPS */
   , _hoisted_34), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
