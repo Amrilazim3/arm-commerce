@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
     addToCart: function addToCart() {
       var _this = this;
 
-      if (this.$page.props.auth.isAdmin) {
+      if (this.$page.props.auth.user.isAdmin) {
         return;
       }
 
@@ -86,14 +86,18 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/user/products/".concat(this.product.slug, "/cart"), data, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          _this.$swal.fire("Success", "Product has been added to the cart", "success");
+          if (_this["this"].$page.props.auth.isLoggedIn) {
+            _this.$swal.fire("Success", "Product has been added to the cart", "success");
+          }
         },
         onError: function onError() {
-          _this.$swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong! Please try again"
-          });
+          if (_this["this"].$page.props.auth.isLoggedIn) {
+            _this.$swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong! Please try again"
+            });
+          }
         }
       });
     },
