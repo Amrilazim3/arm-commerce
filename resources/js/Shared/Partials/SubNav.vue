@@ -18,9 +18,9 @@
             </svg>
 
             <div class="space-x-4 font-medium">
-                <span>Fitness</span>
-                <span>Workout</span>
-                <span>Supplement</span>
+                <Link href="/category/fitness">Fitness</Link>
+                <Link href="/category/workout">Workout</Link>
+                <Link href="/category/supplement">Supplement</Link>
             </div>
 
             <div class="flex space-x-2 self-center">
