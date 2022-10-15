@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -109,5 +110,24 @@ class ProductController extends Controller
                 'variants' => $variants
             ]
         ]);
+    }
+
+    public function addToCart(Product $product, Request $request)
+    {
+        Cart::create([
+            'user_id' => $product->user_id,
+            'product_id' => $product->id,
+            'variant_name' => $request->variant,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+            'is_checkout' => false,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function buyProduct()
+    {
+        dd('add to cart table and redirect');
     }
 }
