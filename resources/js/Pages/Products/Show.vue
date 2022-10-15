@@ -352,7 +352,7 @@ export default {
         },
 
         addToCart() {
-            if (this.$page.props.auth.isAdmin) {
+            if (this.$page.props.auth.user.isAdmin) {
                 return;
             }
 
@@ -370,18 +370,22 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: () => {
-                        this.$swal.fire(
-                            "Success",
-                            "Product has been added to the cart",
-                            "success"
-                        );
+                        if (this.this.$page.props.auth.isLoggedIn) {
+                            this.$swal.fire(
+                                "Success",
+                                "Product has been added to the cart",
+                                "success"
+                            );
+                        }
                     },
                     onError: () => {
-                        this.$swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong! Please try again",
-                        });
+                        if (this.this.$page.props.auth.isLoggedIn) {
+                            this.$swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Something went wrong! Please try again",
+                            });
+                        }
                     },
                 }
             );
