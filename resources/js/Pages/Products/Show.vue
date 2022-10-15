@@ -248,7 +248,7 @@
                                         : 'hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black'
                                 "
                             >
-                                Add to bag
+                                Add to cart
                             </button>
                             <button
                                 type="submit"
@@ -317,7 +317,6 @@ export default {
             },
             selectedOptions: [],
             isDisableButton: false,
-            isEmptyOption: false,
             quantity: 1,
             maxQuantity: this.productData.stock,
             currentSlide: 0,
@@ -353,7 +352,39 @@ export default {
         },
 
         addToCart() {
-            console.log("add to cart");
+            if (this.$page.props.auth.isAdmin) {
+                return;
+            }
+
+            var data = {};
+            data.quantity = this.quantity;
+
+            let variant = this.selectedOptions.join(" / ");
+            data.variant = variant;
+
+            data.price = this.displayedPrice;
+
+            this.$inertia.post(
+                `/user/products/${this.product.slug}/cart`,
+                data,
+                {
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        this.$swal.fire(
+                            "Success",
+                            "Product has been added to the cart",
+                            "success"
+                        );
+                    },
+                    onError: () => {
+                        this.$swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Something went wrong! Please try again",
+                        });
+                    },
+                }
+            );
         },
 
         buyProduct() {
