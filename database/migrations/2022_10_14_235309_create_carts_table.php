@@ -21,6 +21,7 @@ class CreateCartsTable extends Migration
             $table->unsignedBigInteger('quantity');
             $table->unsignedDouble('price');
             $table->boolean('is_checkout')->default(false);
+            $table->timestamps();
         });
     }
 
