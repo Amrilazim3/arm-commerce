@@ -51,7 +51,7 @@ class HandleInertiaRequests extends Middleware
                     'dateOfBirth' => $user->date_of_birth,
                     'emailIsVerfied' => $user->email_verified_at || $user->service_id ? true : false,
                     'isAdmin' => $user->hasRole('admin') ? true : false,
-                    'cart' => $user->hasRole('admin') ? null : (new CartController)->index()
+                    'carts' => $user->hasRole('admin') ? null : (new CartController)->index()
                 ] : null
             ],
             'flash' => [
