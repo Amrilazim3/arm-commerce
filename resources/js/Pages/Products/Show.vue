@@ -264,6 +264,11 @@
                                 Buy now
                             </button>
                         </div>
+                        <template v-if="$page.props.auth.user.isAdmin">
+                            <p class="mt-4 text-sm text-red-500">
+                                Above button not working with admin.
+                            </p>
+                        </template>
                     </form>
                 </div>
 
