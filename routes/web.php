@@ -15,6 +15,7 @@ use App\Http\Controllers\User\Account\AddressController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
+use App\Http\Controllers\User\CartController;
 use Illuminate\Support\Facades\Route;
 
 // can be visit by guest, user, admin but with different permission.
