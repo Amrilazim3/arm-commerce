@@ -287,27 +287,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      products: [{
-        id: 1,
-        name: "Throwback Hip Bag",
-        href: "#",
-        color: "Salmon",
-        price: "$90.00",
-        quantity: 1,
-        imageSrc: "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-        imageAlt: "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
-      }, {
-        id: 2,
-        name: "Medium Stuff Satchel",
-        href: "#",
-        color: "Blue",
-        price: "$32.00",
-        quantity: 1,
-        imageSrc: "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-        imageAlt: "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch."
-      }],
-      isOpenCartSlideOver: false
+      isOpenCartSlideOver: false,
+      cartSubtotal: 0
     };
+  },
+  mounted: function mounted() {
+    var carts = this.$page.props.auth.user.carts; // make a calculation for subtotal.
+
+    carts.forEach(function (item) {
+      console.log(item.name);
+    });
   }
 });
 
@@ -1651,7 +1640,7 @@ var _hoisted_24 = {
   "class": "flex justify-between text-base font-medium text-gray-900"
 };
 var _hoisted_25 = {
-  "class": "ml-4"
+  "class": "ml-4 text-sm font-light"
 };
 var _hoisted_26 = {
   "class": "mt-1 text-sm text-gray-500"
@@ -1798,7 +1787,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Dialog, {
         as: "div",
         "class": "relative z-10",
-        onClose: _cache[3] || (_cache[3] = function ($event) {
+        onClose: _cache[4] || (_cache[4] = function ($event) {
           return $data.isOpenCartSlideOver = false;
         })
       }, {
@@ -1861,7 +1850,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     }, null, 8
                     /* PROPS */
                     , _hoisted_22)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                      href: 'https://arm-commerce.com/products/' + product.slug
+                      href: 'https://arm-commerce.com/products/' + product.slug,
+                      onClick: _cache[2] || (_cache[2] = function ($event) {
+                        return $data.isOpenCartSlideOver = false;
+                      })
                     }, {
                       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name), 1
@@ -1885,7 +1877,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   ))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, _hoisted_32, _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" or "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
                     type: "button",
                     "class": "font-medium text-indigo-600 hover:text-indigo-500",
-                    onClick: _cache[2] || (_cache[2] = function ($event) {
+                    onClick: _cache[3] || (_cache[3] = function ($event) {
                       return $data.isOpenCartSlideOver = false;
                     })
                   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Continue Shopping "), _hoisted_35])])])])])];
