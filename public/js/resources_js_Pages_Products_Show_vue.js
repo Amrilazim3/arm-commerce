@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
     addToCart: function addToCart() {
       var _this = this;
 
-      if (this.$page.props.auth.user.isAdmin) {
+      if (this.$page.props.auth.isLoggedIn && this.$page.props.auth.user.isAdmin) {
         return;
       }
 
@@ -84,14 +84,13 @@ __webpack_require__.r(__webpack_exports__);
       data.variant = variant;
       data.price = this.displayedPrice;
       this.$inertia.post("/user/products/".concat(this.product.slug, "/cart"), data, {
-        preserveScroll: true,
         onSuccess: function onSuccess() {
-          if (_this["this"].$page.props.auth.isLoggedIn) {
+          if (_this.$page.props.auth.isLoggedIn) {
             _this.$swal.fire("Success", "Product has been added to the cart", "success");
           }
         },
         onError: function onError() {
-          if (_this["this"].$page.props.auth.isLoggedIn) {
+          if (_this.$page.props.auth.isLoggedIn) {
             _this.$swal.fire({
               icon: "error",
               title: "Oops...",
@@ -271,16 +270,20 @@ var _hoisted_33 = {
 var _hoisted_34 = ["disabled"];
 var _hoisted_35 = ["disabled"];
 var _hoisted_36 = {
+  key: 0,
+  "class": "mt-4 text-sm text-red-500"
+};
+var _hoisted_37 = {
   "class": "py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8"
 };
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "sr-only"
 }, "Description", -1
 /* HOISTED */
 );
 
-var _hoisted_38 = ["innerHTML"];
+var _hoisted_39 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -572,12 +575,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2", $data.isDisableButton ? 'cursor-not-allowed bg-gray-500' : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'])
   }, " Buy now ", 10
   /* CLASS, PROPS */
-  , _hoisted_35)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description and details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , _hoisted_35)]), _ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 0
+  }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_36, " Above button not working with admin. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+  /* STABLE_FRAGMENT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description and details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     innerHTML: $data.product.description,
     "class": "space-y-6 prose max-w-max"
   }, null, 8
   /* PROPS */
-  , _hoisted_38)])])])])])], 64
+  , _hoisted_39)])])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
