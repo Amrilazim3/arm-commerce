@@ -27,6 +27,7 @@ class CartController extends Controller
 
             $cartsData[$key]['variantName'] = $cart->variant_name;
             $cartsData[$key]['quantity'] = $cart->quantity;
+            $cartsData[$key]['price'] = $cart->price;
             $cartsData[$key]['isCheckout'] = $cart->is_checkout ? true : false;
 
             $image = ProductImage::where('product_id', $cart->product_id)->first();
