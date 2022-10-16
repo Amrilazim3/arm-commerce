@@ -264,10 +264,12 @@
                                 Buy now
                             </button>
                         </div>
-                        <template v-if="$page.props.auth.user.isAdmin">
-                            <p class="mt-4 text-sm text-red-500">
-                                Above button not working with admin.
-                            </p>
+                        <template v-if="$page.props.auth.isLoggedIn">
+                            <template v-if="$page.props.auth.user.isAdmin">
+                                <p class="mt-4 text-sm text-red-500">
+                                    Above button not working with admin.
+                                </p>
+                            </template>
                         </template>
                     </form>
                 </div>
@@ -357,7 +359,7 @@ export default {
         },
 
         addToCart() {
-            if (this.$page.props.auth.user.isAdmin) {
+            if (this.$page.props.auth.isLoggedIn && this.$page.props.auth.user.isAdmin) {
                 return;
             }
 
@@ -373,9 +375,8 @@ export default {
                 `/user/products/${this.product.slug}/cart`,
                 data,
                 {
-                    preserveScroll: true,
                     onSuccess: () => {
-                        if (this.this.$page.props.auth.isLoggedIn) {
+                        if (this.$page.props.auth.isLoggedIn) {
                             this.$swal.fire(
                                 "Success",
                                 "Product has been added to the cart",
@@ -384,7 +385,7 @@ export default {
                         }
                     },
                     onError: () => {
-                        if (this.this.$page.props.auth.isLoggedIn) {
+                        if (this.$page.props.auth.isLoggedIn) {
                             this.$swal.fire({
                                 icon: "error",
                                 title: "Oops...",
