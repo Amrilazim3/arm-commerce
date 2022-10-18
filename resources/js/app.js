@@ -14,8 +14,9 @@ import 'tippy.js/dist/tippy.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VueNumberInput from '@chenfengyuan/vue-number-input';
+import { createPinia } from 'pinia';
 
-
+const pinia = createPinia();
 createInertiaApp({
     resolve: async name => {
         let page = (await
@@ -50,6 +51,7 @@ createInertiaApp({
                 },
             })
             .use(VueSweetalert2)
+            .use(pinia)
             .component("Link", Link)
             .component("Head", Head)
             .component("Datepicker", Datepicker)
