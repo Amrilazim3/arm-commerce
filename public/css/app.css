@@ -1371,6 +1371,9 @@ select {
 .pointer-events-auto {
   pointer-events: auto;
 }
+.static {
+  position: static;
+}
 .fixed {
   position: fixed;
 }
@@ -1693,6 +1696,9 @@ select {
 }
 .w-56 {
   width: 14rem;
+}
+.w-8 {
+  width: 2rem;
 }
 .min-w-0 {
   min-width: 0px;
