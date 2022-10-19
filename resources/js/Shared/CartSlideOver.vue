@@ -70,129 +70,183 @@
                                             </div>
                                         </div>
 
-                                        <div class="mt-8">
-                                            <div class="flow-root">
-                                                <ul
-                                                    role="list"
-                                                    class="-my-6 divide-y divide-gray-200"
-                                                >
-                                                    <li
-                                                        v-for="product in $page
-                                                            .props.auth.user
-                                                            .carts"
-                                                        :key="product.id"
-                                                        class="flex py-6"
+                                        <template
+                                            v-if="
+                                                cartSliderStore.cartProducts
+                                                    .length > 0
+                                            "
+                                        >
+                                            <div class="mt-8">
+                                                <div class="flow-root">
+                                                    <ul
+                                                        role="list"
+                                                        class="-my-6 divide-y divide-gray-200"
                                                     >
-                                                        <div
-                                                            class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
+                                                        <li
+                                                            v-for="product in cartSliderStore.cartProducts"
+                                                            :key="product.id"
+                                                            class="flex py-6"
                                                         >
-                                                            <img
-                                                                :src="
-                                                                    product.imageUrl
-                                                                        ? product.imageUrl
-                                                                        : 'https://picsum.photos/200/300?random=' +
-                                                                          product.id
-                                                                "
-                                                                :alt="
-                                                                    product.name
-                                                                "
-                                                                class="h-full w-full object-cover object-center"
-                                                            />
-                                                        </div>
+                                                            <div
+                                                                class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
+                                                            >
+                                                                <img
+                                                                    :src="
+                                                                        product.imageUrl
+                                                                            ? product.imageUrl
+                                                                            : 'https://picsum.photos/200/300?random=' +
+                                                                              product.id
+                                                                    "
+                                                                    :alt="
+                                                                        product.name
+                                                                    "
+                                                                    class="h-full w-full object-cover object-center"
+                                                                />
+                                                            </div>
 
-                                                        <div
-                                                            class="ml-4 flex flex-1 flex-col"
-                                                        >
-                                                            <div>
-                                                                <div
-                                                                    class="flex justify-between text-base font-medium text-gray-900"
-                                                                >
-                                                                    <h3>
-                                                                        <Link
-                                                                            :href="
-                                                                                'https://arm-commerce.com/products/' +
-                                                                                product.slug
-                                                                            "
-                                                                            @click="
-                                                                                cartSliderStore.changeValue()
-                                                                            "
-                                                                            >{{
-                                                                                product.name
-                                                                            }}</Link
+                                                            <div
+                                                                class="ml-4 flex flex-1 flex-col"
+                                                            >
+                                                                <div>
+                                                                    <div
+                                                                        class="flex justify-between text-base font-medium text-gray-900"
+                                                                    >
+                                                                        <h3>
+                                                                            <Link
+                                                                                :href="
+                                                                                    'https://arm-commerce.com/products/' +
+                                                                                    product.slug
+                                                                                "
+                                                                                @click="
+                                                                                    cartSliderStore.changeValue()
+                                                                                "
+                                                                                >{{
+                                                                                    product.name
+                                                                                }}</Link
+                                                                            >
+                                                                        </h3>
+                                                                        <p
+                                                                            class="ml-4 text-sm font-normal"
                                                                         >
-                                                                    </h3>
+                                                                            {{
+                                                                                product.price
+                                                                            }}
+                                                                            MYR
+                                                                        </p>
+                                                                    </div>
                                                                     <p
-                                                                        class="ml-4 text-sm font-light"
+                                                                        class="mt-1 text-sm text-gray-500"
                                                                     >
                                                                         {{
-                                                                            product.price
+                                                                            product.variantName
                                                                         }}
-                                                                        MYR
                                                                     </p>
                                                                 </div>
-                                                                <p
-                                                                    class="mt-1 text-sm text-gray-500"
-                                                                >
-                                                                    {{
-                                                                        product.variantName
-                                                                    }}
-                                                                </p>
-                                                            </div>
-                                                            <div
-                                                                class="flex flex-1 items-end justify-between text-sm"
-                                                            >
-                                                                <p
-                                                                    class="text-gray-500"
-                                                                >
-                                                                    Qty
-                                                                    {{
-                                                                        product.quantity
-                                                                    }}
-                                                                </p>
-
                                                                 <div
-                                                                    class="flex"
+                                                                    class="flex flex-1 items-end justify-between text-sm"
                                                                 >
-                                                                    <button
-                                                                        type="button"
-                                                                        class="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                    <p
+                                                                        class="text-gray-500"
                                                                     >
-                                                                        Remove
-                                                                    </button>
+                                                                        Qty
+                                                                        {{
+                                                                            product.quantity
+                                                                        }}
+                                                                    </p>
+
+                                                                    <div
+                                                                        class="flex"
+                                                                    >
+                                                                        <button
+                                                                            @click="
+                                                                                removeProduct(
+                                                                                    product.id
+                                                                                )
+                                                                            "
+                                                                            type="button"
+                                                                            class="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                        >
+                                                                            Remove
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </template>
+                                        <template v-else>
+                                            <div
+                                                class="grid place-items-center min-h-full"
+                                            >
+                                                <h2
+                                                    class="text-normal font-normal text-gray-800"
+                                                >
+                                                    No products in cart
+                                                </h2>
+                                            </div>
+                                        </template>
                                     </div>
 
                                     <div
                                         class="border-t border-gray-200 py-6 px-4 sm:px-6"
                                     >
-                                        <div
-                                            class="flex justify-between text-base font-medium text-gray-900"
+                                        <template
+                                            v-if="
+                                                cartSliderStore.cartProducts
+                                                    .length > 0
+                                            "
                                         >
-                                            <p>Subtotal</p>
-                                            <p>{{ cartSubtotal }}MYR</p>
-                                        </div>
-                                        <p class="mt-0.5 text-sm text-gray-500">
-                                            Shipping and taxes calculated at
-                                            checkout.
-                                        </p>
-                                        <div class="mt-6">
-                                            <a
-                                                href="#"
-                                                class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                                                >Checkout</a
+                                            <div
+                                                class="flex justify-between text-base font-medium text-gray-900"
                                             >
-                                        </div>
-                                        <div
-                                            class="mt-6 flex justify-center text-center text-sm text-gray-500"
-                                        >
-                                            <p>
-                                                or
+                                                <p>Subtotal</p>
+                                                <p>
+                                                    {{
+                                                        cartSliderStore.cartSubtotal
+                                                    }}MYR
+                                                </p>
+                                            </div>
+                                            <p
+                                                class="mt-0.5 text-sm text-gray-500"
+                                            >
+                                                Shipping and taxes calculated at
+                                                checkout.
+                                            </p>
+                                            <div class="mt-6">
+                                                <a
+                                                    href="#"
+                                                    class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                                    >Checkout</a
+                                                >
+                                            </div>
+                                            <div
+                                                class="mt-6 flex justify-center text-center text-sm text-gray-500"
+                                            >
+                                                <p>
+                                                    or
+                                                    <button
+                                                        type="button"
+                                                        class="font-medium text-indigo-600 hover:text-indigo-500"
+                                                        @click="
+                                                            cartSliderStore.changeValue()
+                                                        "
+                                                    >
+                                                        Continue Shopping
+                                                        <span
+                                                            aria-hidden="true"
+                                                        >
+                                                            &rarr;</span
+                                                        >
+                                                    </button>
+                                                </p>
+                                            </div>
+                                        </template>
+                                        <template v-else>
+                                            <div
+                                                class="text-center text-sm text-gray-500"
+                                            >
                                                 <button
                                                     type="button"
                                                     class="font-medium text-indigo-600 hover:text-indigo-500"
@@ -205,8 +259,8 @@
                                                         &rarr;</span
                                                     >
                                                 </button>
-                                            </p>
-                                        </div>
+                                            </div>
+                                        </template>
                                     </div>
                                 </div>
                             </DialogPanel>
@@ -234,8 +288,8 @@ export default {
         const cartSliderStore = useCartSliderStore();
 
         return {
-            cartSliderStore
-        }
+            cartSliderStore,
+        };
     },
 
     components: {
@@ -247,17 +301,34 @@ export default {
         XIcon,
     },
 
-    data() {
-        return {
-            cartSubtotal: 0,
-        }
+    mounted() {
+        const cartSliderStore = useCartSliderStore();
+        cartSliderStore.getCartProducts();
     },
 
-    mounted() {
-        var carts = this.$page.props.auth.user.carts;
-        carts.forEach((item) => {
-            this.cartSubtotal += item.price;
-        });
+    methods: {
+        removeProduct(productId) {
+            this.$inertia.delete(`/user/carts/${productId}`, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.$swal.fire(
+                        "Success",
+                        "Product has been removed from the cart",
+                        "success"
+                    );
+
+                    const cartSliderStore = useCartSliderStore();
+                    cartSliderStore.getCartProducts();
+                },
+                onError: () => {
+                    this.$swal.fire({
+                        icon: "error",
+                        title: "Failed",
+                        text: "Something went wrong! Please try again",
+                    });
+                },
+            });
+        },
     },
 };
 </script>
