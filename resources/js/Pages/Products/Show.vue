@@ -297,6 +297,7 @@ import { StarIcon } from "@heroicons/vue/solid";
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from "@headlessui/vue";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
+import { useCartSliderStore } from "../../Stores/CartSliderStore";
 
 export default {
     components: {
@@ -383,6 +384,9 @@ export default {
                                 "Product has been added to the cart",
                                 "success"
                             );
+
+                            const cartSliderStore = useCartSliderStore();
+                            cartSliderStore.getCartProducts();
                         }
                     },
                     onError: () => {
