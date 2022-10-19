@@ -11,20 +11,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/StarIcon.js");
-/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/radio-group/radio-group.js");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/StarIcon.js");
+/* harmony import */ var _headlessui_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @headlessui/vue */ "./node_modules/@headlessui/vue/dist/components/radio-group/radio-group.js");
 /* harmony import */ var vue3_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue3-carousel */ "./node_modules/vue3-carousel/dist/carousel.es.js");
 /* harmony import */ var vue3_carousel_dist_carousel_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue3-carousel/dist/carousel.css */ "./node_modules/vue3-carousel/dist/carousel.css");
+/* harmony import */ var _Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Stores/CartSliderStore */ "./resources/js/Stores/CartSliderStore.js");
+
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    StarIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_2__["default"],
-    RadioGroup: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.RadioGroup,
-    RadioGroupLabel: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.RadioGroupLabel,
-    RadioGroupOption: _headlessui_vue__WEBPACK_IMPORTED_MODULE_3__.RadioGroupOption,
+    StarIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_3__["default"],
+    RadioGroup: _headlessui_vue__WEBPACK_IMPORTED_MODULE_4__.RadioGroup,
+    RadioGroupLabel: _headlessui_vue__WEBPACK_IMPORTED_MODULE_4__.RadioGroupLabel,
+    RadioGroupOption: _headlessui_vue__WEBPACK_IMPORTED_MODULE_4__.RadioGroupOption,
     Carousel: vue3_carousel__WEBPACK_IMPORTED_MODULE_0__.Carousel,
     Slide: vue3_carousel__WEBPACK_IMPORTED_MODULE_0__.Slide,
     Navigation: vue3_carousel__WEBPACK_IMPORTED_MODULE_0__.Navigation
@@ -88,6 +90,9 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess() {
           if (_this.$page.props.auth.isLoggedIn) {
             _this.$swal.fire("Success", "Product has been added to the cart", "success");
+
+            var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_2__.useCartSliderStore)();
+            cartSliderStore.getCartProducts();
           }
         },
         onError: function onError() {
