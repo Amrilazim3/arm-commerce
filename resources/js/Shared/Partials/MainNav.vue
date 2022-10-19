@@ -188,10 +188,13 @@
                                 </Link>
                             </template>
                             <template v-if="!$page.props.auth.user.isAdmin">
-                                <ShoppingCartIcon
-                                    @click="cartSliderStore.changeValue()"
-                                    class="h-6 w-6 self-center cursor-pointer"
-                                />
+                                <div class="flex self-center space-x-1">
+                                    <ShoppingCartIcon
+                                        @click="cartSliderStore.changeValue()"
+                                        class="h-6 w-6 cursor-pointer"
+                                    />
+                                    <span class="font-semibold">{{ cartSliderStore.cartProducts.length }}</span>
+                                </div>
                             </template>
                             <PopoverButton>
                                 <span
