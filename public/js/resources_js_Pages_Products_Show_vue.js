@@ -89,9 +89,21 @@ __webpack_require__.r(__webpack_exports__);
         preserveScroll: true,
         onSuccess: function onSuccess() {
           if (_this.$page.props.auth.isLoggedIn) {
-            _this.$swal.fire("Success", "Product has been added to the cart", "success");
-
             var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_2__.useCartSliderStore)();
+
+            _this.$swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Product has been added to your cart",
+              showCancelButton: true,
+              confirmButtonText: "view cart",
+              cancelButtonText: "continue shopping"
+            }).then(function (result) {
+              if (result.isConfirmed) {
+                cartSliderStore.changeValue();
+              }
+            });
+
             cartSliderStore.getCartProducts();
           }
         },
