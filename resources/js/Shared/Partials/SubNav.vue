@@ -39,7 +39,7 @@
                             @click="cartSliderStore.changeValue()"
                             class="h-6 w-6 self-center cursor-pointer"
                         />
-                        <span class="font-semibold">0</span>
+                        <span class="font-semibold">{{ cartSliderStore.cartProducts.length }}</span>
                     </template>
                 </template>
                 <template v-else>
