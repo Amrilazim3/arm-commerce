@@ -84,6 +84,7 @@ __webpack_require__.r(__webpack_exports__);
       data.variant = variant;
       data.price = this.displayedPrice;
       this.$inertia.post("/user/products/".concat(this.product.slug, "/cart"), data, {
+        preserveScroll: true,
         onSuccess: function onSuccess() {
           if (_this.$page.props.auth.isLoggedIn) {
             _this.$swal.fire("Success", "Product has been added to the cart", "success");
