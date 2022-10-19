@@ -375,6 +375,7 @@ export default {
                 `/user/products/${this.product.slug}/cart`,
                 data,
                 {
+                    preserveScroll: true,
                     onSuccess: () => {
                         if (this.$page.props.auth.isLoggedIn) {
                             this.$swal.fire(
