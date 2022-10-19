@@ -360,7 +360,10 @@ export default {
         },
 
         addToCart() {
-            if (this.$page.props.auth.isLoggedIn && this.$page.props.auth.user.isAdmin) {
+            if (
+                this.$page.props.auth.isLoggedIn &&
+                this.$page.props.auth.user.isAdmin
+            ) {
                 return;
             }
 
@@ -379,13 +382,21 @@ export default {
                     preserveScroll: true,
                     onSuccess: () => {
                         if (this.$page.props.auth.isLoggedIn) {
-                            this.$swal.fire(
-                                "Success",
-                                "Product has been added to the cart",
-                                "success"
-                            );
-
                             const cartSliderStore = useCartSliderStore();
+
+                            this.$swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: "Product has been added to your cart",
+                                showCancelButton: true,
+                                confirmButtonText: "view cart",
+                                cancelButtonText: "continue shopping"
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    cartSliderStore.changeValue();
+                                }
+                            });
+
                             cartSliderStore.getCartProducts();
                         }
                     },
