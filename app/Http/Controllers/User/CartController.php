@@ -37,8 +37,10 @@ class CartController extends Controller
         return $cartsData;
     }
 
-    public function destroy()
+    public function destroy(Cart $cart)
     {
+        $cart->delete();
 
+        return redirect()->back();
     }
 }
