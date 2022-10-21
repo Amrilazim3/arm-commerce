@@ -301,15 +301,21 @@
                                             v-model="addressForm.city"
                                             placeholder="Select city"
                                         >
-                                            <option value="" selected>
-                                                Select city
-                                            </option>
                                             <template
-                                                v-for="city in cities"
-                                                :key="city"
+                                                v-if="cities.length !== 0"
                                             >
-                                                <option :value="city">
-                                                    {{ city }}
+                                                <template
+                                                    v-for="city in cities"
+                                                    :key="city"
+                                                >
+                                                    <option :value="city">
+                                                        {{ city }}
+                                                    </option>
+                                                </template>
+                                            </template>
+                                            <template v-else>
+                                                <option value="" selected>
+                                                    Select city
                                                 </option>
                                             </template>
                                         </FormKit>
@@ -408,7 +414,9 @@ export default {
     watch: {
         addressForm: {
             handler(newValue) {
-                this.cities = this.statesCities[newValue.state];
+                if (newValue.state) {
+                    this.cities = this.statesCities[newValue.state];
+                }
             },
             deep: true,
         },
