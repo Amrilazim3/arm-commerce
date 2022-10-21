@@ -3427,6 +3427,16 @@ var map = {
 		"./resources/js/Pages/User/Account/Profile.vue",
 		"/js/vendor",
 		"resources_js_Pages_User_Account_Profile_vue"
+	],
+	"./User/Checkout": [
+		"./resources/js/Pages/User/Checkout.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Checkout_vue"
+	],
+	"./User/Checkout.vue": [
+		"./resources/js/Pages/User/Checkout.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Checkout_vue"
 	]
 };
 function webpackAsyncContext(req) {
