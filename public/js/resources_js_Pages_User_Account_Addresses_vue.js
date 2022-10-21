@@ -54,7 +54,9 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     addressForm: {
       handler: function handler(newValue) {
-        this.cities = this.statesCities[newValue.state];
+        if (newValue.state) {
+          this.cities = this.statesCities[newValue.state];
+        }
       },
       deep: true
     }
@@ -338,15 +340,12 @@ var _hoisted_27 = {
 var _hoisted_28 = {
   "class": "flex items-center justify-between space-x-1.5"
 };
-
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_29 = ["value"];
+var _hoisted_30 = {
+  key: 1,
   value: "",
   selected: ""
-}, " Select city ", -1
-/* HOISTED */
-);
-
-var _hoisted_30 = ["value"];
+};
 var _hoisted_31 = {
   "class": "flex flex-row-reverse"
 };
@@ -539,16 +538,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     placeholder: "Select city"
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                      return [_hoisted_29, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.cities, function (city) {
+                      return [$data.cities.length !== 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                        key: 0
+                      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.cities, function (city) {
                         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
                           key: city,
                           value: city
                         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(city), 9
                         /* TEXT, PROPS */
-                        , _hoisted_30);
+                        , _hoisted_29);
                       }), 128
                       /* KEYED_FRAGMENT */
-                      ))];
+                      )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", _hoisted_30, " Select city "))];
                     }),
                     _: 1
                     /* STABLE */
