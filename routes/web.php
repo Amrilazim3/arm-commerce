@@ -16,7 +16,9 @@ use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CheckoutController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 // can be visit by guest, user, admin but with different permission.
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -76,6 +78,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
         Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
+        
+        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 
         // purchase routes.
         Route::prefix('/purchase')->name('purchase.')->group(function () {
