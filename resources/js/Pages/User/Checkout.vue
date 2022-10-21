@@ -19,6 +19,12 @@
                         <h2 class="mb-4 font-semibold md:text-lg text-heading">
                             Contact Information
                         </h2>
+                        <FormKit
+                            name="email"
+                            label="Email address"
+                            type="email"
+                            validation="required|email"
+                        />
                     </div>
                     <!-- shipping -->
                     <div class="flex flex-col">
@@ -139,7 +145,6 @@
                                 />
                             </div>
                         </div>
-                        <!-- buat custom address -->
                         <div
                             v-show="isNewAddress"
                             class="justify-center w-full mx-auto"
@@ -148,20 +153,18 @@
                                 name="full_name"
                                 label="Full name"
                                 type="text"
-                                validation="required|length:5,30"
+                                :validation="isNewAddress ? 'required|length:5,30' : 'length:5,30'"
                                 placeholder="Enter your full name"
                                 inner-class="mb-4"
-                                input-class="py-3.5"
                                 v-model="newAddress.fullName"
                             />
                             <FormKit
                                 name="phone_number"
                                 label="Phone number"
                                 type="number"
-                                validation="required|number"
+                                :validation="isNewAddress ? 'required|number' : ''"
                                 placeholder="60178891233"
                                 inner-class="mb-4"
-                                input-class="py-3.5"
                                 v-model="newAddress.phoneNumber"
                             />
                             <FormKit
@@ -169,10 +172,9 @@
                                 label="State"
                                 type="select"
                                 :options="states"
-                                validation="required"
+                                :validation="isNewAddress ? 'required' : ''"
                                 placeholder="Select state"
                                 inner-class="mb-4"
-                                input-class="py-3.5"
                                 v-model="newAddress.state"
                             />
                             <div
@@ -183,10 +185,10 @@
                                     label="City"
                                     type="select"
                                     outer-class="flex-1"
-                                    validation="required"
+                                    :validation="isNewAddress ? 'required' : ''"
                                     v-model="newAddress.city"
                                     placeholder="Select city"
-                                    input-class="py-3.5"
+
                                 >
                                     <template v-if="cities.length !== 0">
                                         <template
@@ -209,9 +211,9 @@
                                     label="Postal code"
                                     type="number"
                                     outer-class="flex-1"
-                                    validation="required|length:5,5"
+                                    :validation="isNewAddress ? 'required|length:5,5' : ''"
                                     placeholder="Enter postal code"
-                                    input-class="py-3.5"
+
                                     v-model="newAddress.postalCode"
                                 />
                             </div>
@@ -219,10 +221,9 @@
                                 name="street_name"
                                 label="Street name"
                                 type="text"
-                                validation="required"
+                                :validation="isNewAddress ? 'required' : ''"
                                 placeholder="Enter your street name"
                                 inner-class="mb-4"
-                                input-class="py-3.5"
                                 v-model="newAddress.streetName"
                             />
                         </div>
