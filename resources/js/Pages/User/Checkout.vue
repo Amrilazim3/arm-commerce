@@ -32,7 +32,7 @@
                         >
                             Shipping Information
                         </h2>
-                        <div class="w-full max-w-md mb-6">
+                        <div class="w-full max-w-md mb-6" v-show="addresses.length !== 0">
                             <RadioGroup v-model="selectedAddress">
                                 <RadioGroupLabel class="sr-only"
                                     >Server size</RadioGroupLabel
@@ -388,6 +388,18 @@ export default {
             },
             cities: [],
         };
+    },
+
+    mounted() {
+        if (this.addresses.length !== 0) {
+            this.addresses.forEach((address) => {
+                if (address.is_default) {
+                    this.selectedAddress = address;
+                }
+            });
+        } else {
+            this.isNewAddress = true;
+        }
     },
 
     watch: {
