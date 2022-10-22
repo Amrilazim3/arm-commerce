@@ -32,7 +32,10 @@
                         >
                             Shipping Information
                         </h2>
-                        <div class="w-full max-w-md mb-6" v-show="addresses.length !== 0">
+                        <div
+                            class="w-full max-w-md mb-6"
+                            v-show="addresses.length !== 0"
+                        >
                             <RadioGroup v-model="selectedAddress">
                                 <RadioGroupLabel class="sr-only"
                                     >Server size</RadioGroupLabel
@@ -337,8 +340,8 @@
                         />
                         <p class="mt-4 text-blue-600">
                             For user information, all of this products are not
-                            exists in real world and the money you will be pay will be used
-                            for our server maintenance. Thank you.
+                            exists in real world and the money you will be pay
+                            will be used for our server maintenance. Thank you.
                         </p>
                     </div>
                 </div>
@@ -410,6 +413,20 @@ export default {
                 }
             },
             deep: true,
+        },
+
+        selectedAddress(newValue) {
+            if (newValue) {
+                this.newAddress = {
+                    fullName: "",
+                    phoneNumber: "",
+                    state: "",
+                    city: "",
+                    postalCode: "",
+                    streetName: "",
+                };
+                this.isNewAddress = false;
+            }
         },
     },
 
