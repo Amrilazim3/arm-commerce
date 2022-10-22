@@ -3,7 +3,6 @@
     <div class="lg:flex">
         <SideNav />
         <div class="container p-12 mx-auto">
-            <!-- <div class="flex flex-col w-full px-0 mx-auto md:flex-row"> -->
             <FormKit
                 type="form"
                 :actions="false"
@@ -236,14 +235,6 @@
                             />
                         </div>
                     </div>
-                    <!-- payment -->
-                    <div class="flex flex-col">
-                        <h2
-                            class="pt-4 mb-4 font-semibold md:text-lg text-heading"
-                        >
-                            Payment
-                        </h2>
-                    </div>
                 </div>
                 <div class="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
                     <div class="border rounded-md md:pt-0 2xl:p-6">
@@ -279,7 +270,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <TrashIcon 
+                                        <TrashIcon
                                             class="h-5 w-5 cursor-pointer"
                                         />
                                     </div>
@@ -312,7 +303,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <TrashIcon 
+                                        <TrashIcon
                                             class="h-5 w-5 cursor-pointer"
                                         />
                                     </div>
@@ -344,10 +335,14 @@
                             label="Confirm order"
                             input-class="w-full mt-4 py-3.5"
                         />
+                        <p class="mt-4 text-blue-600">
+                            For user information, all of this products are not
+                            exists in real world and the money you will be pay will be used
+                            for our server maintenance. Thank you.
+                        </p>
                     </div>
                 </div>
             </FormKit>
-            <!-- </div> -->
         </div>
     </div>
 </template>
@@ -370,7 +365,7 @@ export default {
         RadioGroupDescription,
         RadioGroupOption,
         XCircleIcon,
-        TrashIcon
+        TrashIcon,
     },
 
     props: {
