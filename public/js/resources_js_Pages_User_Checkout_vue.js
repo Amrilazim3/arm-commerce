@@ -48,6 +48,19 @@ __webpack_require__.r(__webpack_exports__);
       cities: []
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    if (this.addresses.length !== 0) {
+      this.addresses.forEach(function (address) {
+        if (address.is_default) {
+          _this.selectedAddress = address;
+        }
+      });
+    } else {
+      this.isNewAddress = true;
+    }
+  },
   watch: {
     newAddress: {
       handler: function handler(newValue) {
@@ -331,7 +344,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         label: "Email address",
         type: "email",
         validation: "required|email"
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" shipping "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RadioGroup, {
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" shipping "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RadioGroup, {
         modelValue: $data.selectedAddress,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return $data.selectedAddress = $event;
@@ -421,7 +434,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "h-5 w-5 text-red-500 self-center"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isNewAddress]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isNewAddress]])])], 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $props.addresses.length !== 0]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
         name: "full_name",
         label: "Full name",
         type: "text",
