@@ -153,7 +153,11 @@
                                 name="full_name"
                                 label="Full name"
                                 type="text"
-                                :validation="isNewAddress ? 'required|length:5,30' : 'length:5,30'"
+                                :validation="
+                                    isNewAddress
+                                        ? 'required|length:5,30'
+                                        : 'length:5,30'
+                                "
                                 placeholder="Enter your full name"
                                 inner-class="mb-4"
                                 v-model="newAddress.fullName"
@@ -162,7 +166,9 @@
                                 name="phone_number"
                                 label="Phone number"
                                 type="number"
-                                :validation="isNewAddress ? 'required|number' : ''"
+                                :validation="
+                                    isNewAddress ? 'required|number' : ''
+                                "
                                 placeholder="60178891233"
                                 inner-class="mb-4"
                                 v-model="newAddress.phoneNumber"
@@ -188,7 +194,6 @@
                                     :validation="isNewAddress ? 'required' : ''"
                                     v-model="newAddress.city"
                                     placeholder="Select city"
-
                                 >
                                     <template v-if="cities.length !== 0">
                                         <template
@@ -211,9 +216,12 @@
                                     label="Postal code"
                                     type="number"
                                     outer-class="flex-1"
-                                    :validation="isNewAddress ? 'required|length:5,5' : ''"
+                                    :validation="
+                                        isNewAddress
+                                            ? 'required|length:5,5'
+                                            : ''
+                                    "
                                     placeholder="Enter postal code"
-
                                     v-model="newAddress.postalCode"
                                 />
                             </div>
@@ -241,79 +249,80 @@
                     <div class="border rounded-md md:pt-0 2xl:p-6">
                         <h2 class="text-lg font-semibold">Order Summary</h2>
                         <div class="mt-8">
-                            <div class="flex flex-col space-y-4">
-                                <div class="flex space-x-4">
-                                    <div>
-                                        <img
-                                            src="https://source.unsplash.com/user/erondu/1600x900"
-                                            alt="image"
-                                            class="w-24 h-30 object-contain"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h2 class="text-xl font-bold">Title</h2>
-                                        <p class="text-sm">
-                                            Lorem ipsum dolor sit amet, tet
-                                        </p>
-                                        <span class="text-blue-600">price : </span>
-                                        $20
-                                    </div>
-                                    <div>
-                                        <!-- replace with trash icon from heroicon -->
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-6 h-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M6 18L18 6M6 6l12 12"
+                            <div class="flex flex-col space-y-6">
+                                <!-- loop product to checkout here. -->
+                                <div class="flex justify-between">
+                                    <div class="flex space-x-4">
+                                        <div>
+                                            <img
+                                                src="https://source.unsplash.com/user/erondu/1600x900"
+                                                alt="image"
+                                                class="w-24 h-30 object-contain"
                                             />
-                                        </svg>
+                                        </div>
+                                        <div>
+                                            <h2 class="text-md font-semibold">
+                                                Title
+                                            </h2>
+                                            <p>
+                                                <span class="text-blue-600"
+                                                    >quantity :
+                                                </span>
+                                                2
+                                            </p>
+                                            <p>
+                                                <span class="text-blue-600"
+                                                    >price :
+                                                </span>
+                                                20MYR
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <TrashIcon 
+                                            class="h-5 w-5 cursor-pointer"
+                                        />
                                     </div>
                                 </div>
-                                <div class="flex space-x-4">
-                                    <div>
-                                        <img
-                                            src="https://source.unsplash.com/user/erondu/1600x900"
-                                            alt="image"
-                                            class="w-24 h-30 object-contain"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h2 class="text-xl font-bold">Title</h2>
-                                        <p class="text-sm">
-                                            Lorem ipsum dolor sit amet, tet
-                                        </p>
-                                        <span class="text-blue-600">price : </span>
-                                        $20
-                                    </div>
-                                    <div>
-                                        <!-- replace with trash icon from heroicon -->
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="w-6 h-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M6 18L18 6M6 6l12 12"
+                                <div class="flex justify-between">
+                                    <div class="flex space-x-4">
+                                        <div>
+                                            <img
+                                                src="https://source.unsplash.com/user/erondu/1600x900"
+                                                alt="image"
+                                                class="w-24 h-30 object-contain"
                                             />
-                                        </svg>
+                                        </div>
+                                        <div>
+                                            <h2 class="text-md font-semibold">
+                                                Title
+                                            </h2>
+                                            <p>
+                                                <span class="text-blue-600"
+                                                    >quantity :
+                                                </span>
+                                                2
+                                            </p>
+                                            <p>
+                                                <span class="text-blue-600"
+                                                    >price :
+                                                </span>
+                                                20MYR
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <TrashIcon 
+                                            class="h-5 w-5 cursor-pointer"
+                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex p-4 mt-4">
-                            <h2 class="text-xl font-semibold">Total items : 2</h2>
+                        <div class="flex mt-8">
+                            <h2 class="text-xl font-semibold">
+                                Total items : 2
+                            </h2>
                         </div>
                         <div
                             class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0"
@@ -351,7 +360,7 @@ import {
     RadioGroupDescription,
     RadioGroupOption,
 } from "@headlessui/vue";
-import { XCircleIcon } from "@heroicons/vue/outline";
+import { XCircleIcon, TrashIcon } from "@heroicons/vue/outline";
 
 export default {
     components: {
@@ -361,6 +370,7 @@ export default {
         RadioGroupDescription,
         RadioGroupOption,
         XCircleIcon,
+        TrashIcon
     },
 
     props: {
