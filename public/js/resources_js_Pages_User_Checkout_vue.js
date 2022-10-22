@@ -69,6 +69,19 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       deep: true
+    },
+    selectedAddress: function selectedAddress(newValue) {
+      if (newValue) {
+        this.newAddress = {
+          fullName: "",
+          phoneNumber: "",
+          state: "",
+          city: "",
+          postalCode: "",
+          streetName: ""
+        };
+        this.isNewAddress = false;
+      }
     }
   },
   methods: {
