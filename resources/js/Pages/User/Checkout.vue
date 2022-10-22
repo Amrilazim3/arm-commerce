@@ -1,5 +1,5 @@
 <template>
-    <Head title="Addresses" />
+    <Head title="Checkout" />
     <div class="lg:flex">
         <SideNav />
         <div class="container p-12 mx-auto">
@@ -247,7 +247,7 @@
                                         <img
                                             src="https://source.unsplash.com/user/erondu/1600x900"
                                             alt="image"
-                                            class="w-60"
+                                            class="w-24 h-30 object-contain"
                                         />
                                     </div>
                                     <div>
@@ -255,10 +255,11 @@
                                         <p class="text-sm">
                                             Lorem ipsum dolor sit amet, tet
                                         </p>
-                                        <span class="text-red-600">Price</span>
+                                        <span class="text-blue-600">price : </span>
                                         $20
                                     </div>
                                     <div>
+                                        <!-- replace with trash icon from heroicon -->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="w-6 h-6"
@@ -278,9 +279,9 @@
                                 <div class="flex space-x-4">
                                     <div>
                                         <img
-                                            src="https://source.unsplash.com/collection/190727/1600x900"
+                                            src="https://source.unsplash.com/user/erondu/1600x900"
                                             alt="image"
-                                            class="w-60"
+                                            class="w-24 h-30 object-contain"
                                         />
                                     </div>
                                     <div>
@@ -288,10 +289,11 @@
                                         <p class="text-sm">
                                             Lorem ipsum dolor sit amet, tet
                                         </p>
-                                        <span class="text-red-600">Price</span>
+                                        <span class="text-blue-600">price : </span>
                                         $20
                                     </div>
                                     <div>
+                                        <!-- replace with trash icon from heroicon -->
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="w-6 h-6"
@@ -311,22 +313,22 @@
                             </div>
                         </div>
                         <div class="flex p-4 mt-4">
-                            <h2 class="text-xl font-bold">ITEMS 2</h2>
+                            <h2 class="text-xl font-semibold">Total items : 2</h2>
                         </div>
                         <div
                             class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0"
                         >
-                            Subtotal<span class="ml-2">$40.00</span>
+                            Subtotal : <span class="ml-2">5.00MYR</span>
                         </div>
                         <div
                             class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0"
                         >
-                            Shipping Tax<span class="ml-2">$10</span>
+                            Shipping Tax : <span class="ml-2">5.00MYR</span>
                         </div>
                         <div
                             class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0"
                         >
-                            Total<span class="ml-2">$50.00</span>
+                            Total : <span class="ml-2">10.00MYR</span>
                         </div>
                         <FormKit
                             type="submit"
