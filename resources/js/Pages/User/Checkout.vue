@@ -23,6 +23,7 @@
                             label="Email address"
                             type="email"
                             validation="required|email"
+                            v-model="contactInformation"
                         />
                     </div>
                     <!-- shipping -->
@@ -33,7 +34,7 @@
                             Shipping Information
                         </h2>
                         <div
-                            class="w-full max-w-md mb-6"
+                            class="w-full max-w-md"
                             v-show="addresses.length !== 0"
                         >
                             <RadioGroup v-model="selectedAddress">
@@ -127,25 +128,31 @@
                                     </RadioGroupOption>
                                 </div>
                             </RadioGroup>
+                            
+                            <template v-if="isEmptyShippingSection">
+                                <p class="text-red-600 text-sm">
+                                    Please select your shipping address
+                                </p>
+                            </template>
+                        </div>
+                        <div class="flex justify-between">
+                            <button
+                                type="button"
+                                @click="
+                                    isNewAddress = true;
+                                    selectedAddress = null;
+                                    isEmptyShippingSection = false;
+                                "
+                                class="text-blue-500"
+                            >
+                                add address
+                            </button>
 
-                            <div class="flex justify-between">
-                                <button
-                                    type="button"
-                                    @click="
-                                        isNewAddress = true;
-                                        selectedAddress = null;
-                                    "
-                                    class="text-blue-500"
-                                >
-                                    add address
-                                </button>
-
-                                <XCircleIcon
-                                    v-show="isNewAddress"
-                                    @click="isNewAddress = false"
-                                    class="h-5 w-5 text-red-500 self-center"
-                                />
-                            </div>
+                            <XCircleIcon
+                                v-show="isNewAddress"
+                                @click="isNewAddress = false"
+                                class="h-5 w-5 text-red-500 self-center"
+                            />
                         </div>
                         <div
                             v-show="isNewAddress"
@@ -338,7 +345,7 @@
                             label="Confirm order"
                             input-class="w-full mt-4 py-3.5"
                         />
-                        <p class="mt-4 text-blue-600">
+                        <p class="mt-4 text-red-600">
                             For user information, all of this products are not
                             exists in real world and the money you will be pay
                             will be used for our server maintenance. Thank you.
@@ -381,6 +388,8 @@ export default {
         return {
             selectedAddress: null,
             isNewAddress: false,
+            isEmptyShippingSection: false,
+            contactInformation: "",
             newAddress: {
                 fullName: "",
                 phoneNumber: "",
@@ -432,7 +441,18 @@ export default {
 
     methods: {
         checkout() {
-            console.log("checkout");
+            if (this.addresses.length > 0) {
+                if (
+                    this.selectedAddress == null &&
+                    this.isNewAddress == false
+                ) {
+                    this.isEmptyShippingSection = true;
+                    return;
+                }
+            }
+
+            this.isEmptyShippingSection = false;
+            console.log("hit billplz payout api");
         },
     },
 };
