@@ -366,6 +366,7 @@ import {
     RadioGroupOption,
 } from "@headlessui/vue";
 import { XCircleIcon, TrashIcon } from "@heroicons/vue/outline";
+import axios from 'axios';
 
 export default {
     components: {
@@ -452,7 +453,10 @@ export default {
             }
 
             this.isEmptyShippingSection = false;
-            console.log("hit billplz payout api");
+
+            axios.post('/user/checkout/confirm_order').then((res) => {
+                window.location.href = res.data
+            });
         },
     },
 };
