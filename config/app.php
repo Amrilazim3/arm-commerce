@@ -168,6 +168,7 @@ return [
          */
         Axlon\PostalCodeValidation\ValidationServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Billplz\Laravel\BillplzServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -200,6 +201,7 @@ return [
         'Blade' => Illuminate\Support\Facades\Blade::class,
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
+        'Billplz' => Billplz\Laravel\Billplz::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
