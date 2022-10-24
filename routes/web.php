@@ -80,6 +80,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
         
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+        // route for hit billplz api
+        Route::post('/checkout/confirm_order', [CheckoutController::class, 'confirmOrder'])->name('checkout.confirmOrder');
 
         // purchase routes.
         Route::prefix('/purchase')->name('purchase.')->group(function () {
