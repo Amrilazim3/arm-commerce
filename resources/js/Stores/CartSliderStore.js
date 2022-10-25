@@ -38,12 +38,16 @@ export const useCartSliderStore = defineStore('cartSliderStore', {
                 );
 
                 this.getCartProducts();
+
+                return true;
             } else {
                 Swal.fire({
                     icon: "error",
                     title: "Failed",
                     text: "Something went wrong! Please try again",
                 });
+
+                return false;
             }
 
         },
