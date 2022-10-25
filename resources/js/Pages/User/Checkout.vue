@@ -168,25 +168,27 @@
                                     </p>
                                 </template>
                             </div>
-                            <div class="flex justify-between">
-                                <button
-                                    type="button"
-                                    @click="
-                                        isNewAddress = true;
-                                        selectedAddress = null;
-                                        isEmptyShippingSection = false;
-                                    "
-                                    class="text-blue-500"
-                                >
-                                    add address
-                                </button>
-
-                                <XCircleIcon
-                                    v-show="isNewAddress"
-                                    @click="isNewAddress = false"
-                                    class="h-5 w-5 text-red-500 self-center"
-                                />
-                            </div>
+                            <template v-if="addresses.length < 5">
+                                <div class="flex justify-between">
+                                    <button
+                                        type="button"
+                                        @click="
+                                            isNewAddress = true;
+                                            selectedAddress = null;
+                                            isEmptyShippingSection = false;
+                                        "
+                                        class="text-blue-500"
+                                    >
+                                        add address
+                                    </button>
+    
+                                    <XCircleIcon
+                                        v-show="isNewAddress"
+                                        @click="isNewAddress = false"
+                                        class="h-5 w-5 text-red-500 self-center"
+                                    />
+                                </div>
+                            </template>
                             <div
                                 v-show="isNewAddress"
                                 class="justify-center w-full mx-auto"
