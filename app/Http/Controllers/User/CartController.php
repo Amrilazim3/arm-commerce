@@ -41,7 +41,7 @@ class CartController extends Controller
     {
         $cart->delete();
 
-        return redirect()->back();
+        return true;
     }
 
     public function checkout(Request $request)
