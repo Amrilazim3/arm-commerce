@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Traits\StatesCitiesTrait;
+use App\Models\Cart;
+use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\User;
 use Billplz\Client;
 use Billplz\Laravel\Billplz;
@@ -18,11 +21,43 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        // get the user's cart and check if has product with is_checkout == true.
+        $productIds = Cart::where('user_id', auth()->user()->id)
+            ->where('is_checkout', true)
+            ->pluck('id');
+
+        $products = [];
+        foreach ($productIds as $productId) {
+            $productInCart = Cart::select([
+                'id',
+                'product_id',
+                'quantity',
+                'price'
+            ])
+                ->where('user_id', auth()->user()->id)
+                ->where('id', $productId)
+                ->first();
+
+            $product = Product::select([
+                'id',
+                'name',
+            ])->where('id', $productInCart->product_id)
+                ->first();
+
+            $image = ProductImage::where('product_id', $productInCart->product_id)->first();
+
+            $products[] = [
+                'id' => $productInCart->id,
+                'name' => $product->name,
+                'imageUrl' => $image ? $image->url : null,
+                'quantity' => $productInCart->quantity,
+                'price' => $productInCart->price
+            ];
+        }
 
         $statesCitiesRes = $this->getStatesCitiesData();
 
         return Inertia::render('User/Checkout', [
+            'products' => $products,
             'addresses' => User::where('id', Auth::id())->first()->addresses,
             'states' => $statesCitiesRes['states'],
             'statesCities' => $statesCitiesRes['statesCities']
