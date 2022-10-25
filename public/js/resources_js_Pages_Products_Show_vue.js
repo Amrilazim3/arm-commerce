@@ -119,23 +119,53 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     buyProduct: function buyProduct() {
-      console.log("buy product");
+      var _this2 = this;
+
+      if (this.$page.props.auth.isLoggedIn && this.$page.props.auth.user.isAdmin) {
+        return;
+      }
+
+      var data = {};
+      data.quantity = this.quantity;
+      var variant = this.selectedOptions.join(" / ");
+      data.variant = variant;
+      data.price = this.displayedPrice;
+      this.$inertia.post("/user/products/".concat(this.product.slug, "/buy"), data, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          if (_this2.$page.props.auth.isLoggedIn) {
+            var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_2__.useCartSliderStore)();
+            cartSliderStore.getCartProducts();
+
+            _this2.$inertia.get("/user/checkout");
+          }
+        },
+        onError: function onError() {
+          if (_this2.$page.props.auth.isLoggedIn) {
+            _this2.$swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong! Please try again"
+            });
+          }
+        }
+      });
     },
     validateVariantion: function validateVariantion() {
-      var _this2 = this;
+      var _this3 = this;
 
       var joinedOption = this.selectedOptions.join(" / ");
       var variantExists = false;
       this.product.variants.forEach(function (variant) {
         if (variant.name == joinedOption) {
           variantExists = true;
-          _this2.maxQuantity = variant.stock;
-          _this2.displayedPrice = variant.price;
+          _this3.maxQuantity = variant.stock;
+          _this3.displayedPrice = variant.price;
 
           if (variant.image_url) {
-            _this2.product.images.map(function (image, key) {
+            _this3.product.images.map(function (image, key) {
               if (image == variant.image_url) {
-                _this2.currentSlide = key;
+                _this3.currentSlide = key;
               }
             });
           }
