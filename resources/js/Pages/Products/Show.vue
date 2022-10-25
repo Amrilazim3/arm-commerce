@@ -384,18 +384,20 @@ export default {
                         if (this.$page.props.auth.isLoggedIn) {
                             const cartSliderStore = useCartSliderStore();
 
-                            this.$swal.fire({
-                                icon: "success",
-                                title: "Success",
-                                text: "Product has been added to your cart",
-                                showCancelButton: true,
-                                confirmButtonText: "view cart",
-                                cancelButtonText: "continue shopping"
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    cartSliderStore.changeValue();
-                                }
-                            });
+                            this.$swal
+                                .fire({
+                                    icon: "success",
+                                    title: "Success",
+                                    text: "Product has been added to your cart",
+                                    showCancelButton: true,
+                                    confirmButtonText: "view cart",
+                                    cancelButtonText: "continue shopping",
+                                })
+                                .then((result) => {
+                                    if (result.isConfirmed) {
+                                        cartSliderStore.changeValue();
+                                    }
+                                });
 
                             cartSliderStore.getCartProducts();
                         }
@@ -414,7 +416,46 @@ export default {
         },
 
         buyProduct() {
-            console.log("buy product");
+            if (
+                this.$page.props.auth.isLoggedIn &&
+                this.$page.props.auth.user.isAdmin
+            ) {
+                return;
+            }
+
+            var data = {};
+            data.quantity = this.quantity;
+
+            let variant = this.selectedOptions.join(" / ");
+            data.variant = variant;
+
+            data.price = this.displayedPrice;
+
+            this.$inertia.post(
+                `/user/products/${this.product.slug}/buy`,
+                data,
+                {
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        if (this.$page.props.auth.isLoggedIn) {
+                            const cartSliderStore = useCartSliderStore();
+
+                            cartSliderStore.getCartProducts();
+
+                            this.$inertia.get("/user/checkout");
+                        }
+                    },
+                    onError: () => {
+                        if (this.$page.props.auth.isLoggedIn) {
+                            this.$swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Something went wrong! Please try again",
+                            });
+                        }
+                    },
+                }
+            );
         },
 
         validateVariantion() {
