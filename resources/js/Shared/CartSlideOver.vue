@@ -215,11 +215,12 @@
                                                 checkout.
                                             </p>
                                             <div class="mt-6">
-                                                <a
-                                                    href="#"
-                                                    class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                                                    >Checkout</a
+                                                <button
+                                                    @click="checkout"
+                                                    class="w-full rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                                 >
+                                                    Checkout
+                                                </button>
                                             </div>
                                             <div
                                                 class="mt-6 flex justify-center text-center text-sm text-gray-500"
@@ -282,6 +283,7 @@ import {
 } from "@headlessui/vue";
 import { XIcon } from "@heroicons/vue/outline";
 import { useCartSliderStore } from "../Stores/CartSliderStore";
+import axios from 'axios';
 
 export default {
     setup() {
@@ -328,6 +330,22 @@ export default {
                     });
                 },
             });
+        },
+
+        checkout() {
+            const cartSliderStore = useCartSliderStore();
+
+            var productIds = [];
+            cartSliderStore.cartProducts.forEach((product) => {
+                productIds.push(product.id);
+            });
+
+            axios.post("/user/carts/checkout", { productIds: productIds })
+                .then(() => {
+                    cartSliderStore.changeValue();
+                    
+                    this.$inertia.get("/user/checkout");
+                });
         },
     },
 };
