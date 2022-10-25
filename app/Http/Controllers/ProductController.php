@@ -126,8 +126,26 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function buyProduct()
+    public function buyProduct(Product $product, Request $request)
     {
-        dd('add to cart table and redirect');
+        $cart = Cart::create([
+            'user_id' => auth()->user()->id,
+            'product_id' => $product->id,
+            'variant_name' => $request->variant,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+            'is_checkout' => true,
+        ]);
+
+        $carts = Cart::where('user_id', Auth::user()->id)->get();
+
+        foreach ($carts as $cartProduct) {
+            if ($cartProduct->id !== $cart->id) {
+                $cartProduct->is_checkout = false;
+                $cartProduct->save();
+            }
+        }
+
+        return redirect()->back();
     }
 }
