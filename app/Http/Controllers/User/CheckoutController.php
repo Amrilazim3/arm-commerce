@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Traits\StatesCitiesTrait;
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\User;
-use Billplz\Client;
+use App\Rules\PhoneNumberValidation;
 use Billplz\Laravel\Billplz;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 
 class CheckoutController extends Controller
 {
@@ -21,7 +21,7 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        $productIds = Cart::where('user_id', auth()->user()->id)
+        $productIds = Cart::where('user_id', Auth::user()->id)
             ->where('is_checkout', true)
             ->pluck('id');
 
@@ -33,7 +33,7 @@ class CheckoutController extends Controller
                 'quantity',
                 'price'
             ])
-                ->where('user_id', auth()->user()->id)
+                ->where('user_id', Auth::user()->id)
                 ->where('id', $productId)
                 ->first();
 
@@ -66,21 +66,72 @@ class CheckoutController extends Controller
 
     public function confirmOrder(Request $request)
     {
+        // Cart::where('user_id', Auth::user()->id)->where('is_checkout', true);
+        // insert data into order table
+            /**
+             * 1. id
+             * 2. bill_id
+             * 3. cart_id
+             * 4. status (due, completed)
+             */
+        // perform soft delete on cart item with 'is_checkout' = true
+
         $billplzBill = Billplz::bill();
 
         $response = $billplzBill->create(
             'bgs0cicq',
-            'a.azim0711@gmail.com',
-            '60175221202',
-            'Encik akmal',
-            1000,
+            $request->email,
+            $request->phone_number,
+            $request->full_name,
+            500,
             'https://arm-commerce.com/products',
-            'testing billplz api',
+            'make a product purchase',
             [
                 'redirect_url' => 'https://arm-commerce.com/products?billplz_payment_information=success'
             ]
         );
 
         return $response->toArray()['url'];
+    }
+
+    public function validateCheckoutInformation(Request $request)
+    {
+        if ($request->isNewAddress) {
+            $request->validate([
+                'email' => ['required', 'email'],
+                'phone_number' => [
+                    'required',
+                    new PhoneNumberValidation,
+                    'integer'
+                ],
+                'full_name' => ['required'],
+                'state' => ['required'],
+                'city' => ['required'],
+                'postal_code' => [
+                    'required',
+                    'integer',
+                    'digits:5',
+                    'postal_code:MY'
+                ],
+                'street_name' => ['required'],
+            ]);
+
+            Address::create([
+                'user_id' => Auth::user()->id,
+                'full_name' => $request->full_name,
+                'phone_number' => $request->phone_number,
+                'state' => $request->state,
+                'city' => $request->city,
+                'postal_code' => $request->postal_code,
+                'street_name' => $request->street_name,
+                'is_default' => false
+            ]);
+        } else {
+            $request->validate([
+                'email' => ['required', 'email']
+            ]);
+        }
+
+        return redirect()->back();
     }
 }
