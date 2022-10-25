@@ -46,12 +46,12 @@ __webpack_require__.r(__webpack_exports__);
       isEmptyShippingSection: false,
       contactInformation: "",
       newAddress: {
-        fullName: "",
-        phoneNumber: "",
+        full_name: "",
+        phone_number: "",
         state: "",
         city: "",
-        postalCode: "",
-        streetName: ""
+        postal_code: "",
+        street_name: ""
       },
       totalItems: 0,
       subtotal: 0,
@@ -85,12 +85,12 @@ __webpack_require__.r(__webpack_exports__);
     selectedAddress: function selectedAddress(newValue) {
       if (newValue) {
         this.newAddress = {
-          fullName: "",
-          phoneNumber: "",
+          full_name: "",
+          phone_number: "",
           state: "",
           city: "",
-          postalCode: "",
-          streetName: ""
+          postal_code: "",
+          street_name: ""
         };
         this.isNewAddress = false;
       }
@@ -116,11 +116,23 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.isEmptyShippingSection = false;
-      axios__WEBPACK_IMPORTED_MODULE_2___default().post("/user/checkout/confirm_order", {
+      var checkoutInformation = {
         email: this.contactInformation,
-        shippingInformation: this.isNewAddress ? this.newAddress : this.selectedAddress
-      }).then(function (res) {
-        window.location.href = res.data;
+        isNewAddress: this.isNewAddress,
+        full_name: this.isNewAddress ? this.newAddress.full_name : this.selectedAddress.full_name,
+        phone_number: this.isNewAddress ? Number(this.newAddress.phone_number) : this.selectedAddress.phone_number,
+        state: this.isNewAddress ? this.newAddress.state : this.selectedAddress.state,
+        city: this.isNewAddress ? this.newAddress.city : this.selectedAddress.city,
+        postal_code: this.isNewAddress ? this.newAddress.postal_code : this.selectedAddress.postal_code,
+        street_name: this.isNewAddress ? this.newAddress.street_name : this.selectedAddress.street_name
+      };
+      this.$inertia.post("/user/checkout/validate_checkout_information", checkoutInformation, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          axios__WEBPACK_IMPORTED_MODULE_2___default().post("/user/checkout/confirm_order", checkoutInformation).then(function (res) {
+            window.location.href = res.data;
+          });
+        }
       });
     },
     removeProduct: function removeProduct(productId) {
@@ -395,7 +407,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     actions: false,
     "form-class": "flex flex-col w-full px-0 mx-auto md:flex-row",
     onSubmit: $options.checkout,
-    "messages-class": "$reset hidden"
+    "messages-class": "$reset hidden",
+    "input-errors": {
+      email: _ctx.$page.props.errors.email,
+      full_name: _ctx.$page.props.errors.full_name ? _ctx.$page.props.errors.full_name : '',
+      phone_number: _ctx.$page.props.errors.phone_number ? _ctx.$page.props.errors.phone_number : '',
+      state: _ctx.$page.props.errors.state ? _ctx.$page.props.errors.state : '',
+      city: _ctx.$page.props.errors.city ? _ctx.$page.props.errors.city : '',
+      postal_code: _ctx.$page.props.errors.postal_code ? _ctx.$page.props.errors.postal_code : '',
+      street_name: _ctx.$page.props.errors.street_name ? _ctx.$page.props.errors.street_name : ''
+    }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" contact "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
@@ -509,9 +530,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         validation: $data.isNewAddress ? 'required|length:5,30' : 'length:5,30',
         placeholder: "Enter your full name",
         "inner-class": "mb-4",
-        modelValue: $data.newAddress.fullName,
+        modelValue: $data.newAddress.full_name,
         "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-          return $data.newAddress.fullName = $event;
+          return $data.newAddress.full_name = $event;
         })
       }, null, 8
       /* PROPS */
@@ -522,9 +543,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         validation: $data.isNewAddress ? 'required|number' : '',
         placeholder: "60178891233",
         "inner-class": "mb-4",
-        modelValue: $data.newAddress.phoneNumber,
+        modelValue: $data.newAddress.phone_number,
         "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-          return $data.newAddress.phoneNumber = $event;
+          return $data.newAddress.phone_number = $event;
         })
       }, null, 8
       /* PROPS */
@@ -580,9 +601,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "outer-class": "flex-1",
         validation: $data.isNewAddress ? 'required|length:5,5' : '',
         placeholder: "Enter postal code",
-        modelValue: $data.newAddress.postalCode,
+        modelValue: $data.newAddress.postal_code,
         "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
-          return $data.newAddress.postalCode = $event;
+          return $data.newAddress.postal_code = $event;
         })
       }, null, 8
       /* PROPS */
@@ -593,9 +614,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         validation: $data.isNewAddress ? 'required' : '',
         placeholder: "Enter your street name",
         "inner-class": "mb-4",
-        modelValue: $data.newAddress.streetName,
+        modelValue: $data.newAddress.street_name,
         "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-          return $data.newAddress.streetName = $event;
+          return $data.newAddress.street_name = $event;
         })
       }, null, 8
       /* PROPS */
@@ -644,7 +665,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["onSubmit"]))])])], 64
+  , ["onSubmit", "input-errors"]))])])], 64
   /* STABLE_FRAGMENT */
   );
 }
