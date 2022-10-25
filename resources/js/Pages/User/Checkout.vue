@@ -307,7 +307,11 @@
                                             </div>
                                             <div>
                                                 <TrashIcon
-                                                    @click="removeProductFromCart(product.id)"
+                                                    @click="
+                                                        removeProduct(
+                                                            product.id
+                                                        )
+                                                    "
                                                     class="h-5 w-5 cursor-pointer"
                                                 />
                                             </div>
@@ -317,23 +321,27 @@
                             </div>
                             <div class="flex mt-8">
                                 <h2 class="text-xl font-semibold">
-                                    Total items : 2
+                                    Total items : {{ totalItems }}
                                 </h2>
                             </div>
                             <div
                                 class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0"
                             >
-                                Subtotal : <span class="ml-2">5.00MYR</span>
+                                Subtotal :
+                                <span class="ml-2">{{ subtotal }}MYR</span>
                             </div>
                             <div
                                 class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0"
                             >
-                                Shipping Tax : <span class="ml-2">5.00MYR</span>
+                                Shipping Tax : <span class="ml-2">2.00MYR</span>
                             </div>
                             <div
                                 class="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0"
                             >
-                                Total : <span class="ml-2">10.00MYR</span>
+                                Total :
+                                <span class="ml-2"
+                                    >{{ subtotal + 2.0 }}MYR</span
+                                >
                             </div>
                             <FormKit
                                 type="submit"
@@ -344,7 +352,10 @@
                                 For user information, all of this products are
                                 not exists in real world and the money you will
                                 be pay will be used for our server maintenance.
-                                Thank you.
+                                Basically, you only need to pay
+                                <span class="text-blue-500 font-semibold"
+                                    >5.00MYR</span
+                                >. Thank you.
                             </p>
                         </div>
                     </div>
@@ -363,6 +374,7 @@ import {
     RadioGroupOption,
 } from "@headlessui/vue";
 import { XCircleIcon, TrashIcon } from "@heroicons/vue/outline";
+import { useCartSliderStore } from "../../Stores/CartSliderStore";
 import axios from "axios";
 
 export default {
@@ -397,6 +409,8 @@ export default {
                 postalCode: "",
                 streetName: "",
             },
+            totalItems: 0,
+            subtotal: 0,
             cities: [],
         };
     },
@@ -411,6 +425,8 @@ export default {
         } else {
             this.isNewAddress = true;
         }
+
+        this.calculateQuantityAndTotal();
     },
 
     watch: {
@@ -439,6 +455,17 @@ export default {
     },
 
     methods: {
+        calculateQuantityAndTotal() {
+            this.totalItems = 0;
+            this.subtotal = 0;
+
+            this.products.forEach((product) => {
+                this.totalItems += product.quantity;
+
+                this.subtotal += product.price * product.quantity;
+            });
+        },
+
         checkout() {
             if (this.addresses.length > 0) {
                 if (
@@ -452,14 +479,33 @@ export default {
 
             this.isEmptyShippingSection = false;
 
-            axios.post("/user/checkout/confirm_order").then((res) => {
-                window.location.href = res.data;
-            });
+            axios
+                .post("/user/checkout/confirm_order", {
+                    email: this.contactInformation,
+                    shippingInformation: this.isNewAddress
+                        ? this.newAddress
+                        : this.selectedAddress,
+                })
+                .then((res) => {
+                    window.location.href = res.data;
+                });
         },
 
-        removeProductFromCart(productId) {
-            console.log(productId);
-        }
+        removeProduct(productId) {
+            const cartSliderStore = useCartSliderStore();
+
+            const result = cartSliderStore.removeProduct(productId);
+
+            if (result) {
+                this.products.forEach((product, key) => {
+                    if (product.id == productId) {
+                        this.products.splice(key, 1);
+
+                        this.calculateQuantityAndTotal();
+                    }
+                });
+            }
+        },
     },
 };
 </script>
