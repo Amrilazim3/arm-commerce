@@ -14,7 +14,7 @@ class CartController extends Controller
     public function index()
     {
         $carts = Cart::where('user_id', auth()->user()->id)->get();
-        
+
         $cartsData = [];
         foreach ($carts as $key => &$cart) {
             $cartsData[$key]['id'] = $cart->id;
@@ -42,5 +42,22 @@ class CartController extends Controller
         $cart->delete();
 
         return redirect()->back();
+    }
+
+    public function checkout(Request $request)
+    {
+        $productIds = $request->productIds;
+
+        foreach ($productIds as $productId) {
+            $singleProduct = Cart::where('id', $productId)
+                ->where('user_id', auth()->user()->id)
+                ->first();
+
+            $singleProduct->is_checkout = true;
+
+            $singleProduct->save();
+        }
+
+        return true;
     }
 }
