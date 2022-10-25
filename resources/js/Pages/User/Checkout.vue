@@ -17,6 +17,27 @@
                     form-class="flex flex-col w-full px-0 mx-auto md:flex-row"
                     @submit="checkout"
                     messages-class="$reset hidden"
+                    :input-errors="{
+                        email: $page.props.errors.email,
+                        full_name: $page.props.errors.full_name
+                            ? $page.props.errors.full_name
+                            : '',
+                        phone_number: $page.props.errors.phone_number
+                            ? $page.props.errors.phone_number
+                            : '',
+                        state: $page.props.errors.state
+                            ? $page.props.errors.state
+                            : '',
+                        city: $page.props.errors.city
+                            ? $page.props.errors.city
+                            : '',
+                        postal_code: $page.props.errors.postal_code
+                            ? $page.props.errors.postal_code
+                            : '',
+                        street_name: $page.props.errors.street_name
+                            ? $page.props.errors.street_name
+                            : '',
+                    }"
                 >
                     <div
                         class="flex flex-col space-y-8 divide-y divide-gray-300 md:w-2/4"
@@ -181,7 +202,7 @@
                                     "
                                     placeholder="Enter your full name"
                                     inner-class="mb-4"
-                                    v-model="newAddress.fullName"
+                                    v-model="newAddress.full_name"
                                 />
                                 <FormKit
                                     name="phone_number"
@@ -192,7 +213,7 @@
                                     "
                                     placeholder="60178891233"
                                     inner-class="mb-4"
-                                    v-model="newAddress.phoneNumber"
+                                    v-model="newAddress.phone_number"
                                 />
                                 <FormKit
                                     name="state"
@@ -245,7 +266,7 @@
                                                 : ''
                                         "
                                         placeholder="Enter postal code"
-                                        v-model="newAddress.postalCode"
+                                        v-model="newAddress.postal_code"
                                     />
                                 </div>
                                 <FormKit
@@ -255,7 +276,7 @@
                                     :validation="isNewAddress ? 'required' : ''"
                                     placeholder="Enter your street name"
                                     inner-class="mb-4"
-                                    v-model="newAddress.streetName"
+                                    v-model="newAddress.street_name"
                                 />
                             </div>
                         </div>
@@ -402,12 +423,12 @@ export default {
             isEmptyShippingSection: false,
             contactInformation: "",
             newAddress: {
-                fullName: "",
-                phoneNumber: "",
+                full_name: "",
+                phone_number: "",
                 state: "",
                 city: "",
-                postalCode: "",
-                streetName: "",
+                postal_code: "",
+                street_name: "",
             },
             totalItems: 0,
             subtotal: 0,
@@ -442,12 +463,12 @@ export default {
         selectedAddress(newValue) {
             if (newValue) {
                 this.newAddress = {
-                    fullName: "",
-                    phoneNumber: "",
+                    full_name: "",
+                    phone_number: "",
                     state: "",
                     city: "",
-                    postalCode: "",
-                    streetName: "",
+                    postal_code: "",
+                    street_name: "",
                 };
                 this.isNewAddress = false;
             }
@@ -479,16 +500,46 @@ export default {
 
             this.isEmptyShippingSection = false;
 
-            axios
-                .post("/user/checkout/confirm_order", {
-                    email: this.contactInformation,
-                    shippingInformation: this.isNewAddress
-                        ? this.newAddress
-                        : this.selectedAddress,
-                })
-                .then((res) => {
-                    window.location.href = res.data;
-                });
+            var checkoutInformation = {
+                email: this.contactInformation,
+                isNewAddress: this.isNewAddress,
+                full_name: this.isNewAddress
+                    ? this.newAddress.full_name
+                    : this.selectedAddress.full_name,
+                phone_number: this.isNewAddress
+                    ? Number(this.newAddress.phone_number) 
+                    : this.selectedAddress.phone_number,
+                state: this.isNewAddress
+                    ? this.newAddress.state
+                    : this.selectedAddress.state,
+                city: this.isNewAddress
+                    ? this.newAddress.city
+                    : this.selectedAddress.city,
+                postal_code: this.isNewAddress
+                    ? this.newAddress.postal_code
+                    : this.selectedAddress.postal_code,
+                street_name: this.isNewAddress
+                    ? this.newAddress.street_name
+                    : this.selectedAddress.street_name,
+            };
+
+            this.$inertia.post(
+                "/user/checkout/validate_checkout_information",
+                checkoutInformation,
+                {
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        axios
+                            .post(
+                                "/user/checkout/confirm_order",
+                                checkoutInformation
+                            )
+                            .then((res) => {
+                                window.location.href = res.data;
+                            });
+                    },
+                }
+            );
         },
 
         removeProduct(productId) {
