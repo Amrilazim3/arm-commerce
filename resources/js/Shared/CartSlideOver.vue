@@ -310,26 +310,9 @@ export default {
 
     methods: {
         removeProduct(productId) {
-            this.$inertia.delete(`/user/carts/${productId}`, {
-                preserveScroll: true,
-                onSuccess: () => {
-                    this.$swal.fire(
-                        "Success",
-                        "Product has been removed from the cart",
-                        "success"
-                    );
+            const cartSliderStore = useCartSliderStore();
 
-                    const cartSliderStore = useCartSliderStore();
-                    cartSliderStore.getCartProducts();
-                },
-                onError: () => {
-                    this.$swal.fire({
-                        icon: "error",
-                        title: "Failed",
-                        text: "Something went wrong! Please try again",
-                    });
-                },
-            });
+            cartSliderStore.removeProduct(productId);
         },
 
         checkout() {
@@ -343,7 +326,7 @@ export default {
             axios.post("/user/carts/checkout", { productIds: productIds })
                 .then(() => {
                     cartSliderStore.changeValue();
-                    
+
                     this.$inertia.get("/user/checkout");
                 });
         },
