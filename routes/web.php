@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
         Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
+        Route::post('/carts/checkout', [CartController::class, 'checkout'])->name('carts.checkout');
         
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
         // route for hit billplz api
