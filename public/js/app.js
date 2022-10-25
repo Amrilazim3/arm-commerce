@@ -151,27 +151,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     removeProduct: function removeProduct(productId) {
-      var _this = this;
-
-      this.$inertia["delete"]("/user/carts/".concat(productId), {
-        preserveScroll: true,
-        onSuccess: function onSuccess() {
-          _this.$swal.fire("Success", "Product has been removed from the cart", "success");
-
-          var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_0__.useCartSliderStore)();
-          cartSliderStore.getCartProducts();
-        },
-        onError: function onError() {
-          _this.$swal.fire({
-            icon: "error",
-            title: "Failed",
-            text: "Something went wrong! Please try again"
-          });
-        }
-      });
+      var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_0__.useCartSliderStore)();
+      cartSliderStore.removeProduct(productId);
     },
     checkout: function checkout() {
-      var _this2 = this;
+      var _this = this;
 
       var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_0__.useCartSliderStore)();
       var productIds = [];
@@ -183,7 +167,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {
         cartSliderStore.changeValue();
 
-        _this2.$inertia.get("/user/checkout");
+        _this.$inertia.get("/user/checkout");
       });
     }
   }
@@ -2543,6 +2527,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+var Swal = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+
+
 var useCartSliderStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('cartSliderStore', {
   state: function state() {
     return {
@@ -2588,6 +2575,48 @@ var useCartSliderStore = (0,pinia__WEBPACK_IMPORTED_MODULE_2__.defineStore)('car
             }
           }
         }, _callee, null, [[0, 9]]);
+      }))();
+    },
+    removeProduct: function removeProduct(productId) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/user/carts/".concat(productId));
+
+              case 2:
+                result = _context2.sent;
+
+                if (!(result.data == 1)) {
+                  _context2.next = 9;
+                  break;
+                }
+
+                Swal.fire("Success", "Product has been removed from the cart", "success");
+
+                _this2.getCartProducts();
+
+                return _context2.abrupt("return", true);
+
+              case 9:
+                Swal.fire({
+                  icon: "error",
+                  title: "Failed",
+                  text: "Something went wrong! Please try again"
+                });
+                return _context2.abrupt("return", false);
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     },
     changeValue: function changeValue() {
