@@ -28,7 +28,7 @@
                 <div class="mt-4 flex justify-between">
                     <div>
                         <h3 class="text-sm text-gray-700">
-                            <Link :href="'products/' + product.slug">
+                            <Link :href="'https://arm-commerce.com/products/' + product.slug">
                                 <span
                                     aria-hidden="true"
                                     class="absolute inset-0"
