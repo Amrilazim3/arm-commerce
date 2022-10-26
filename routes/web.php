@@ -79,11 +79,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
         Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
         Route::post('/carts/checkout', [CartController::class, 'checkout'])->name('carts.checkout');
-        
+
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
         // route for hit billplz api
         Route::post('/checkout/validate_checkout_information', [CheckoutController::class, 'validateCheckoutInformation'])->name('checkout.validateCheckoutInformation');
         Route::post('/checkout/confirm_order', [CheckoutController::class, 'confirmOrder'])->name('checkout.confirmOrder');
+        Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('user/checkout/success');
 
         // purchase routes.
         Route::prefix('/purchase')->name('purchase.')->group(function () {
