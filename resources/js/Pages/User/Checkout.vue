@@ -168,7 +168,7 @@
                                     </p>
                                 </template>
                             </div>
-                            <template v-if="addresses.length < 5 || addresses.length == 0">
+                            <template v-if="addresses.length < 5 && addresses.length !== 0">
                                 <div class="flex justify-between">
                                     <button
                                         type="button"
