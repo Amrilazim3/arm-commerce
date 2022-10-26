@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Http\Traits\StatesCitiesTrait;
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\User;
@@ -21,12 +22,12 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        $productIds = Cart::where('user_id', Auth::user()->id)
+        $cartIds = Cart::where('user_id', Auth::user()->id)
             ->where('is_checkout', true)
             ->pluck('id');
 
         $products = [];
-        foreach ($productIds as $productId) {
+        foreach ($cartIds as $cartId) {
             $productInCart = Cart::select([
                 'id',
                 'product_id',
@@ -34,21 +35,19 @@ class CheckoutController extends Controller
                 'price'
             ])
                 ->where('user_id', Auth::user()->id)
-                ->where('id', $productId)
+                ->where('id', $cartId)
                 ->first();
 
-            $product = Product::select([
+            $product = $productInCart->product()->select([
                 'id',
                 'name',
             ])->where('id', $productInCart->product_id)
-                ->first();
-
-            $image = ProductImage::where('product_id', $productInCart->product_id)->first();
+                ->first();;
 
             $products[] = [
                 'id' => $productInCart->id,
                 'name' => $product->name,
-                'imageUrl' => $image ? $image->url : null,
+                'imageUrl' => count($product->images) > 0 ? $product->images()->first() : null,
                 'quantity' => $productInCart->quantity,
                 'price' => $productInCart->price
             ];
@@ -66,16 +65,6 @@ class CheckoutController extends Controller
 
     public function confirmOrder(Request $request)
     {
-        // Cart::where('user_id', Auth::user()->id)->where('is_checkout', true);
-        // insert data into order table
-            /**
-             * 1. id
-             * 2. bill_id
-             * 3. cart_id
-             * 4. status (due, completed)
-             */
-        // perform soft delete on cart item with 'is_checkout' = true
-
         $billplzBill = Billplz::bill();
 
         $response = $billplzBill->create(
@@ -87,9 +76,24 @@ class CheckoutController extends Controller
             'https://arm-commerce.com/products',
             'make a product purchase',
             [
-                'redirect_url' => 'https://arm-commerce.com/products?billplz_payment_information=success'
+                'redirect_url' => 'https://arm-commerce.com/products?billplz_payment_information=success' // redirect to purchase page and accept the returned value from billplz
             ]
         );
+
+        // insert data into order table
+        $cartIds = $request->cartIds;
+        foreach ($cartIds as $id) {
+            Order::create([
+                'user_id' => Auth::user()->id,
+                'cart_id' => $id,
+                'bill_id' => $response->toArray()['id'],
+                'bill_url' => $response->toArray()['url'],
+                'status' => 'due'
+            ]);
+
+            // perform soft delete on cart item with given product_id
+            Cart::find($id)->delete();
+        }
 
         return $response->toArray()['url'];
     }
