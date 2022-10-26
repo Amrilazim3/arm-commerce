@@ -76,7 +76,7 @@ class CheckoutController extends Controller
             'https://arm-commerce.com/products',
             'make a product purchase',
             [
-                'redirect_url' => 'https://arm-commerce.com/products?billplz_payment_information=success' // redirect to purchase page and accept the returned value from billplz
+                'redirect_url' => 'https://arm-commerce.com/user/checkout/success'
             ]
         );
 
@@ -96,6 +96,39 @@ class CheckoutController extends Controller
         }
 
         return $response->toArray()['url'];
+    }
+
+    public function response(Request $request)
+    {
+        if ($request->all() == []) {
+            return redirect('/products');
+        }
+
+        if ($request->billplz['paid'] == 'false') {
+            $orders = Order::where('bill_id', $request->billplz['id'])->get();
+
+            foreach ($orders as $order) {
+                if ($request->billplz['paid'] == 'true') {
+                    $order->status = 'fail'; 
+    
+                    $order->save();
+                }
+            }
+
+            return redirect()->route('products.index')->with('success', 'payment failed');
+        }
+
+        $orders = Order::where('bill_id', $request->billplz['id'])->get();
+
+        foreach ($orders as $order) {
+            if ($request->billplz['paid'] == 'true') {
+                $order->status = 'paid'; 
+
+                $order->save();
+            }
+        }
+
+        return redirect()->route('products.index')->with('success', 'payment success');
     }
 
     public function validateCheckoutInformation(Request $request)
