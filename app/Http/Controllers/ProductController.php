@@ -7,7 +7,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -114,6 +113,12 @@ class ProductController extends Controller
 
     public function addToCart(Product $product, Request $request)
     {
+        $product = Product::find($product->id);
+        $product->stock = $product->stock - $request->quantity;
+        $product->save();
+
+        Cache::forget($product->slug);
+
         Cart::create([
             'user_id' => auth()->user()->id,
             'product_id' => $product->id,
