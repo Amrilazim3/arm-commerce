@@ -1929,7 +1929,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ShoppingCartIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ShoppingCartIcon");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/category/fitness"
+    href: "/products/categories/fitness",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+      'text-blue-500': _ctx.$page.url.includes('fitness')
+    })
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Fitness")];
@@ -1937,17 +1940,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/category/workout"
+  }, 8
+  /* PROPS */
+  , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    href: "/products/categories/gym",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+      'text-blue-500': _ctx.$page.url.includes('gym')
+    })
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Workout")];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Gym")];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: "/category/supplement"
+  }, 8
+  /* PROPS */
+  , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    href: "/products/categories/supplement",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
+      'text-blue-500': _ctx.$page.url.includes('supplement')
+    })
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Supplement")];
@@ -1955,7 +1968,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  }, 8
+  /* PROPS */
+  , ["class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
   }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
@@ -3419,13 +3434,13 @@ var map = {
 		"./resources/js/Pages/Home.vue",
 		"resources_js_Pages_Home_vue"
 	],
-	"./Products/Category/Index": [
-		"./resources/js/Pages/Products/Category/Index.vue",
-		"resources_js_Pages_Products_Category_Index_vue"
+	"./Products/Categories/Index": [
+		"./resources/js/Pages/Products/Categories/Index.vue",
+		"resources_js_Pages_Products_Categories_Index_vue"
 	],
-	"./Products/Category/Index.vue": [
-		"./resources/js/Pages/Products/Category/Index.vue",
-		"resources_js_Pages_Products_Category_Index_vue"
+	"./Products/Categories/Index.vue": [
+		"./resources/js/Pages/Products/Categories/Index.vue",
+		"resources_js_Pages_Products_Categories_Index_vue"
 	],
 	"./Products/Index": [
 		"./resources/js/Pages/Products/Index.vue",
@@ -3434,6 +3449,14 @@ var map = {
 	"./Products/Index.vue": [
 		"./resources/js/Pages/Products/Index.vue",
 		"resources_js_Pages_Products_Index_vue"
+	],
+	"./Products/Search/Index": [
+		"./resources/js/Pages/Products/Search/Index.vue",
+		"resources_js_Pages_Products_Search_Index_vue"
+	],
+	"./Products/Search/Index.vue": [
+		"./resources/js/Pages/Products/Search/Index.vue",
+		"resources_js_Pages_Products_Search_Index_vue"
 	],
 	"./Products/Show": [
 		"./resources/js/Pages/Products/Show.vue",
