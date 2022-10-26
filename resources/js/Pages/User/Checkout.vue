@@ -168,7 +168,12 @@
                                     </p>
                                 </template>
                             </div>
-                            <template v-if="addresses.length < 5 && addresses.length !== 0">
+                            <template
+                                v-if="
+                                    addresses.length < 5 &&
+                                    addresses.length !== 0
+                                "
+                            >
                                 <div class="flex justify-between">
                                     <button
                                         type="button"
@@ -181,7 +186,7 @@
                                     >
                                         add address
                                     </button>
-    
+
                                     <XCircleIcon
                                         v-show="isNewAddress"
                                         @click="isNewAddress = false"
@@ -509,7 +514,7 @@ export default {
                     ? this.newAddress.full_name
                     : this.selectedAddress.full_name,
                 phone_number: this.isNewAddress
-                    ? Number(this.newAddress.phone_number) 
+                    ? Number(this.newAddress.phone_number)
                     : this.selectedAddress.phone_number,
                 state: this.isNewAddress
                     ? this.newAddress.state
