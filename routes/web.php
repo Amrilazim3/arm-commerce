@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthServiceController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\User\Account\AddressController;
@@ -17,11 +18,12 @@ use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 // can be visit by guest, user, admin but with different permission.
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/categories/{category:slug}', [CategoryController::class, 'index'])->name('products.categories.show');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::middleware('guest')->group(function () {
