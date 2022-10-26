@@ -381,6 +381,8 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: () => {
+                        this.maxQuantity -= this.quantity;
+
                         if (this.$page.props.auth.isLoggedIn) {
                             const cartSliderStore = useCartSliderStore();
 
@@ -437,6 +439,8 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: () => {
+                        this.maxQuantity -= this.quantity;
+                        
                         if (this.$page.props.auth.isLoggedIn) {
                             const cartSliderStore = useCartSliderStore();
 
