@@ -84,7 +84,7 @@ Route::middleware('auth')->group(function () {
         // route for hit billplz api
         Route::post('/checkout/validate_checkout_information', [CheckoutController::class, 'validateCheckoutInformation'])->name('checkout.validateCheckoutInformation');
         Route::post('/checkout/confirm_order', [CheckoutController::class, 'confirmOrder'])->name('checkout.confirmOrder');
-        Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('user/checkout/success');
+        Route::get('/checkout/response', [CheckoutController::class, 'response'])->name('user/checkout/response');
 
         // purchase routes.
         Route::prefix('/purchase')->name('purchase.')->group(function () {
