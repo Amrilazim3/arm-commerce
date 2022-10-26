@@ -88,6 +88,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/user/products/".concat(this.product.slug, "/cart"), data, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
+          _this.maxQuantity -= _this.quantity;
+
           if (_this.$page.props.auth.isLoggedIn) {
             var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_2__.useCartSliderStore)();
 
@@ -133,6 +135,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/user/products/".concat(this.product.slug, "/buy"), data, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
+          _this2.maxQuantity -= _this2.quantity;
+
           if (_this2.$page.props.auth.isLoggedIn) {
             var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_2__.useCartSliderStore)();
             cartSliderStore.getCartProducts();
