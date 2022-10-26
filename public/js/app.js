@@ -3419,6 +3419,14 @@ var map = {
 		"./resources/js/Pages/Home.vue",
 		"resources_js_Pages_Home_vue"
 	],
+	"./Products/Category/Index": [
+		"./resources/js/Pages/Products/Category/Index.vue",
+		"resources_js_Pages_Products_Category_Index_vue"
+	],
+	"./Products/Category/Index.vue": [
+		"./resources/js/Pages/Products/Category/Index.vue",
+		"resources_js_Pages_Products_Category_Index_vue"
+	],
 	"./Products/Index": [
 		"./resources/js/Pages/Products/Index.vue",
 		"resources_js_Pages_Products_Index_vue"
