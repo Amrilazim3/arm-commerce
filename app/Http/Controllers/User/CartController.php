@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class CartController extends Controller
@@ -39,6 +40,12 @@ class CartController extends Controller
 
     public function destroy(Cart $cart)
     {
+        $product = Product::find($cart->product_id);
+        $product->stock = $product->stock + $cart->quantity;
+        $product->save();
+
+        Cache::forget($product->slug);
+
         $cart->forceDelete();
 
         return true;
