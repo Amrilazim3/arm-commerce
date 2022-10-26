@@ -74,9 +74,9 @@ class CheckoutController extends Controller
             $request->full_name,
             500,
             'https://arm-commerce.com/products',
-            'make a product purchase',
+            'make a payment',
             [
-                'redirect_url' => 'https://arm-commerce.com/user/checkout/success'
+                'redirect_url' => 'https://arm-commerce.com/user/checkout/response'
             ]
         );
 
