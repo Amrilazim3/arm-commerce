@@ -74,7 +74,7 @@ import Pagination from "../../Shared/Pagination.vue";
 
 export default {
     components: {
-        Pagination
+        Pagination,
     },
 
     props: {
@@ -89,6 +89,40 @@ export default {
 
     mounted() {
         this.products = this.productsData.data;
+
+        if (this.$page.props.flash.success == "payment success") {
+            this.$swal
+                .fire({
+                    icon: "success",
+                    title: "Success",
+                    text: "Payment successful, thank you for your support.",
+                    showCancelButton: true,
+                    confirmButtonText: "view my purchase",
+                    cancelButtonText: "okay",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        console.log("go to completed purchase page");
+                    }
+                });
+        }
+
+        if (this.$page.props.flash.success == "payment failed") {
+            this.$swal
+                .fire({
+                    icon: "error",
+                    title: "Failed",
+                    text: "Something went wrong when performing the payment.",
+                    showCancelButton: true,
+                    confirmButtonText: "view failed payment",
+                    cancelButtonText: "close",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        console.log("go to failed purchase page");
+                    }
+                });
+        }
     },
 };
 </script>
