@@ -12,9 +12,27 @@
             </svg>
 
             <div class="space-x-4 font-medium">
-                <Link href="/category/fitness">Fitness</Link>
-                <Link href="/category/workout">Workout</Link>
-                <Link href="/category/supplement">Supplement</Link>
+                <Link
+                    href="/products/categories/fitness"
+                    :class="{
+                        'text-blue-500': $page.url.includes('fitness'),
+                    }"
+                    >Fitness</Link
+                >
+                <Link
+                    href="/products/categories/gym"
+                    :class="{
+                        'text-blue-500': $page.url.includes('gym'),
+                    }"
+                    >Gym</Link
+                >
+                <Link
+                    href="/products/categories/supplement"
+                    :class="{
+                        'text-blue-500': $page.url.includes('supplement'),
+                    }"
+                    >Supplement</Link
+                >
             </div>
 
             <div class="flex space-x-2 self-center">
@@ -39,7 +57,9 @@
                             @click="cartSliderStore.changeValue()"
                             class="h-6 w-6 self-center cursor-pointer"
                         />
-                        <span class="font-semibold">{{ cartSliderStore.cartProducts.length }}</span>
+                        <span class="font-semibold">{{
+                            cartSliderStore.cartProducts.length
+                        }}</span>
                     </template>
                 </template>
                 <template v-else>
@@ -64,8 +84,8 @@ export default {
         const cartSliderStore = useCartSliderStore();
 
         return {
-            cartSliderStore
-        }
+            cartSliderStore,
+        };
     },
 
     components: {
