@@ -168,7 +168,7 @@
                                     </p>
                                 </template>
                             </div>
-                            <template v-if="addresses.length < 5">
+                            <template v-if="addresses.length < 5 || addresses.length == 0">
                                 <div class="flex justify-between">
                                     <button
                                         type="button"
@@ -531,6 +531,12 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: () => {
+                        checkoutInformation.cartIds = [];
+
+                        this.products.forEach((product) => {
+                            checkoutInformation.cartIds.push(product.id);
+                        });
+
                         axios
                             .post(
                                 "/user/checkout/confirm_order",
