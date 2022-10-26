@@ -108,6 +108,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     checkout: function checkout() {
+      var _this3 = this;
+
       if (this.addresses.length > 0) {
         if (this.selectedAddress == null && this.isNewAddress == false) {
           this.isEmptyShippingSection = true;
@@ -129,6 +131,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/user/checkout/validate_checkout_information", checkoutInformation, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
+          checkoutInformation.cartIds = [];
+
+          _this3.products.forEach(function (product) {
+            checkoutInformation.cartIds.push(product.id);
+          });
+
           axios__WEBPACK_IMPORTED_MODULE_2___default().post("/user/checkout/confirm_order", checkoutInformation).then(function (res) {
             window.location.href = res.data;
           });
@@ -136,7 +144,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     removeProduct: function removeProduct(productId) {
-      var _this3 = this;
+      var _this4 = this;
 
       var cartSliderStore = (0,_Stores_CartSliderStore__WEBPACK_IMPORTED_MODULE_1__.useCartSliderStore)();
       var result = cartSliderStore.removeProduct(productId);
@@ -144,9 +152,9 @@ __webpack_require__.r(__webpack_exports__);
       if (result) {
         this.products.forEach(function (product, key) {
           if (product.id == productId) {
-            _this3.products.splice(key, 1);
+            _this4.products.splice(key, 1);
 
-            _this3.calculateQuantityAndTotal();
+            _this4.calculateQuantityAndTotal();
           }
         });
       }
@@ -509,7 +517,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["modelValue"]), $data.isEmptyShippingSection ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_19, " Please select your shipping address ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $props.addresses.length !== 0]]), $props.addresses.length < 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $props.addresses.length !== 0]]), $props.addresses.length < 5 || $props.addresses.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
         onClick: _cache[2] || (_cache[2] = function ($event) {
           $data.isNewAddress = true;
