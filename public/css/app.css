@@ -1622,6 +1622,9 @@ select {
 .h-44 {
   height: 11rem;
 }
+.h-64 {
+  height: 16rem;
+}
 .h-10 {
   height: 2.5rem;
 }
@@ -1633,12 +1636,6 @@ select {
 }
 .h-72 {
   height: 18rem;
-}
-.h-screen {
-  height: 100vh;
-}
-.h-64 {
-  height: 16rem;
 }
 .max-h-64 {
   max-height: 16rem;
