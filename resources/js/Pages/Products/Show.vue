@@ -11,7 +11,7 @@
                         <div class="flex items-center">
                             <Link
                                 :href="
-                                    'https://arm-commerce.com/category/' +
+                                    'https://arm-commerce.com/products/categories/' +
                                     product.category.slug
                                 "
                                 class="mr-2 text-sm font-medium text-gray-900"
