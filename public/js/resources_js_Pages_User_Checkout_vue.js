@@ -55,7 +55,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       totalItems: 0,
       subtotal: 0,
-      cities: []
+      cities: [],
+      isDisabledButton: false
     };
   },
   mounted: function mounted() {
@@ -131,6 +132,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/user/checkout/validate_checkout_information", checkoutInformation, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
+          _this3.isDisabledButton = true;
           checkoutInformation.cartIds = [];
 
           _this3.products.forEach(function (product) {
@@ -664,10 +666,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )]), _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total : "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.subtotal + 2.0) + "MYR", 1
       /* TEXT */
       )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        disabled: $data.isDisabledButton,
         type: "submit",
         label: "Confirm order",
-        "input-class": "w-full mt-4 py-3.5"
-      }), _hoisted_42])])];
+        "input-class": $data.isDisabledButton ? 'cursor-not-allowed w-full mt-4 py-3.5' : 'w-full mt-4 py-3.5'
+      }, null, 8
+      /* PROPS */
+      , ["disabled", "input-class"]), _hoisted_42])])];
     }),
     _: 1
     /* STABLE */
