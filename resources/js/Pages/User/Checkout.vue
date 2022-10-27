@@ -372,9 +372,10 @@
                                 >
                             </div>
                             <FormKit
+                                :disabled="isDisabledButton"
                                 type="submit"
                                 label="Confirm order"
-                                input-class="w-full mt-4 py-3.5"
+                                :input-class="isDisabledButton ? 'cursor-not-allowed w-full mt-4 py-3.5' : 'w-full mt-4 py-3.5'"
                             />
                             <p class="mt-4 text-red-600">
                                 For user information, all of this products are
@@ -440,6 +441,7 @@ export default {
             totalItems: 0,
             subtotal: 0,
             cities: [],
+            isDisabledButton: false,
         };
     },
 
@@ -536,6 +538,8 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: () => {
+                        this.isDisabledButton = true;
+
                         checkoutInformation.cartIds = [];
 
                         this.products.forEach((product) => {
