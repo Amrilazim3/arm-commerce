@@ -240,34 +240,32 @@
                             <button
                                 type="submit"
                                 @click.prevent="addToCart"
-                                :disabled="isDisableButton"
-                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2"
-                                :class="
-                                    isDisableButton
-                                        ? 'cursor-not-allowed bg-gray-500 text-white'
-                                        : 'hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black'
-                                "
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-offset-2"
                             >
                                 Add to cart
                             </button>
                             <button
                                 type="submit"
                                 @click.prevent="buyProduct"
-                                :disabled="isDisableButton"
-                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2"
-                                :class="
-                                    isDisableButton
-                                        ? 'cursor-not-allowed bg-gray-500'
-                                        : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'
-                                "
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                             >
                                 Buy now
                             </button>
                         </div>
+                        <template v-if="isDisableButton">
+                            <p class="mt-4 text-sm text-red-500">
+                                Please select the available options above
+                            </p>
+                        </template>
+                        <template v-if="isVariantNotExists">
+                            <p class="mt-4 text-sm text-red-500">
+                                The variant is not available
+                            </p>
+                        </template>
                         <template v-if="$page.props.auth.isLoggedIn">
                             <template v-if="$page.props.auth.user.isAdmin">
                                 <p class="mt-4 text-sm text-red-500">
-                                    Above button not working with admin.
+                                    Above button not working with admin
                                 </p>
                             </template>
                         </template>
@@ -325,6 +323,7 @@ export default {
             },
             selectedOptions: [],
             isDisableButton: false,
+            isVariantNotExists: false,
             quantity: 1,
             maxQuantity: this.productData.stock,
             currentSlide: 0,
@@ -348,10 +347,6 @@ export default {
                 );
             }
         }
-
-        if (this.product.options.length > 0) {
-            this.isDisableButton = true;
-        }
     },
 
     methods: {
@@ -360,6 +355,15 @@ export default {
         },
 
         addToCart() {
+            if (this.product.options.length !== this.selectedOptions.length) {
+                this.isDisableButton = true;
+                return;
+            }
+
+            if (this.isVariantNotExists) {
+                return;
+            }
+
             if (
                 this.$page.props.auth.isLoggedIn &&
                 this.$page.props.auth.user.isAdmin
@@ -418,6 +422,15 @@ export default {
         },
 
         buyProduct() {
+            if (this.product.options.length !== this.selectedOptions.length) {
+                this.isDisableButton = true;
+                return;
+            }
+
+            if (this.isVariantNotExists) {
+                return;
+            }
+
             if (
                 this.$page.props.auth.isLoggedIn &&
                 this.$page.props.auth.user.isAdmin
@@ -440,7 +453,7 @@ export default {
                     preserveScroll: true,
                     onSuccess: () => {
                         this.maxQuantity -= this.quantity;
-                        
+
                         if (this.$page.props.auth.isLoggedIn) {
                             const cartSliderStore = useCartSliderStore();
 
@@ -463,6 +476,10 @@ export default {
         },
 
         validateVariantion() {
+            if (this.product.options.length == this.selectedOptions.length) {
+                this.isDisableButton = false;
+            }
+
             var joinedOption = this.selectedOptions.join(" / ");
 
             var variantExists = false;
@@ -484,11 +501,11 @@ export default {
             });
 
             if (variantExists) {
-                this.isDisableButton = false;
+                this.isVariantNotExists = false;
             }
 
             if (!variantExists) {
-                this.isDisableButton = true;
+                this.isVariantNotExists = true;
             }
         },
     },
