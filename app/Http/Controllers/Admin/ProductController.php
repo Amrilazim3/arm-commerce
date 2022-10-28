@@ -110,7 +110,6 @@ class ProductController extends Controller
                 $option = $request->options[$x];
                 $optionName = ucwords(strtolower($option['name']));
 
-
                 $variant = Variant::firstOrCreate([
                     'name' => $optionName
                 ]);
@@ -132,8 +131,11 @@ class ProductController extends Controller
                 }
             }
 
+            $overallStock = 0;
             for ($j = 0; $j < count($request->variants); $j++) {
                 $singleVariant = $request->variants[$j];
+
+                $overallStock += $singleVariant['stock'];
 
                 if ($singleVariant['filePath']) {
                     $variantImage = $this->changeMediaFileLocation(
@@ -168,6 +170,9 @@ class ProductController extends Controller
                     ]);
                 }
             }
+
+            $product->stock = $overallStock;
+            $product->save();
         }
 
         return redirect('admin/products');
@@ -248,6 +253,8 @@ class ProductController extends Controller
             'price' => $request->price,
         ]);
 
+        $product->save();
+
         if (count($request->productMediaRemoved) > 0) {
             foreach ($request->productMediaRemoved as $singleMediaRemoved) {
                 ProductImage::where('url', $singleMediaRemoved)->delete();
@@ -300,14 +307,17 @@ class ProductController extends Controller
                 $currentProductvariantsName[] = $variants[$i]['name'];
             }
 
+            $overallStock = 0;
             for ($j = 0; $j < count($request->variants); $j++) {
                 $singleVariant = $request->variants[$j];
+
+                $overallStock += $singleVariant['stock'];
 
                 if (!$singleVariant['isDelete']) {
                     if (in_array($singleVariant['name'], $currentProductvariantsName)) {
                         $productVariant = ProductVariant::where('product_id', $product->id)
                             ->where('name', $singleVariant['name'])->first();
-    
+
                         if ($productVariant) {
                             if ($singleVariant['filePath']) {
                                 if (preg_match("/temp/i", $singleVariant['filePath'])) {
@@ -317,7 +327,7 @@ class ProductController extends Controller
                                     );
                                 }
                             }
-    
+
                             // update the model
                             $productVariant->update([
                                 'product_id' => $product->id,
@@ -371,6 +381,9 @@ class ProductController extends Controller
                 } 
             }
 
+            $product->stock = $overallStock;
+            $product->save();
+
             if (count($currentProductvariantsName) > 0) {
                 foreach ($currentProductvariantsName as $variantName) {
                     $productVariant = ProductVariant::where('product_id', $product->id)
@@ -388,7 +401,7 @@ class ProductController extends Controller
             }
         }
 
-        if (count($request->variants) < 0 && count($variants) > 0) {
+        if (count($request->variants) == 0 && count($variants) > 0) {
             foreach ($variants as $variant) {
                 $productVariant = ProductVariant::where('product_id', $product->id)
                     ->where('name', $variantName)->first();
@@ -402,6 +415,9 @@ class ProductController extends Controller
 
                 $productVariant->delete();
             }
+
+            $product->stock = $request->stock;
+            $product->save();
         }
 
         if (count($request->variantsMediaRemoved) > 0) {
