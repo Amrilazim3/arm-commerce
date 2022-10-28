@@ -18,6 +18,7 @@ class CategoryController extends Controller
             'stock',
             'price'
         ])
+            ->latest()
             ->with(['images' => function ($query) {
                 return $query->select(['id', 'product_id', 'url']);
             }])->paginate(20);
