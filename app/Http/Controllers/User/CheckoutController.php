@@ -31,6 +31,7 @@ class CheckoutController extends Controller
             $productInCart = Cart::select([
                 'id',
                 'product_id',
+                'variant_name',
                 'quantity',
                 'price'
             ])
@@ -42,12 +43,18 @@ class CheckoutController extends Controller
                 'id',
                 'name',
             ])->where('id', $productInCart->product_id)
-                ->first();;
+                ->first();
 
             $products[] = [
                 'id' => $productInCart->id,
                 'name' => $product->name,
-                'imageUrl' => count($product->images) > 0 ? $product->images()->first() : null,
+                'variantName' => $productInCart->variant_name,
+                'imageUrl' => count($product->images) > 0 ? 
+                    $product->images()->select([
+                        'id',
+                        'product_id',
+                        'url',
+                    ])->first() : null,
                 'quantity' => $productInCart->quantity,
                 'price' => $productInCart->price
             ];
