@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -115,7 +116,18 @@ class ProductController extends Controller
     public function addToCart(Product $product, Request $request)
     {
         $product = Product::find($product->id);
+
         $product->stock = $product->stock - $request->quantity;
+
+        if ($request->variant !== null) {
+            $productVariant = ProductVariant::where('product_id', $product->id)
+                ->where('name', $request->variant)
+                ->first();
+
+            $productVariant->stock = $productVariant->stock - $request->quantity;
+            $productVariant->save();
+        }
+
         $product->save();
 
         Cache::forget($product->slug);
