@@ -45,6 +45,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       selectedOptions: [],
       isDisableButton: false,
+      isVariantNotExists: false,
       quantity: 1,
       maxQuantity: this.productData.stock,
       currentSlide: 0
@@ -64,10 +65,6 @@ __webpack_require__.r(__webpack_exports__);
         this.product.images.push("https://picsum.photos/250/250?random=" + Math.random());
       }
     }
-
-    if (this.product.options.length > 0) {
-      this.isDisableButton = true;
-    }
   },
   methods: {
     slideTo: function slideTo(val) {
@@ -75,6 +72,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     addToCart: function addToCart() {
       var _this = this;
+
+      if (this.product.options.length !== this.selectedOptions.length) {
+        this.isDisableButton = true;
+        return;
+      }
+
+      if (this.isVariantNotExists) {
+        return;
+      }
 
       if (this.$page.props.auth.isLoggedIn && this.$page.props.auth.user.isAdmin) {
         return;
@@ -123,6 +129,15 @@ __webpack_require__.r(__webpack_exports__);
     buyProduct: function buyProduct() {
       var _this2 = this;
 
+      if (this.product.options.length !== this.selectedOptions.length) {
+        this.isDisableButton = true;
+        return;
+      }
+
+      if (this.isVariantNotExists) {
+        return;
+      }
+
       if (this.$page.props.auth.isLoggedIn && this.$page.props.auth.user.isAdmin) {
         return;
       }
@@ -158,6 +173,10 @@ __webpack_require__.r(__webpack_exports__);
     validateVariantion: function validateVariantion() {
       var _this3 = this;
 
+      if (this.product.options.length == this.selectedOptions.length) {
+        this.isDisableButton = false;
+      }
+
       var joinedOption = this.selectedOptions.join(" / ");
       var variantExists = false;
       this.product.variants.forEach(function (variant) {
@@ -177,11 +196,11 @@ __webpack_require__.r(__webpack_exports__);
       });
 
       if (variantExists) {
-        this.isDisableButton = false;
+        this.isVariantNotExists = false;
       }
 
       if (!variantExists) {
-        this.isDisableButton = true;
+        this.isVariantNotExists = true;
       }
     }
   }
@@ -319,8 +338,14 @@ var _hoisted_32 = {
 var _hoisted_33 = {
   "class": "flex space-x-3"
 };
-var _hoisted_34 = ["disabled"];
-var _hoisted_35 = ["disabled"];
+var _hoisted_34 = {
+  key: 0,
+  "class": "mt-4 text-sm text-red-500"
+};
+var _hoisted_35 = {
+  key: 1,
+  "class": "mt-4 text-sm text-red-500"
+};
 var _hoisted_36 = {
   key: 0,
   "class": "mt-4 text-sm text-red-500"
@@ -614,22 +639,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.addToCart && $options.addToCart.apply($options, arguments);
     }, ["prevent"])),
-    disabled: $data.isDisableButton,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2", $data.isDisableButton ? 'cursor-not-allowed bg-gray-500 text-white' : 'hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black'])
-  }, " Add to cart ", 10
-  /* CLASS, PROPS */
-  , _hoisted_34), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-offset-2"
+  }, " Add to cart "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "submit",
     onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.buyProduct && $options.buyProduct.apply($options, arguments);
     }, ["prevent"])),
-    disabled: $data.isDisableButton,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2", $data.isDisableButton ? 'cursor-not-allowed bg-gray-500' : 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700'])
-  }, " Buy now ", 10
-  /* CLASS, PROPS */
-  , _hoisted_35)]), _ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    key: 0
-  }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_36, " Above button not working with admin. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    "class": "mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+  }, " Buy now ")]), $data.isDisableButton ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_34, " Please select the available options above ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.isVariantNotExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_35, " The variant is not available ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$page.props.auth.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 2
+  }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_36, " Above button not working with admin ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Description and details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     innerHTML: $data.product.description,
