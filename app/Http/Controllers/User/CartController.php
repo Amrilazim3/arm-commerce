@@ -41,7 +41,9 @@ class CartController extends Controller
     public function destroy(Cart $cart)
     {
         $product = Product::find($cart->product_id);
+
         $product->stock = $product->stock + $cart->quantity;
+        
         $product->save();
 
         Cache::forget($product->slug);
