@@ -21,6 +21,7 @@ class ProductController extends Controller
             'stock',
             'price'
         ])
+            ->latest()
             ->with(['images' => function ($query) {
                 return $query->select(['id', 'product_id', 'url']);
             }])
