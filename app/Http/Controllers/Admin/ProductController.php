@@ -430,6 +430,8 @@ class ProductController extends Controller
             }
         }
 
+        Cache::forget($product->slug);
+
         return redirect('admin/products');
     }
 
