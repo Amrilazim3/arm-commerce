@@ -1,7 +1,6 @@
 <template>
     <Head title="Checkout" />
-    <div class="lg:flex">
-        <SideNav />
+    <div>
         <div class="container p-12 mx-auto">
             <template v-if="products.length == 0">
                 <div class="flex items-center justify-center h-64">
@@ -14,7 +13,7 @@
                 <FormKit
                     type="form"
                     :actions="false"
-                    form-class="flex flex-col w-full px-0 mx-auto md:flex-row"
+                    form-class="flex flex-col justify-center w-full px-0 mx-auto md:flex-row"
                     @submit="checkout"
                     messages-class="$reset hidden"
                     :input-errors="{
@@ -303,7 +302,7 @@
                                                     <img
                                                         :src="
                                                             product.imageUrl
-                                                                ? product.imageUrl
+                                                                ? product.imageUrl.url
                                                                 : 'https://picsum.photos/200/300?random=' +
                                                                   product.id
                                                         "
@@ -317,6 +316,12 @@
                                                     >
                                                         {{ product.name }}
                                                     </h2>
+                                                    <p v-if="product.variantName">
+                                                        <span
+                                                            class="text-gray-800"
+                                                            >{{ product.variantName }}
+                                                        </span>
+                                                    </p>
                                                     <p>
                                                         <span
                                                             class="text-blue-600"
@@ -395,7 +400,6 @@
 </template>
 
 <script>
-import SideNav from "../../Shared/SideNav.vue";
 import {
     RadioGroup,
     RadioGroupLabel,
@@ -408,7 +412,6 @@ import axios from "axios";
 
 export default {
     components: {
-        SideNav,
         RadioGroup,
         RadioGroupLabel,
         RadioGroupDescription,
