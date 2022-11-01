@@ -157,17 +157,30 @@
                                                                     <div
                                                                         class="flex"
                                                                     >
-                                                                        <button
-                                                                            @click="
-                                                                                removeProduct(
-                                                                                    product.id
-                                                                                )
-                                                                            "
-                                                                            type="button"
-                                                                            class="font-medium text-indigo-600 hover:text-indigo-500"
-                                                                        >
-                                                                            Remove
-                                                                        </button>
+                                                                        <template v-if="cartSliderStore.isMakingRequest">
+                                                                            <svg
+                                                                                class="animate-spin h-5 w-5 mr-3 ..."
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                viewBox="0 0 512 512"
+                                                                            >
+                                                                                <path
+                                                                                    d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"
+                                                                                />
+                                                                            </svg>
+                                                                        </template>
+                                                                        <template v-else>
+                                                                            <button
+                                                                                @click="
+                                                                                    removeProduct(
+                                                                                        product.id
+                                                                                    )
+                                                                                "
+                                                                                type="button"
+                                                                                class="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                            >
+                                                                                Remove
+                                                                            </button>
+                                                                        </template>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -283,7 +296,7 @@ import {
 } from "@headlessui/vue";
 import { XIcon } from "@heroicons/vue/outline";
 import { useCartSliderStore } from "../Stores/CartSliderStore";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
     setup() {
@@ -323,7 +336,8 @@ export default {
                 productIds.push(product.id);
             });
 
-            axios.post("/user/carts/checkout", { productIds: productIds })
+            axios
+                .post("/user/carts/checkout", { productIds: productIds })
                 .then(() => {
                     cartSliderStore.changeValue();
 
