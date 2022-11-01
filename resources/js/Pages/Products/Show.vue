@@ -237,20 +237,29 @@
                         </div>
 
                         <div class="flex space-x-3">
-                            <button
-                                type="submit"
-                                @click.prevent="addToCart"
-                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-offset-2"
-                            >
-                                Add to cart
-                            </button>
-                            <button
-                                type="submit"
-                                @click.prevent="buyProduct"
-                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                            >
-                                Buy now
-                            </button>
+                            <template v-if="maxQuantity == 0">
+                                <button
+                                    class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium bg-gray-400 text-black cursor-not-allowed"
+                                >
+                                    product out of stock
+                                </button>
+                            </template>
+                            <template v-else>
+                                <button
+                                    type="submit"
+                                    @click.prevent="addToCart"
+                                    class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium hover:bg-gray-300 bg-gray-200 focus:ring-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                >
+                                    Add to cart
+                                </button>
+                                <button
+                                    type="submit"
+                                    @click.prevent="buyProduct"
+                                    class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent py-3 px-8 text-base font-medium text-white focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                >
+                                    Buy now
+                                </button>
+                            </template>
                         </div>
                         <template v-if="isDisableButton">
                             <p class="mt-4 text-sm text-red-500">
