@@ -8,6 +8,7 @@ export const useCartSliderStore = defineStore('cartSliderStore', {
             isClicked: false,
             cartProducts: [],
             cartSubtotal: 0,
+            isMakingRequest: false,
         }
     },
 
@@ -28,6 +29,8 @@ export const useCartSliderStore = defineStore('cartSliderStore', {
         },
 
         async removeProduct(productId) {
+            this.isMakingRequest = true;
+
             const result = await axios.delete(`/user/carts/${productId}`);
 
             if (result.data == 1) {
@@ -36,6 +39,8 @@ export const useCartSliderStore = defineStore('cartSliderStore', {
                     "Product has been removed from the cart",
                     "success"
                 );
+
+                this.isMakingRequest = false;
 
                 this.getCartProducts();
 
@@ -46,6 +51,8 @@ export const useCartSliderStore = defineStore('cartSliderStore', {
                     title: "Failed",
                     text: "Something went wrong! Please try again",
                 });
+
+                this.isMakingRequest = false;
 
                 return false;
             }
