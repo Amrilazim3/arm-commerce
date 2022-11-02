@@ -3453,10 +3453,12 @@ var map = {
 	],
 	"./Products/Index": [
 		"./resources/js/Pages/Products/Index.vue",
+		"/js/vendor",
 		"resources_js_Pages_Products_Index_vue"
 	],
 	"./Products/Index.vue": [
 		"./resources/js/Pages/Products/Index.vue",
+		"/js/vendor",
 		"resources_js_Pages_Products_Index_vue"
 	],
 	"./Products/Search/Index": [
