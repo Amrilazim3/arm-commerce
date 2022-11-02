@@ -12,9 +12,13 @@
         <div
             class="max-w-2xl mx-auto py-14 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
         >
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">
-                New Arrivals
-            </h2>
+            <div class="flex justify-between">
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+                    New Arrivals
+                </h2>
+
+                <SearchBar :requests="requests" :categories="categories" />
+            </div>
 
             <ProductsLayout :productsData="productsData" />
         </div>
@@ -23,14 +27,18 @@
 
 <script>
 import ProductsLayout from "../../Shared/ProductsLayout.vue";
+import SearchBar from "../../Shared/SearchBar.vue";
 
 export default {
     components: {
-        ProductsLayout
+        ProductsLayout,
+        SearchBar
     },
 
     props: {
         productsData: Object,
+        requests: Array,
+        categories: Array,
     },
 
     mounted() {
