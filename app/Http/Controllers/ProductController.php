@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
@@ -22,14 +23,21 @@ class ProductController extends Controller
             'stock',
             'price'
         ])
-            ->latest()
+            ->filter(
+                request(['search'])
+            )
             ->with(['images' => function ($query) {
                 return $query->select(['id', 'product_id', 'url']);
             }])
+            ->latest()
             ->paginate(20);
 
+        $categories = Category::all(['id', 'name', 'slug']);
+
         return Inertia::render('Products/Index', [
-            'productsData' => $productsData
+            'productsData' => $productsData,
+            'requests' => request(['search']),
+            'categories' => $categories
         ]);
     }
 
