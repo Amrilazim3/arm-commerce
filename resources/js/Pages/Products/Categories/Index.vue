@@ -1,20 +1,19 @@
 <template>
     <Head>
         <title>Products</title>
-        <!-- <meta name="keywords" content="arm-commerce products" />
-        <meta
-            name="description"
-            content="Gym, fitness equipment and supplement"
-        /> -->
     </Head>
 
     <div class="bg-white">
         <div
             class="max-w-2xl mx-auto py-14 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
         >
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">
-                {{ category }} products
-            </h2>
+            <div class="flex justify-between">
+                <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+                    {{ category }} products
+                </h2>
+
+                <SearchBar :requests="requests" :categories="categories" />
+            </div>
 
             <ProductsLayout :productsData="productsData" />
         </div>
@@ -22,16 +21,20 @@
 </template>
 
 <script>
-import ProductsLayout from '../../../Shared/ProductsLayout.vue';
+import ProductsLayout from "../../../Shared/ProductsLayout.vue";
+import SearchBar from "../../../Shared/SearchBar.vue";
 
 export default {
     components: {
-        ProductsLayout
+        ProductsLayout,
+        SearchBar
     },
 
     props: {
         productsData: Object,
         category: String,
+        requests: Array,
+        categories: Array,
     },
 };
 </script>
