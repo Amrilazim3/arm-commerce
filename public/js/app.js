@@ -3520,6 +3520,16 @@ var map = {
 		"./resources/js/Pages/User/Checkout.vue",
 		"/js/vendor",
 		"resources_js_Pages_User_Checkout_vue"
+	],
+	"./User/Purchase/ToPay": [
+		"./resources/js/Pages/User/Purchase/ToPay.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_ToPay_vue"
+	],
+	"./User/Purchase/ToPay.vue": [
+		"./resources/js/Pages/User/Purchase/ToPay.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_ToPay_vue"
 	]
 };
 function webpackAsyncContext(req) {
