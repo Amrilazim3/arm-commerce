@@ -23,9 +23,13 @@ class CategoryController extends Controller
                 return $query->select(['id', 'product_id', 'url']);
             }])->paginate(20);
 
+        $categories = Category::all(['id', 'name', 'slug']);
+
         return Inertia::render('Products/Categories/Index', [
             'productsData' => $productsData,
-            'category' => $category->name
+            'category' => $category->name,
+            'requests' => request(['search']),
+            'categories' => $categories
         ]);
     }
 }
