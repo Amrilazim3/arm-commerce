@@ -1460,6 +1460,10 @@ select {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+.my-56 {
+  margin-top: 14rem;
+  margin-bottom: 14rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -1564,6 +1568,9 @@ select {
 }
 .mb-32 {
   margin-bottom: 8rem;
+}
+.mt-56 {
+  margin-top: 14rem;
 }
 .block {
   display: block;
