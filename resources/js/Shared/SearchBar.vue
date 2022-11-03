@@ -29,6 +29,9 @@
                                     :class="[
                                         active
                                             ? 'bg-indigo-500 text-white'
+                                            : '',
+                                        $page.url.includes(category.slug) 
+                                            ? 'bg-indigo-500 text-white'
                                             : 'text-gray-900',
                                         'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                     ]"
@@ -43,7 +46,7 @@
         </Menu>
         <form @submit.prevent="search" class="relative w-full">
             <input
-                class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300"
                 placeholder="Search product name, category..."
                 v-model="params.search"
             />
@@ -87,11 +90,9 @@ export default {
 
     methods: {
         search() {
-            if (this.params.search !== "") {
-                this.$inertia.get(this.$page.url, this.params, {
-                    preserveScroll: true,
-                });
-            }
+            this.$inertia.get(this.$page.url, this.params, {
+                preserveScroll: true,
+            });
         },
     },
 };
