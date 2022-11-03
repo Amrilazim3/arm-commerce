@@ -28,7 +28,12 @@
                 <div class="mt-4 flex justify-between">
                     <div>
                         <h3 class="text-sm text-gray-700">
-                            <Link :href="'https://arm-commerce.com/products/' + product.slug">
+                            <Link
+                                :href="
+                                    'https://arm-commerce.com/products/' +
+                                    product.slug
+                                "
+                            >
                                 <span
                                     aria-hidden="true"
                                     class="absolute inset-0"
@@ -47,15 +52,20 @@
             </div>
         </template>
     </div>
+    <template v-if="products.length == 0">
+        <div class="flex space-x-3 justify-center my-56">
+            <h2 class="self-center text-lg text-blue-500">We cannot find what you are looking for</h2>
+        </div>
+    </template>
     <Pagination class="flex justify-end" :links="productsData.links" />
 </template>
 
 <script>
-import Pagination from './Pagination.vue';
+import Pagination from "./Pagination.vue";
 
 export default {
     components: {
-        Pagination
+        Pagination,
     },
 
     props: {
@@ -64,12 +74,12 @@ export default {
 
     data() {
         return {
-            products: []
-        }
+            products: [],
+        };
     },
 
     mounted() {
         this.products = this.productsData.data;
-    }
-}
+    },
+};
 </script>
