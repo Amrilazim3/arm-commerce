@@ -187,19 +187,6 @@
                     <template v-else>
                         <MenuItem>
                             <Link
-                                href="/user/purchase"
-                                :class="[
-                                    'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
-                                    $page.component == 'User/Purchase/Index'
-                                        ? 'bg-violet-500 text-gray-100'
-                                        : '',
-                                ]"
-                            >
-                                All
-                            </Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link
                                 href="/user/purchase/to-pay"
                                 :class="[
                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
@@ -486,18 +473,6 @@
                             as="ul"
                             class="pl-2 pt-2 pb-2 text-sm text-indigo-500"
                         >
-                            <li>
-                                <Link
-                                    href="/user/purchase"
-                                    :class="
-                                        $page.component == 'User/Purchase/Index'
-                                            ? 'font-bold'
-                                            : ''
-                                    "
-                                >
-                                    All
-                                </Link>
-                            </li>
                             <li>
                                 <Link
                                     href="/user/purchase/to-pay"
