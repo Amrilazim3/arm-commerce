@@ -3445,10 +3445,12 @@ var map = {
 	],
 	"./Products/Categories/Index": [
 		"./resources/js/Pages/Products/Categories/Index.vue",
+		"/js/vendor",
 		"resources_js_Pages_Products_Categories_Index_vue"
 	],
 	"./Products/Categories/Index.vue": [
 		"./resources/js/Pages/Products/Categories/Index.vue",
+		"/js/vendor",
 		"resources_js_Pages_Products_Categories_Index_vue"
 	],
 	"./Products/Index": [
@@ -3460,14 +3462,6 @@ var map = {
 		"./resources/js/Pages/Products/Index.vue",
 		"/js/vendor",
 		"resources_js_Pages_Products_Index_vue"
-	],
-	"./Products/Search/Index": [
-		"./resources/js/Pages/Products/Search/Index.vue",
-		"resources_js_Pages_Products_Search_Index_vue"
-	],
-	"./Products/Search/Index.vue": [
-		"./resources/js/Pages/Products/Search/Index.vue",
-		"resources_js_Pages_Products_Search_Index_vue"
 	],
 	"./Products/Show": [
 		"./resources/js/Pages/Products/Show.vue",
