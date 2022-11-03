@@ -124,11 +124,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     search: function search() {
-      if (this.params.search !== "") {
-        this.$inertia.get(this.$page.url, this.params, {
-          preserveScroll: true
-        });
-      }
+      this.$inertia.get(this.$page.url, this.params, {
+        preserveScroll: true
+      });
     }
   }
 });
@@ -422,7 +420,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     var active = _ref.active;
                     return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
                       href: 'https://arm-commerce.com/products/categories/' + category.slug,
-                      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([active ? 'bg-indigo-500 text-white' : 'text-gray-900', 'group flex w-full items-center rounded-md px-2 py-2 text-sm'])
+                      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([active ? 'bg-indigo-500 text-white' : '', _ctx.$page.url.includes(category.slug) ? 'bg-indigo-500 text-white' : 'text-gray-900', 'group flex w-full items-center rounded-md px-2 py-2 text-sm'])
                     }, {
                       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 1
@@ -465,7 +463,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": "relative w-full"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    "class": "block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300",
+    "class": "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300",
     placeholder: "Search product name, category...",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.params.search = $event;
