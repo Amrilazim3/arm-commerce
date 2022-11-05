@@ -125,7 +125,7 @@
                                                             'User/Purchase'
                                                         ),
                                                 }"
-                                                href="/user/purchase/all"
+                                                href="/user/purchase/to-pay"
                                             >
                                                 My Purchase
                                             </Link>
@@ -422,7 +422,7 @@
                                                     </div>
                                                 </Link>
                                                 <Link
-                                                    href="/user/purchase"
+                                                    href="/user/purchase/to-pay"
                                                     class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
                                                     :class="
                                                         $page.component.includes(
