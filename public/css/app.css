@@ -1647,6 +1647,9 @@ select {
 .h-72 {
   height: 18rem;
 }
+.h-36 {
+  height: 9rem;
+}
 .max-h-64 {
   max-height: 16rem;
 }
@@ -1712,6 +1715,9 @@ select {
 }
 .w-60 {
   width: 15rem;
+}
+.w-36 {
+  width: 9rem;
 }
 .min-w-0 {
   min-width: 0px;
