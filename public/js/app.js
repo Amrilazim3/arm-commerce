@@ -1596,7 +1596,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["px-2", {
                       'bg-gray-800 hover:bg-gray-700 rounded-md': active || _ctx.$page.component.includes('User/Purchase')
                     }]),
-                    href: "/user/purchase/all"
+                    href: "/user/purchase/to-pay"
                   }, {
                     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" My Purchase ")];
@@ -1816,7 +1816,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }, 8
               /* PROPS */
               , ["class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                href: "/user/purchase",
+                href: "/user/purchase/to-pay",
                 "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400", _ctx.$page.component.includes('User/Purchase') ? 'bg-gray-400 hover:bg-gray-600' : ''])
               }, {
                 "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -3521,6 +3521,26 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_User_Checkout_vue"
 	],
+	"./User/Purchase/Cancelled": [
+		"./resources/js/Pages/User/Purchase/Cancelled.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_Cancelled_vue"
+	],
+	"./User/Purchase/Cancelled.vue": [
+		"./resources/js/Pages/User/Purchase/Cancelled.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_Cancelled_vue"
+	],
+	"./User/Purchase/Completed": [
+		"./resources/js/Pages/User/Purchase/Completed.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_Completed_vue"
+	],
+	"./User/Purchase/Completed.vue": [
+		"./resources/js/Pages/User/Purchase/Completed.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_Completed_vue"
+	],
 	"./User/Purchase/ToPay": [
 		"./resources/js/Pages/User/Purchase/ToPay.vue",
 		"/js/vendor",
@@ -3530,6 +3550,26 @@ var map = {
 		"./resources/js/Pages/User/Purchase/ToPay.vue",
 		"/js/vendor",
 		"resources_js_Pages_User_Purchase_ToPay_vue"
+	],
+	"./User/Purchase/ToReceive": [
+		"./resources/js/Pages/User/Purchase/ToReceive.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_ToReceive_vue"
+	],
+	"./User/Purchase/ToReceive.vue": [
+		"./resources/js/Pages/User/Purchase/ToReceive.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_ToReceive_vue"
+	],
+	"./User/Purchase/ToShip": [
+		"./resources/js/Pages/User/Purchase/ToShip.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_ToShip_vue"
+	],
+	"./User/Purchase/ToShip.vue": [
+		"./resources/js/Pages/User/Purchase/ToShip.vue",
+		"/js/vendor",
+		"resources_js_Pages_User_Purchase_ToShip_vue"
 	]
 };
 function webpackAsyncContext(req) {
