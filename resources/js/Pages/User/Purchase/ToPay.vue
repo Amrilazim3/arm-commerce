@@ -50,6 +50,7 @@
                                 </div>
                                 <div class="mt-4 sm:-mt-0">
                                     <button
+                                        @click="openBill(bill.billId)"
                                         class="rounded-md border border-gray-300 p-2.5 text-sm"
                                     >
                                         Pay Bill
@@ -126,7 +127,7 @@
                                         </div>
                                         <div class="mt-3 flex justify-end">
                                             <Link
-                                                href="/hello-world"
+                                                :href="'/products/' + order.cart.product.slug"
                                                 class="font-semibold text-sm text-indigo-500"
                                             >
                                                 View product
@@ -195,5 +196,11 @@ export default {
             }
         });
     },
+
+    methods: {
+        openBill(billId) {
+            window.location.href = 'https://www.billplz-sandbox.com/bills/' + billId;
+        }
+    }
 };
 </script>
