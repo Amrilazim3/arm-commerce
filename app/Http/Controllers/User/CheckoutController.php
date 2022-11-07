@@ -11,6 +11,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\Shipping;
 use App\Models\User;
 use App\Rules\PhoneNumberValidation;
 use Billplz\Laravel\Billplz;
@@ -115,11 +116,9 @@ class CheckoutController extends Controller
             $orders = Order::where('bill_id', $request->billplz['id'])->get();
 
             foreach ($orders as $order) {
-                if ($request->billplz['paid'] == 'true') {
-                    $order->status = 'fail'; 
-    
-                    $order->save();
-                }
+                $order->status = 'fail'; 
+
+                $order->save();
             }
 
             return redirect()->route('products.index')->with('success', 'payment failed');
@@ -132,6 +131,11 @@ class CheckoutController extends Controller
                 $order->status = 'paid'; 
 
                 $order->save();
+
+                Shipping::create([
+                    'order_id' => $order->id,
+                    'status' => 'pending'
+                ]);
             }
         }
 
