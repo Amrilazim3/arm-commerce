@@ -15,14 +15,16 @@ class ShippingController extends Controller
             'id',
             'user_id',
             'order_id',
-            'status'
+            'status',
+            'created_at'
         ])
             ->where('user_id', auth()->user()->id)
             ->with(['order' => function ($item) {
                 return $item->select([
                     'id',
                     'user_id',
-                    'cart_id'
+                    'cart_id',
+                    'bill_id'
                 ])
                     ->with(['cart' => function ($item) {
                         return $item->select([
