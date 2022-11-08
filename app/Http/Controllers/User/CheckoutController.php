@@ -134,6 +134,7 @@ class CheckoutController extends Controller
 
                 Shipping::create([
                     'order_id' => $order->id,
+                    'user_id' => auth()->user()->id,
                     'status' => 'pending'
                 ]);
             }
