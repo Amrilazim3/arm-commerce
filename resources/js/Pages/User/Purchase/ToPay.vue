@@ -57,6 +57,14 @@
                                                 {{ bill.total }}MYR
                                             </p>
                                         </div>
+                                        <div>
+                                            <h2 class="text-sm font-semibold">
+                                                Status
+                                            </h2>
+                                            <p class="text-sm" :class="bill.status == 'due' ? 'text-blue-500' : 'text-red-500'">
+                                                {{ bill.status }}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div class="mt-4 sm:-mt-0">
                                         <button
@@ -193,6 +201,7 @@ export default {
                     billId: order.bill_id,
                     createdAt: order.created_at,
                     total: order.cart.price,
+                    status: order.status
                 };
 
                 this.bills.push(object);
@@ -214,6 +223,7 @@ export default {
                     billId: order.bill_id,
                     createdAt: order.created_at,
                     total: order.cart.price,
+                    status: order.status
                 };
 
                 this.bills.push(object);
