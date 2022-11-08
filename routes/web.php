@@ -20,6 +20,7 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\Purchase\PaymentController;
 use App\Http\Controllers\User\Purchase\PurchaseController;
+use App\Http\Controllers\User\Purchase\ShippingController;
 use Illuminate\Support\Facades\Route;
 
 // can be visit by guest, user, admin but with different permission.
@@ -92,7 +93,7 @@ Route::middleware('auth')->group(function () {
         // purchase routes.
         Route::prefix('/purchase')->name('purchase.')->group(function () {
             Route::get('/to-pay', [PaymentController::class, 'index'])->name('to-pay.index');
-            // Route::get('/to-ship', [PaymentController::class, 'index'])->name('to-pay.index');
+            Route::get('/to-ship', [ShippingController::class, 'index'])->name('to-ship.index');
             // Route::get('/to-receive', [PaymentController::class, 'index'])->name('to-pay.index');
             // Route::get('/completed', [PaymentController::class, 'index'])->name('to-pay.index');
             // Route::get('/cancelled', [PaymentController::class, 'index'])->name('to-pay.index');
