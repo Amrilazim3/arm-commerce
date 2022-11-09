@@ -129,6 +129,17 @@ __webpack_require__.r(__webpack_exports__);
       this.$inertia.post("/user/checkout/validate_checkout_information", checkoutInformation, {
         preserveScroll: true,
         onSuccess: function onSuccess() {
+          _this3.$swal.fire({
+            title: "Redirecting to payment page",
+            html: "please wait for a moment...",
+            didOpen: function didOpen() {
+              _this3.$swal.showLoading();
+            },
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false
+          });
+
           _this3.isDisabledButton = true;
           checkoutInformation.cartIds = [];
 
