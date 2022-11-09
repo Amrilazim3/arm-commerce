@@ -26,6 +26,8 @@ __webpack_require__.r(__webpack_exports__);
     categories: Array
   },
   mounted: function mounted() {
+    var _this = this;
+
     if (this.$page.props.flash.success == "payment success") {
       this.$swal.fire({
         icon: "success",
@@ -36,7 +38,7 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: "okay"
       }).then(function (result) {
         if (result.isConfirmed) {
-          console.log("go to completed purchase page");
+          _this.$inertia.get('user/purchase/to-ship');
         }
       });
     }
