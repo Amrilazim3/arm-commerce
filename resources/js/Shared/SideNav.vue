@@ -183,6 +183,19 @@
                                 Create Product
                             </Link>
                         </MenuItem>
+                        <MenuItem>
+                            <Link
+                                href="/admin/products/shippings"
+                                :class="[
+                                    'group flex w-full items-center rounded-md px-2 py-2 text-sm hover:bg-violet-500 hover:text-gray-100 text-gray-900',
+                                    $page.component == 'Admin/Products/Shippings'
+                                        ? 'bg-violet-500 text-gray-100'
+                                        : '',
+                                ]"
+                            >
+                                Shippings
+                            </Link>
+                        </MenuItem>
                     </template>
                     <template v-else>
                         <MenuItem>
@@ -441,6 +454,18 @@
                                     "
                                 >
                                     Create Product
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/admin/products/shippings"
+                                    :class="
+                                        $page.component == 'Admin/Products/Shippings'
+                                            ? 'font-bold'
+                                            : ''
+                                    "
+                                >
+                                    Shippings
                                 </Link>
                             </li>
                         </DisclosurePanel>
