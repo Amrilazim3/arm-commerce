@@ -3403,6 +3403,16 @@ var map = {
 		"/js/vendor",
 		"resources_js_Pages_Admin_Products_Index_vue"
 	],
+	"./Admin/Products/Shippings": [
+		"./resources/js/Pages/Admin/Products/Shippings.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Shippings_vue"
+	],
+	"./Admin/Products/Shippings.vue": [
+		"./resources/js/Pages/Admin/Products/Shippings.vue",
+		"/js/vendor",
+		"resources_js_Pages_Admin_Products_Shippings_vue"
+	],
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.vue",
 		"resources_js_Pages_Auth_ForgotPassword_vue"
