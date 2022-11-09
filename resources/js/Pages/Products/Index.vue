@@ -54,7 +54,7 @@ export default {
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        console.log("go to completed purchase page");
+                        this.$inertia.get('user/purchase/to-ship');
                     }
                 });
         }
