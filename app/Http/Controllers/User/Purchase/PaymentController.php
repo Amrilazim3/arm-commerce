@@ -21,6 +21,7 @@ class PaymentController extends Controller
         ])
             ->where('user_id', auth()->user()->id)
             ->where('status', 'due')
+            ->orWhere('status', 'fail')
             ->with(['cart' => function ($item) {
                 return $item->select([
                     'id',
