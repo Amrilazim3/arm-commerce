@@ -302,7 +302,9 @@
                                                     <img
                                                         :src="
                                                             product.imageUrl
-                                                                ? product.imageUrl.url
+                                                                ? product
+                                                                      .imageUrl
+                                                                      .url
                                                                 : 'https://picsum.photos/200/300?random=' +
                                                                   product.id
                                                         "
@@ -316,10 +318,16 @@
                                                     >
                                                         {{ product.name }}
                                                     </h2>
-                                                    <p v-if="product.variantName">
+                                                    <p
+                                                        v-if="
+                                                            product.variantName
+                                                        "
+                                                    >
                                                         <span
                                                             class="text-gray-800"
-                                                            >{{ product.variantName }}
+                                                            >{{
+                                                                product.variantName
+                                                            }}
                                                         </span>
                                                     </p>
                                                     <p>
@@ -380,7 +388,11 @@
                                 :disabled="isDisabledButton"
                                 type="submit"
                                 label="Confirm order"
-                                :input-class="isDisabledButton ? 'cursor-not-allowed w-full mt-4 py-3.5' : 'w-full mt-4 py-3.5'"
+                                :input-class="
+                                    isDisabledButton
+                                        ? 'cursor-not-allowed w-full mt-4 py-3.5'
+                                        : 'w-full mt-4 py-3.5'
+                                "
                             />
                             <p class="mt-4 text-red-600">
                                 For user information, all of this products are
@@ -541,6 +553,17 @@ export default {
                 {
                     preserveScroll: true,
                     onSuccess: () => {
+                        this.$swal.fire({
+                            title: "Redirecting to payment page",
+                            html: "please wait for a moment...",
+                            didOpen: () => {
+                                this.$swal.showLoading();
+                            },
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false,
+                        });
+
                         this.isDisabledButton = true;
 
                         checkoutInformation.cartIds = [];
