@@ -17,9 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('cart_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('address_id')->constrained()->cascadeOnDelete();
             $table->string('bill_id');
             $table->string('bill_url');
-            $table->string('status')->default('due')->comment('due / paid');
+            $table->string('contact_email');
+            $table->string('status')->default('due')->comment('due / paid / cancelled');
             $table->timestamps();
         });
     }
