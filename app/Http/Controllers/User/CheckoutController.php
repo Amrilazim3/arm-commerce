@@ -73,6 +73,15 @@ class CheckoutController extends Controller
 
     public function confirmOrder(Request $request)
     {
+        $address = Address::where('user_id', auth()->user()->id)
+            ->where('full_name', $request->full_name)
+            ->where('phone_number', $request->phone_number)
+            ->where('state', $request->state)
+            ->where('city', $request->city)
+            ->where('postal_code', $request->postal_code)
+            ->where('street_name', $request->street_name)
+            ->first();
+
         $billplzBill = Billplz::bill();
 
         $response = $billplzBill->create(
@@ -94,8 +103,10 @@ class CheckoutController extends Controller
             Order::create([
                 'user_id' => Auth::user()->id,
                 'cart_id' => $id,
+                'address_id' => $address->id,
                 'bill_id' => $response->toArray()['id'],
                 'bill_url' => $response->toArray()['url'],
+                'contact_email' => $request->email,
                 'status' => 'due'
             ]);
 
