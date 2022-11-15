@@ -17,10 +17,9 @@ use App\Http\Controllers\User\Account\AddressController;
 use App\Http\Controllers\User\Account\ChangeEmailController;
 use App\Http\Controllers\User\Account\ChangePasswordController;
 use App\Http\Controllers\User\Account\ProfileController;
-use App\Http\Controllers\User\CartController;
-use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\Cart\CartController;
+use App\Http\Controllers\User\Cart\CheckoutController;
 use App\Http\Controllers\User\Purchase\PaymentController;
-use App\Http\Controllers\User\Purchase\PurchaseController;
 use App\Http\Controllers\User\Purchase\ShippingController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,13 +79,16 @@ Route::middleware('auth')->group(function () {
             Route::patch('/password/change', [ChangePasswordController::class, 'update'])->name('password.change.update');
         });
 
+        // can refactor this route using group
         Route::post('/products/{product}/cart', [ProductController::class, 'addToCart'])->name('products.addToCart.cart');
         Route::post('/products/{product}/buy', [ProductController::class, 'buyProduct'])->name('products.buyProduct.buy');
 
+        // can refactor this route using group
         Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
         Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
         Route::post('/carts/checkout', [CartController::class, 'checkout'])->name('carts.checkout');
 
+        // can refactor this route
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
         // route for hit billplz api
         Route::post('/checkout/validate_checkout_information', [CheckoutController::class, 'validateCheckoutInformation'])->name('checkout.validateCheckoutInformation');
@@ -97,7 +99,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('/purchase')->name('purchase.')->group(function () {
             Route::get('/to-pay', [PaymentController::class, 'index'])->name('to-pay.index');
             Route::get('/to-ship', [ShippingController::class, 'index'])->name('to-ship.index');
-            // Route::get('/to-receive', [PaymentController::class, 'index'])->name('to-pay.index');
+            Route::get('/to-receive', [ShippingController::class, 'receive'])->name('to-receive.index');
             // Route::get('/completed', [PaymentController::class, 'index'])->name('to-pay.index');
             // Route::get('/cancelled', [PaymentController::class, 'index'])->name('to-pay.index');
         });
