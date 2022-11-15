@@ -4,7 +4,7 @@
         <SideNav />
         <div
             class="px-10 lg:pl-10 py-6 lg:flex-1"
-            :class="shippings.length <= 3 ? 'mb-24' : ''"
+            :class="shippings.length <= 3 ? 'mb-36' : ''"
         >
             <div>
                 <h1 class="text-xl font-semibold text-gray-900">Shippings</h1>
@@ -13,19 +13,17 @@
                 </p>
             </div>
             <template v-if="shippings.length == 0">
-                <template>
-                    <div
-                        class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center"
-                    >
-                        <div>
-                            <h3
-                                class="text-xl font-bold text-gray-800 text-left mb-6"
-                            >
-                                Don't have any product to be shipped
-                            </h3>
-                        </div>
+                <div
+                    class="w-full h-72 mt-6 grid place-items-center"
+                >
+                    <div>
+                        <h3
+                            class="text-xl font-bold text-blue-500 text-left mb-6"
+                        >
+                            Don't have any product to be shipped
+                        </h3>
                     </div>
-                </template>
+                </div>
             </template>
             <template v-else>
                 <div class="flex flex-col">
@@ -247,8 +245,31 @@ export default {
 
     methods: {
         shipProduct(shipId) {
-            // open sweetalert modal
-            console.log(shipId);
+            this.$swal
+                .fire({
+                    title: "<p class='text-2xl'>Shipped this item?</p>",
+                    text: "User will get notification for this action",
+                    icon: "info",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    cancelButtonColor: "rgb(99, 102, 241)",
+                    confirmButtonColor: "rgb(156, 163, 175)",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        this.$inertia.patch(`/admin/products/shippings/${shipId}`, {}, {
+                            preserveScroll: true,
+                            onSuccess: () => {
+                                this.shippings.forEach((item, key) => {
+                                    if (item.id == shipId) {
+                                        this.shippings.splice(key, 1);
+                                    }
+                                })
+                                this.$swal.fire('Product shipped!', '', 'success')
+                            }
+                        })
+                    }
+                });
         },
     },
 };
