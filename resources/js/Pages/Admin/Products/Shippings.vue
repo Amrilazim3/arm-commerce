@@ -3,8 +3,8 @@
     <div class="lg:flex">
         <SideNav />
         <div
-            class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
-            :class="1 + 1 <= 5 ? 'mb-36' : ''"
+            class="px-10 lg:pl-10 py-6 lg:flex-1"
+            :class="shippings.length <= 3 ? 'mb-24' : ''"
         >
             <div>
                 <h1 class="text-xl font-semibold text-gray-900">Shippings</h1>
@@ -12,7 +12,7 @@
                     Make sure all products are ship in time
                 </p>
             </div>
-            <template v-if="1 + 4 == 0">
+            <template v-if="shippings.length == 0">
                 <template>
                     <div
                         class="border rounded-md border-gray-400 w-full h-72 mt-6 grid place-items-center"
@@ -34,7 +34,7 @@
                             <div class="overflow-hidden">
                                 <table class="min-w-full mt-6">
                                     <thead class="border-b">
-                                        <tr>
+                                        <tr class="whitespace-nowrap">
                                             <th
                                                 scope="col"
                                                 class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
