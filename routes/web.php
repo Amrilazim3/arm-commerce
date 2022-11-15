@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\Account\ProfileController as AdminProfileController;
-use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\Account\ChangePasswordController as AdminChangePasswordController;
 use App\Http\Controllers\Admin\Account\ChangeEmailController as AdminChangeEmailController;
-use App\Http\Controllers\Admin\ShippingController as AdminShippingController;
+use App\Http\Controllers\Admin\Product\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\Product\ShippingController as AdminProductShippingController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\OAuthServiceController;
@@ -60,7 +60,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/products', AdminProductController::class)->except('show');
         Route::post("/products/temp/media", [AdminProductController::class, 'handleMediaUpload'])->name('products.temp.media.store');
         Route::patch("/products/temp/media", [AdminProductController::class, 'handleMediaRemove'])->name('products.temp.media.update');
-        Route::get('/products/shippings', [AdminShippingController::class, 'index'])->name('products.shippings');
+        Route::get('/products/shippings', [AdminProductShippingController::class, 'index'])->name('products.shippings');
+        Route::patch('/products/shippings/{shipping}', [AdminProductShippingController::class, 'update'])->name('products.update');
     });
 
     // route for user role
