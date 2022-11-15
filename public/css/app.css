@@ -1461,6 +1461,10 @@ select {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+.mx-14 {
+  margin-left: 3.5rem;
+  margin-right: 3.5rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -1565,6 +1569,9 @@ select {
 }
 .mb-32 {
   margin-bottom: 8rem;
+}
+.mb-24 {
+  margin-bottom: 6rem;
 }
 .block {
   display: block;
@@ -1759,6 +1766,9 @@ select {
 }
 .shrink-0 {
   flex-shrink: 0;
+}
+.table-fixed {
+  table-layout: fixed;
 }
 .origin-top-right {
   transform-origin: top right;
@@ -2412,6 +2422,12 @@ select {
 .pt-2\.5 {
   padding-top: 0.625rem;
 }
+.pr-14 {
+  padding-right: 3.5rem;
+}
+.pr-28 {
+  padding-right: 7rem;
+}
 .text-left {
   text-align: left;
 }
@@ -2858,10 +2874,6 @@ select {
 .hover\:text-red-600:hover {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-.hover\:text-green-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;

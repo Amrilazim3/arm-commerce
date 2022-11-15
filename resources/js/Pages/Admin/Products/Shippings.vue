@@ -262,7 +262,7 @@ export default {
                             onSuccess: () => {
                                 this.shippings.forEach((item, key) => {
                                     if (item.id == shipId) {
-                                        this.shippings.splice(key, 1);
+                                        item.status = 'shipped';
                                     }
                                 })
                                 this.$swal.fire('Product shipped!', '', 'success')
