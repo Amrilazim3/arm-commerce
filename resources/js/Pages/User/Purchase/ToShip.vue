@@ -30,23 +30,29 @@
                                 class="mx-auto w-full rounded border border-gray-300 divide-y divide-gray-200"
                             >
                                 <div class="p-5 bg-gray-50">
-                                    <div
-                                        class="sm:flex justify-between"
-                                    >
+                                    <div class="sm:flex justify-between">
                                         <div class="flex space-x-6">
                                             <div>
-                                                <h2 class="text-sm font-semibold">
+                                                <h2
+                                                    class="text-sm font-semibold"
+                                                >
                                                     Date placed
                                                 </h2>
-                                                <p class="text-sm text-gray-500">
+                                                <p
+                                                    class="text-sm text-gray-500"
+                                                >
                                                     {{ list.createdAt }}
                                                 </p>
                                             </div>
                                             <div>
-                                                <h2 class="text-sm font-semibold">
+                                                <h2
+                                                    class="text-sm font-semibold"
+                                                >
                                                     Total amount
                                                 </h2>
-                                                <p class="text-sm text-gray-500">
+                                                <p
+                                                    class="text-sm text-gray-500"
+                                                >
                                                     {{ list.total }}MYR
                                                 </p>
                                             </div>
@@ -60,8 +66,18 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="mt-3">
+                                        <h2 class="text-sm font-semibold">
+                                            Shipping address
+                                        </h2>
+                                        <p class="text-sm text-gray-500">
+                                            {{ list.address }}
+                                        </p>
+                                    </div>
                                     <div class="mt-4">
-                                        <p class="text-green-600 text-sm">Your item is being prepared.</p>
+                                        <p class="text-green-600 text-sm">
+                                            Your item is being prepared.
+                                        </p>
                                     </div>
                                 </div>
 
@@ -129,7 +145,8 @@
                                                     >
                                                         quantity :
                                                         {{
-                                                            ship.order.cart.quantity
+                                                            ship.order.cart
+                                                                .quantity
                                                         }}
                                                     </p>
                                                     <p
@@ -137,7 +154,8 @@
                                                     >
                                                         total :
                                                         {{
-                                                            ship.order.cart.price
+                                                            ship.order.cart
+                                                                .price
                                                         }}MYR
                                                     </p>
                                                 </div>
@@ -146,7 +164,8 @@
                                                 <Link
                                                     :href="
                                                         '/products/' +
-                                                        ship.order.cart.product.slug
+                                                        ship.order.cart.product
+                                                            .slug
                                                     "
                                                     class="font-semibold text-sm text-indigo-500"
                                                 >
@@ -190,6 +209,10 @@ export default {
                     billId: ship.order.bill_id,
                     createdAt: ship.created_at,
                     total: ship.order.cart.price,
+                    address: ship.order.address.street_name + ' ' +
+                    ship.order.address.postal_code + ' ' +
+                    ship.order.address.city + ' ' +
+                    ship.order.address.state
                 };
 
                 this.shipLists.push(object);
@@ -211,6 +234,10 @@ export default {
                     billId: ship.order.bill_id,
                     createdAt: ship.created_at,
                     total: ship.order.cart.price,
+                    address: ship.order.address.street_name + ' ' +
+                    ship.order.address.postal_code + ' ' +
+                    ship.order.address.city + ' ' +
+                    ship.order.address.state
                 };
 
                 this.shipLists.push(object);
