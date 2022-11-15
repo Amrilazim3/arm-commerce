@@ -13,9 +13,7 @@
                 </p>
             </div>
             <template v-if="shippings.length == 0">
-                <div
-                    class="w-full h-72 mt-6 grid place-items-center"
-                >
+                <div class="w-full h-72 mt-6 grid place-items-center">
                     <div>
                         <h3
                             class="text-xl font-bold text-blue-500 text-left mb-6"
@@ -195,16 +193,31 @@
                                                 <td
                                                     class="justify-end self-center space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
                                                 >
-                                                    <button
-                                                        class="bg-gray-50 border font-medium hover:bg-gray-200 hover:text-indigo-600 p-3 rounded text-indigo-500 text-right text-sm"
-                                                        @click.prevent="
-                                                            shipProduct(
-                                                                shipItem.id
-                                                            )
+                                                    <template
+                                                        v-if="
+                                                            shipItem.status ==
+                                                            'pending'
                                                         "
                                                     >
-                                                        Ship now
-                                                    </button>
+                                                        <button
+                                                            class="bg-gray-50 border font-medium hover:bg-gray-200 hover:text-indigo-600 p-3 rounded text-indigo-500 text-right text-sm"
+                                                            @click.prevent="
+                                                                shipProduct(
+                                                                    shipItem.id
+                                                                )
+                                                            "
+                                                        >
+                                                            Ship now
+                                                        </button>
+                                                    </template>
+                                                    <template v-else>
+                                                        <button
+                                                            class="bg-gray-100 border font-medium hover:bg-gray-200 p-3 rounded text-gray-500 text-right text-sm"
+                                                            disabled
+                                                        >
+                                                            Shipped
+                                                        </button>
+                                                    </template>
                                                 </td>
                                             </tr>
                                         </template>
@@ -257,17 +270,25 @@ export default {
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        this.$inertia.patch(`/admin/products/shippings/${shipId}`, {}, {
-                            preserveScroll: true,
-                            onSuccess: () => {
-                                this.shippings.forEach((item, key) => {
-                                    if (item.id == shipId) {
-                                        item.status = 'shipped';
-                                    }
-                                })
-                                this.$swal.fire('Product shipped!', '', 'success')
+                        this.$inertia.patch(
+                            `/admin/products/shippings/${shipId}`,
+                            {},
+                            {
+                                preserveScroll: true,
+                                onSuccess: () => {
+                                    this.shippings.forEach((item, key) => {
+                                        if (item.id == shipId) {
+                                            item.status = "shipped";
+                                        }
+                                    });
+                                    this.$swal.fire(
+                                        "Product shipped!",
+                                        "",
+                                        "success"
+                                    );
+                                },
                             }
-                        })
+                        );
                     }
                 });
         },
