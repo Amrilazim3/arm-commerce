@@ -33,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
         var object = {
           billId: order.bill_id,
           createdAt: order.created_at,
-          total: order.cart.price,
+          total: order.cart.price * order.cart.quantity,
           status: order.status
         };
 
@@ -47,7 +47,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.bills.forEach(function (bill) {
         if (bill.billId == order.bill_id) {
           isExistBillId = true;
-          bill.total += order.cart.price;
+          bill.total += order.cart.price * order.cart.quantity;
         }
       });
 
@@ -55,7 +55,7 @@ __webpack_require__.r(__webpack_exports__);
         var _object = {
           billId: order.bill_id,
           createdAt: order.created_at,
-          total: order.cart.price,
+          total: order.cart.price * order.cart.quantity,
           status: order.status
         };
 
@@ -279,7 +279,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , _hoisted_22)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.cart.product.name), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.cart.price / order.cart.quantity) + "MYR ", 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.cart.price) + "MYR ", 1
       /* TEXT */
       )]), order.cart.variant_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, " variant : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(order.cart.variant_name), 1
       /* TEXT */
