@@ -33,8 +33,8 @@ __webpack_require__.r(__webpack_exports__);
         var object = {
           billId: ship.order.bill_id,
           createdAt: ship.created_at,
-          total: ship.order.cart.price,
-          address: ship.order.address.street_name + ' ' + ship.order.address.postal_code + ' ' + ship.order.address.city + ' ' + ship.order.address.state
+          total: ship.order.cart.price * ship.order.cart.quantity,
+          address: ship.order.address.street_name + " " + ship.order.address.postal_code + " " + ship.order.address.city + " " + ship.order.address.state
         };
 
         _this.shipLists.push(object);
@@ -47,7 +47,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.shipLists.forEach(function (list) {
         if (list.billId == ship.order.bill_id) {
           isExistBillId = true;
-          list.total += ship.order.cart.price;
+          list.total += ship.order.cart.price * ship.order.cart.quantity;
         }
       });
 
@@ -55,8 +55,8 @@ __webpack_require__.r(__webpack_exports__);
         var _object = {
           billId: ship.order.bill_id,
           createdAt: ship.created_at,
-          total: ship.order.cart.price,
-          address: ship.order.address.street_name + ' ' + ship.order.address.postal_code + ' ' + ship.order.address.city + ' ' + ship.order.address.state
+          total: ship.order.cart.price * ship.order.cart.quantity,
+          address: ship.order.address.street_name + " " + ship.order.address.postal_code + " " + ship.order.address.city + " " + ship.order.address.state
         };
 
         _this.shipLists.push(_object);
@@ -199,8 +199,14 @@ var _hoisted_19 = {
 };
 
 var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "mt-4 flex space-x-3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 640 512",
+  "class": "h-6 w-6 self-center fill-green-500"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  d: "M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6v167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5v-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128h2.2z"
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-green-600 text-sm"
 }, " Your item is being prepared. ")], -1
 /* HOISTED */
