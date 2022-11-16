@@ -282,7 +282,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: ship.id
       }, [ship.order.bill_id == list.billId ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-        src: 'https://picsum.photos/200/100?random=' + ship.id,
+        src: ship.order.cart.product.images.length == 0 ? 'https://picsum.photos/200/100?random=' + ship.id : ship.order.cart.product.images[0].url,
         alt: "dummy",
         "class": "w-full h-full bg-gray-50 object-contain border rounded"
       }, null, 8
