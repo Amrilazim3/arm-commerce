@@ -24,6 +24,7 @@ class ShippingController extends Controller
                 return $item->select([
                     'id',
                     'cart_id',
+                    'bill_id',
                     'address_id',
                     'contact_email'
                 ])
@@ -78,6 +79,7 @@ class ShippingController extends Controller
                 return $item->select([
                     'id',
                     'cart_id',
+                    'bill_id',
                     'address_id',
                     'contact_email'
                 ])
