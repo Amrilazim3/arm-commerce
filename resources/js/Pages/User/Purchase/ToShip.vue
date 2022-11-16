@@ -66,7 +66,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="mt-3">
+                                    <div class="mt-3 max-w-md">
                                         <h2 class="text-sm font-semibold">
                                             Shipping address
                                         </h2>
