@@ -61,7 +61,14 @@
                                             <h2 class="text-sm font-semibold">
                                                 Status
                                             </h2>
-                                            <p class="text-sm" :class="bill.status == 'due' ? 'text-blue-500' : 'text-red-500'">
+                                            <p
+                                                class="text-sm"
+                                                :class="
+                                                    bill.status == 'due'
+                                                        ? 'text-blue-500'
+                                                        : 'text-red-500'
+                                                "
+                                            >
                                                 {{ bill.status }}
                                             </p>
                                         </div>
@@ -113,9 +120,7 @@
                                                         >
                                                             {{
                                                                 order.cart
-                                                                    .price /
-                                                                order.cart
-                                                                    .quantity
+                                                                    .price
                                                             }}MYR
                                                         </h3>
                                                     </div>
@@ -200,8 +205,8 @@ export default {
                 let object = {
                     billId: order.bill_id,
                     createdAt: order.created_at,
-                    total: order.cart.price,
-                    status: order.status
+                    total: order.cart.price * order.cart.quantity,
+                    status: order.status,
                 };
 
                 this.bills.push(object);
@@ -214,7 +219,7 @@ export default {
             this.bills.forEach((bill) => {
                 if (bill.billId == order.bill_id) {
                     isExistBillId = true;
-                    bill.total += order.cart.price;
+                    bill.total += order.cart.price * order.cart.quantity;
                 }
             });
 
@@ -222,8 +227,8 @@ export default {
                 let object = {
                     billId: order.bill_id,
                     createdAt: order.created_at,
-                    total: order.cart.price,
-                    status: order.status
+                    total: order.cart.price * order.cart.quantity,
+                    status: order.status,
                 };
 
                 this.bills.push(object);
