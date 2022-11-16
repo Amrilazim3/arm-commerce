@@ -2204,6 +2204,15 @@ select {
 .fill-current {
   fill: currentColor;
 }
+.fill-gray-300 {
+  fill: #d1d5db;
+}
+.fill-green-500 {
+  fill: #22c55e;
+}
+.fill-gray-500 {
+  fill: #6b7280;
+}
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
