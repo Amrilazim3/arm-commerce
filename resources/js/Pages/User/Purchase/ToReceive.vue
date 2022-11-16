@@ -217,7 +217,7 @@ export default {
                 let object = {
                     billId: ship.order.bill_id,
                     createdAt: ship.created_at,
-                    total: ship.order.cart.price,
+                    total: ship.order.cart.price * ship.order.cart.quantity,
                     address:
                         ship.order.address.street_name +
                         " " +
@@ -238,7 +238,7 @@ export default {
             this.shipLists.forEach((list) => {
                 if (list.billId == ship.order.bill_id) {
                     isExistBillId = true;
-                    list.total += ship.order.cart.price;
+                    list.total += ship.order.cart.price * ship.order.cart.quantity;
                 }
             });
 
@@ -246,7 +246,7 @@ export default {
                 let object = {
                     billId: ship.order.bill_id,
                     createdAt: ship.created_at,
-                    total: ship.order.cart.price,
+                    total: ship.order.cart.price * ship.order.cart.quantity,
                     address:
                         ship.order.address.street_name +
                         " " +
