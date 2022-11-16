@@ -185,7 +185,7 @@ var _hoisted_15 = {
 };
 var _hoisted_16 = ["onClick"];
 var _hoisted_17 = {
-  "class": "mt-3"
+  "class": "mt-3 max-w-md"
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
