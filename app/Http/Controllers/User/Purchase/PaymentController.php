@@ -35,7 +35,15 @@ class PaymentController extends Controller
                             'id',
                             'name',
                             'slug'
-                        ])->get();
+                        ])
+                        ->with(['images' => function ($item) {
+                            return $item->select([
+                                'id',
+                                'product_id',
+                                'url'
+                            ])->first();
+                        }])
+                        ->get();
                     }])
                     ->withTrashed();
             }])
