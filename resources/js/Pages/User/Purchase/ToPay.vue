@@ -95,8 +95,9 @@
                                                 <div class="w-36 h-36">
                                                     <img
                                                         :src="
+                                                            order.cart.product.images.length == 0 ?
                                                             'https://picsum.photos/200/100?random=' +
-                                                            order.id
+                                                            order.id : order.cart.product.images[0].url
                                                         "
                                                         alt="dummy"
                                                         class="w-full h-full bg-gray-50 object-contain border rounded"
