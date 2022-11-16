@@ -52,7 +52,15 @@ class ShippingController extends Controller
                                     'id',
                                     'name',
                                     'slug'
-                                ])->get();
+                                ])
+                                    ->with(['images' => function ($item) {
+                                        return $item->select([
+                                            'id',
+                                            'product_id',
+                                            'url'
+                                        ])->first();
+                                    }])
+                                    ->get();
                             }])
                             ->withTrashed();
                     }]);
@@ -107,15 +115,23 @@ class ShippingController extends Controller
                                     'id',
                                     'name',
                                     'slug'
-                                ])->get();
+                                ])
+                                    ->with(['images' => function ($item) {
+                                        return $item->select([
+                                            'id',
+                                            'product_id',
+                                            'url'
+                                        ])->first();
+                                    }])
+                                    ->get();
                             }])
                             ->withTrashed();
                     }]);
             }])
             ->get();
-    
-            return Inertia::render('User/Purchase/ToReceive', [
-                'shippingsData' => $shippingsData
-            ]);
+
+        return Inertia::render('User/Purchase/ToReceive', [
+            'shippingsData' => $shippingsData
+        ]);
     }
 }
