@@ -310,11 +310,16 @@ export default {
                             {
                                 preserveScroll: true,
                                 onSuccess: () => {
-                                    this.shippingsData.forEach((item, key) => {
-                                        if (item.order_id.includes(orderIds)) {
-                                            this.shippingsData.splice(key, 1);
+                                    let dataLength = this.shippingsData.length;
+                                    for (var i = dataLength - 1; i >= 0; i--) {
+                                        if (
+                                            orderIds.includes(
+                                                this.shippingsData[i].order_id
+                                            )
+                                        ) {
+                                            this.shippingsData.splice(i, 1);
                                         }
-                                    });
+                                    }
 
                                     this.shipLists.forEach((item, key) => {
                                         if (item.billId == billId) {
