@@ -11,61 +11,7 @@ class ShippingController extends Controller
 {
     public function index()
     {
-        $shippingsData = Shipping::select([
-            'id',
-            'user_id',
-            'order_id',
-            'status',
-            'created_at'
-        ])
-            ->where('user_id', auth()->user()->id)
-            ->where('status', 'pending')
-            ->with(['order' => function ($item) {
-                return $item->select([
-                    'id',
-                    'cart_id',
-                    'bill_id',
-                    'address_id',
-                    'contact_email'
-                ])
-                    ->with(['address' => function ($item) {
-                        return $item->select([
-                            'id',
-                            'full_name',
-                            'phone_number',
-                            'state',
-                            'city',
-                            'postal_code',
-                            'street_name'
-                        ]);
-                    }])
-                    ->with(['cart' => function ($item) {
-                        return $item->select([
-                            'id',
-                            'product_id',
-                            'variant_name',
-                            'quantity',
-                            'price'
-                        ])
-                            ->with(['product' => function ($item) {
-                                return $item->select([
-                                    'id',
-                                    'name',
-                                    'slug'
-                                ])
-                                    ->with(['images' => function ($item) {
-                                        return $item->select([
-                                            'id',
-                                            'product_id',
-                                            'url'
-                                        ])->first();
-                                    }])
-                                    ->get();
-                            }])
-                            ->withTrashed();
-                    }]);
-            }])
-            ->get();
+        $shippingsData = $this->getShippingsData('pending');
 
         return Inertia::render('User/Purchase/ToShip', [
             'shippingsData' => $shippingsData
@@ -87,61 +33,7 @@ class ShippingController extends Controller
 
     public function receive()
     {
-        $shippingsData = Shipping::select([
-            'id',
-            'user_id',
-            'order_id',
-            'status',
-            'created_at'
-        ])
-            ->where('user_id', auth()->user()->id)
-            ->where('status', 'shipped')
-            ->with(['order' => function ($item) {
-                return $item->select([
-                    'id',
-                    'cart_id',
-                    'bill_id',
-                    'address_id',
-                    'contact_email'
-                ])
-                    ->with(['address' => function ($item) {
-                        return $item->select([
-                            'id',
-                            'full_name',
-                            'phone_number',
-                            'state',
-                            'city',
-                            'postal_code',
-                            'street_name'
-                        ]);
-                    }])
-                    ->with(['cart' => function ($item) {
-                        return $item->select([
-                            'id',
-                            'product_id',
-                            'variant_name',
-                            'quantity',
-                            'price'
-                        ])
-                            ->with(['product' => function ($item) {
-                                return $item->select([
-                                    'id',
-                                    'name',
-                                    'slug'
-                                ])
-                                    ->with(['images' => function ($item) {
-                                        return $item->select([
-                                            'id',
-                                            'product_id',
-                                            'url'
-                                        ])->first();
-                                    }])
-                                    ->get();
-                            }])
-                            ->withTrashed();
-                    }]);
-            }])
-            ->get();
+        $shippingsData = $this->getShippingsData('shipped');
 
         return Inertia::render('User/Purchase/ToReceive', [
             'shippingsData' => $shippingsData
@@ -163,6 +55,15 @@ class ShippingController extends Controller
 
     public function completed()
     {
+        $shippingsData = $this->getShippingsData('completed');
+
+        return Inertia::render('User/Purchase/Completed', [
+            'shippingsData' => $shippingsData
+        ]);
+    }
+
+    protected function getShippingsData($status)
+    {
         $shippingsData = Shipping::select([
             'id',
             'user_id',
@@ -171,7 +72,7 @@ class ShippingController extends Controller
             'created_at'
         ])
             ->where('user_id', auth()->user()->id)
-            ->where('status', 'completed')
+            ->where('status', $status)
             ->with(['order' => function ($item) {
                 return $item->select([
                     'id',
@@ -219,8 +120,6 @@ class ShippingController extends Controller
             }])
             ->get();
 
-        return Inertia::render('User/Purchase/Completed', [
-            'shippingsData' => $shippingsData
-        ]);
+        return $shippingsData;
     }
 }
