@@ -72,6 +72,19 @@ class ShippingController extends Controller
         ]);
     }
 
+    public function cancelShipping(Request $request)
+    {
+        foreach ($request->orderIds as $id) {
+            $ship = Shipping::where('order_id', $id)->first();
+            
+            $ship->status = 'cancelled';
+            
+            $ship->save();
+        }
+
+        return redirect()->back();
+    }
+
     public function receive()
     {
         $shippingsData = Shipping::select([
