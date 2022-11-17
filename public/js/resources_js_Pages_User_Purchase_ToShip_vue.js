@@ -91,11 +91,13 @@ __webpack_require__.r(__webpack_exports__);
           }, {
             preserveScroll: true,
             onSuccess: function onSuccess() {
-              _this2.shippingsData.forEach(function (item, key) {
-                if (item.order_id.includes(orderIds)) {
-                  _this2.shippingsData.splice(key, 1);
+              var dataLength = _this2.shippingsData.length;
+
+              for (var i = dataLength - 1; i >= 0; i--) {
+                if (orderIds.includes(_this2.shippingsData[i].order_id)) {
+                  _this2.shippingsData.splice(i, 1);
                 }
-              });
+              }
 
               _this2.shipLists.forEach(function (item, key) {
                 if (item.billId == billId) {
