@@ -66,6 +66,52 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     openBill: function openBill(billId) {
       window.location.href = "https://www.billplz-sandbox.com/bills/" + billId;
+    },
+    cancelShipping: function cancelShipping(billId) {
+      var _this2 = this;
+
+      var orderIds = [];
+      this.shippingsData.forEach(function (item) {
+        if (item.order.bill_id == billId) {
+          orderIds.push(item.order.id);
+        }
+      });
+      this.$swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "rgb(99 102 241)",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, cancel it!"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this2.$inertia.patch("/user/purchase/to-ship", {
+            orderIds: orderIds
+          }, {
+            preserveScroll: true,
+            onSuccess: function onSuccess() {
+              _this2.shippingsData.forEach(function (item, key) {
+                if (item.order_id.includes(orderIds)) {
+                  _this2.shippingsData.splice(key, 1);
+                }
+              });
+
+              _this2.shipLists.forEach(function (item, key) {
+                if (item.billId == billId) {
+                  _this2.shipLists.splice(key, 1);
+                }
+              });
+
+              _this2.$swal.fire("Cancelled!", "Your shipping has been cancelled.", "success");
+            },
+            onError: function onError() {
+              _this2.$swal.fire("Failed!", "Something went wrong, please try again.", "error");
+            }
+          });
+        }
+      });
+      console.log(billId);
     }
   }
 });
@@ -181,24 +227,25 @@ var _hoisted_14 = {
   "class": "text-sm text-gray-500"
 };
 var _hoisted_15 = {
-  "class": "mt-4 sm:-mt-0"
+  "class": "mt-4 sm:-mt-0 space-x-3"
 };
 var _hoisted_16 = ["onClick"];
-var _hoisted_17 = {
+var _hoisted_17 = ["onClick"];
+var _hoisted_18 = {
   "class": "mt-3 max-w-md"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "text-sm font-semibold"
 }, " Shipping address ", -1
 /* HOISTED */
 );
 
-var _hoisted_19 = {
+var _hoisted_20 = {
   "class": "text-sm text-gray-500"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-4 flex space-x-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
@@ -212,40 +259,40 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_21 = {
+var _hoisted_22 = {
   key: 0,
   "class": "p-5"
 };
-var _hoisted_22 = {
+var _hoisted_23 = {
   "class": "flex space-x-4"
 };
-var _hoisted_23 = {
+var _hoisted_24 = {
   "class": "w-36 h-36"
 };
-var _hoisted_24 = ["src"];
-var _hoisted_25 = {
+var _hoisted_25 = ["src"];
+var _hoisted_26 = {
   "class": "w-full"
 };
-var _hoisted_26 = {
-  "class": "flex mb-2 justify-between"
-};
 var _hoisted_27 = {
-  "class": "text-black text-base fontsem"
+  "class": "flex mb-2 justify-between"
 };
 var _hoisted_28 = {
   "class": "text-black text-base fontsem"
 };
 var _hoisted_29 = {
-  key: 0,
-  "class": "text-sm text-gray-500"
+  "class": "text-black text-base fontsem"
 };
 var _hoisted_30 = {
+  key: 0,
   "class": "text-sm text-gray-500"
 };
 var _hoisted_31 = {
   "class": "text-sm text-gray-500"
 };
 var _hoisted_32 = {
+  "class": "text-sm text-gray-500"
+};
+var _hoisted_33 = {
   "class": "mt-3 flex justify-end"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -271,33 +318,40 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
+        return $options.cancelShipping(list.billId);
+      },
+      "class": "rounded-md border border-gray-300 p-2.5 text-red-500 hover:bg-gray-100 text-sm"
+    }, " cancel order ", 8
+    /* PROPS */
+    , _hoisted_16), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
         return $options.openBill(list.billId);
       },
       "class": "rounded-md border border-gray-300 p-2.5 text-sm"
     }, " View Receipt ", 8
     /* PROPS */
-    , _hoisted_16)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(list.address), 1
+    , _hoisted_17)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(list.address), 1
     /* TEXT */
-    )]), _hoisted_20]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.shippingsData, function (ship) {
+    )]), _hoisted_21]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.shippingsData, function (ship) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: ship.id
-      }, [ship.order.bill_id == list.billId ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      }, [ship.order.bill_id == list.billId ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         src: ship.order.cart.product.images.length == 0 ? 'https://picsum.photos/200/100?random=' + ship.id : ship.order.cart.product.images[0].url,
         alt: "dummy",
         "class": "w-full h-full bg-gray-50 object-contain border rounded"
       }, null, 8
       /* PROPS */
-      , _hoisted_24)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.product.name), 1
+      , _hoisted_25)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.product.name), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.price / ship.order.cart.quantity) + "MYR ", 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.price) + "MYR ", 1
       /* TEXT */
-      )]), ship.order.cart.variant_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_29, " variant : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.variant_name), 1
+      )]), ship.order.cart.variant_name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_30, " variant : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.variant_name), 1
       /* TEXT */
-      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, " quantity : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.quantity), 1
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, " quantity : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.quantity), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, " total : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.price) + "MYR ", 1
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_32, " total : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(ship.order.cart.price) + "MYR ", 1
       /* TEXT */
-      )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+      )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: '/products/' + ship.order.cart.product.slug,
         "class": "font-semibold text-sm text-indigo-500"
       }, {
