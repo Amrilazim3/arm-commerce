@@ -62,6 +62,15 @@ class ShippingController extends Controller
         ]);
     }
 
+    public function cancelled()
+    {
+        $shippingsData = $this->getShippingsData('cancelled');
+
+        return Inertia::render('User/Purchase/Cancelled', [
+            'shippingsData' => $shippingsData
+        ]);
+    }
+
     protected function getShippingsData($status)
     {
         $shippingsData = Shipping::select([
