@@ -57,7 +57,17 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="mt-4 sm:-mt-0">
+                                        <div
+                                            class="mt-4 sm:-mt-0 flex space-x-3"
+                                        >
+                                            <button
+                                                @click="
+                                                    productReceive(list.billId)
+                                                "
+                                                class="rounded-md border border-gray-300 hover:bg-gray-100 text-indigo-500 p-2.5 text-sm"
+                                            >
+                                                Order receive
+                                            </button>
                                             <button
                                                 @click="openBill(list.billId)"
                                                 class="rounded-md border border-gray-300 p-2.5 text-sm"
@@ -102,10 +112,16 @@
                                                 <div class="w-36 h-36">
                                                     <img
                                                         :src="
-                                                            ship.order.cart.product.images.length == 0 ?
-                                                            'https://picsum.photos/200/100?random=' +
-                                                            ship.id :
-                                                            ship.order.cart.product.images[0].url
+                                                            ship.order.cart
+                                                                .product.images
+                                                                .length == 0
+                                                                ? 'https://picsum.photos/200/100?random=' +
+                                                                  ship.id
+                                                                : ship.order
+                                                                      .cart
+                                                                      .product
+                                                                      .images[0]
+                                                                      .url
                                                         "
                                                         alt="dummy"
                                                         class="w-full h-full bg-gray-50 object-contain border rounded"
@@ -240,7 +256,8 @@ export default {
             this.shipLists.forEach((list) => {
                 if (list.billId == ship.order.bill_id) {
                     isExistBillId = true;
-                    list.total += ship.order.cart.price * ship.order.cart.quantity;
+                    list.total +=
+                        ship.order.cart.price * ship.order.cart.quantity;
                 }
             });
 
@@ -268,6 +285,68 @@ export default {
         openBill(billId) {
             window.location.href =
                 "https://www.billplz-sandbox.com/bills/" + billId;
+        },
+
+        productReceive(billId) {
+            var orderIds = [];
+
+            this.shippingsData.forEach((item) => {
+                if (item.order.bill_id == billId) {
+                    orderIds.push(item.order.id);
+                }
+            });
+
+            this.$swal
+                .fire({
+                    text: "Confirm the product has been received?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "rgb(99 102 241)",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        this.$inertia.patch(
+                            "/user/purchase/to-receive",
+                            { orderIds: orderIds },
+                            {
+                                preserveScroll: true,
+                                onSuccess: () => {
+                                    let dataLength = this.shippingsData.length;
+                                    for (var i = dataLength - 1; i >= 0; i--) {
+                                        if (
+                                            orderIds.includes(
+                                                this.shippingsData[i].order_id
+                                            )
+                                        ) {
+                                            this.shippingsData.splice(i, 1);
+                                        }
+                                    }
+
+                                    this.shipLists.forEach((item, key) => {
+                                        if (item.billId == billId) {
+                                            this.shipLists.splice(key, 1);
+                                        }
+                                    });
+
+                                    this.$swal.fire(
+                                        "Success!",
+                                        "Thank you for your commitment",
+                                        "success"
+                                    );
+                                },
+                                onError: () => {
+                                    this.$swal.fire(
+                                        "Failed!",
+                                        "Something went wrong, please try again.",
+                                        "error"
+                                    );
+                                },
+                            }
+                        );
+                    }
+                });
         },
     },
 };
