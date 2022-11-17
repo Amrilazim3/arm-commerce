@@ -147,4 +147,17 @@ class ShippingController extends Controller
             'shippingsData' => $shippingsData
         ]);
     }
+
+    public function productReceive(Request $request)
+    {
+        foreach ($request->orderIds as $id) {
+            $ship = Shipping::where('order_id', $id)->first();
+            
+            $ship->status = 'completed';
+            
+            $ship->save();
+        }
+
+        return redirect()->back();
+    }
 }
