@@ -19,7 +19,7 @@
                 <template v-if="shippingsData.length == 0">
                     <div class="flex items-center justify-center h-64">
                         <h1 class="text-xl text-blue-500 font-semibold">
-                            No item to be receive yet...
+                            No completed item yet...
                         </h1>
                     </div>
                 </template>
