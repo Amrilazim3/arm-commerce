@@ -289,8 +289,8 @@ export default {
             this.shippingsData.forEach((item) => {
                 if (item.order.bill_id == billId) {
                     orderIds.push(item.order.id);
-                } 
-            })
+                }
+            });
 
             this.$swal
                 .fire({
@@ -315,7 +315,7 @@ export default {
                                             this.shippingsData.splice(key, 1);
                                         }
                                     });
-                                    
+
                                     this.shipLists.forEach((item, key) => {
                                         if (item.billId == billId) {
                                             this.shipLists.splice(key, 1);
@@ -339,7 +339,6 @@ export default {
                         );
                     }
                 });
-            console.log(billId);
         },
     },
 };
