@@ -57,7 +57,15 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="mt-4 sm:-mt-0">
+                                        <div class="mt-4 sm:-mt-0 space-x-3">
+                                            <button
+                                                @click="
+                                                    cancelShipping(list.billId)
+                                                "
+                                                class="rounded-md border border-gray-300 p-2.5 text-red-500 hover:bg-gray-100 text-sm"
+                                            >
+                                                cancel order
+                                            </button>
                                             <button
                                                 @click="openBill(list.billId)"
                                                 class="rounded-md border border-gray-300 p-2.5 text-sm"
@@ -102,10 +110,16 @@
                                                 <div class="w-36 h-36">
                                                     <img
                                                         :src="
-                                                            ship.order.cart.product.images.length == 0 ?
-                                                            'https://picsum.photos/200/100?random=' +
-                                                            ship.id : 
-                                                            ship.order.cart.product.images[0].url
+                                                            ship.order.cart
+                                                                .product.images
+                                                                .length == 0
+                                                                ? 'https://picsum.photos/200/100?random=' +
+                                                                  ship.id
+                                                                : ship.order
+                                                                      .cart
+                                                                      .product
+                                                                      .images[0]
+                                                                      .url
                                                         "
                                                         alt="dummy"
                                                         class="w-full h-full bg-gray-50 object-contain border rounded"
@@ -129,9 +143,7 @@
                                                         >
                                                             {{
                                                                 ship.order.cart
-                                                                    .price /
-                                                                ship.order.cart
-                                                                    .quantity
+                                                                    .price
                                                             }}MYR
                                                         </h3>
                                                     </div>
@@ -240,7 +252,8 @@ export default {
             this.shipLists.forEach((list) => {
                 if (list.billId == ship.order.bill_id) {
                     isExistBillId = true;
-                    list.total += ship.order.cart.price * ship.order.cart.quantity;
+                    list.total +=
+                        ship.order.cart.price * ship.order.cart.quantity;
                 }
             });
 
@@ -268,6 +281,65 @@ export default {
         openBill(billId) {
             window.location.href =
                 "https://www.billplz-sandbox.com/bills/" + billId;
+        },
+
+        cancelShipping(billId) {
+            var orderIds = [];
+
+            this.shippingsData.forEach((item) => {
+                if (item.order.bill_id == billId) {
+                    orderIds.push(item.order.id);
+                } 
+            })
+
+            this.$swal
+                .fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "rgb(99 102 241)",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, cancel it!",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        this.$inertia.patch(
+                            "/user/purchase/to-ship",
+                            { orderIds: orderIds },
+                            {
+                                preserveScroll: true,
+                                onSuccess: () => {
+                                    this.shippingsData.forEach((item, key) => {
+                                        if (item.order_id.includes(orderIds)) {
+                                            this.shippingsData.splice(key, 1);
+                                        }
+                                    });
+                                    
+                                    this.shipLists.forEach((item, key) => {
+                                        if (item.billId == billId) {
+                                            this.shipLists.splice(key, 1);
+                                        }
+                                    });
+
+                                    this.$swal.fire(
+                                        "Cancelled!",
+                                        "Your shipping has been cancelled.",
+                                        "success"
+                                    );
+                                },
+                                onError: () => {
+                                    this.$swal.fire(
+                                        "Failed!",
+                                        "Something went wrong, please try again.",
+                                        "error"
+                                    );
+                                },
+                            }
+                        );
+                    }
+                });
+            console.log(billId);
         },
     },
 };
