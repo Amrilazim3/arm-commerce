@@ -103,7 +103,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/to-receive', [ShippingController::class, 'receive'])->name('to-receive.receive');
             Route::patch('/to-receive', [ShippingController::class, 'productReceive'])->name('to-receive.productReceive');
             Route::get('/completed', [ShippingController::class, 'completed'])->name('to-pay.completed');
-            // Route::get('/cancelled', [PaymentController::class, 'index'])->name('to-pay.index');
+            Route::get('/cancelled', [ShippingController::class, 'cancelled'])->name('to-pay.cancelled');
         });
     });
 });
