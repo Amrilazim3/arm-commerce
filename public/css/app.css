@@ -2178,6 +2178,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(129 140 248 / var(--tw-bg-opacity));
 }
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+}
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
 }
@@ -2204,14 +2208,8 @@ select {
 .fill-current {
   fill: currentColor;
 }
-.fill-gray-300 {
-  fill: #d1d5db;
-}
 .fill-green-500 {
   fill: #22c55e;
-}
-.fill-gray-500 {
-  fill: #6b7280;
 }
 .object-contain {
   -o-object-fit: contain;
@@ -2812,6 +2810,14 @@ select {
 .hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+}
+.hover\:bg-red-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+.hover\:bg-red-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 .hover\:from-purple-700:hover {
   --tw-gradient-from: #7e22ce;
