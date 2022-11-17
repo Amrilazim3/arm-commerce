@@ -101,6 +101,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/to-ship', [ShippingController::class, 'index'])->name('to-ship.index');
             Route::patch('/to-ship', [ShippingController::class, 'cancelShipping'])->name('to-ship.cancelShipping');
             Route::get('/to-receive', [ShippingController::class, 'receive'])->name('to-receive.receive');
+            Route::patch('/to-receive', [ShippingController::class, 'productReceive'])->name('to-receive.productReceive');
             // Route::get('/completed', [PaymentController::class, 'index'])->name('to-pay.index');
             // Route::get('/cancelled', [PaymentController::class, 'index'])->name('to-pay.index');
         });
