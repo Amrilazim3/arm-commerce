@@ -51,7 +51,7 @@ class ShippingController extends Controller
                         ->withTrashed();
                 }]);
             }])
-            ->paginate(20);
+            ->paginate(10);
 
         return Inertia::render('Admin/Products/Shippings', [
             'shippingsData' => $shippings
