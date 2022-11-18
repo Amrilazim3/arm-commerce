@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hey name user tu
+# Hye there
 
 Your order has been shipped!
 
