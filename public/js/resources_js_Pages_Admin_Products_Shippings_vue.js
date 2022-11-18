@@ -243,10 +243,18 @@ var _hoisted_20 = {
 var _hoisted_21 = {
   "class": "justify-end self-center space-x-2 md:space-x-4 lg:space-x-6 whitespace-nowrap px-6 py-4"
 };
-var _hoisted_22 = ["onClick"];
+var _hoisted_22 = {
+  key: 0,
+  "class": "font-medium p-3 cursor-default text-green-500 text-right text-sm"
+};
 var _hoisted_23 = {
   key: 1,
-  "class": "bg-gray-100 border font-medium hover:bg-gray-200 p-3 rounded text-gray-500 text-right text-sm",
+  "class": "font-medium p-3 cursor-default text-red-500 text-right text-sm"
+};
+var _hoisted_24 = ["onClick"];
+var _hoisted_25 = {
+  key: 3,
+  "class": "font-medium p-3 cursor-default text-gray-500 text-right text-sm",
   disabled: ""
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -296,15 +304,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(shipItem.order.cart.price) + "MYR ", 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [shipItem.status == 'pending' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-      key: 0,
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [shipItem.status == 'completed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_22, " Completed ")) : shipItem.status == 'cancelled' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_23, " Cancelled ")) : shipItem.status == 'pending' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+      key: 2,
       "class": "bg-gray-50 border font-medium hover:bg-gray-200 hover:text-indigo-600 p-3 rounded text-indigo-500 text-right text-sm",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
         return $options.shipProduct(shipItem.id);
       }, ["prevent"])
     }, " Ship now ", 8
     /* PROPS */
-    , _hoisted_22)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_23, " Shipped "))])]);
+    , _hoisted_24)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_25, " Shipped "))])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Pagination, {
