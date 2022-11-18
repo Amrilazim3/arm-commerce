@@ -4,7 +4,7 @@
         <SideNav />
         <div
             class="px-10 lg:pl-10 lg:pr-28 py-6 lg:flex-1"
-            :class="shippingsData.length <= 2 ? 'mb-32' : 'mb-10'"
+            :class="ordersData.length <= 2 ? 'mb-32' : 'mb-10'"
         >
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div>
