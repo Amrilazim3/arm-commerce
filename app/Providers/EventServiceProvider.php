@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\OrderPaid;
+use App\Events\OrderShipped;
 use App\Listeners\SendOrderPaidEmailToAdmin;
+use App\Listeners\SendOrderShippedEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         OrderPaid::class => [
             SendOrderPaidEmailToAdmin::class
         ],
+        OrderShipped::class => [
+            SendOrderShippedEmail::class
+        ]
     ];
 
     /**
