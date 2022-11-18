@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Traits\StatesCitiesTrait;
+use App\Jobs\TriggerOrderPaidEventJob;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
@@ -148,6 +149,8 @@ class CheckoutController extends Controller
                 ]);
             }
         }
+
+        TriggerOrderPaidEventJob::dispatch();
 
         return redirect()->route('products.index')->with('success', 'payment success');
     }
