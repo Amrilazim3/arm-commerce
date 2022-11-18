@@ -196,6 +196,30 @@
                                                     <template
                                                         v-if="
                                                             shipItem.status ==
+                                                            'completed'
+                                                        "
+                                                    >
+                                                        <button
+                                                            class="font-medium p-3 cursor-default text-green-500 text-right text-sm"
+                                                        >
+                                                            Completed
+                                                        </button>
+                                                    </template>
+                                                    <template
+                                                        v-else-if="
+                                                            shipItem.status ==
+                                                            'cancelled'
+                                                        "
+                                                    >
+                                                        <button
+                                                            class="font-medium p-3 cursor-default text-red-500 text-right text-sm"
+                                                        >
+                                                            Cancelled
+                                                        </button>
+                                                    </template>
+                                                    <template
+                                                        v-else-if="
+                                                            shipItem.status ==
                                                             'pending'
                                                         "
                                                     >
@@ -212,7 +236,7 @@
                                                     </template>
                                                     <template v-else>
                                                         <button
-                                                            class="bg-gray-100 border font-medium hover:bg-gray-200 p-3 rounded text-gray-500 text-right text-sm"
+                                                            class="font-medium p-3 cursor-default text-gray-500 text-right text-sm"
                                                             disabled
                                                         >
                                                             Shipped
