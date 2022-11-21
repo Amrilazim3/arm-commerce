@@ -359,7 +359,7 @@ __webpack_require__.r(__webpack_exports__);
           if (variantsCombined.length == 0) {
             variants.forEach(function (el, key) {
               if (el.filePath) {
-                _this4.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
+                _this4.$inertia.patch("https://arm-commerce.amrilazim.com/admin/products/temp/media", {
                   filePath: el.filePath
                 }, {
                   preserveScroll: true

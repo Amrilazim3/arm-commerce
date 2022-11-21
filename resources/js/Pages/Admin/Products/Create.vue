@@ -1084,7 +1084,7 @@ export default {
                         variants.forEach((el, key) => {
                             if (el.filePath) {
                                 this.$inertia.patch(
-                                    "https://arm-commerce.com/admin/products/temp/media",
+                                    "https://arm-commerce.amrilazim.com/admin/products/temp/media",
                                     {
                                         filePath: el.filePath,
                                     },

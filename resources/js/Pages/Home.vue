@@ -53,7 +53,7 @@
                         class="w-full overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none"
                     >
                         <img
-                            src="https://arm-commerce.com/images/gym-equipment.jpg"
+                            src="https://arm-commerce.amrilazim.com/images/gym-equipment.jpg"
                             alt="Gym equipment pictures"
                             class="object-cover object-center w-full h-full lg:w-full lg:h-full"
                         />
@@ -68,7 +68,7 @@
                         class="w-full overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none"
                     >
                         <img
-                            src="https://arm-commerce.com/images/fitness-equipment.jpg"
+                            src="https://arm-commerce.amrilazim.com/images/fitness-equipment.jpg"
                             alt="Fitness equipment pictures"
                             class="object-cover object-center w-full h-full lg:w-full lg:h-full"
                         />
@@ -83,7 +83,7 @@
                         class="w-full overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none"
                     >
                         <img
-                            src="https://arm-commerce.com/images/supplement.jpg"
+                            src="https://arm-commerce.amrilazim.com/images/supplement.jpg"
                             alt="Supplement pictures"
                             class="object-cover object-center w-full h-full lg:w-full lg:h-full"
                         />
@@ -98,7 +98,7 @@
                         class="w-full overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none"
                     >
                         <img
-                            src="https://arm-commerce.com/images/more.jpg"
+                            src="https://arm-commerce.amrilazim.com/images/more.jpg"
                             alt="more variations"
                             class="object-cover object-center w-full h-full lg:w-full lg:h-full"
                         />
@@ -139,7 +139,7 @@
                         <div class="flex-shrink-0">
                             <img
                                 class="object-cover w-full h-48"
-                                src="https://arm-commerce.com/images/gym-bundle-package.jpg"
+                                src="https://arm-commerce.amrilazim.com/images/gym-bundle-package.jpg"
                                 alt="bundle-package-one"
                             />
                         </div>
@@ -166,7 +166,7 @@
                         <div class="flex-shrink-0">
                             <img
                                 class="object-cover w-full h-48"
-                                src="https://arm-commerce.com/images/fitness-bundle-package.jpg"
+                                src="https://arm-commerce.amrilazim.com/images/fitness-bundle-package.jpg"
                                 alt="fitness-bundle-package"
                             />
                         </div>
@@ -193,7 +193,7 @@
                         <div class="flex-shrink-0">
                             <img
                                 class="object-cover w-full h-48"
-                                src="https://arm-commerce.com/images/supplement-bundle-package.jpg"
+                                src="https://arm-commerce.amrilazim.com/images/supplement-bundle-package.jpg"
                                 alt=""
                             />
                         </div>

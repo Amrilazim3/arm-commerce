@@ -149,7 +149,7 @@
                                                 >
                                                     <Link
                                                         :href="
-                                                            'https://arm-commerce.com/products/' +
+                                                            'https://arm-commerce.amrilazim.com/products/' +
                                                             shipItem.order.cart
                                                                 .product.slug
                                                         "

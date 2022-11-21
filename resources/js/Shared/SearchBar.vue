@@ -25,7 +25,7 @@
                         <div class="px-1 py-1">
                             <MenuItem v-slot="{ active }">
                                 <Link
-                                    :href="'https://arm-commerce.com/products/categories/' + category.slug"
+                                    :href="'https://arm-commerce.amrilazim.com/products/categories/' + category.slug"
                                     :class="[
                                         active
                                             ? 'bg-indigo-500 text-white'

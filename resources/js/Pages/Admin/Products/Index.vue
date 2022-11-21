@@ -267,7 +267,7 @@
                                                 >
                                                     <Link
                                                         :href="
-                                                            'https://arm-commerce.com/products/' +
+                                                            'https://arm-commerce.amrilazim.com/products/' +
                                                             product.slug
                                                         "
                                                         class="hover:font-semibold hover:text-indigo-600"

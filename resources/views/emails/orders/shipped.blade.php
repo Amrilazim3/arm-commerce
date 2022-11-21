@@ -3,7 +3,7 @@
 
 Your order has been shipped!
 
-@component('mail::button', ['url' => 'https://arm-commerce.com/user/purchase/to-receive'])
+@component('mail::button', ['url' => 'https://arm-commerce.amrilazim.com/user/purchase/to-receive'])
 you can check it here
 @endcomponent
 

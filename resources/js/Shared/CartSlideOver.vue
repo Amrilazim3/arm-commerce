@@ -114,7 +114,7 @@
                                                                         <h3>
                                                                             <Link
                                                                                 :href="
-                                                                                    'https://arm-commerce.com/products/' +
+                                                                                    'https://arm-commerce.amrilazim.com/products/' +
                                                                                     product.slug
                                                                                 "
                                                                                 @click="

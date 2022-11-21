@@ -832,7 +832,7 @@ export default {
 
             // send data to the back end to be validate
             this.$inertia.post(
-                "https://arm-commerce.com/admin/products/temp/media",
+                "https://arm-commerce.amrilazim.com/admin/products/temp/media",
                 {
                     media: uploadedMedia,
                 },
@@ -896,7 +896,7 @@ export default {
             }
 
             this.$inertia.patch(
-                "https://arm-commerce.com/admin/products/temp/media",
+                "https://arm-commerce.amrilazim.com/admin/products/temp/media",
                 { filePath: this.product.media[index] },
                 {
                     preserveScroll: true,
@@ -1054,7 +1054,7 @@ export default {
 
                                 if (variants[i].filePath.includes("temp")) {
                                     this.$inertia.patch(
-                                        "https://arm-commerce.com/admin/products/temp/media",
+                                        "https://arm-commerce.amrilazim.com/admin/products/temp/media",
                                         {
                                             filePath: variants[i].filePath,
                                         },
@@ -1155,7 +1155,7 @@ export default {
 
                                 if (el.filePath.includes("temp")) {
                                     this.$inertia.patch(
-                                        "https://arm-commerce.com/admin/products/temp/media",
+                                        "https://arm-commerce.amrilazim.com/admin/products/temp/media",
                                         {
                                             filePath: el.filePath,
                                         },
@@ -1225,7 +1225,7 @@ export default {
             var uploadedVariantMedia = event.target.files[0];
 
             this.$inertia.post(
-                "https://arm-commerce.com/admin/products/temp/media",
+                "https://arm-commerce.amrilazim.com/admin/products/temp/media",
                 {
                     variant: uploadedVariantMedia,
                 },
@@ -1272,7 +1272,7 @@ export default {
             }
 
             this.$inertia.patch(
-                "https://arm-commerce.com/admin/products/temp/media",
+                "https://arm-commerce.amrilazim.com/admin/products/temp/media",
                 { filePath: this.product.variants[key].filePath },
                 {
                     preserveScroll: true,

@@ -654,7 +654,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     }, null, 8
                     /* PROPS */
                     , _hoisted_14)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-                      href: 'https://arm-commerce.com/products/' + product.slug,
+                      href: 'https://arm-commerce.amrilazim.com/products/' + product.slug,
                       onClick: _cache[1] || (_cache[1] = function ($event) {
                         return $setup.cartSliderStore.changeValue();
                       })

@@ -391,7 +391,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["title"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: 'https://arm-commerce.com/products/categories/' + $data.product.category.slug,
+    href: 'https://arm-commerce.amrilazim.com/products/categories/' + $data.product.category.slug,
     "class": "mr-2 text-sm font-medium text-gray-900"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -405,7 +405,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["href"]), _hoisted_7]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    href: 'https://arm-commerce.com/products/' + $data.product.slug,
+    href: 'https://arm-commerce.amrilazim.com/products/' + $data.product.slug,
     "aria-current": "page",
     "class": "font-medium text-gray-500 hover:text-gray-600"
   }, {
@@ -423,7 +423,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0
   }, [_ctx.$page.props.auth.user.isAdmin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
     key: 0,
-    href: 'https://arm-commerce.com/admin/products/' + $data.product.slug + '/edit',
+    href: 'https://arm-commerce.amrilazim.com/admin/products/' + $data.product.slug + '/edit',
     "class": "text-indigo-500 text-md font-semibold"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

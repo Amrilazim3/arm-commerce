@@ -11,7 +11,7 @@
                         <div class="flex items-center">
                             <Link
                                 :href="
-                                    'https://arm-commerce.com/products/categories/' +
+                                    'https://arm-commerce.amrilazim.com/products/categories/' +
                                     product.category.slug
                                 "
                                 class="mr-2 text-sm font-medium text-gray-900"
@@ -34,7 +34,7 @@
                         <li class="text-sm">
                             <Link
                                 :href="
-                                    'https://arm-commerce.com/products/' +
+                                    'https://arm-commerce.amrilazim.com/products/' +
                                     product.slug
                                 "
                                 aria-current="page"
@@ -48,7 +48,7 @@
                         <template v-if="$page.props.auth.user.isAdmin">
                             <Link
                                 :href="
-                                    'https://arm-commerce.com/admin/products/' +
+                                    'https://arm-commerce.amrilazim.com/admin/products/' +
                                     product.slug +
                                     '/edit'
                                 "

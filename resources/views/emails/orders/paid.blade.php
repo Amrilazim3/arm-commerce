@@ -3,7 +3,7 @@
 
 Your customer are making an order, please prepare it as soon as possible.
 
-@component('mail::button', ['url' => 'https://arm-commerce.com/admin/products/shippings'])
+@component('mail::button', ['url' => 'https://arm-commerce.amrilazim.com/admin/products/shippings'])
 you can check it here
 @endcomponent
 

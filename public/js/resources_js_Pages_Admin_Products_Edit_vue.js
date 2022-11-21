@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
       this.safeToLeave = true;
       var uploadedMedia = event.target.files; // send data to the back end to be validate
 
-      this.$inertia.post("https://arm-commerce.com/admin/products/temp/media", {
+      this.$inertia.post("https://arm-commerce.amrilazim.com/admin/products/temp/media", {
         media: uploadedMedia
       }, {
         preserveScroll: true,
@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      this.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
+      this.$inertia.patch("https://arm-commerce.amrilazim.com/admin/products/temp/media", {
         filePath: this.product.media[index]
       }, {
         preserveScroll: true,
@@ -322,7 +322,7 @@ __webpack_require__.r(__webpack_exports__);
                 }
 
                 if (variants[_i2].filePath.includes("temp")) {
-                  _this4.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
+                  _this4.$inertia.patch("https://arm-commerce.amrilazim.com/admin/products/temp/media", {
                     filePath: variants[_i2].filePath
                   }, {
                     preserveScroll: true
@@ -411,7 +411,7 @@ __webpack_require__.r(__webpack_exports__);
                 }
 
                 if (el.filePath.includes("temp")) {
-                  _this4.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
+                  _this4.$inertia.patch("https://arm-commerce.amrilazim.com/admin/products/temp/media", {
                     filePath: el.filePath
                   }, {
                     preserveScroll: true
@@ -473,7 +473,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.safeToLeave = true;
       var uploadedVariantMedia = event.target.files[0];
-      this.$inertia.post("https://arm-commerce.com/admin/products/temp/media", {
+      this.$inertia.post("https://arm-commerce.amrilazim.com/admin/products/temp/media", {
         variant: uploadedVariantMedia
       }, {
         preserveScroll: true,
@@ -508,7 +508,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      this.$inertia.patch("https://arm-commerce.com/admin/products/temp/media", {
+      this.$inertia.patch("https://arm-commerce.amrilazim.com/admin/products/temp/media", {
         filePath: this.product.variants[key].filePath
       }, {
         preserveScroll: true,
