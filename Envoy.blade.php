@@ -1,4 +1,4 @@
-@servers(['web' => ['amril@amril-azim-server1']])
+@servers(['ssh' => ['amril@128.199.131.110']])
 
 @story('deploy')
     git
