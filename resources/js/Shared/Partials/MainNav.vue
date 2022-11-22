@@ -331,7 +331,6 @@
                                                     Fitness
                                                 </div>
                                             </Link>
-
                                             <Link
                                                 href="https://arm-commerce.amrilazim.com/products/categories/fitness"
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
@@ -342,7 +341,6 @@
                                                     Workout
                                                 </div>
                                             </Link>
-
                                             <Link
                                                 href="https://arm-commerce.amrilazim.com/products/categories/fitness"
                                                 class="flex items-center p-3 -m-3 rounded-lg hover:bg-gray-400"
