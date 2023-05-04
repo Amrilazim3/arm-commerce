@@ -21,8 +21,8 @@ class ProductFactory extends Factory
         }
         $adminUser = User::where('email', 'a.azim0711@gmail.com')->first();
         return [
-            'user_id' => $adminUser->id, // the only admin in this application
-            'category_id' => rand(1, 5), // only have seven category available,
+            'user_id' => $adminUser->id,
+            'category_id' => rand(1, 5),
             'name' => $productName,
             'slug' => Str::slug($productName),
             'description' => $this->faker->realText(300),

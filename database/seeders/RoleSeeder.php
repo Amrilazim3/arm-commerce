@@ -18,7 +18,6 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'user']);
 
-        // assign certain user to become admin
         $user = User::create([
             'name' => 'amrilazim',
             'email' => 'a.azim0711@gmail.com',
@@ -27,10 +26,10 @@ class RoleSeeder extends Seeder
         
         $user->assignRole('admin');
 
-        // assign certain user to become user
-        // $users = User::where('id', '!=', 11)->lazy();
-        // foreach ($users as $user) {
-        //     $user->assignRole('user');
-        // }
+        $users = User::where('email', '!=', 'a.azim0711@gmail.com')->get();
+
+        foreach ($users as $user) {
+            $user->assignRole('user');
+        }
     }
 }
