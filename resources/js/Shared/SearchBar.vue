@@ -25,7 +25,7 @@
                         <div class="px-1 py-1">
                             <MenuItem v-slot="{ active }">
                                 <Link
-                                    :href="'https://arm-commerce.amrilazim.com/products/categories/' + category.slug"
+                                    :href="baseUrl + '/products/categories/' + category.slug"
                                     :class="[
                                         active
                                             ? 'bg-indigo-500 text-white'
@@ -78,6 +78,7 @@ export default {
     props: {
         requests: Array,
         categories: Array,
+        baseUrl: String
     },
 
     data() {

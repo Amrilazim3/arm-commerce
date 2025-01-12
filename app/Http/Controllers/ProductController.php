@@ -37,7 +37,8 @@ class ProductController extends Controller
         return Inertia::render('Products/Index', [
             'productsData' => $productsData,
             'requests' => request(['search']),
-            'categories' => $categories
+            'categories' => $categories,
+            'baseUrl' => config('app.url')
         ]);
     }
 

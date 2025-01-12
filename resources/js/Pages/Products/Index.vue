@@ -17,10 +17,10 @@
                     New Arrivals
                 </h2>
 
-                <SearchBar :requests="requests" :categories="categories" />
+                <SearchBar :requests="requests" :categories="categories" :baseUrl="baseUrl" />
             </div>
 
-            <ProductsLayout :productsData="productsData" />
+            <ProductsLayout :productsData="productsData" :baseUrl="baseUrl" />    
         </div>
     </div>
 </template>
@@ -39,6 +39,7 @@ export default {
         productsData: Object,
         requests: Array,
         categories: Array,
+        baseUrl: String
     },
 
     mounted() {

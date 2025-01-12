@@ -29,10 +29,7 @@
                     <div>
                         <h3 class="text-sm text-gray-700">
                             <Link
-                                :href="
-                                    'https://arm-commerce.amrilazim.com/products/' +
-                                    product.slug
-                                "
+                                :href="`${baseUrl}/products/${product.slug}`" 
                             >
                                 <span
                                     aria-hidden="true"
@@ -70,6 +67,7 @@ export default {
 
     props: {
         productsData: Object,
+        baseUrl: String,
     },
 
     data() {

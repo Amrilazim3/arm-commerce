@@ -12,10 +12,10 @@
                     {{ category }} products
                 </h2>
 
-                <SearchBar :requests="requests" :categories="categories" />
+                <SearchBar :requests="requests" :categories="categories" :baseUrl="baseUrl" />
             </div>
 
-            <ProductsLayout :productsData="productsData" />
+            <ProductsLayout :productsData="productsData" :baseUrl="baseUrl" />
         </div>
     </div>
 </template>
@@ -35,6 +35,7 @@ export default {
         category: String,
         requests: Array,
         categories: Array,
+        baseUrl: String
     },
 };
 </script>

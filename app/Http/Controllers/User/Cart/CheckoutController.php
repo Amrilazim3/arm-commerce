@@ -89,10 +89,10 @@ class CheckoutController extends Controller
             $request->phone_number,
             $request->full_name,
             500,
-            'https://arm-commerce.amrilazim.com/products',
+            config('app.url') . '/products',
             'make a payment',
             [
-                'redirect_url' => 'https://arm-commerce.amrilazim.com/user/checkout/response'
+                'redirect_url' => config('app.url') . '/user/checkout/response'
             ]
         );
 

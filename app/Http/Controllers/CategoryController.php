@@ -51,7 +51,8 @@ class CategoryController extends Controller
             'productsData' => $productsData,
             'category' => $category->name,
             'requests' => request(['search']),
-            'categories' => $categories
+            'categories' => $categories,
+            'baseUrl' => config('app.url')
         ]);
     }
 }

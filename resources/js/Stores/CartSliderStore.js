@@ -15,7 +15,7 @@ export const useCartSliderStore = defineStore('cartSliderStore', {
     actions: {
         async getCartProducts() {
             try {
-                const result = await axios.get("https://arm-commerce.amrilazim.com/user/carts");
+                const result = await axios.get("/user/carts");
 
                 this.cartProducts = result.data;
 

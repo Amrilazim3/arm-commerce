@@ -579,7 +579,14 @@ export default {
                             )
                             .then((res) => {
                                 window.location.href = res.data;
-                            });
+                            })
+                            .catch(() => {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Failed",
+                                    text: "Something went wrong! Please try again",
+                                });
+                            });;
                     },
                 }
             );
